@@ -1,0 +1,138 @@
+velika kladuša|velika kladusa|V
+vareš|vares|V
+višegrad|visegrad|V
+vitez|V
+vogošća|vogosca|V
+vlasenica|V
+vidoši|vidosi|V
+varoška rijeka|varoska rijeka|V
+velagići|velagici|V
+velika obarska|V
+vitina|V
+voljevac|V
+vrnograč|vrnograc|V
+vukovije donje|V
+goražde|gorazde|G
+gradačac|gradacac|G
+gacko|G
+glamoč|glamoc|G
+grude|G
+gostovići|gostovici|G
+gnojnica|G
+gornja koprivna|G
+gornja tuzla|G
+gornje živinice|gornje zivinice|G
+gornji vakuf|G
+gradiška|gradiska|G
+gromiljak|G
+doboj|D
+donji vakuf|D
+derventa|D
+donja mahala|D
+divičani|divicani|D
+dobrljin|D
+donja dubica|D
+dubrave donje|D
+dubrave gornje|D
+žepče|zepce|Ž
+željezno polje|zeljezno polje|Ž
+zenica|Z
+zavidovići|zavidovici|Z
+zvornik|Z
+zabrišće|zabrisce|Z
+zborište|zboriste|Z
+ilići|ilici|I
+ilijaš|ilijas|I
+izačić|izacic|I
+jajce|J
+jelah|J
+jezerski|J
+kiseljak|K
+kladanj|K
+karadaglije|K
+kačuni|kacuni|K
+kobilja glava|K
+koran|K
+kostajnica|K
+kočerin|kocerin|K
+livno|L
+laktaši|laktasi|L
+lopare|L
+liješnica|lijesnica|L
+lokvine|L
+ljubuški|ljubuski|LJ
+mostar|M
+mrkonjić grad|mrkonjic grad|M
+maglaj|M
+mahala|M
+maglajani|M
+malešići|malesici|M
+maslovare|M
+nevesinje|N
+novi travnik|N
+novi šeher|novi seher|N
+odžak|O
+olovo|O
+obudovac|O
+omarska|O
+orahovica donja|O
+orguz|O
+ostrožac|ostrozac|O
+otoka|O
+oštra luka|ostra luka|O
+prijedor|P
+pale|P
+posušje|posusje|P
+petkovci|P
+pod brdo|P
+potoci|P
+pajić polje|pajic polje|P
+pazarić|pazaric|P
+peći|peci|P
+pećigrad|pecigrad|P
+piskavica|P
+pjanići|pjanici|P
+pribinić|pribinic|P
+puračić|puracic|P
+rogatica|R
+radišići|radisici|R
+rodoč|rodoc|R
+rumboci|R
+sarajevo|S
+sanski most|S
+srbac|S
+srebrenica|S
+srebrenik|S
+stanari|S
+stijena|S
+sanica|S
+skokovi|S
+sladna|S
+stupari|S
+svodna|S
+svojat|S
+tuzla|T
+travnik|T
+teslić|T
+tešanj|T
+tomislavgrad|T
+tešanjka|tesanjka|T
+tojšići|tojsici|T
+tržačka raštela|trzacka rastela|T
+turbe|T
+ćoralići|coralici|Ć
+ugljevik|U
+ustikolina|U
+foča|foca|F
+fojnica|F
+cazin|C
+careva ćuprija|careva cuprija|C
+čajniče|Č
+čapljina|Č
+čelinac|Č
+čečava|cecava|Č
+šipovo|sipovo|Š
+šamac|samac|Š
+šekovići|sekovici|Š
+šerići|serici|Š
+šturlić|sturlic|Š
