@@ -1,5 +1,6 @@
 [
-    {
+  {
+    "Comment" : "Ovo je jednostavno prekopirano iz data/cities.json",
     "country": "BA",
     "name": "Zvornik",
     "lat": "44.38605",

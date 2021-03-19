@@ -27,6 +27,7 @@ with open('./tbcB.txt','w',encoding='utf-8') as f:
             mostCorrect = re.sub(' ','%20',l.strip())
             res = get_city_opendata(f'{mostCorrect}', 'ba')
             if(res != None):
+               
                 try:
                     if(res['population'] >500):
                         name = l.strip().lower()

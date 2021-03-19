@@ -16,7 +16,7 @@ with open('./newData2.txt','w',encoding='UTF-8') as newData2:
         for l in newDataLines:
             if(index > 1901):
                 try:
-                    #TREBA DA STAVIS SPLITOVAN NAZIV!!!!!
+                   
                     stripped = l.strip()
                     
 
