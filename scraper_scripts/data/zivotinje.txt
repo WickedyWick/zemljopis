@@ -1,0 +1,329 @@
+amurski spavač
+amurski čebačok
+atlantska jesetra
+balavac
+balonov balavac
+beli amur
+beli tolstolobik
+belka
+bodorka
+brkica
+burešijeva brkica
+bucov
+veliki vretenar
+velikousti bas
+vijun
+vijunica
+gaovica
+glavatica
+glavoč glavaš
+glavoč okruglak
+glavoč peskar
+glavoč trkač
+crnomorska haringa
+glavoč cevonos
+govedarka
+grgeč
+grunec
+grčka crvenperka
+dvoprugasta uklija
+deverika
+dunavska jesetra
+dunavska paklara
+dunavska haringa
+zlatni vijun
+zlatni karaš
+istočna mrenka
+jaz
+jegulja
+jezerska zlatovčica
+kalifornijska pastrmka
+karaš
+kesega
+keslerova krkuša
+kečiga
+klen
+klenić
+krkuša
+krupatica
+linjak
+lipljen
+mali vretenar
+manić
+mergur
+mladica
+morska paklara
+moruna
+mrena
+nosara
+ozimica
+pastruga
+pegunica
+peš
+pijor
+plašica
+plotica
+potočna zlatovčica
+potočna mrena
+potočna paklara
+potočna pastrmka
+rečna paklara
+sabljarka
+svetlica
+severnoamerički veslonos
+sivi tolstolobik
+sim
+skobalj
+slatkovodna slingura
+smuđ
+smuđ kamenjar
+som
+srebrni karaš (babuška)
+sunčica
+tankorepa krkuša
+trobodlja
+uklija
+ukrajinska koljuška
+ukrajinska paklara
+cverglan
+crvenperka
+crnka
+crnomorska haringa
+crnooka deverika
+čikov
+šaradan
+šaran
+šilce kratkokljuno
+šrac
+štuka
+prugasti miš
+vodena voluharica
+vuk (kurjak)
+evropski dabar
+jež
+divlja mačka
+zec
+vidra
+kuna zlatica
+puh lešnikar
+hermelin
+lasica
+patuljasti miš
+močvarna rovčica
+mrki tvor
+slepo kuče
+tekunica
+orao krstaš
+siva čaplja
+crvena čaplja (siva čaplja)
+žuta čaplja
+patka njorka
+bukavac
+dugokljuni puzić
+belobrada čigra
+bela roda
+crna roda
+srednji detlic
+crna žuna
+velika bela čaplja
+belovrata muharica
+čapljica
+orao belorepan
+vioglava
+crna lunja
+gak
+vuga
+ćuk
+osičar
+mali vranac
+obična crvenperka
+ražanj (crni ibis)
+čaplja kašikara (kašičar)
+zelena žuna
+modrovrana (zlatovrana)
+pčelarica
+lasta bregunica
+dugorepa sova (uralska sova)
+šumska sova
+vodomar
+žalar slepić (mali zujavac)
+divlja guska
+labud
+barska kornjača
+livadski gušter
+daždevnjak
+smuk
+belouška
+šarka
+crvenotrbi mukač
+šumska krastava žaba
+gatalinka
+žaba češnjača
+šumska žaba
+zelena žaba
+mala zelena žaba
+velika zelena žaba
+kečiga
+šaran
+bolen
+smuđ
+skobalj
+štuka
+čikov
+som
+Beli amur
+Babuška (riba)
+Balavac
+Balavac prugasti
+Grgeč
+Bas (riba)
+Belica (riba)
+Belica plotica
+Bodorka
+Bucov
+Brkica
+Bucov
+Vijun
+Vretenar veliki
+Mali vretenar
+Deverika
+Crnooka deverika
+Jezerska zlatovčica
+Potočna zlatovčica
+Jegulje
+Jaz (riba)
+Karaš
+Zlatni karaš
+Dugonosa kečiga
+Kratkonosa kečiga
+Keder
+Klen (riba)
+Klenić
+Krupatica
+Krkuša
+Linjak
+Lipljen
+Manić (riba)
+Mladica
+Moruna
+Mrena
+Potočna mrena
+Nosara
+Potočna pastrmka
+Jezerska pastrmka
+Pastrmka ohridska
+Pastrmka glavatica
+Dužičasta pastrmka
+Mekousna pastrmka
+Peš
+Pijor
+Pucavac (riba)
+Sabljarka (riba)
+Skobalj
+Smuđ
+Smuđ kamenjar
+Som
+Sunčanica (riba)
+Terpan
+Beli tolstolobik
+Tolstolobik sivi
+Umbra
+Crvenperka
+Čikov
+Špicer
+Šaran
+Štuka
+Beli amur
+Babuška (riba)
+Balavac
+Balavac prugasti
+Grgeč
+Bas (riba)
+Belica (riba)
+Belica plotica
+Bodorka
+Bucov
+Brkica
+Bucov
+Vijun
+Vretenar veliki
+Mali vretenar
+Deverika
+Crnooka deverika
+Jezerska zlatovčica
+Potočna zlatovčica
+Jegulje
+Jaz (riba)
+Karaš
+Zlatni karaš
+Dugonosa kečiga
+Kratkonosa kečiga
+Keder
+Klen (riba)
+Klenić
+Krupatica
+Krkuša
+Linjak
+Lipljen
+Manić (riba)
+Mladica
+Moruna
+Mrena
+Potočna mrena
+Nosara
+Potočna pastrmka
+Jezerska pastrmka
+Pastrmka ohridska
+Pastrmka glavatica
+Dužičasta pastrmka
+Mekousna pastrmka
+Peš
+Pijor
+Pucavac (riba)
+Sabljarka (riba)
+Skobalj
+Smuđ
+Smuđ kamenjar
+Som
+Sunčanica (riba)
+Terpan
+Beli tolstolobik
+Tolstolobik sivi
+Umbra
+Crvenperka
+Čikov
+Špicer
+Šaran
+Štuka
+pas
+mačka
+konj
+magarac
+govedo
+bivol
+zebu
+jak
+gajal
+banteng
+kamila (deva)
+lama
+alpaka
+ovca
+koza
+irvas (sob) (karibu)
+svinja
+kunić
+morsko prase (zamorče)
+kokoš
+guska
+patka
+puran
+biserka
+golub
+fazan
+noj
+paun
+kanarinac
+prugasta papiga
+pčela
+dudov svilac

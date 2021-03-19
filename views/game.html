@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Zemljopis</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" />
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-dark">
+                <a class="navbar-brand" href="/">Home</a>
+                
+        </nav>
+            <div class="alert alert-danger" id="danger-alert" >
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    <strong>Success!</strong> Your message has been sent successfully.
+                </div>
+        <script>
+            $("#danger-alert").hide();
+        </script>
+        <!-- skontaj kako ces layout da namestis
+        <table id="table" class="table table-bordered table-dark" >
+            <thead class="thead-dark">
+                <tr>
+                    <th colspan="12" class="text-center">Zemljopis</th>
+                </tr>
+                <tr>
+                    <th>#</th>
+                    <th>Država</th>
+                    <th>Grad</th>
+                    <th>Ime</th>
+                    <th>Biljka</th>
+                    <th>Životinja</th>
+                    <th>Planina</th>
+                    <th>Reka</th>
+                    <th>Predmet</th>
+                    <th>Slovo</th>
+                    <th>Bodovi</th>
+                </tr>
+            </thead>
+            <tbody class="tbody-dark">
+                
+            </tbody>
+        </table>
+        <button onclick="dodaj()">xd</button>
+        -->
+        <div class="container-fluid" id="maxDiv" style="display:none">
+          <div class="row">
+            <div class="col-xl" style="margin-left:20%;margin-top:1%">
+              <form>
+                <div class="form-group">
+                  <label for="inputDrzava">Država</label>
+                  <input type="text" class="form-control" id="inputDrzava" aria-describedby="helpDrzava" placeholder="Unesi državu :">
+                  <small id="helpDrzava" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
+                </div>
+                <div class="form-group">
+                    <label for="inputGrad">Grad</label>
+                    <input type="text" class="form-control" id="inputGrad" aria-describedby="helpGrad" placeholder="Unesi grad :">
+                    <small id="helpGrad" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
+                </div>
+                <div class="form-group">
+                  <label for="inputIme">Ime</label>
+                  <input type="text" class="form-control" id="inputIme" aria-describedby="helpIme" placeholder="Unesi ime :">
+                  <small id="helpIme" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
+                </div>
+                <div class="form-group">
+                  <label for="inputBiljka">Biljka</label>
+                  <input type="text" class="form-control" id="inputBiljka" aria-describedby="helpBiljka" placeholder="Unesi biljku :">
+                  <small id="helpBiljka" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
+                </div>
+                <div class="form-group">
+                  <label for="inputZivotinja">Životinja</label>
+                  <input type="text" class="form-control" id="inputZivotinja" aria-describedby="helpZivotinja" placeholder="Unesi životinju :">
+                  <small id="helpZivotinja" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
+                </div>
+                <div class="form-group">
+                  <label for="inputPlanina">Planina</label>
+                  <input type="text" class="form-control" id="inputPlanina" aria-describedby="helpPlanina" placeholder="Unesi planinu :">
+                  <small id="helpPlanina" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
+                </div>
+                <div class="form-group">
+                  <label for="inputReka">Reka</label>
+                  <input type="text" class="form-control" id="inputReka" aria-describedby="helpReka" placeholder="Unesi reku :">
+                  <small id="helpReka" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
+                </div>
+                <div class="form-group">
+                  <label for="inputPredmet">Predmet</label>
+                  <input type="text" class="form-control" id="inputPredmet" aria-describedby="helpPredmet" placeholder="Unesi predmet :">
+                  <small id="helpPredmet" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
+                </div> 
+              </form>
+            </div>
+            <div class="col" style="margin-top:2.5%" >
+              <button class="btn btn-primary" id="btnReady" style="background-color:red;">Not ready</button>
+              <label id="lblRoomCode">Roomcode : </label>
+              <label id="lblPlayersReady"></label>
+              <label>/</label>
+              <label id="lblPlayerCount"></label>
+              <div>
+                <select id="igraci">
+                  
+                </select>
+              </div>
+              <label>Runda : </label>
+              <label id="roundNumber">0</label>
+              <label id="currentLetter"></label>
+            </div>
+            <div>
+              <label id="counter"></label>
+            </div>
+          </div> 
+      </div>
+    </body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.min.js" integrity="sha512-BHtomM5XDcUy7tDNcrcX1Eh0RogdWiMdXl3wJcKB3PFekXb3l5aDzymaTher61u6vEZySnoC/SAj2Y/p918Y3w==" crossorigin="anonymous"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous"></script>
+    <script>
+        data = {}
+        // document.getElementById("test").addEventListener('click', (e) =>{
+        //   e.preventDefault();
+        //   $('small').show();
+        // })
+        //dodaj timeout na ready button i posalji unready signal kad se izadje sa stranice
+        const {username, roomCode} = Qs.parse(location.search,{
+                ignoreQueryPrefix: true
+            })
+        let readyBtn = document.getElementById('btnReady')
+        let gameStarted = false
+        let ready = false;
+        let timer = document.getElementById('counter')
+        let myInterval;
+        let roundNumber;
+        let t0;
+        let t1;
+        const fields = ['Drzava','Grad','Predmet','Ime','Biljka','Reka','Planina','Zivotinja']
+        
+        $(`#helpGrad`).css("visibility", "visible")
+        
+        // dodaj start button za leadera 
+        const socket = io('http://46.40.27.131:3000/');
+        socket.on('message', message =>{
+            console.log(message)
+        })
+        
+        socket.on('joinMessage', message =>{
+            console.log(message)
+        })
+        
+        //pogledaj da li ova polja je okej uzeti sa svim inputima
+        function clearAllInputFields(){
+          $("#inputDrzava").val('')
+          $("#inputGrad").val('')
+          $("#inputPredmet").val('')
+          $("#inputIme").val('')
+          $("#inputBiljka").val('')
+          $("#inputReka").val('')
+          $("#inputPlanina").val('')
+          $("#inputZivotinja").val('')
+        }
+        function disableAllInputFields(){
+          $("#inputDrzava").prop("disabled", true )
+          $("#inputGrad").prop("disabled", true )
+          $("#inputPredmet").prop("disabled", true )
+          $("#inputIme").prop("disabled", true )
+          $("#inputBiljka").prop("disabled", true )
+          $("#inputReka").prop("disabled", true )
+          $("#inputPlanina").prop("disabled", true )
+          $("#inputZivotinja").prop("disabled", true )
+
+        }
+        function enableAllInputFields(){
+          $("#inputDrzava").prop("disabled", false )
+          $("#inputGrad").prop("disabled", false )
+          $("#inputPredmet").prop("disabled", false )
+          $("#inputIme").prop("disabled", false )
+          $("#inputBiljka").prop("disabled", false )
+          $("#inputReka").prop("disabled", false )
+          $("#inputPlanina").prop("disabled", false )
+          $("#inputZivotinja").prop("disabled", false )
+
+        }
+        socket.on('load', message =>{
+          if(message['Success']){
+            $('#maxDiv').show()
+            document.getElementById('lblRoomCode').textContent += String(roomCode)
+            document.getElementById('lblPlayersReady').textContent = message['playersReady']
+            document.getElementById('lblPlayerCount').textContent = message['playerCount']
+            roundNumber = message['roundNumber']
+            document.getElementById('roundNumber').textContent = roundNumber
+            console.log(message['roundActive'])
+            new Noty({
+                  theme : 'metroui',
+                  type : 'success',
+                  layout : 'topRight',
+                  text : message['MSG'],
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+            if(message['roundActive']){  
+
+              disableAllInputFields()
+              new Noty({
+                  theme : 'metroui',
+                  type : 'info',
+                  layout : 'topRight',
+                  text : 'Sačekajte sledecu rundu da bi ste nastavili da igrate!',
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+            }
+          }else{
+            new Noty({
+                  theme : 'metroui',
+                  type : 'warning',
+                  layout : 'topRight',
+                  text : message['ERR_MSG'],
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+          }
+
+        })  
+
+        socket.on('playerCountUpdate', message =>{
+         
+          document.getElementById('lblPlayersReady').textContent = message
+        })
+
+
+        socket.on('gameStartNotification', message => {
+          console.log(message)
+          if(message['Success'] == true){
+            new Noty({
+                theme : 'metroui',
+                type : 'success',
+                layout : 'topRight',
+                text : message['MSG'],
+                timeout : 5000,
+                progressBar :true
+              }).show()
+          }
+          document.getElementById('currentLetter').textContent = message['currentLetter']
+          
+          let duration = 61
+            myInterval = setInterval(()=>{
+            duration--
+            timer.innerHTML = duration
+            if(duration == 0){
+              
+              clearInterval(myInterval)
+            }
+          },1000)
+          readyBtn.innerText = "Gotovo";
+          gameStarted = true;
+        })
+
+
+
+        socket.on('playerReadyResponse' , message =>{
+          
+          if(message['Success'] == false){
+            if(message['ERR_CODE'] == 1){
+              //reset ready button
+              readyBtn.style.backgroundColor = 'red'
+              document.getElementById('lblPlayersReady').textContent = 0
+              new Noty({
+                theme : 'metroui',
+                type : 'error',
+                layout : 'topRight',
+                text : message['ERR_MSG'],
+                timeout : 5000,
+                progressBar :true
+              }).show()
+            }
+          }
+          else{
+            if(message['CODE'] == 1)
+            {
+              if(message['STATE'] == 'Ready'){
+                readyBtn.style.backgroundColor = 'green';
+              }else{
+                readyBtn.style.backgroundColor = 'red'
+              }
+              readyBtn.innerHTML = message['STATE']
+              new Noty({
+                theme : 'metroui',
+                type : 'success',
+                layout : 'topRight',
+                text : message['MSG'],
+                timeout : 5000,
+                progressBar :true
+              }).show()
+            }
+          }
+        })
+
+        socket.on('discMessage',message =>{
+          new Noty({
+              theme : 'metroui',
+              type : 'info',
+              layout : 'topRight',
+              text : message,
+              timeout : 5000,
+              progressBar :true
+            }).show()
+        })
+
+        socket.on('playerJoinMsg', message =>{    
+          
+            new Noty({
+              theme : 'metroui',
+              type : 'success',
+              layout : 'topRight',
+              text : message,
+              timeout : 5000,
+              progressBar :true
+            }).show()
+        })
+        socket.on('roundNumberUpdate', message=>{
+          roundNumber = message
+          document.getElementById('roundNumber').textContent = roundNumber 
+        })
+
+        socket.on('points' , message =>{
+          if(message['Success'])
+          {
+            
+            alert("YOURS POINTS ARE : " + message['DATA'][username])
+            t1 = performance.now();
+            console.log(`TIME : ${t1-t0}`)
+          }
+          else
+          {
+            new Noty({
+                theme : 'metroui',
+                type : 'success',
+                layout : 'topRight',
+                text : message['MSG'],
+                timeout : 5000,
+                progressBar :true
+              }).show()
+            }
+          roundNumber = message['roundNumber']
+          document.getElementById('roundNumber').textContent = roundNumber
+          document.getElementById('lblPlayersReady').textContent = message['playersReady']
+        })
+        socket.on('roundEnd',message =>{
+          t0 = performance.now()
+          if(message['Success']){
+            //SEND ALL DATA TO SERVER FOR REVALUETION
+            new Noty({
+              theme : 'metroui',
+              type : 'success',
+              layout : 'topRight',
+              text : message['MSG'],
+              timeout : 5000,
+              progressBar :true
+            }).show()
+            console.log(message)
+            enableAllInputFields()
+            
+            var reg = /^[A-Za-zčČćĆžŽšŠđĐ]{1,42}$/g
+            var allValid = true
+            var data = []
+           
+                
+            for(let i=0;i<fields.length;i++){
+              if(!reg.test($(`#input${fields[i]}`).val())){
+                data.push('')               
+              }else{
+                data.push($(`#input${fields[i]}`).val().toLowerCase())
+              }              
+              reg.lastIndex =0;       
+            }           
+              socket.emit('roundData',({username,roomCode,data,roundNumber}))
+              //ili vidi da se ovo radi kada se dobije confirmacija da su podaci obradjeni!!!
+            clearAllInputFields()
+            gameStarted = false
+            ready = false
+            readyBtn.style.backgroundColor = 'red'
+            readyBtn.textContent = 'Not ready!'           
+            clearInterval(myInterval)
+            timer.textContent = '0'
+          }
+        })
+
+        function myAlert(test){
+            $("#danger-alert").html(`<a href="#" class="close" data-dismiss="alert">&times;</a><strong>Failure</strong> ${test}`)
+            $("#danger-alert").fadeTo(2000, 500).slideUp(500, () =>{
+                $("#danger-alert").slideUp(500);
+            });   
+        }
+
+        window.addEventListener('unload',(e) =>{
+          if(!readyBtn.style.backgroundColor == "red" && !readyBtn.innerText == 'Not ready!')
+            socket.emit('disconnectMSG',({username,roomCode}))
+          
+        })
+        
+        
+        readyBtn.addEventListener('click',(e) =>{
+          
+          if(!gameStarted){
+            if(!ready){
+              socket.emit('playerReady',roomCode)
+              readyBtn.setAttribute("disabled","disabled")
+              console.log(readyBtn)
+              ready = true
+              setTimeout(readyBtn.removeAttribute("disabled"),2000)
+            }
+            else{
+              socket.emit('playerUnReady',roomCode)
+              readyBtn.setAttribute("disabled","disabled")
+              console.log(readyBtn)
+              ready = false
+              setTimeout(readyBtn.removeAttribute("disabled"),2000)
+            }
+          }else{
+            //proveri da li su sva polja validna i posalji
+            //ovo resi
+            //var reg = RegExp('[A-Za-zčČćĆžŽšŠđĐ]{1,42}'/g)
+            data =[]
+            const reg = /^[A-Za-zčČćĆžŽšŠđĐ ]{2,42}$/g
+            var allValid = true
+            for(let i=0;i<fields.length;i++){
+              if(!reg.test($(`#input${fields[i]}`).val())){
+                $(`#help${fields[i]}`).css("visibility", "visible") // ovo NE RADI
+                allValid = false
+                data.push('')
+              }else{
+                data.push($(`#input${fields[i]}`).val().toLowerCase())
+              }
+              reg.lastIndex = 0             
+            }
+            if(allValid){     
+              console.log('dataSent')         
+              socket.emit('clientEndRound',({username,roomCode,data,roundNumber}))
+              clearAllInputFields()
+              gameStarted = false
+              ready = false
+              readyBtn.style.backgroundColor = 'red'
+              readyBtn.textContent = 'Not ready!'             
+              clearInterval(myInterval)
+              timer.textContent = '0'
+            }else{
+              //alertuj da podaci nisu validni
+            }
+            //this should be it for now
+            /*
+            new Noty({
+              theme : 'metroui',
+              type : 'success',
+              layout : 'topRight',
+              text : reg.test(document.getElementById('inputDrzava').value),
+              timeout : 5000,
+G              progressBar :true
+            }).show()
+            */
+          }
+        })
+        window.onload = (e)=>{
+            const {username, roomCode} = Qs.parse(location.search,{
+                ignoreQueryPrefix: true
+            })
+            
+            if(username != null && username.length >=4 && roomCode != null && roomCode.length == 8){
+                //TODO da se proveri u bazi da li postoji room i ovaj username i ako postoji neka se samo joinuje u socketu
+                //console.log("TEST")
+                console.log("Success")
+                let sessionToken = localStorage.getItem('sessionToken')
+                socket.emit('joinRoomReq',({username,roomCode,sessionToken}))
+                
+                //$('#maxDiv').show(); ovo stavi u response
+            }
+            else{
+                /*
+                if(!alert("Game not found!"))
+                  window.location.href='/';
+                //myAlert()
+                */
+            }
+        }
+
+        function dodaj(){
+            
+            //console.log(username, room)
+            let xd = ['','Srbija','Subotica','Sanja','Suncokret','Sda','Sada','ss','','S','12']
+            var table = document.getElementById("table")
+            var row = table.insertRow(2)
+                row.editable='true'
+            for(let i =0;i<11;i++){
+                let cell = row.insertCell(i)
+                // use new paragraph for new line
+                cell.innerHTML = xd[i] + '<p></p>'
+            }
+        }
+    </script>
+</html>
+<!-- KORISTI TIMER NA CLIENT SIDU-->

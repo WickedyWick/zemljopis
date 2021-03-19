@@ -1,0 +1,7 @@
+unready ready nekada nece da radi nakon rund (???)
+$(`#help${fields[i]}`).css("visibility", "visible") // ovo NE RADI (game.html,402)
+dodaj vote kick sistem
+gotovo button ne radi?
+////NOTES////
+19ms server za 8 igraca
+    ->65ms klijent

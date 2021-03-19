@@ -1,0 +1,458 @@
+#1901
+
+apatin|
+aranđelovac|arandjelovac|A
+alžir|alzir|A
+andora la velja|A
+adelejd|A
+antverpen|A
+akra|A
+adelejd|A
+antverpen|A
+akra|A
+atina|A
+agrinion|A
+aleksandrupolis|A
+aleksandrija|A
+asuan|A
+asmara|A
+adisa beba|A
+akaba|A
+aden|A
+almati|A
+amohostos|A
+akapulko|A
+abudža|abudza|A
+abidžan|abidzan|A
+asunsion|A
+amadora|A
+almada|A
+apija|A
+alep|A
+albukerki|A
+atlanta|A
+ankara|A
+adana|A
+antalija|A
+ašhabad|ashabad|A
+abudabi|A
+aberdin|A
+avr|A
+anžer|anzer|A
+amsterdam|A
+ajndhoven|A
+almere|A
+alikante|A
+aleksinac|A
+ada|A
+aleksandrovac|A
+alibunar|A
+arilje|A
+andrijevica|A
+arhangeljsk|arhangelsk|A
+amšteten|amsteten|A
+adaševci|adasevci|A
+adorjan|A
+adrani|A
+alakince|A
+alakince|A
+aldina reka|A
+aldinac|A
+aleksa šantić|aleksa santic|A
+aleksandrovo|A
+aleksine|A
+aleksići|aleksici|A
+aliđerce|alidjerce|A
+amerić|americ|A
+aradac|A
+arapovac|A
+arbanasce|A
+arnajevo|A
+atenica|A
+azanja|A
+azbresnica|A
+adamovec|A
+aljmaš|aljmas|A
+andraševec|andrasevec|A
+andrijaševci|andrijasevci|A
+antunovac|Aazanja|A
+amajlije|A
+aranđelovo|arandjelovo|A
+avtovac|A
+ahen|A
+arad|A
+bačka palanka|backa palanka|A
+bačka topola|backa topola|B
+beograd|B
+bečej|becej|B
+bor|B
+baku|B
+buenos ajres|B
+brizbejn|B
+bridžtaun|bridztaun|B
+brisel|B
+briž|briz|B
+belmopan|B
+belize|B
+brest|B
+banja luka|B
+bijeljina|B
+brčko|brcko|B
+bihać|bihac|B
+brazilija|B
+belo orizonte|B
+burgas|B
+budžumbura|budzumbura|B
+bandžul|bandzul|B
+bisau|B
+batumi|B
+ber|B
+bulavajo|B
+bangalor|B
+bagdad|B
+basra|B
+bolonja|B
+bari|B
+breša|bresa|B
+blumfontejn|B
+batambang|B
+biškek|biskek|B
+bogota|B
+brazavil|B
+busan|B
+bejrut|B
+bengazi|B
+budimpešta|budimpesta|B
+bitolj|B
+blantir|B
+bamako|B
+birkirkara|B
+berlin|B
+bremen|B
+bergen|B
+braga|B
+bukurešt|bukurest|B
+brašov|brasov|B
+borgomađore|borgomadjore|B
+baster|B
+bratislava|B
+berkli|B
+boston|B
+baltimor|B
+bafalo|B
+banska bistrica|B
+bangkok|B
+bizerta|B
+bursa|B
+bodrum|B
+birmingem|B
+bristol|B
+belfast|B
+buhara|B
+bordo|B
+breda|B
+bjelovar|B
+bangi|B
+bijelo polje|B
+bar|B
+berane|B
+budva|B
+brno|B
+bazel|B
+bern|B
+barselona|B
+bilbao|B
+bugojno|B
+beč|bec|B
+bečići|becici|B
+babušnica|babusnica|B
+batočina|batocina|B
+bajina bašta|bajina basta|B
+bajmok|B
+baljevac|B
+banatski karlovac|B
+banja koviljača|banja koviljaca|B
+bač|bac|B
+bački jarak|backi jarak|B
+bački petrovac|backi petrovac|B
+bela palanka|B
+bela crkva|B
+beli potok|B
+belo polje|B
+beočin|beocin|B
+blace|B
+bogovina|B
+boljevac|B
+bosilegrad|bosiljgrad|B
+brza palanka|B
+brus|B
+bujanovac|B
+bosanska krupa|B
+bosanska gradiška|bosanska gradiska|B
+bileća|bileca|B
+bijela|B
+burtaiši|burtaisi|B
+bakar|B
+beli manastir|B
+belišće|belisce|B
+benkovac|B
+biograd na moru|B
+buje|B
+buzet|B
+banovići|banovici|B
+berkovići|berkovici|B
+bosanska dubica|B
+bosansko grahovo|B
+bosanska kostajnica|B
+brod|B
+novi grad|N
+bosanski novi|B
+bosanski petrovac|B
+bosanski šamac|bosanski samac|B
+bratunac|B
+breza|B
+busovača|busovaca|B
+bužim|B
+babindol|B
+babina luka|B
+badince|B
+badnjevac|B
+badovinci|B
+bagrdan|B
+bajevac|B
+bajevica|B
+bajša|bajsa|B
+bakionica|B
+balajnac|B
+balići|balici|B
+baličevac|balicevac|B
+baluga trnavska|B
+banatska palanka|B
+banatski dvor|B
+banatsko aranđelovo|banatsko arandjelovo|B
+banatsko karađorđevo|banatsko karadjordjevo|B
+baničina|banicina|B
+banjani|B
+banovo polje|B
+banoštor|banostor|B
+barajevo|B
+baranda|B
+barice|B
+batinac|B
+batovac|B
+batulovce|B
+batušinac|batusinac|B
+bavanište|bavaniste|B
+bačina|bacina|B
+bačinac|bacinac|B
+bačinci|bacinci|B
+bački brestovac|backi brestovac|B
+bački gračac|backi gracac|B
+bačko dobro polje|backo dobro  polje|B
+bačko gradište|backo gradiste|B
+bačko novo selo|backo novo selo|B
+bačko petrovo selo|backo petrovo selo|B
+becanj|B
+bedina varoš|bedina varos|B
+belegiš|belegis|B
+belosavci|B
+belotinac|B
+belotić|belotic|B
+belušić|belusic|B
+berilovac|B
+berkasovo|B
+bezdan|B
+bešenovo|besenovo|B
+beška|beska|B
+bigrenica|B
+bilace|B
+biljeg|B
+bingula|B
+binovce|B
+bistrica|B
+bobovište|boboviste|B
+bobovo|B
+bogaraš|bogaras|B
+bogaroš|bogaros|B
+bogatić|bogatic|B
+bogava|B
+bogdanje|B
+bogdanovci|B
+bogojevići|bogojevici|B
+bogojevo|B
+bojnik|B
+boka|B
+boljetin|B
+borač|borac|B
+bovan|B
+bočar|bocar|B
+bošnjace|bosnjace|B
+bošnjane|bosnjane|B
+boževac|bozevac|B
+božurnja|bozurnja|B
+braničevo|branicevo|B
+brasina|B
+braćevac|bracevac|B
+bračin|bracin|B
+brdarica|B
+brekovo|B
+bresnica|B
+bresno polje|B
+brestač|brestac|B
+brežane|brezane|B
+brgule|B
+brodarevo|B
+brzan|B
+brzohode|B
+brđani|brdjani|B
+brštica|brstica|B
+buar|B
+bubušinac|bubusinac|B
+budisava|B
+bujanovc|B
+bujmir|B
+bukor|B
+bukovce|B
+bukovče|B
+burovac|B
+busilovac|B
+busur|B
+bučić|bucic|B
+buđanovci|budjanovci|B
+babina greda|B
+bakovići|bakovici|B
+bale|B
+banja selo|B
+banjole|B
+banovci|B
+baraći|baraci|B
+barban|B
+barilović|barilovic|B
+bartolovci|B
+bartolovec|B
+batrina|B
+baška|baska|B
+baška voda|baska voda|B
+bebrina|B
+bedekovčina|bedekovcina|B
+bedenica|B
+beletinec|B
+beničanci|benicanci|B
+beretinec|B
+betina|B
+bibinje|B
+bijelo brdo|B
+bizovac|B
+bjelo polje|B
+blatnica|B
+blatnice|B
+blato|B
+bobota|B
+borovo|borovo selo|B
+brajkovići|brajkovici|B
+branešci|branesci|B
+brašina|B
+brckovljani|B
+brdari|B
+brdovec|B
+brela|B
+brestovac daruvarski|B
+breznica našička|breznica nasicka|B
+breznički hum|breznicki hum|B
+brinje|B
+brod moravice|B
+brodski stupnik|B
+brođanci|brodjanci|B
+brtonigla|B
+bršadin|brsadin|B
+budančevica|budancevica|B
+budimlje|B
+budinšćina|budinscina|B
+bunjani|B
+buzdohanj|B
+bučani|bucani|B
+bušetina|busetina|Bbuzim|B
+bužinija|buzinija|B
+bzenica|B
+balotići|balotici|B
+baošići|baosici|B
+bać|B
+belveder|B
+berova|B
+bjeliši|bjelisi|B
+blaca|B
+bogojevdo|B
+borčane|borcane|B
+brajše|brajse|B
+bajrići|bajrici|B
+bakotić|bakotic|B
+baljvine|B
+banja vrućica|banja vrucica|B
+banovići selo|banovici selo|B
+barevo|B
+batkuša|batkusa|B
+batuša|batusa|B
+bazik|B
+bašigovci|basigovci|B
+berkovica|B
+beširevići|besirevici|B
+biberovo polje|B
+bijakovici|B
+bijela ploča|bijela ploca|B
+bijelo bučje|bijelo bucje|B
+biljani donji|B
+biljača|biljaca|B
+biograci|B
+biograd na moru|B
+biokovina|B
+bivolje brdo|B
+bjelavići|bjelavici|B
+blagaj japra|B
+blagaj rijeka|B
+blječeva|bljeceva|B
+bobetino brdo|B
+bobovina|B
+boderište|boderiste|B
+bojska|B
+bok jankovac|B
+bosanska bijela|B
+bosanski dubočac|bosanski dubocac|B
+bočinja donja|bocinja donja|B
+branešci donji|branes cidonji|B
+branešci gornji|branes cigornji|B
+brekovica|B
+brezova kosa|B
+brnj|B
+brnjic|B
+brova|B
+bukovci|B
+bulići|bulici|B
+bučići|bucici|B
+bon|B
+valjevo|V
+velika plana|V
+vlasotince|V
+vranje|V
+vrbas|V
+vršac|vrsac|B
+vitepsk|V
+varna|V
+vatikan|V
+valensija|V
+volos|V
+voterford|V
+venecija|V
+verona|V
+vičenca|vicenca|V
+vanadzor|V
+vankuver|V
+vinipeg|V
+viktorija|V
+vindzor|V
+vuhan|V
+varadero|V
+vijentijan|V
+vilnjus|V
+vaduc|V
+veles|V
+veno|V

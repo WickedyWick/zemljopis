@@ -1,0 +1,11 @@
+{
+    "1": {
+        "Cause" : "When localData -> playersReady is bigger or equal localData -> playerCount before adding +1 to playersReady on playerReady event ",
+        "Todo" : "Server sends message to all users in the room with the error code , client un-ready's if ready . localData -> playersReady set to 0"
+    },
+    "3":{
+        "Cause": "When error occurs while selecting data from the database",
+        "Todo": "Reset all fields and prepare for the next round"
+    }
+    
+}

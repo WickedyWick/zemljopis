@@ -1,0 +1,727 @@
+varaždin|varazdin|V
+vinkovci|V
+vukovar|V
+valpovo|V
+varaždinske toplice|varazdinske toplice|V
+velika gorica|V
+virovitica|V
+vis|V
+vrbovec|V
+vrbovsko|V
+vrgorac|V
+vrlika|V
+vrana|V
+valbandon|V
+vardarac|V
+vela luka|V
+velika|V
+velika buna|V
+velika kopanica|V
+velika kosnica|V
+velika ludina|V
+velika mlaka|V
+velika ostrna|V
+velika pisanica|V
+velika trnovitica|V
+velika ves|V
+velika črešnjevica|velika cresnjevica|V
+veliki bukovec|V
+veliki grđevac|veliki grdjevac|V
+veliki zdenci|V
+veliko korenovo|V
+veliko trgovišće|veliko trgovisce|V
+veliko trojstvo|V
+velimirovac|V
+veliškovci|veliskovci|V
+veprinac|V
+vetovo|V
+vid|V
+vidovci|V
+vidovec|V
+vidrenjak|V
+viljevo|V
+vinež|vinez|V
+vinica|V
+vinišće|vinisce|V
+vinogradi ludbreški|vinogradi ludbreski|V
+vir|V
+virje|V
+viškovci|viskovci|V
+viškovo|viskovo|V
+vladislavci|V
+vodostaj|V
+vojnić|vojnic|V
+voloder|V
+voćin|vocin|V
+vođinci|vodjinci|V
+vranjic|V
+vratišinec|vratisinec|V
+vrbanja|V
+vrbanovec|V
+vrboska|V
+vrbova|V
+vrsi|V
+vrvari|V
+vuka|V
+vukojevci|V
+vukosavljevica|V
+vukovina|V
+garešnica|garesnica|G
+glina|G
+gospić|gospic|G
+grubišno polje|grubisno polje|G
+gornja vrba|G
+gaboš|gabos|G
+galovac|G
+garčin|garcin|G
+gata|G
+generalski stol|G
+gerovo|G
+glavnica donja|G
+gola|G
+golubić|golubic|G
+gorica|G
+goričan|gorican|G
+gornja bistra|G
+gornja gračenica|gornja gracenica|G
+gornja jelenska|G
+gornja pušća|gornja pusca|G
+gornja stubica|G
+gornje komarevo|G
+gornje ladanje|G
+gornje plavnice|G
+gornje vratno|G
+gornji hrašćan|gornji hrascan|G
+gornji kneginec|G
+gornji laduč|gornji laduc|G
+gornji stupnik|G
+graberje ivanićko|graberje ivanicko|G
+gradići|gradici|G
+gračec|gracec|G
+greda|G
+grubine|G
+gruda|G
+gudovac|G
+gundinci|G
+gunja|G
+gvozd|G
+glavice|G
+dubrovnik|D
+daruvar|D
+delnice|D
+donja stubica|D
+donji miholjac|D
+drniš|drnis|D
+duga resa|D
+dugo selo|D
+drežnica|dreznica|D
+dalj|D
+darda|D
+davor|D
+dekanovec|D
+dervišaga|dervisaga|D
+dežanovac|dezanovac|D
+dicmo|D
+domašinec|domasinec|D
+donja bistra|D
+donja dubrava|D
+donja gračenica|donja gracenica|D
+donja kupčina|donja kupcina|D
+donja motičina|donja moticina|D
+donja pušća|donja pusca|D
+donja višnjica|donja visnjica|D
+donja voća|donja voca|D
+donja vrba|D
+donja zdenčina|donja zdencina|D
+donja zelina|D
+donje ladanje|D
+donje makojišće|donje makojisce|D
+donje orešje|donje oresje|D
+donji andrijevci|D
+donji daruvar|D
+donji desinec|D
+donji dragonožec|donji dragonozec|D
+donji kneginec|D
+donji kraljevec|D
+donji lapac|D
+donji mihaljevec|D
+donji muć|donji muc|D
+donji proložac|donji prolozac|D
+donji stupnik|D
+donji vidovec|D
+donji vinjani|D
+dragalić|dragalic|D
+drage|D
+dramalj|D
+draškovec|draskovec|D
+draž|draz|D
+dražice|drazice|D
+drnje|D
+duboševica|dubosevica|D
+dubravice|D
+dubrovčan|dubrovcan|D
+dugi rat|D
+dugo selo lukačko|dugo selo lukacko|D
+dumovec|D
+duće|duce|D
+dvor|D
+drum|D
+debeljak|D
+dusina|D
+đeletovci|djeletovci|Đ
+đulovac|djulovac|Đ
+đurđekovec|djurdjekovec|Đ
+eminovci|E
+erdut|E
+ernestinovo|E
+županja|Ž
+žagrović|zagrovic|Ž
+ždala|zdala|Ž
+ždralovi|zdralovi|Ž
+žerjavinec|zerjavinec|Ž
+živogošće|zivogosce|Ž
+žiškovec|ziskovec|Ž
+žminj|zminj|Ž
+žrnovnica|zrnovnica|Ž
+žrnovo|zrnovo|Ž
+zagreb|Z
+zadar|Z
+zabok|Z
+zaprešić|zapresic|Z
+zlatar|Z
+zadubravlje|Z
+zadvorsko|Z
+zagvozd|Z
+zaton|Z
+zbelava|Z
+zdenci|Z
+zdenci brdovečki|zdenci brdovecki|Z
+zemunik donji|Z
+zmajevac|Z
+zmijavci|Z
+zrinski topolovac|Z
+zvekovica|Z
+ilok|I
+imotski|I
+ivanec|I
+ivanić-grad|ivanic-grad|I
+ilača|ilaca|I
+ivanec bistranski|I
+ivanja reka|I
+ivankovo|I
+ivanovci gorjanski|I
+ivanovec|I
+ivanska|I
+ičići|icici|I
+jastrebarsko|J
+jesenice|J
+jablanovec|J
+jadranovo|J
+jagodnjak|J
+jakšić|jaksic|J
+jalkovec|J
+jalžabet|jalzabet|J
+jarmina|J
+jaruge|J
+jasenovac|J
+jelisavac|J
+jelsa|J
+jerovec|J
+jezera|J
+ježdovec|jezdovec|J
+josipdol|J
+josipovac|J
+josipovac punitovački|josipovac punitovacki|J
+jurdani|J
+jušići|jusici|J
+kali|K
+karlovac|K
+kastav|K
+kaštela|kastela|K
+klanjec|K
+knin|K
+komiža|komiza|K
+korčula|korcula|K
+kraljevica|K
+krapina|K
+križevci|krizevci|K
+krk|K
+kutina|K
+kutjevo|K
+kamen|K
+kampor|K
+kanfanar|K
+kapelica|K
+kaptol|K
+karakašica|karakasica|K
+karanac|K
+karlovec ludbreški|karlovec ludbreski|K
+katuni|K
+kašina|kasina|K
+kaštel gomilica|kastel gomilica|K
+kaštel kambelovac|kastel kambelovac|K
+kaštel lukšić|kastel luksic|K
+kaštel novi|kastel novi|K
+kaštel stari|kastel stari|K
+kaštel sućurac|kastel sucurac|K
+kelemen|K
+kerestinec|K
+kešinci|kesinci|K
+kistanje|K
+klana|K
+klinča sela|klinca sela|K
+klis|K
+ključ brdovečki|kljuc brdovecki|K
+kloštar ivanić|klostar ivanic|K
+kloštar podravski|klostar podravski|K
+kneževi vinogradi|knezevi vinogradi|K
+kobilić|kobilic|K
+komin|K
+komletinci|K
+končanica|koncanica|K
+kopačevo|kopacevo|K
+koprivnički bregi|koprivnicki bregi|K
+koprivnički ivanec|koprivnicki ivanec|K
+korenica|K
+kostanje|K
+kostrena|K
+kotoriba|K
+kovačić|kovacic|K
+kozice|K
+koška|koska|K
+košute|kosute|K
+kožino|kozino|K
+kraj|K
+krapinske toplice|K
+krasica|K
+kravarsko|K
+krašić|krasic|K
+križ|kriz|K
+križovec|krizovec|K
+križpolje|krizpolje|K
+kukljica|K
+kukuljanovo|K
+kupari|K
+kupinec|K
+kupljenovo|K
+kuršanec|kursanec|K
+kuterevo|K
+kutinska slatina|K
+kućan marof|kucan marof|K
+kuče|kuce|K
+kučine|kucine|K
+kuševac|kusevac|K
+labin|L
+lepoglava|L
+lipik|L
+ludbreg|L
+lučane|lucane|L
+ladimirevci|L
+lasinja|L
+laslovo|L
+laz bistrički|laz bistricki|L
+lazina čička|lazina cicka|L
+legrad|L
+lekenik|L
+lipovljani|L
+lič|lic|L
+lički osik|licki osik|L
+ličko lešće|licko lesce|L
+lišane ostrovičke|lisane ostrovicke|L
+lobor|L
+loborika|L
+lonjica|L
+lopar|L
+lopatinec|L
+lovas|L
+lovran|L
+lovreć|lovrec|L
+lukoran|L
+lumbarda|L
+lučko|lucko|L
+lužan|luzan|L
+lužani|luzani|L
+ljubešćica|ljubescica|LJ
+makarska|M
+mali lošinj|mali losinj|M
+mursko središće|mursko sredisce|M
+mala mlaka|M
+macinec|M
+madžarevo|madzarevo|M
+majerje|M
+mala erpenja|M
+mala subotica|M
+mali bukovec|M
+malinska|M
+marija bistrica|M
+marina|M
+marinići|marinici|M
+markovac našički|markovac nasicki|M
+markušica|markusica|M
+martin|M
+martinska ves|M
+marčana|marcana|M
+marčelji|marcelji|M
+mastrinka|M
+matulji|M
+mače|mace|M
+mačkovec|mackovec|M
+mece|M
+medulin|M
+mihaljevci|M
+mihotići|mihotici|M
+mihovljan|M
+mikleuš|mikleus|M
+milna|M
+mičevec|micevec|M
+mlini|M
+mokošica|mokosica|M
+molve|M
+mošćenička draga|moscenicka draga|M
+možđenec|mozdjenec|M
+mraclin|M
+mravince|M
+mrkopalj|M
+mundanije|M
+murter|M
+mokrice|M
+našice|nasice|N
+nin|N
+nova gradiška|nova gradiska|N
+novalja|N
+novi marof|N
+novi vinodolski|N
+novigrad|N
+novska|N
+narta|N
+nedelišće|nedelisce|N
+nedeljanec|N
+negoslavci|N
+nijemci|N
+njivice|N
+nova bukovica|N
+nova kapela|N
+novaki bistranski|N
+novi jankovci|N
+novi mikanovci|N
+novigrad podravski|N
+novo selo na dravi|N
+novo selo rok|N
+novo virje|N
+novo čiče|novo cice|N
+novoselec|N
+novoseljani|N
+nuštar|nustar|N
+osijek|O
+opatija|O
+ogulin|O
+omiš|omis|O
+opuzen|O
+orahovica|O
+oroslavje|O
+otočac|otocac|O
+ozalj|O
+oborovo|O
+obrovac sinjski|O
+odra|O
+odra sisačka|odra sisacka|O
+okrug gornji|O
+okučani|okucani|O
+omišalj|omisalj|O
+oprisavci|O
+orebić|orebic|O
+orehovica|O
+orešje|oresje|O
+oriovac|O
+orolik|O
+osekovo|O
+otrić-seoci|O
+oštarije|ostarije|O
+orubica|O
+prozor|P
+pag|P
+pakrac|P
+pazin|P
+petrinja|P
+pleternica|P
+ploče|ploce|P
+popovača|popovaca|P
+pregrada|P
+prelog|P
+prisoje|P
+pakoštane|pakostane|P
+palešnik|palesnik|P
+palinovec|P
+palovec|P
+pačetin|pacetin|P
+peklenica|P
+perušić|perusic|P
+peteranec|P
+petlovac|P
+petrijanec|P
+petrijevci|P
+petrovina turopoljska|P
+pirovac|P
+pitomača|pitomaca|P
+piškorevci|piskorevci|P
+plaški|plaski|P
+podaca|P
+podbablje|P
+podbrest|P
+podgajci podravski|P
+podgorač|P
+podhum|P
+podravska moslavina|P
+podravske sesvete|P
+podstrana|P
+podturen|P
+podvinje|P
+pojatno|P
+pojezerje|P
+poličnik|policnik|P
+poljanec|P
+poljanica bistranska|P
+posavski bregi|P
+posedarje|P
+postira|P
+potpićan|potpican|P
+povljana|P
+poznanovec|P
+predavac|P
+preko|P
+premantura|P
+prespa|P
+prezid|P
+pribislavec|P
+pridraga|P
+prigorje brdovečko|prigorje brdovecko|P
+primorski dolac|P
+primošten|primosten|P
+privlaka|P
+prkovci|P
+punat|P
+punitovci|P
+pučišća|pucisca|P
+poljica|P
+prud|P
+rijeka|R
+rabac|R
+radakovo|R
+radoboj|R
+radovin|R
+rajevo selo|R
+rakitje|R
+rakitovec|R
+rakitovica|R
+rakov potok|R
+rasinja|R
+raslina|R
+račinovci|racinovci|R
+raša|rasa|R
+ražanac|razanac|R
+remetinec|R
+repušnica|repusnica|R
+retkovci|R
+rezovac|R
+rešetari|resetari|R
+rogotin|R
+rogoznica|R
+rokovci|R
+rovinjsko selo|R
+rovišće|rovisce|R
+rude|R
+rugvica|R
+runović|runovic|R
+ruščica|ruscica|R
+split|S
+slavonski brod|S
+sisak|S
+samobor|S
+sinj|S
+skradin|S
+slunj|S
+solin|S
+stari grad|S
+supetar|S
+sveta nedelja|S
+sveti ivan zelina|S
+stankovci|S
+sveti ilija|S
+sali|S
+salinovec|S
+samatovci|S
+sarvaš|sarvas|S
+satnica đakovačka|satnica djakovacka|S
+seget|S
+seget vranjica|S
+selce|S
+selci đakovački|selci djakovacki|S
+selnica|S
+selnica šćitarjevska|selnica scitarjevska|S
+semeljci|S
+severin|S
+sibinj|S
+sigetec|S
+sigetec ludbreški|sigetec ludbreski|S
+sikirevci|S
+sinac|S
+sirač|sirac|S
+sitno donje|S
+sivica|S
+skrad|S
+slakovci|S
+slakovec|S
+slanje|S
+slano|S
+slatine|S
+slavonski kobaš|slavonski kobas|S
+slavonski šamac|slavonski samac|S
+slivno|S
+slobodnica|S
+smokvica|S
+soljani|S
+sopje|S
+sotin|S
+sračinec|sracinec|S
+srijemske laze|S
+srima|S
+srinjine|S
+stanići|stanici|S
+stari gradac|S
+stari jankovci|S
+stari mikanovci|S
+stari perkovci|S
+staro petrovo selo|S
+staro topolje|S
+stobreč|stobrec|S
+ston|S
+strahoninec|S
+strelečko|strelecko|S
+strizivojna|S
+strmec podravski|S
+strmec stubički|strmec stubicki|S
+stružec|struzec|S
+stubičke toplice|stubicke toplice|S
+subotica podravska|S
+suhač|suhac|S
+suho polje|S
+suhovare|S
+sukošan|S
+sulkovci|S
+sunja|S
+supetarska draga|S
+sutivan|S
+sveta marija|S
+sveti ivan žabno|sveti ivan zabno|S
+sveti juraj na bregu|S
+sveti križ začretje|sveti kriz zacretje|S
+sveti matej|S
+sveti petar u šumi|sveti petar u sumi|S
+sveti petar čvrstec|sveti petar cvrstec|S
+sveti đurađ|sveti djuradj|S
+svibovec podravski|S
+sela|S
+trilj|T
+trogir|T
+tenja|T
+tisno|T
+tkon|T
+topolovac|T
+topusko|T
+tordinci|T
+torčec|torcec|T
+totovec|T
+tovarnik|T
+trema|T
+tribalj|T
+tribunj|T
+trnjani|T
+trnovec bartolovečki|trnovec bartolovecki|T
+trpanj|T
+trpinja|T
+trstenik nartski|T
+tugare|T
+tugonica|T
+tuhovec|T
+turanj|T
+turanovac|T
+turjaci|T
+turopolje|T
+turčin|turcin|T
+turčišće|turcisce|T
+tučepi|tucepi|T
+tušilović|tusilovic|T
+tužno|tuzno|T
+ćeralije|ceralije|Ć
+udbina|U
+ugljan|U
+uglješ|ugljes|U
+ferdinandovac|F
+feričanci|fericanci|F
+fužine|fuzine|F
+hrvatska kostajnica|H
+hvar|H
+haganj|H
+harkanovci|H
+hercegovac|H
+herešin|heresin|H
+hlapičina|hlapicina|H
+hlebine|H
+hodošan|hodosan|H
+horvati|H
+hrastelnica|H
+hrašće turopoljsko|hrasce turopoljsko|H
+hrašćica|hrascica|H
+hreljin|H
+hreljin ogulinski|H
+hrvace|H
+hrvatska dubica|H
+hrvatski leskovac|H
+hrženica|hrzenica|H
+hum na sutli|H
+hum stubički|hum stubicki|H
+husain|H
+cres|C
+cabuna|C
+cavtat|C
+cerić|ceric|C
+cerna|C
+cernik|C
+cestica|C
+cirkovljan|C
+cirkvena|C
+cista velika|C
+cret bizovački|cret bizovacki|C
+crikvenica|C
+crnac|C
+crno|C
+cubinec|C
+čakovec|Č
+čazma|Č
+čaglin|caglin|Č
+čara|cara|Č
+čavle|cavle|Č
+čačinci|cacinci|Č
+čađavica|cadjavica|Č
+čemernica|cemernica|Č
+čeminac|ceminac|Č
+čepin|cepin|Č
+čepinski martinci|cepinski martinci|Č
+červar-porat|Č
+čibača|cibaca|Č
+čilipi|cilipi|Č
+čovići|covici|Č
+črnec biškupečki|crnec biskupecki|Č
+črnkovci|crnkovci|Č
+šibenik|sibenik|Š
+šandrovac|sandrovac|Š
+šarengrad|sarengrad|Š
+šašinovec|sasinovec|Š
+šemovci|semovci|Š
+šemovec|semovec|Š
+šenkovec|Š
+široko polje|siroko polje|Š
+šiškovci|siskovci|Š
+škrljevo|skrljevo|Š
+šmrika|smrika|Š
+šolta|solta|Š
