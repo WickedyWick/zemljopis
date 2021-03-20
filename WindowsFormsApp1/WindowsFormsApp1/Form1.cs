@@ -78,7 +78,7 @@ namespace WindowsFormsApp1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            using (StreamWriter writer = new StreamWriter(@"E:\Nacional secret\Zemljopis\scraper_scripts\newData\data.txt", true))
+            using (StreamWriter writer = new StreamWriter(@"W:\TTM\scraper_scripts\newData\data.txt", true))
             {
                 string newD = "";
                 for(int i = 0; i < data.Length-1; i++)
