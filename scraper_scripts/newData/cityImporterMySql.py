@@ -10,67 +10,32 @@ Categories
 7: Predmet
 '''
 #unosi podatke u mysql xD
-letterDict = {
-    'A':'А',
-    'B':'Б',
-    'V':'В',
-    'G':'Г',
-    'D':'Д',
-    'Đ':'Ђ',
-    'E':'Е',
-    'Ž':"Ж",
-    'Z':'З',
-    'I':'И',
-    'J':'Ј',
-    'K':'К',
-    'L':'Л',
-    'Lj':'Љ',
-    'M':'М',
-    'N':'Н',
-    'Nj':'Њ',
-    'O':'О',
-    'P':'П',
-    'R':'Р',
-    'S':'С',
-    'T':'Т',
-    'Ć':'Ћ',
-    'U':'У',
-    'F':'Ф',
-    'H':'Х',
-    'C':'Ц',
-    'Č':'Ч',
-    'Dž':'Џ',
-    'Š':'Ш',
-    'a':'а',
-    'b':'б',
-    'v':'в',
-    'g':'г',
-    'd':'д',
-    'đ':'ђ',
-    'e':'е',
-    'ž':'ж',
-    'z':'з',
-    'i':'и',
-    'j':'ј',
-    'k':'к',
-    'l':'л',
-    'lj':'љ',
-    'm':'м',
-    'n':'н',
-    'nj':'њ',
-    'o':'о',
-    'p':'п',
-    'r':'р',
-    's':'с',
-    't':'т',
-    'ć':'ћ',
-    'u':'у',
-    'f':'ф',
-    'h':'х',
-    'c':'ц',
-    'č':'ч',
-    'dž':'џ',
-    'š':'ш',
-    ' ':' '
-}
+import mysql.connector
 
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="",
+  database="zemljopis"
+)
+mycursor = mydb.cursor()
+countries = []
+sqlList = []
+
+with open("./data.txt",'r',encoding='utf-8') as f :
+    lines = f.readlines()
+for l in lines:
+    splited = l.strip().split('|')
+    original = splited[0]
+    letter = splited[len(splited)-1].lower()
+    val = (original,letter,0)
+    mycursor.execute(f'insert into originaldata values(DEFAULT,%s,%s,%s)',val)
+    lastID = mycursor.lastrowid
+    vals = []
+    for i in range(0,len(splited)-1):
+        vals.append((splited[i],letter,0,lastID))
+    mycursor.executemany('insert into referencedata values(DEFAULT,%s,%s,%s,%s)',vals)
+
+
+
+mydb.commit()
