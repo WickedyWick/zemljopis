@@ -6,5 +6,6 @@ alter table player add foreign key(roomCode) references room(roomCode);
 alter table round add foreign key(roomCode) references room(roomCode);
 alter table data add foreign key(roundID) references round(roundID);
 alter table data add foreign key(playerID) references player(playerID);
-
-
+create table originalData(dataID int PRIMARY KEY AUTO_INCREMENT , naziv varchar(240), slovo varchar(2) , kategorija int(1));
+create table referenceData(rDataID int PRIMARY KEY AUTO_INCREMENT,naziv varchar(240),slovo varchar(2), kategorija int(1), oDataID int);
+alter table referenceData add foreign key(oDataID) references originalData(dataID);
