@@ -28,28 +28,28 @@ def translator(word):
 
 lastCorrect = ''
 lastCLetter =''
+#promeni kategoriju u l38 u zavistosti sta hoces da extractujes
+
 with open('E:/Nacional secret/Zemljopis/db/category_answers_table.csv',encoding='utf-8') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter='|')
     line_count = 0
    
-
-    for row in csv_reader:
-        if(row[0] == '1'):
-            if(lastCorrect == ''):
-                lastCorrect = row[1]
-                lastCorrectLetter = row[2]
-                
-            else:
-                if(row[1] == translator(lastCorrect)):
-                    with open('newData/newData.txt','a',encoding='utf-8') as f:
+    with open('../drzave/newData.txt','a',encoding='utf-8') as f:
+        for row in csv_reader:
+            if(row[0] == '0'):
+                if(lastCorrect == ''):
+                    lastCorrect = row[1]
+                    lastCorrectLetter = row[2]
+                    
+                else:
+                    if(row[1] == translator(lastCorrect)):                        
                         f.write(f'{lastCorrect}|{row[1]}|{lastCorrectLetter}\n')
                         lastCorrect = ''
                         lastCorrect = ''
-                else:
-                    with open('newData/newData.txt','a',encoding='utf-8') as f:
+                    else:                       
                         f.write(f'{lastCorrect}|{lastCLetter}\n')
-                    lastCorrect = row[1]
-                    lastCLetter = row[2]
+                        lastCorrect = row[1]
+                        lastCLetter = row[2]
 
                     
 
