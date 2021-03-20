@@ -1,458 +1,2480 @@
-#1901
-
-apatin|
-aranđelovac|arandjelovac|A
-alžir|alzir|A
-andora la velja|A
-adelejd|A
-antverpen|A
-akra|A
-adelejd|A
-antverpen|A
-akra|A
-atina|A
-agrinion|A
-aleksandrupolis|A
-aleksandrija|A
-asuan|A
-asmara|A
-adisa beba|A
-akaba|A
-aden|A
-almati|A
-amohostos|A
-akapulko|A
-abudža|abudza|A
-abidžan|abidzan|A
-asunsion|A
-amadora|A
-almada|A
-apija|A
-alep|A
-albukerki|A
-atlanta|A
-ankara|A
-adana|A
-antalija|A
-ašhabad|ashabad|A
-abudabi|A
-aberdin|A
-avr|A
-anžer|anzer|A
-amsterdam|A
-ajndhoven|A
-almere|A
-alikante|A
-aleksinac|A
-ada|A
-aleksandrovac|A
-alibunar|A
-arilje|A
-andrijevica|A
-arhangeljsk|arhangelsk|A
-amšteten|amsteten|A
-adaševci|adasevci|A
-adorjan|A
-adrani|A
-alakince|A
-alakince|A
-aldina reka|A
-aldinac|A
-aleksa šantić|aleksa santic|A
-aleksandrovo|A
-aleksine|A
-aleksići|aleksici|A
-aliđerce|alidjerce|A
-amerić|americ|A
-aradac|A
-arapovac|A
-arbanasce|A
-arnajevo|A
-atenica|A
-azanja|A
-azbresnica|A
-adamovec|A
-aljmaš|aljmas|A
-andraševec|andrasevec|A
-andrijaševci|andrijasevci|A
-antunovac|Aazanja|A
-amajlije|A
-aranđelovo|arandjelovo|A
-avtovac|A
-ahen|A
-arad|A
-bačka palanka|backa palanka|A
-bačka topola|backa topola|B
-beograd|B
-bečej|becej|B
-bor|B
-baku|B
-buenos ajres|B
-brizbejn|B
-bridžtaun|bridztaun|B
-brisel|B
-briž|briz|B
-belmopan|B
-belize|B
-brest|B
-banja luka|B
-bijeljina|B
-brčko|brcko|B
-bihać|bihac|B
-brazilija|B
-belo orizonte|B
-burgas|B
-budžumbura|budzumbura|B
-bandžul|bandzul|B
-bisau|B
-batumi|B
-ber|B
-bulavajo|B
-bangalor|B
-bagdad|B
-basra|B
-bolonja|B
-bari|B
-breša|bresa|B
-blumfontejn|B
-batambang|B
-biškek|biskek|B
-bogota|B
-brazavil|B
-busan|B
-bejrut|B
-bengazi|B
-budimpešta|budimpesta|B
-bitolj|B
-blantir|B
-bamako|B
-birkirkara|B
-berlin|B
-bremen|B
-bergen|B
-braga|B
-bukurešt|bukurest|B
-brašov|brasov|B
-borgomađore|borgomadjore|B
-baster|B
-bratislava|B
-berkli|B
-boston|B
-baltimor|B
-bafalo|B
-banska bistrica|B
-bangkok|B
-bizerta|B
-bursa|B
-bodrum|B
-birmingem|B
-bristol|B
-belfast|B
-buhara|B
-bordo|B
-breda|B
-bjelovar|B
-bangi|B
-bijelo polje|B
-bar|B
-berane|B
-budva|B
-brno|B
-bazel|B
-bern|B
-barselona|B
-bilbao|B
-bugojno|B
-beč|bec|B
-bečići|becici|B
-babušnica|babusnica|B
-batočina|batocina|B
-bajina bašta|bajina basta|B
-bajmok|B
-baljevac|B
-banatski karlovac|B
-banja koviljača|banja koviljaca|B
-bač|bac|B
-bački jarak|backi jarak|B
-bački petrovac|backi petrovac|B
-bela palanka|B
-bela crkva|B
-beli potok|B
-belo polje|B
-beočin|beocin|B
-blace|B
-bogovina|B
-boljevac|B
-bosilegrad|bosiljgrad|B
-brza palanka|B
-brus|B
-bujanovac|B
-bosanska krupa|B
-bosanska gradiška|bosanska gradiska|B
-bileća|bileca|B
-bijela|B
-burtaiši|burtaisi|B
-bakar|B
-beli manastir|B
-belišće|belisce|B
-benkovac|B
-biograd na moru|B
-buje|B
-buzet|B
-banovići|banovici|B
-berkovići|berkovici|B
-bosanska dubica|B
-bosansko grahovo|B
-bosanska kostajnica|B
-brod|B
-novi grad|N
-bosanski novi|B
-bosanski petrovac|B
-bosanski šamac|bosanski samac|B
-bratunac|B
-breza|B
-busovača|busovaca|B
-bužim|B
-babindol|B
-babina luka|B
-badince|B
-badnjevac|B
-badovinci|B
-bagrdan|B
-bajevac|B
-bajevica|B
-bajša|bajsa|B
-bakionica|B
-balajnac|B
-balići|balici|B
-baličevac|balicevac|B
-baluga trnavska|B
-banatska palanka|B
-banatski dvor|B
-banatsko aranđelovo|banatsko arandjelovo|B
-banatsko karađorđevo|banatsko karadjordjevo|B
-baničina|banicina|B
-banjani|B
-banovo polje|B
-banoštor|banostor|B
-barajevo|B
-baranda|B
-barice|B
-batinac|B
-batovac|B
-batulovce|B
-batušinac|batusinac|B
-bavanište|bavaniste|B
-bačina|bacina|B
-bačinac|bacinac|B
-bačinci|bacinci|B
-bački brestovac|backi brestovac|B
-bački gračac|backi gracac|B
-bačko dobro polje|backo dobro  polje|B
-bačko gradište|backo gradiste|B
-bačko novo selo|backo novo selo|B
-bačko petrovo selo|backo petrovo selo|B
-becanj|B
-bedina varoš|bedina varos|B
-belegiš|belegis|B
-belosavci|B
-belotinac|B
-belotić|belotic|B
-belušić|belusic|B
-berilovac|B
-berkasovo|B
-bezdan|B
-bešenovo|besenovo|B
-beška|beska|B
-bigrenica|B
-bilace|B
-biljeg|B
-bingula|B
-binovce|B
-bistrica|B
-bobovište|boboviste|B
-bobovo|B
-bogaraš|bogaras|B
-bogaroš|bogaros|B
-bogatić|bogatic|B
-bogava|B
-bogdanje|B
-bogdanovci|B
-bogojevići|bogojevici|B
-bogojevo|B
-bojnik|B
-boka|B
-boljetin|B
-borač|borac|B
-bovan|B
-bočar|bocar|B
-bošnjace|bosnjace|B
-bošnjane|bosnjane|B
-boževac|bozevac|B
-božurnja|bozurnja|B
-braničevo|branicevo|B
-brasina|B
-braćevac|bracevac|B
-bračin|bracin|B
-brdarica|B
-brekovo|B
-bresnica|B
-bresno polje|B
-brestač|brestac|B
-brežane|brezane|B
-brgule|B
-brodarevo|B
-brzan|B
-brzohode|B
-brđani|brdjani|B
-brštica|brstica|B
-buar|B
-bubušinac|bubusinac|B
-budisava|B
-bujanovc|B
-bujmir|B
-bukor|B
-bukovce|B
-bukovče|B
-burovac|B
-busilovac|B
-busur|B
-bučić|bucic|B
-buđanovci|budjanovci|B
-babina greda|B
-bakovići|bakovici|B
-bale|B
-banja selo|B
-banjole|B
-banovci|B
-baraći|baraci|B
-barban|B
-barilović|barilovic|B
-bartolovci|B
-bartolovec|B
-batrina|B
-baška|baska|B
-baška voda|baska voda|B
-bebrina|B
-bedekovčina|bedekovcina|B
-bedenica|B
-beletinec|B
-beničanci|benicanci|B
-beretinec|B
-betina|B
-bibinje|B
-bijelo brdo|B
-bizovac|B
-bjelo polje|B
-blatnica|B
-blatnice|B
-blato|B
-bobota|B
-borovo|borovo selo|B
-brajkovići|brajkovici|B
-branešci|branesci|B
-brašina|B
-brckovljani|B
-brdari|B
-brdovec|B
-brela|B
-brestovac daruvarski|B
-breznica našička|breznica nasicka|B
-breznički hum|breznicki hum|B
-brinje|B
-brod moravice|B
-brodski stupnik|B
-brođanci|brodjanci|B
-brtonigla|B
-bršadin|brsadin|B
-budančevica|budancevica|B
-budimlje|B
-budinšćina|budinscina|B
-bunjani|B
-buzdohanj|B
-bučani|bucani|B
-bušetina|busetina|Bbuzim|B
-bužinija|buzinija|B
-bzenica|B
-balotići|balotici|B
-baošići|baosici|B
-bać|B
-belveder|B
-berova|B
-bjeliši|bjelisi|B
-blaca|B
-bogojevdo|B
-borčane|borcane|B
-brajše|brajse|B
-bajrići|bajrici|B
-bakotić|bakotic|B
-baljvine|B
-banja vrućica|banja vrucica|B
-banovići selo|banovici selo|B
-barevo|B
-batkuša|batkusa|B
-batuša|batusa|B
-bazik|B
-bašigovci|basigovci|B
-berkovica|B
-beširevići|besirevici|B
-biberovo polje|B
-bijakovici|B
-bijela ploča|bijela ploca|B
-bijelo bučje|bijelo bucje|B
-biljani donji|B
-biljača|biljaca|B
-biograci|B
-biograd na moru|B
-biokovina|B
-bivolje brdo|B
-bjelavići|bjelavici|B
-blagaj japra|B
-blagaj rijeka|B
-blječeva|bljeceva|B
-bobetino brdo|B
-bobovina|B
-boderište|boderiste|B
-bojska|B
-bok jankovac|B
-bosanska bijela|B
-bosanski dubočac|bosanski dubocac|B
-bočinja donja|bocinja donja|B
-branešci donji|branes cidonji|B
-branešci gornji|branes cigornji|B
-brekovica|B
-brezova kosa|B
-brnj|B
-brnjic|B
-brova|B
-bukovci|B
-bulići|bulici|B
-bučići|bucici|B
-bon|B
-valjevo|V
-velika plana|V
-vlasotince|V
-vranje|V
-vrbas|V
-vršac|vrsac|B
-vitepsk|V
-varna|V
-vatikan|V
-valensija|V
-volos|V
-voterford|V
-venecija|V
-verona|V
-vičenca|vicenca|V
-vanadzor|V
-vankuver|V
-vinipeg|V
-viktorija|V
-vindzor|V
-vuhan|V
-varadero|V
-vijentijan|V
-vilnjus|V
-vaduc|V
-veles|V
-veno|V
+apatin|апатин|A
+aranđelovac|arandjelovac|аранђеловац|A
+alžir|alzir|алжир|A
+andora la velja|андора ла велја|A
+adelejd|аделејд|A
+antverpen|антверпен|A
+akra|акра|A
+adelejd|аделејд|A
+antverpen|антверпен|A
+akra|акра|A
+atina|атина|A
+agrinion|агринион|A
+aleksandrupolis|александруполис|A
+aleksandrija|александрија|A
+asuan|асуан|A
+asmara|асмара|A
+adisa beba|адиса беба|A
+akaba|акаба|A
+aden|аден|A
+almati|алмати|A
+amohostos|амохостос|A
+akapulko|акапулко|A
+abudža|abudza|абуджа|A
+abidžan|abidzan|абиджан|A
+asunsion|асунсион|A
+amadora|амадора|A
+almada|алмада|A
+apija|апија|A
+alep|алеп|A
+albukerki|албукерки|A
+atlanta|атланта|A
+ankara|анкара|A
+adana|адана|A
+antalija|анталија|A
+ašhabad|ashabad|ашхабад|A
+abudabi|абудаби|A
+aberdin|абердин|A
+avr|авр|A
+anžer|anzer|анжер|A
+amsterdam|амстердам|A
+ajndhoven|ајндховен|A
+almere|алмере|A
+alikante|аликанте|A
+aleksinac|алексинац|A
+ada|ада|A
+aleksandrovac|александровац|A
+alibunar|алибунар|A
+arilje|арилје|A
+andrijevica|андријевица|A
+arhangeljsk|arhangelsk|архангелјск|A
+amšteten|amsteten|амштетен|A
+adaševci|adasevci|адашевци|A
+adorjan|адорјан|A
+adrani|адрани|A
+alakince|алакинце|A
+alakince|алакинце|A
+aldina reka|алдина река|A
+aldinac|алдинац|A
+aleksa šantić|aleksa santic|алекса шантић|A
+aleksandrovo|александрово|A
+aleksine|алексине|A
+aleksići|aleksici|алексићи|A
+aliđerce|alidjerce|алиђерце|A
+amerić|americ|амерић|A
+aradac|арадац|A
+arapovac|араповац|A
+arbanasce|арбанасце|A
+arnajevo|арнајево|A
+atenica|атеница|A
+azanja|азанја|A
+azbresnica|азбресница|A
+adamovec|адамовец|A
+aljmaš|aljmas|алјмаш|A
+andraševec|andrasevec|андрашевец|A
+andrijaševci|andrijasevci|андријашевци|A
+antunovac|Aazanja|антуновац|A
+amajlije|амајлије|A
+aranđelovo|arandjelovo|аранђелово|A
+avtovac|автовац|A
+ahen|ахен|A
+arad|арад|A
+bačka palanka|backa palanka|бачка паланка|A
+bačka topola|backa topola|бачка топола|B
+beograd|београд|B
+bečej|becej|бечеј|B
+bor|бор|B
+baku|баку|B
+buenos ajres|буенос ајрес|B
+brizbejn|бризбејн|B
+bridžtaun|bridztaun|бриджтаун|B
+brisel|брисел|B
+briž|briz|бриж|B
+belmopan|белмопан|B
+belize|белизе|B
+brest|брест|B
+banja luka|банја лука|B
+bijeljina|бијелјина|B
+brčko|brcko|брчко|B
+bihać|bihac|бихаћ|B
+brazilija|бразилија|B
+belo orizonte|бело оризонте|B
+burgas|бургас|B
+budžumbura|budzumbura|буджумбура|B
+bandžul|bandzul|банджул|B
+bisau|бисау|B
+batumi|батуми|B
+ber|бер|B
+bulavajo|булавајо|B
+bangalor|бангалор|B
+bagdad|багдад|B
+basra|басра|B
+bolonja|болонја|B
+bari|бари|B
+breša|bresa|бреша|B
+blumfontejn|блумфонтејн|B
+batambang|батамбанг|B
+biškek|biskek|бишкек|B
+bogota|богота|B
+brazavil|бразавил|B
+busan|бусан|B
+bejrut|бејрут|B
+bengazi|бенгази|B
+budimpešta|budimpesta|будимпешта|B
+bitolj|битолј|B
+blantir|блантир|B
+bamako|бамако|B
+birkirkara|биркиркара|B
+berlin|берлин|B
+bremen|бремен|B
+bergen|берген|B
+braga|брага|B
+bukurešt|bukurest|букурешт|B
+brašov|brasov|брашов|B
+borgomađore|borgomadjore|боргомађоре|B
+baster|бастер|B
+bratislava|братислава|B
+berkli|беркли|B
+boston|бостон|B
+baltimor|балтимор|B
+bafalo|бафало|B
+banska bistrica|банска бистрица|B
+bangkok|бангкок|B
+bizerta|бизерта|B
+bursa|бурса|B
+bodrum|бодрум|B
+birmingem|бирмингем|B
+bristol|бристол|B
+belfast|белфаст|B
+buhara|бухара|B
+bordo|бордо|B
+breda|бреда|B
+bjelovar|бјеловар|B
+bangi|банги|B
+bijelo polje|бијело полје|B
+bar|бар|B
+berane|беране|B
+budva|будва|B
+brno|брно|B
+bazel|базел|B
+bern|берн|B
+barselona|барселона|B
+bilbao|билбао|B
+bugojno|бугојно|B
+beč|bec|беч|B
+bečići|becici|бечићи|B
+babušnica|babusnica|бабушница|B
+batočina|batocina|баточина|B
+bajina bašta|bajina basta|бајина башта|B
+bajmok|бајмок|B
+baljevac|балјевац|B
+banatski karlovac|банатски карловац|B
+banja koviljača|banja koviljaca|банја ковилјача|B
+bač|bac|бач|B
+bački jarak|backi jarak|бачки јарак|B
+bački petrovac|backi petrovac|бачки петровац|B
+bela palanka|бела паланка|B
+bela crkva|бела црква|B
+beli potok|бели поток|B
+belo polje|бело полје|B
+beočin|beocin|беочин|B
+blace|блаце|B
+bogovina|боговина|B
+boljevac|болјевац|B
+bosilegrad|bosiljgrad|босилеград|B
+brza palanka|брза паланка|B
+brus|брус|B
+bujanovac|бујановац|B
+bosanska krupa|босанска крупа|B
+bosanska gradiška|bosanska gradiska|босанска градишка|B
+bileća|bileca|билећа|B
+bijela|бијела|B
+burtaiši|burtaisi|буртаиши|B
+bakar|бакар|B
+beli manastir|бели манастир|B
+belišće|belisce|белишће|B
+benkovac|бенковац|B
+biograd na moru|биоград на мору|B
+buje|бује|B
+buzet|бузет|B
+banovići|banovici|бановићи|B
+berkovići|berkovici|берковићи|B
+bosanska dubica|босанска дубица|B
+bosansko grahovo|босанско грахово|B
+bosanska kostajnica|босанска костајница|B
+brod|брод|B
+novi grad|нови град|N
+bosanski novi|босански нови|B
+bosanski petrovac|босански петровац|B
+bosanski šamac|bosanski samac|босански шамац|B
+bratunac|братунац|B
+breza|бреза|B
+busovača|busovaca|бусовача|B
+bužim|бужим|B
+babindol|бабиндол|B
+babina luka|бабина лука|B
+badince|бадинце|B
+badnjevac|баднјевац|B
+badovinci|бадовинци|B
+bagrdan|багрдан|B
+bajevac|бајевац|B
+bajevica|бајевица|B
+bajša|bajsa|бајша|B
+bakionica|бакионица|B
+balajnac|балајнац|B
+balići|balici|балићи|B
+baličevac|balicevac|баличевац|B
+baluga trnavska|балуга трнавска|B
+banatska palanka|банатска паланка|B
+banatski dvor|банатски двор|B
+banatsko aranđelovo|banatsko arandjelovo|банатско аранђелово|B
+banatsko karađorđevo|banatsko karadjordjevo|банатско карађорђево|B
+baničina|banicina|баничина|B
+banjani|банјани|B
+banovo polje|баново полје|B
+banoštor|banostor|баноштор|B
+barajevo|барајево|B
+baranda|баранда|B
+barice|барице|B
+batinac|батинац|B
+batovac|батовац|B
+batulovce|батуловце|B
+batušinac|batusinac|батушинац|B
+bavanište|bavaniste|баваниште|B
+bačina|bacina|бачина|B
+bačinac|bacinac|бачинац|B
+bačinci|bacinci|бачинци|B
+bački brestovac|backi brestovac|бачки брестовац|B
+bački gračac|backi gracac|бачки грачац|B
+bačko dobro polje|backo dobro  polje|бачко добро полје|B
+bačko gradište|backo gradiste|бачко градиште|B
+bačko novo selo|backo novo selo|бачко ново село|B
+bačko petrovo selo|backo petrovo selo|бачко петрово село|B
+becanj|бецанј|B
+bedina varoš|bedina varos|бедина варош|B
+belegiš|belegis|белегиш|B
+belosavci|белосавци|B
+belotinac|белотинац|B
+belotić|belotic|белотић|B
+belušić|belusic|белушић|B
+berilovac|бериловац|B
+berkasovo|беркасово|B
+bezdan|бездан|B
+bešenovo|besenovo|бешеново|B
+beška|beska|бешка|B
+bigrenica|бигреница|B
+bilace|билаце|B
+biljeg|билјег|B
+bingula|бингула|B
+binovce|биновце|B
+bistrica|бистрица|B
+bobovište|boboviste|бобовиште|B
+bobovo|бобово|B
+bogaraš|bogaras|богараш|B
+bogaroš|bogaros|богарош|B
+bogatić|bogatic|богатић|B
+bogava|богава|B
+bogdanje|богданје|B
+bogdanovci|богдановци|B
+bogojevići|bogojevici|богојевићи|B
+bogojevo|богојево|B
+bojnik|бојник|B
+boka|бока|B
+boljetin|болјетин|B
+borač|borac|борач|B
+bovan|бован|B
+bočar|bocar|бочар|B
+bošnjace|bosnjace|бошнјаце|B
+bošnjane|bosnjane|бошнјане|B
+boževac|bozevac|божевац|B
+božurnja|bozurnja|божурнја|B
+braničevo|branicevo|браничево|B
+brasina|брасина|B
+braćevac|bracevac|браћевац|B
+bračin|bracin|брачин|B
+brdarica|брдарица|B
+brekovo|бреково|B
+bresnica|бресница|B
+bresno polje|бресно полје|B
+brestač|brestac|брестач|B
+brežane|brezane|брежане|B
+brgule|бргуле|B
+brodarevo|бродарево|B
+brzan|брзан|B
+brzohode|брзоходе|B
+brđani|brdjani|брђани|B
+brštica|brstica|брштица|B
+buar|буар|B
+bubušinac|bubusinac|бубушинац|B
+budisava|будисава|B
+bujanovc|бујановц|B
+bujmir|бујмир|B
+bukor|букор|B
+bukovce|буковце|B
+bukovče|буковче|B
+burovac|буровац|B
+busilovac|бусиловац|B
+busur|бусур|B
+bučić|bucic|бучић|B
+buđanovci|budjanovci|буђановци|B
+babina greda|бабина греда|B
+bakovići|bakovici|баковићи|B
+bale|бале|B
+banja selo|банја село|B
+banjole|банјоле|B
+banovci|бановци|B
+baraći|baraci|бараћи|B
+barban|барбан|B
+barilović|barilovic|бариловић|B
+bartolovci|бартоловци|B
+bartolovec|бартоловец|B
+batrina|батрина|B
+baška|baska|башка|B
+baška voda|baska voda|башка вода|B
+bebrina|бебрина|B
+bedekovčina|bedekovcina|бедековчина|B
+bedenica|беденица|B
+beletinec|белетинец|B
+beničanci|benicanci|беничанци|B
+beretinec|беретинец|B
+betina|бетина|B
+bibinje|бибинје|B
+bijelo brdo|бијело брдо|B
+bizovac|бизовац|B
+bjelo polje|бјело полје|B
+blatnica|блатница|B
+blatnice|блатнице|B
+blato|блато|B
+bobota|бобота|B
+borovo|borovo selo|борово|B
+brajkovići|brajkovici|брајковићи|B
+branešci|branesci|бранешци|B
+brašina|брашина|B
+brckovljani|брцковлјани|B
+brdari|брдари|B
+brdovec|брдовец|B
+brela|брела|B
+brestovac daruvarski|брестовац даруварски|B
+breznica našička|breznica nasicka|брезница нашичка|B
+breznički hum|breznicki hum|брезнички хум|B
+brinje|бринје|B
+brod moravice|брод моравице|B
+brodski stupnik|бродски ступник|B
+brođanci|brodjanci|брођанци|B
+brtonigla|бртонигла|B
+bršadin|brsadin|бршадин|B
+budančevica|budancevica|буданчевица|B
+budimlje|будимлје|B
+budinšćina|budinscina|будиншћина|B
+bunjani|бунјани|B
+buzdohanj|буздоханј|B
+bučani|bucani|бучани|B
+bušetina|busetina|Bbuzim|бушетина|B
+bužinija|buzinija|бужинија|B
+bzenica|бзеница|B
+balotići|balotici|балотићи|B
+baošići|baosici|баошићи|B
+bać|баћ|B
+belveder|белведер|B
+berova|берова|B
+bjeliši|bjelisi|бјелиши|B
+blaca|блаца|B
+bogojevdo|богојевдо|B
+borčane|borcane|борчане|B
+brajše|brajse|брајше|B
+bajrići|bajrici|бајрићи|B
+bakotić|bakotic|бакотић|B
+baljvine|балјвине|B
+banja vrućica|banja vrucica|банја врућица|B
+banovići selo|banovici selo|бановићи село|B
+barevo|барево|B
+batkuša|batkusa|баткуша|B
+batuša|batusa|батуша|B
+bazik|базик|B
+bašigovci|basigovci|башиговци|B
+berkovica|берковица|B
+beširevići|besirevici|беширевићи|B
+biberovo polje|биберово полје|B
+bijakovici|бијаковици|B
+bijela ploča|bijela ploca|бијела плоча|B
+bijelo bučje|bijelo bucje|бијело бучје|B
+biljani donji|билјани донји|B
+biljača|biljaca|билјача|B
+biograci|биограци|B
+biograd na moru|биоград на мору|B
+biokovina|биоковина|B
+bivolje brdo|биволје брдо|B
+bjelavići|bjelavici|бјелавићи|B
+blagaj japra|благај јапра|B
+blagaj rijeka|благај ријека|B
+blječeva|bljeceva|блјечева|B
+bobetino brdo|бобетино брдо|B
+bobovina|бобовина|B
+boderište|boderiste|бодериште|B
+bojska|бојска|B
+bok jankovac|бок јанковац|B
+bosanska bijela|босанска бијела|B
+bosanski dubočac|bosanski dubocac|босански дубочац|B
+bočinja donja|bocinja donja|бочинја донја|B
+branešci donji|branes cidonji|бранешци донји|B
+branešci gornji|branes cigornji|бранешци горнји|B
+brekovica|брековица|B
+brezova kosa|брезова коса|B
+brnj|брнј|B
+brnjic|брнјиц|B
+brova|брова|B
+bukovci|буковци|B
+bulići|bulici|булићи|B
+bučići|bucici|бучићи|B
+bon|бон|B
+valjevo|валјево|V
+velika plana|велика плана|V
+vlasotince|власотинце|V
+vranje|вранје|V
+vrbas|врбас|V
+vršac|vrsac|вршац|B
+vitepsk|витепск|V
+varna|варна|V
+vatikan|ватикан|V
+valensija|валенсија|V
+volos|волос|V
+voterford|вотерфорд|V
+venecija|венеција|V
+verona|верона|V
+vičenca|vicenca|виченца|V
+vanadzor|ванадзор|V
+vankuver|ванкувер|V
+vinipeg|винипег|V
+viktorija|викторија|V
+vindzor|виндзор|V
+vuhan|вухан|V
+varadero|варадеро|V
+vijentijan|вијентијан|V
+vilnjus|вилнјус|V
+vaduc|вадуц|V
+veles|велес|V
+veno|вено|V
+vladičin han|vladicin han|владичин хан|V
+vranjska banja|вранјска банја|V
+vrnjačka banja|vrnjacka banja|врнјачка банја|V
+vajska|вајска|V
+vakup|вакуп|V
+valakonje|валаконје|V
+varevo|варево|V
+velika kladuša|velika kladusa|велика кладуша|V
+vareš|vares|вареш|V
+višegrad|visegrad|вишеград|V
+vitez|витез|V
+vogošća|vogosca|вогошћа|V
+vlasenica|власеница|V
+vidoši|vidosi|видоши|V
+varoška rijeka|varoska rijeka|варошка ријека|V
+velagići|velagici|велагићи|V
+velika obarska|велика обарска|V
+vitina|витина|V
+voljevac|волјевац|V
+vrnograč|vrnograc|врнограч|V
+vukovije donje|вуковије донје|V
+goražde|gorazde|горажде|G
+gradačac|gradacac|градачац|G
+gacko|гацко|G
+glamoč|glamoc|гламоч|G
+grude|груде|G
+gostovići|gostovici|гостовићи|G
+gnojnica|гнојница|G
+gornja koprivna|горнја копривна|G
+gornja tuzla|горнја тузла|G
+gornje živinice|gornje zivinice|горнје живинице|G
+gornji vakuf|горнји вакуф|G
+gradiška|gradiska|градишка|G
+gromiljak|громилјак|G
+doboj|добој|D
+donji vakuf|донји вакуф|D
+derventa|дервента|D
+donja mahala|донја махала|D
+divičani|divicani|дивичани|D
+dobrljin|добрлјин|D
+donja dubica|донја дубица|D
+dubrave donje|дубраве донје|D
+dubrave gornje|дубраве горнје|D
+žepče|zepce|жепче|Ž
+željezno polje|zeljezno polje|желјезно полје|Ž
+zenica|зеница|Z
+zavidovići|zavidovici|завидовићи|Z
+zvornik|зворник|Z
+zabrišće|zabrisce|забришће|Z
+zborište|zboriste|збориште|Z
+ilići|ilici|илићи|I
+ilijaš|ilijas|илијаш|I
+izačić|izacic|изачић|I
+jajce|јајце|J
+jelah|јелах|J
+jezerski|језерски|J
+kiseljak|киселјак|K
+kladanj|кладанј|K
+karadaglije|карадаглије|K
+kačuni|kacuni|качуни|K
+kobilja glava|кобилја глава|K
+koran|коран|K
+kostajnica|костајница|K
+kočerin|kocerin|кочерин|K
+livno|ливно|L
+laktaši|laktasi|лакташи|L
+lopare|лопаре|L
+liješnica|lijesnica|лијешница|L
+lokvine|локвине|L
+ljubuški|ljubuski|лјубушки|LJ
+mostar|мостар|M
+mrkonjić grad|mrkonjic grad|мрконјић град|M
+maglaj|маглај|M
+mahala|махала|M
+maglajani|маглајани|M
+malešići|malesici|малешићи|M
+maslovare|масловаре|M
+nevesinje|невесинје|N
+novi travnik|нови травник|N
+novi šeher|novi seher|нови шехер|N
+odžak|оджак|O
+olovo|олово|O
+obudovac|обудовац|O
+omarska|омарска|O
+orahovica donja|ораховица донја|O
+orguz|оргуз|O
+ostrožac|ostrozac|острожац|O
+otoka|отока|O
+oštra luka|ostra luka|оштра лука|O
+prijedor|приједор|P
+pale|пале|P
+posušje|posusje|посушје|P
+petkovci|петковци|P
+pod brdo|под брдо|P
+potoci|потоци|P
+pajić polje|pajic polje|пајић полје|P
+pazarić|pazaric|пазарић|P
+peći|peci|пећи|P
+pećigrad|pecigrad|пећиград|P
+piskavica|пискавица|P
+pjanići|pjanici|пјанићи|P
+pribinić|pribinic|прибинић|P
+puračić|puracic|пурачић|P
+rogatica|рогатица|R
+radišići|radisici|радишићи|R
+rodoč|rodoc|родоч|R
+rumboci|румбоци|R
+sarajevo|сарајево|S
+sanski most|сански мост|S
+srbac|србац|S
+srebrenica|сребреница|S
+srebrenik|сребреник|S
+stanari|станари|S
+stijena|стијена|S
+sanica|саница|S
+skokovi|скокови|S
+sladna|сладна|S
+stupari|ступари|S
+svodna|сводна|S
+svojat|својат|S
+tuzla|тузла|T
+travnik|травник|T
+teslić|теслић|T
+tešanj|тешанј|T
+tomislavgrad|томиславград|T
+tešanjka|tesanjka|тешанјка|T
+tojšići|tojsici|тојшићи|T
+tržačka raštela|trzacka rastela|тржачка раштела|T
+turbe|турбе|T
+ćoralići|coralici|ћоралићи|Ć
+ugljevik|углјевик|U
+ustikolina|устиколина|U
+foča|foca|фоча|F
+fojnica|фојница|F
+cazin|цазин|C
+careva ćuprija|careva cuprija|царева ћуприја|C
+čajniče|чајниче|Č
+čapljina|чаплјина|Č
+čelinac|челинац|Č
+čečava|cecava|чечава|Č
+šipovo|sipovo|шипово|Š
+šamac|samac|шамац|Š
+šekovići|sekovici|шековићи|Š
+šerići|serici|шерићи|Š
+šturlić|sturlic|штурлић|Š
+varaždin|varazdin|вараждин|V
+vinkovci|винковци|V
+vukovar|вуковар|V
+valpovo|валпово|V
+varaždinske toplice|varazdinske toplice|вараждинске топлице|V
+velika gorica|велика горица|V
+virovitica|вировитица|V
+vis|вис|V
+vrbovec|врбовец|V
+vrbovsko|врбовско|V
+vrgorac|вргорац|V
+vrlika|врлика|V
+vrana|врана|V
+valbandon|валбандон|V
+vardarac|вардарац|V
+vela luka|вела лука|V
+velika|велика|V
+velika buna|велика буна|V
+velika kopanica|велика копаница|V
+velika kosnica|велика косница|V
+velika ludina|велика лудина|V
+velika mlaka|велика млака|V
+velika ostrna|велика острна|V
+velika pisanica|велика писаница|V
+velika trnovitica|велика трновитица|V
+velika ves|велика вес|V
+velika črešnjevica|velika cresnjevica|велика чрешнјевица|V
+veliki bukovec|велики буковец|V
+veliki grđevac|veliki grdjevac|велики грђевац|V
+veliki zdenci|велики зденци|V
+veliko korenovo|велико кореново|V
+veliko trgovišće|veliko trgovisce|велико трговишће|V
+veliko trojstvo|велико тројство|V
+velimirovac|велимировац|V
+veliškovci|veliskovci|велишковци|V
+veprinac|вепринац|V
+vetovo|ветово|V
+vid|вид|V
+vidovci|видовци|V
+vidovec|видовец|V
+vidrenjak|видренјак|V
+viljevo|вилјево|V
+vinež|vinez|винеж|V
+vinica|виница|V
+vinišće|vinisce|винишће|V
+vinogradi ludbreški|vinogradi ludbreski|виногради лудбрешки|V
+vir|вир|V
+virje|вирје|V
+viškovci|viskovci|вишковци|V
+viškovo|viskovo|вишково|V
+vladislavci|владиславци|V
+vodostaj|водостај|V
+vojnić|vojnic|војнић|V
+voloder|володер|V
+voćin|vocin|воћин|V
+vođinci|vodjinci|вођинци|V
+vranjic|вранјиц|V
+vratišinec|vratisinec|вратишинец|V
+vrbanja|врбанја|V
+vrbanovec|врбановец|V
+vrboska|врбоска|V
+vrbova|врбова|V
+vrsi|врси|V
+vrvari|врвари|V
+vuka|вука|V
+vukojevci|вукојевци|V
+vukosavljevica|вукосавлјевица|V
+vukovina|вуковина|V
+garešnica|garesnica|гарешница|G
+glina|глина|G
+gospić|gospic|госпић|G
+grubišno polje|grubisno polje|грубишно полје|G
+gornja vrba|горнја врба|G
+gaboš|gabos|габош|G
+galovac|галовац|G
+garčin|garcin|гарчин|G
+gata|гата|G
+generalski stol|генералски стол|G
+gerovo|герово|G
+glavnica donja|главница донја|G
+gola|гола|G
+golubić|golubic|голубић|G
+gorica|горица|G
+goričan|gorican|горичан|G
+gornja bistra|горнја бистра|G
+gornja gračenica|gornja gracenica|горнја граченица|G
+gornja jelenska|горнја јеленска|G
+gornja pušća|gornja pusca|горнја пушћа|G
+gornja stubica|горнја стубица|G
+gornje komarevo|горнје комарево|G
+gornje ladanje|горнје ладанје|G
+gornje plavnice|горнје плавнице|G
+gornje vratno|горнје вратно|G
+gornji hrašćan|gornji hrascan|горнји храшћан|G
+gornji kneginec|горнји кнегинец|G
+gornji laduč|gornji laduc|горнји ладуч|G
+gornji stupnik|горнји ступник|G
+graberje ivanićko|graberje ivanicko|граберје иванићко|G
+gradići|gradici|градићи|G
+gračec|gracec|грачец|G
+greda|греда|G
+grubine|грубине|G
+gruda|груда|G
+gudovac|гудовац|G
+gundinci|гундинци|G
+gunja|гунја|G
+gvozd|гвозд|G
+glavice|главице|G
+dubrovnik|дубровник|D
+daruvar|дарувар|D
+delnice|делнице|D
+donja stubica|донја стубица|D
+donji miholjac|донји михолјац|D
+drniš|drnis|дрниш|D
+duga resa|дуга реса|D
+dugo selo|дуго село|D
+drežnica|dreznica|дрежница|D
+dalj|далј|D
+darda|дарда|D
+davor|давор|D
+dekanovec|декановец|D
+dervišaga|dervisaga|дервишага|D
+dežanovac|dezanovac|дежановац|D
+dicmo|дицмо|D
+domašinec|domasinec|домашинец|D
+donja bistra|донја бистра|D
+donja dubrava|донја дубрава|D
+donja gračenica|donja gracenica|донја граченица|D
+donja kupčina|donja kupcina|донја купчина|D
+donja motičina|donja moticina|донја мотичина|D
+donja pušća|donja pusca|донја пушћа|D
+donja višnjica|donja visnjica|донја вишнјица|D
+donja voća|donja voca|донја воћа|D
+donja vrba|донја врба|D
+donja zdenčina|donja zdencina|донја зденчина|D
+donja zelina|донја зелина|D
+donje ladanje|донје ладанје|D
+donje makojišće|donje makojisce|донје макојишће|D
+donje orešje|donje oresje|донје орешје|D
+donji andrijevci|донји андријевци|D
+donji daruvar|донји дарувар|D
+donji desinec|донји десинец|D
+donji dragonožec|donji dragonozec|донји драгоножец|D
+donji kneginec|донји кнегинец|D
+donji kraljevec|донји кралјевец|D
+donji lapac|донји лапац|D
+donji mihaljevec|донји михалјевец|D
+donji muć|donji muc|донји мућ|D
+donji proložac|donji prolozac|донји проложац|D
+donji stupnik|донји ступник|D
+donji vidovec|донји видовец|D
+donji vinjani|донји винјани|D
+dragalić|dragalic|драгалић|D
+drage|драге|D
+dramalj|драмалј|D
+draškovec|draskovec|драшковец|D
+draž|draz|драж|D
+dražice|drazice|дражице|D
+drnje|дрнје|D
+duboševica|dubosevica|дубошевица|D
+dubravice|дубравице|D
+dubrovčan|dubrovcan|дубровчан|D
+dugi rat|дуги рат|D
+dugo selo lukačko|dugo selo lukacko|дуго село лукачко|D
+dumovec|думовец|D
+duće|duce|дуће|D
+dvor|двор|D
+drum|друм|D
+debeljak|дебелјак|D
+dusina|дусина|D
+đeletovci|djeletovci|ђелетовци|Đ
+đulovac|djulovac|ђуловац|Đ
+đurđekovec|djurdjekovec|ђурђековец|Đ
+eminovci|еминовци|E
+erdut|ердут|E
+ernestinovo|ернестиново|E
+županja|жупанја|Ž
+žagrović|zagrovic|жагровић|Ž
+ždala|zdala|ждала|Ž
+ždralovi|zdralovi|ждралови|Ž
+žerjavinec|zerjavinec|жерјавинец|Ž
+živogošće|zivogosce|живогошће|Ž
+žiškovec|ziskovec|жишковец|Ž
+žminj|zminj|жминј|Ž
+žrnovnica|zrnovnica|жрновница|Ž
+žrnovo|zrnovo|жрново|Ž
+zagreb|загреб|Z
+zadar|задар|Z
+zabok|забок|Z
+zaprešić|zapresic|запрешић|Z
+zlatar|златар|Z
+zadubravlje|задубравлје|Z
+zadvorsko|задворско|Z
+zagvozd|загвозд|Z
+zaton|затон|Z
+zbelava|збелава|Z
+zdenci|зденци|Z
+zdenci brdovečki|zdenci brdovecki|зденци брдовечки|Z
+zemunik donji|земуник донји|Z
+zmajevac|змајевац|Z
+zmijavci|змијавци|Z
+zrinski topolovac|зрински тополовац|Z
+zvekovica|звековица|Z
+ilok|илок|I
+imotski|имотски|I
+ivanec|иванец|I
+ivanić-grad|ivanic-grad|иванић-град|I
+ilača|ilaca|илача|I
+ivanec bistranski|иванец бистрански|I
+ivanja reka|иванја река|I
+ivankovo|иванково|I
+ivanovci gorjanski|ивановци горјански|I
+ivanovec|ивановец|I
+ivanska|иванска|I
+ičići|icici|ичићи|I
+jastrebarsko|јастребарско|J
+jesenice|јесенице|J
+jablanovec|јаблановец|J
+jadranovo|јадраново|J
+jagodnjak|јагоднјак|J
+jakšić|jaksic|јакшић|J
+jalkovec|јалковец|J
+jalžabet|jalzabet|јалжабет|J
+jarmina|јармина|J
+jaruge|јаруге|J
+jasenovac|јасеновац|J
+jelisavac|јелисавац|J
+jelsa|јелса|J
+jerovec|јеровец|J
+jezera|језера|J
+ježdovec|jezdovec|јеждовец|J
+josipdol|јосипдол|J
+josipovac|јосиповац|J
+josipovac punitovački|josipovac punitovacki|јосиповац пунитовачки|J
+jurdani|јурдани|J
+jušići|jusici|јушићи|J
+kali|кали|K
+karlovac|карловац|K
+kastav|кастав|K
+kaštela|kastela|каштела|K
+klanjec|кланјец|K
+knin|книн|K
+komiža|komiza|комижа|K
+korčula|korcula|корчула|K
+kraljevica|кралјевица|K
+krapina|крапина|K
+križevci|krizevci|крижевци|K
+krk|крк|K
+kutina|кутина|K
+kutjevo|кутјево|K
+kamen|камен|K
+kampor|кампор|K
+kanfanar|канфанар|K
+kapelica|капелица|K
+kaptol|каптол|K
+karakašica|karakasica|каракашица|K
+karanac|каранац|K
+karlovec ludbreški|karlovec ludbreski|карловец лудбрешки|K
+katuni|катуни|K
+kašina|kasina|кашина|K
+kaštel gomilica|kastel gomilica|каштел гомилица|K
+kaštel kambelovac|kastel kambelovac|каштел камбеловац|K
+kaštel lukšić|kastel luksic|каштел лукшић|K
+kaštel novi|kastel novi|каштел нови|K
+kaštel stari|kastel stari|каштел стари|K
+kaštel sućurac|kastel sucurac|каштел сућурац|K
+kelemen|келемен|K
+kerestinec|керестинец|K
+kešinci|kesinci|кешинци|K
+kistanje|кистанје|K
+klana|клана|K
+klinča sela|klinca sela|клинча села|K
+klis|клис|K
+ključ brdovečki|kljuc brdovecki|клјуч брдовечки|K
+kloštar ivanić|klostar ivanic|клоштар иванић|K
+kloštar podravski|klostar podravski|клоштар подравски|K
+kneževi vinogradi|knezevi vinogradi|кнежеви виногради|K
+kobilić|kobilic|кобилић|K
+komin|комин|K
+komletinci|комлетинци|K
+končanica|koncanica|кончаница|K
+kopačevo|kopacevo|копачево|K
+koprivnički bregi|koprivnicki bregi|копривнички бреги|K
+koprivnički ivanec|koprivnicki ivanec|копривнички иванец|K
+korenica|кореница|K
+kostanje|костанје|K
+kostrena|кострена|K
+kotoriba|коториба|K
+kovačić|kovacic|ковачић|K
+kozice|козице|K
+koška|koska|кошка|K
+košute|kosute|кошуте|K
+kožino|kozino|кожино|K
+kraj|крај|K
+krapinske toplice|крапинске топлице|K
+krasica|красица|K
+kravarsko|краварско|K
+krašić|krasic|крашић|K
+križ|kriz|криж|K
+križovec|krizovec|крижовец|K
+križpolje|krizpolje|крижполје|K
+kukljica|куклјица|K
+kukuljanovo|кукулјаново|K
+kupari|купари|K
+kupinec|купинец|K
+kupljenovo|куплјеново|K
+kuršanec|kursanec|куршанец|K
+kuterevo|кутерево|K
+kutinska slatina|кутинска слатина|K
+kućan marof|kucan marof|кућан мароф|K
+kuče|kuce|куче|K
+kučine|kucine|кучине|K
+kuševac|kusevac|кушевац|K
+labin|лабин|L
+lepoglava|лепоглава|L
+lipik|липик|L
+ludbreg|лудбрег|L
+lučane|lucane|лучане|L
+ladimirevci|ладимиревци|L
+lasinja|ласинја|L
+laslovo|ласлово|L
+laz bistrički|laz bistricki|лаз бистрички|L
+lazina čička|lazina cicka|лазина чичка|L
+legrad|леград|L
+lekenik|лекеник|L
+lipovljani|липовлјани|L
+lič|lic|лич|L
+lički osik|licki osik|лички осик|L
+ličko lešće|licko lesce|личко лешће|L
+lišane ostrovičke|lisane ostrovicke|лишане островичке|L
+lobor|лобор|L
+loborika|лоборика|L
+lonjica|лонјица|L
+lopar|лопар|L
+lopatinec|лопатинец|L
+lovas|ловас|L
+lovran|ловран|L
+lovreć|lovrec|ловрећ|L
+lukoran|лукоран|L
+lumbarda|лумбарда|L
+lučko|lucko|лучко|L
+lužan|luzan|лужан|L
+lužani|luzani|лужани|L
+ljubešćica|ljubescica|лјубешћица|LJ
+makarska|макарска|M
+mali lošinj|mali losinj|мали лошинј|M
+mursko središće|mursko sredisce|мурско средишће|M
+mala mlaka|мала млака|M
+macinec|мацинец|M
+madžarevo|madzarevo|маджарево|M
+majerje|мајерје|M
+mala erpenja|мала ерпенја|M
+mala subotica|мала суботица|M
+mali bukovec|мали буковец|M
+malinska|малинска|M
+marija bistrica|марија бистрица|M
+marina|марина|M
+marinići|marinici|маринићи|M
+markovac našički|markovac nasicki|марковац нашички|M
+markušica|markusica|маркушица|M
+martin|мартин|M
+martinska ves|мартинска вес|M
+marčana|marcana|марчана|M
+marčelji|marcelji|марчелји|M
+mastrinka|мастринка|M
+matulji|матулји|M
+mače|mace|маче|M
+mačkovec|mackovec|мачковец|M
+mece|меце|M
+medulin|медулин|M
+mihaljevci|михалјевци|M
+mihotići|mihotici|михотићи|M
+mihovljan|миховлјан|M
+mikleuš|mikleus|миклеуш|M
+milna|милна|M
+mičevec|micevec|мичевец|M
+mlini|млини|M
+mokošica|mokosica|мокошица|M
+molve|молве|M
+mošćenička draga|moscenicka draga|мошћеничка драга|M
+možđenec|mozdjenec|можђенец|M
+mraclin|мрацлин|M
+mravince|мравинце|M
+mrkopalj|мркопалј|M
+mundanije|мунданије|M
+murter|муртер|M
+mokrice|мокрице|M
+našice|nasice|нашице|N
+nin|нин|N
+nova gradiška|nova gradiska|нова градишка|N
+novalja|новалја|N
+novi marof|нови мароф|N
+novi vinodolski|нови винодолски|N
+novigrad|новиград|N
+novska|новска|N
+narta|нарта|N
+nedelišće|nedelisce|неделишће|N
+nedeljanec|неделјанец|N
+negoslavci|негославци|N
+nijemci|нијемци|N
+njivice|нјивице|N
+nova bukovica|нова буковица|N
+nova kapela|нова капела|N
+novaki bistranski|новаки бистрански|N
+novi jankovci|нови јанковци|N
+novi mikanovci|нови микановци|N
+novigrad podravski|новиград подравски|N
+novo selo na dravi|ново село на драви|N
+novo selo rok|ново село рок|N
+novo virje|ново вирје|N
+novo čiče|novo cice|ново чиче|N
+novoselec|новоселец|N
+novoseljani|новоселјани|N
+nuštar|nustar|нуштар|N
+osijek|осијек|O
+opatija|опатија|O
+ogulin|огулин|O
+omiš|omis|омиш|O
+opuzen|опузен|O
+orahovica|ораховица|O
+oroslavje|орославје|O
+otočac|otocac|оточац|O
+ozalj|озалј|O
+oborovo|оборово|O
+obrovac sinjski|обровац синјски|O
+odra|одра|O
+odra sisačka|odra sisacka|одра сисачка|O
+okrug gornji|округ горнји|O
+okučani|okucani|окучани|O
+omišalj|omisalj|омишалј|O
+oprisavci|оприсавци|O
+orebić|orebic|оребић|O
+orehovica|ореховица|O
+orešje|oresje|орешје|O
+oriovac|ориовац|O
+orolik|оролик|O
+osekovo|осеково|O
+otrić-seoci|отрић-сеоци|O
+oštarije|ostarije|оштарије|O
+orubica|орубица|O
+prozor|прозор|P
+pag|паг|P
+pakrac|пакрац|P
+pazin|пазин|P
+petrinja|петринја|P
+pleternica|плетерница|P
+ploče|ploce|плоче|P
+popovača|popovaca|поповача|P
+pregrada|преграда|P
+prelog|прелог|P
+prisoje|присоје|P
+pakoštane|pakostane|пакоштане|P
+palešnik|palesnik|палешник|P
+palinovec|палиновец|P
+palovec|паловец|P
+pačetin|pacetin|пачетин|P
+peklenica|пекленица|P
+perušić|perusic|перушић|P
+peteranec|петеранец|P
+petlovac|петловац|P
+petrijanec|петријанец|P
+petrijevci|петријевци|P
+petrovina turopoljska|петровина турополјска|P
+pirovac|пировац|P
+pitomača|pitomaca|питомача|P
+piškorevci|piskorevci|пишкоревци|P
+plaški|plaski|плашки|P
+podaca|подаца|P
+podbablje|подбаблје|P
+podbrest|подбрест|P
+podgajci podravski|подгајци подравски|P
+podgorač|подгорач|P
+podhum|подхум|P
+podravska moslavina|подравска мославина|P
+podravske sesvete|подравске сесвете|P
+podstrana|подстрана|P
+podturen|подтурен|P
+podvinje|подвинје|P
+pojatno|појатно|P
+pojezerje|појезерје|P
+poličnik|policnik|поличник|P
+poljanec|полјанец|P
+poljanica bistranska|полјаница бистранска|P
+posavski bregi|посавски бреги|P
+posedarje|поседарје|P
+postira|постира|P
+potpićan|potpican|потпићан|P
+povljana|повлјана|P
+poznanovec|познановец|P
+predavac|предавац|P
+preko|преко|P
+premantura|премантура|P
+prespa|преспа|P
+prezid|презид|P
+pribislavec|прибиславец|P
+pridraga|придрага|P
+prigorje brdovečko|prigorje brdovecko|пригорје брдовечко|P
+primorski dolac|приморски долац|P
+primošten|primosten|примоштен|P
+privlaka|привлака|P
+prkovci|прковци|P
+punat|пунат|P
+punitovci|пунитовци|P
+pučišća|pucisca|пучишћа|P
+poljica|полјица|P
+prud|пруд|P
+rijeka|ријека|R
+rabac|рабац|R
+radakovo|радаково|R
+radoboj|радобој|R
+radovin|радовин|R
+rajevo selo|рајево село|R
+rakitje|ракитје|R
+rakitovec|ракитовец|R
+rakitovica|ракитовица|R
+rakov potok|раков поток|R
+rasinja|расинја|R
+raslina|раслина|R
+račinovci|racinovci|рачиновци|R
+raša|rasa|раша|R
+ražanac|razanac|ражанац|R
+remetinec|реметинец|R
+repušnica|repusnica|репушница|R
+retkovci|ретковци|R
+rezovac|резовац|R
+rešetari|resetari|решетари|R
+rogotin|роготин|R
+rogoznica|рогозница|R
+rokovci|роковци|R
+rovinjsko selo|ровинјско село|R
+rovišće|rovisce|ровишће|R
+rude|руде|R
+rugvica|ругвица|R
+runović|runovic|руновић|R
+ruščica|ruscica|рушчица|R
+split|сплит|S
+slavonski brod|славонски брод|S
+sisak|сисак|S
+samobor|самобор|S
+sinj|синј|S
+skradin|скрадин|S
+slunj|слунј|S
+solin|солин|S
+stari grad|стари град|S
+supetar|супетар|S
+sveta nedelja|света неделја|S
+sveti ivan zelina|свети иван зелина|S
+stankovci|станковци|S
+sveti ilija|свети илија|S
+sali|сали|S
+salinovec|салиновец|S
+samatovci|саматовци|S
+sarvaš|sarvas|сарваш|S
+satnica đakovačka|satnica djakovacka|сатница ђаковачка|S
+seget|сегет|S
+seget vranjica|сегет вранјица|S
+selce|селце|S
+selci đakovački|selci djakovacki|селци ђаковачки|S
+selnica|селница|S
+selnica šćitarjevska|selnica scitarjevska|селница шћитарјевска|S
+semeljci|семелјци|S
+severin|северин|S
+sibinj|сибинј|S
+sigetec|сигетец|S
+sigetec ludbreški|sigetec ludbreski|сигетец лудбрешки|S
+sikirevci|сикиревци|S
+sinac|синац|S
+sirač|sirac|сирач|S
+sitno donje|ситно донје|S
+sivica|сивица|S
+skrad|скрад|S
+slakovci|слаковци|S
+slakovec|слаковец|S
+slanje|сланје|S
+slano|слано|S
+slatine|слатине|S
+slavonski kobaš|slavonski kobas|славонски кобаш|S
+slavonski šamac|slavonski samac|славонски шамац|S
+slivno|сливно|S
+slobodnica|слободница|S
+smokvica|смоквица|S
+soljani|солјани|S
+sopje|сопје|S
+sotin|сотин|S
+sračinec|sracinec|срачинец|S
+srijemske laze|сријемске лазе|S
+srima|срима|S
+srinjine|сринјине|S
+stanići|stanici|станићи|S
+stari gradac|стари градац|S
+stari jankovci|стари јанковци|S
+stari mikanovci|стари микановци|S
+stari perkovci|стари перковци|S
+staro petrovo selo|старо петрово село|S
+staro topolje|старо тополје|S
+stobreč|stobrec|стобреч|S
+ston|стон|S
+strahoninec|страхонинец|S
+strelečko|strelecko|стрелечко|S
+strizivojna|стризивојна|S
+strmec podravski|стрмец подравски|S
+strmec stubički|strmec stubicki|стрмец стубички|S
+stružec|struzec|стружец|S
+stubičke toplice|stubicke toplice|стубичке топлице|S
+subotica podravska|суботица подравска|S
+suhač|suhac|сухач|S
+suho polje|сухо полје|S
+suhovare|суховаре|S
+sukošan|сукошан|S
+sulkovci|сулковци|S
+sunja|сунја|S
+supetarska draga|супетарска драга|S
+sutivan|сутиван|S
+sveta marija|света марија|S
+sveti ivan žabno|sveti ivan zabno|свети иван жабно|S
+sveti juraj na bregu|свети јурај на брегу|S
+sveti križ začretje|sveti kriz zacretje|свети криж зачретје|S
+sveti matej|свети матеј|S
+sveti petar u šumi|sveti petar u sumi|свети петар у шуми|S
+sveti petar čvrstec|sveti petar cvrstec|свети петар чврстец|S
+sveti đurađ|sveti djuradj|свети ђурађ|S
+svibovec podravski|свибовец подравски|S
+sela|села|S
+trilj|трилј|T
+trogir|трогир|T
+tenja|тенја|T
+tisno|тисно|T
+tkon|ткон|T
+topolovac|тополовац|T
+topusko|топуско|T
+tordinci|тординци|T
+torčec|torcec|торчец|T
+totovec|тотовец|T
+tovarnik|товарник|T
+trema|трема|T
+tribalj|трибалј|T
+tribunj|трибунј|T
+trnjani|трнјани|T
+trnovec bartolovečki|trnovec bartolovecki|трновец бартоловечки|T
+trpanj|трпанј|T
+trpinja|трпинја|T
+trstenik nartski|трстеник нартски|T
+tugare|тугаре|T
+tugonica|тугоница|T
+tuhovec|туховец|T
+turanj|туранј|T
+turanovac|турановац|T
+turjaci|турјаци|T
+turopolje|турополје|T
+turčin|turcin|турчин|T
+turčišće|turcisce|турчишће|T
+tučepi|tucepi|тучепи|T
+tušilović|tusilovic|тушиловић|T
+tužno|tuzno|тужно|T
+ćeralije|ceralije|ћералије|Ć
+udbina|удбина|U
+ugljan|углјан|U
+uglješ|ugljes|углјеш|U
+ferdinandovac|фердинандовац|F
+feričanci|fericanci|феричанци|F
+fužine|fuzine|фужине|F
+hrvatska kostajnica|хрватска костајница|H
+hvar|хвар|H
+haganj|хаганј|H
+harkanovci|харкановци|H
+hercegovac|херцеговац|H
+herešin|heresin|херешин|H
+hlapičina|hlapicina|хлапичина|H
+hlebine|хлебине|H
+hodošan|hodosan|ходошан|H
+horvati|хорвати|H
+hrastelnica|храстелница|H
+hrašće turopoljsko|hrasce turopoljsko|храшће турополјско|H
+hrašćica|hrascica|храшћица|H
+hreljin|хрелјин|H
+hreljin ogulinski|хрелјин огулински|H
+hrvace|хрваце|H
+hrvatska dubica|хрватска дубица|H
+hrvatski leskovac|хрватски лесковац|H
+hrženica|hrzenica|хрженица|H
+hum na sutli|хум на сутли|H
+hum stubički|hum stubicki|хум стубички|H
+husain|хусаин|H
+cres|црес|C
+cabuna|цабуна|C
+cavtat|цавтат|C
+cerić|ceric|церић|C
+cerna|церна|C
+cernik|церник|C
+cestica|цестица|C
+cirkovljan|цирковлјан|C
+cirkvena|цирквена|C
+cista velika|циста велика|C
+cret bizovački|cret bizovacki|црет бизовачки|C
+crikvenica|цриквеница|C
+crnac|црнац|C
+crno|црно|C
+cubinec|цубинец|C
+čakovec|чаковец|Č
+čazma|чазма|Č
+čaglin|caglin|чаглин|Č
+čara|cara|чара|Č
+čavle|cavle|чавле|Č
+čačinci|cacinci|чачинци|Č
+čađavica|cadjavica|чађавица|Č
+čemernica|cemernica|чемерница|Č
+čeminac|ceminac|чеминац|Č
+čepin|cepin|чепин|Č
+čepinski martinci|cepinski martinci|чепински мартинци|Č
+červar-porat|червар-порат|Č
+čibača|cibaca|чибача|Č
+čilipi|cilipi|чилипи|Č
+čovići|covici|човићи|Č
+črnec biškupečki|crnec biskupecki|чрнец бишкупечки|Č
+črnkovci|crnkovci|чрнковци|Č
+šibenik|sibenik|шибеник|Š
+šandrovac|sandrovac|шандровац|Š
+šarengrad|sarengrad|шаренград|Š
+šašinovec|sasinovec|шашиновец|Š
+šemovci|semovci|шемовци|Š
+šemovec|semovec|шемовец|Š
+šenkovec|шенковец|Š
+široko polje|siroko polje|широко полје|Š
+šiškovci|siskovci|шишковци|Š
+škrljevo|skrljevo|шкрлјево|Š
+šmrika|smrika|шмрика|Š
+šolta|solta|шолта|Š
+veliki crljeni|велики црлјени|V
+veliko gradište|veliko gradiste|велико градиште|V
+vladičin han|vladicin han|владичин хан|V
+vranjska banja|вранјска банја|V
+vrnjačka banja|vrnjacka banja|врнјачка банја|V
+vučje|vucje|вучје|V
+vajska|вајска|V
+vakup|вакуп|V
+valakonje|валаконје|V
+varevo|варево|V
+varvarin|варварин|V
+vasilj|василј|V
+vašica|vasica|вашица|V
+velereč|velerec|велереч|V
+velika drenova|велика дренова|V
+velika grabovnica|велика грабовница|V
+velika greda|велика греда|V
+velika ivanča|velika ivanca|велика иванча|V
+velika jasikova|велика јасикова|V
+velika kamenica|велика каменица|V
+velika kopašnica|velika kopasnica|велика копашница|V
+velika krsna|велика крсна|V
+velika kruševica|velika krusevica|велика крушевица|V
+velika lomnica|велика ломница|V
+velika moštanica|velika mostanica|велика моштаница|V
+velika sejanica|велика сејаница|V
+velika vrbica|велика врбица|V
+veliki borak|велики борак|V
+veliki gaj|велики гај|V
+veliki izvor|велики извор|V
+veliki kupci|велики купци|V
+veliki popovac|велики поповац|V
+veliki popović|veliki popovic|велики поповић|V
+veliki radinci|велики радинци|V
+veliki šiljegovac|veliki siljegovac|велики шилјеговац|V
+veliko crniće|veliko crnice|велико црниће|V
+veliko golovode|велико головоде|V
+veliko krčmare|veliko krcmare|велико крчмаре|V
+veliko laole|велико лаоле|V
+veliko orašje|veliko orasje|велико орашје|V
+veliko središte|veliko srediste|велико средиште|V
+veliko trnjane|велико трнјане|V
+venčane|vencane|венчане|V
+veternik|ветерник|V
+vidrovac|видровац|V
+vigošte|vigoste|вигоште|V
+viljuša|viljusa|вилјуша|V
+vilovo|вилово|V
+vinarce|винарце|V
+vinorača|vinoraca|винорача|V
+vinča|vinca|винча|V
+virine|вирине|V
+virovo|вирово|V
+visibaba|висибаба|V
+vitance|витанце|V
+viteževo|vitezevo|витежево|V
+vitojevci|витојевци|V
+vitoševac|vitosevac|витошевац|V
+višesava|visesava|вишесава|V
+viševac|visevac|вишевац|V
+višnjevac|visnjevac|вишнјевац|V
+višnjićevo|visnjicevo|вишнјићево|V
+vladimirci|владимирци|V
+vladimirovac|владимировац|V
+vlajkovac|влајковац|V
+vlakča|vlakca|влакча|V
+vlaole|влаоле|V
+vlaški do|vlaski do|влашки до|V
+vodanj|воданј|V
+voganj|воганј|V
+vojka|војка|V
+vojska|војска|V
+vojvoda stepa|војвода степа|V
+voljevci|волјевци|V
+voljčince|voljcince|волјчинце|V
+voluja|волуја|V
+voćnjak|vocnjak|воћнјак|V
+vrane|вране|V
+vraneši|vranesi|вранеши|V
+vranić|vranic|вранић|V
+vranovo|враново|V
+vračev gaj|vracev gaj|врачев гај|V
+vračević|vracevic|врачевић|V
+vražogrnac|vrazogrnac|вражогрнац|V
+vrbovno|врбовно|V
+vrdila|врдила|V
+vrdnik|врдник|V
+vreoci|вреоци|V
+vrh polje|врх полје|V
+vrnjci|врнјци|V
+vrtište|vrtiste|вртиште|V
+vrčin|vrcin|врчин|V
+vukanja|вуканја|V
+vukićevica|vukicevica|вукићевица|V
+vukošić|vukosic|вукошић|V
+vučić|vucic|вучић|V
+vučak|vucak|вучак|V
+velje polje|велје полје|V
+gornji milanovac|горнји милановац|G
+grocka|гроцка|G
+gabrovac|габровац|G
+gadžin han|gadzin han|гаджин хан|G
+gaglovo|гаглово|G
+gaj|гај|G
+gajdobra|гајдобра|G
+gakovo|гаково|G
+gamzigrad|гамзиград|G
+gardinovci|гардиновци|G
+gibarac|гибарац|G
+glavinci|главинци|G
+glibovac|глибовац|G
+globoder|глободер|G
+glogonj|глогонј|G
+glogovica|глоговица|G
+gložan|glozan|гложан|G
+glumač|glumac|глумач|G
+glušci|glusci|глушци|G
+gnjilan|гнјилан|G
+godačica|godacica|годачица|G
+godečevo|godecevo|годечево|G
+gojna gora|гојна гора|G
+gola glava|гола глава|G
+golemo selo|големо село|G
+golobok|голобок|G
+golubac|голубац|G
+golubinci|голубинци|G
+golubinje|голубинје|G
+goračići|goracici|горачићи|G
+gorina|горина|G
+gorić|goric|горић|G
+goričani|goricani|горичани|G
+gorjani|горјани|G
+gornja gorevnica|горнја горевница|G
+gornja grabovica|горнја грабовица|G
+gornja jajina|горнја јајина|G
+gornja koviljača|gornja koviljaca|горнја ковилјача|G
+gornja mutnica|горнја мутница|G
+gornja omašnica|gornja omasnica|горнја омашница|G
+gornja sabanta|горнја сабанта|G
+gornja stražava|gornja strazava|горнја стражава|G
+gornja trepča|gornja trepca|горнја трепча|G
+gornja vranjska|горнја вранјска|G
+gornja vrežina|gornja vrezina|горнја врежина|G
+gornjane|горнјане|G
+gornje jarušice|gornje jarusice|горнје јарушице|G
+gornje košlje|gornje koslje|горнје кошлје|G
+gornje krajince|горнје крајинце|G
+gornje međurovo|gornje medjurovo|горнје међурово|G
+gornje nedeljice|горнје неделјице|G
+gornje rataje|горнје ратаје|G
+gornje stopanje|горнје стопанје|G
+gornje vidovo|горнје видово|G
+gornji breg|горнји брег|G
+gornji bunibrod|горнји буниброд|G
+gornji dobrić|gornji dobric|горнји добрић|G
+gornji katun|горнји катун|G
+gornji komren|горнји комрен|G
+gornji matejevac|горнји матејевац|G
+gornji stepoš|gornji stepos|горнји степош|G
+gornji stupanj|горнји ступанј|G
+gorobilje|горобилје|G
+gospođinci|gospodjinci|госпођинци|G
+gostinica|гостиница|G
+grabovci|грабовци|G
+grabovica|грабовица|G
+gradskovo|градсково|G
+grdanica|грданица|G
+grdovići|grdovici|грдовићи|G
+grebenac|гребенац|G
+gredetin|гредетин|G
+grejač|grejac|грејач|G
+grgurevci|гргуревци|G
+grkinja|гркинја|G
+grlište|grliste|грлиште|G
+grljan|грлјан|G
+grnčara|grncara|грнчара|G
+grošnica|grosnica|грошница|G
+grušić|grusic|грушић|G
+grčac|grcac|грчац|G
+guberevac|губеревац|G
+guberevci|губеревци|G
+gudurica|гудурица|G
+gunaroš|gunaros|гунарош|G
+guncati|гунцати|G
+gunjevac|гунјевац|G
+gvozdac|гвоздац|G
+glavica|главица|G
+gračac|gracac|грачац|G
+gornja bukovica|горнја буковица|G
+granice|границе|G
+gornji ribnik|горнји рибник|G
+despotovac|деспотовац|D
+dimitrovgrad|димитровград|D
+donji milanovac|донји милановац|D
+dobanovci|добановци|D
+darosava|даросава|D
+debeljača|debeljaca|дебелјача|D
+debrc|дебрц|D
+dedina|дедина|D
+dedina bara|дедина бара|D
+deliblato|делиблато|D
+delimeđe|delimedje|делимеђе|D
+deonica|деоница|D
+deronje|деронје|D
+desimirovac|десимировац|D
+despotovo|деспотово|D
+deč|dec|деч|D
+divoš|divos|дивош|D
+dljin|длјин|D
+dobrače|dobrace|добраче|D
+dobrica|добрица|D
+dobrinci|добринци|D
+dobrić|dobric|добрић|D
+dobrnje|добрнје|D
+doljevac|долјевац|D
+donja bela reka|донја бела река|D
+donja borina|донја борина|D
+donja gorevnica|донја горевница|D
+donja jajina|донја јајина|D
+donja livadica|донја ливадица|D
+donja ljuboviđa|donja ljubovidja|донја лјубовиђа|D
+donja lomnica|донја ломница|D
+donja mutnica|донја мутница|D
+donja omašnica|donja omasnica|донја омашница|D
+donja rasovača|donja rasovaca|донја расовача|D
+donja rača|donja raca|донја рача|D
+donja sabanta|донја сабанта|D
+donja stražava|donja strazava|донја стражава|D
+donja trepča|donja trepca|донја трепча|D
+donja trešnjica|donja tresnjica|донја трешнјица|D
+donja vrbava|донја врбава|D
+donja vrežina|donja vrezina|донја врежина|D
+donja šatornja|donja satornja|донја шаторнја|D
+donje brijanje|донје бријанје|D
+donje crniljevo|донје црнилјево|D
+donje grbice|донје грбице|D
+donje krajince|донје крајинце|D
+donje međurovo|donje medjurovo|донје међурово|D
+donje nedeljice|донје неделјице|D
+donje rataje|донје ратаје|D
+donje sinkovce|донје синковце|D
+donje stopanje|донје стопанје|D
+donje trebešinje|donje trebesinje|донје требешинје|D
+donje vidovo|донје видово|D
+donji adrovac|донји адровац|D
+donji bunibrod|донји буниброд|D
+donji dobrić|donji dobric|донји добрић|D
+donji dušnik|donji dusnik|донји душник|D
+donji katun|донји катун|D
+donji komren|донји комрен|D
+donji matejevac|донји матејевац|D
+donji neradovac|донји нерадовац|D
+donji petrovci|донји петровци|D
+donji račnik|donji racnik|донји рачник|D
+donji stupanj|донји ступанј|D
+donji tovarnik|донји товарник|D
+doroslovo|дорослово|D
+draga|драга|D
+dragijevica|драгијевица|D
+draginac|драгинац|D
+draginje|драгинје|D
+dragobraća|dragobraca|драгобраћа|D
+dragocvet|драгоцвет|D
+drago dol|драго дол|D
+dragosinjci|драгосинјци|D
+dragovac|драговац|D
+dragovo|драгово|D
+drakčići|drakcici|дракчићи|D
+drača|draca|драча|D
+draškovac|draskovac|драшковац|D
+dražanj|drazanj|дражанј|D
+draževac|drazevac|дражевац|D
+drežnik|dreznik|дрежник|D
+drijetanj|дријетанј|D
+drmno|дрмно|D
+drugovac|друговац|D
+družetić|druzetic|дружетић|D
+družetići|druzetici|дружетићи|D
+držanovac|drzanovac|држановац|D
+dubnica|дубница|D
+duboka|дубока|D
+dubovac|дубовац|D
+dubravica|дубравица|D
+dudovica|дудовица|D
+dugo polje|дуго полје|D
+dupljaja|дуплјаја|D
+duvanište|duvaniste|дуваниште|D
+dučina|ducina|дучина|D
+dučić|ducic|дучић|D
+dušanovac|dusanovac|душановац|D
+dvorane|дворане|D
+dvorska|дворска|D
+donji ribnik|донји рибник|D
+đala|djala|ђала|Đ
+đinđuša|djindjusa|ђинђуша|Đ
+đurinci|djurinci|ђуринци|Đ
+đurđevo|djurdjevo|ђурђево|Đ
+elemir|елемир|E
+erdevik|ердевик|E
+ečka|ecka|ечка|E
+žabalj|жабалј|Ž
+žitište|житиште|Ž
+žabar|zabar|жабар|Ž
+žabare|zabare|жабаре|Ž
+žabari|zabari|жабари|Ž
+žabljane|zabljane|жаблјане|Ž
+žagubica|zagubica|жагубица|Ž
+žarkovac|zarkovac|жарковац|Ž
+ždeglovo|zdeglovo|ждеглово|Ž
+ždrelo|zdrelo|ждрело|Ž
+željuša|zeljusa|желјуша|Ž
+žitkovac|zitkovac|житковац|Ž
+žitorađa|zitoradja|житорађа|Ž
+žitorađe|zitoradje|житорађе|Ž
+živkovo|zivkovo|живково|Ž
+žiča|zica|жича|Ž
+županjac|zupanjac|жупанјац|Ž
+župa|zupa|жупа|Ž
+zaječar|zajecar|зајечар|Z
+zrenjanin|зренјанин|Ž
+zlatibor|златибор|Z
+zablaće|zablace|заблаће|Z
+zabrežje|zabrezje|забрежје|Z
+zabrđe|zabrdje|забрђе|Z
+zagajica|загајица|Z
+zagorica|загорица|Z
+zajača|zajaca|зајача|Z
+zaklopača|zaklopaca|заклопача|Z
+zalogovac|залоговац|Z
+zalug|залуг|Z
+zarožje|zarozje|зарожје|Z
+zatonje|затонје|Z
+zavinograđe|zavinogradje|завинограђе|Z
+zavlaka|завлака|Z
+zlakusa|злакуса|Z
+zlatari|златари|Z
+zlatokop|златокоп|Z
+zlot|злот|Z
+zmajevo|змајево|Z
+zminjak|зминјак|Z
+zuce|зуце|Z
+zvezd|звезд|Z
+zvezdan|звездан|Z
+zvečka|zvecka|звечка|Z
+ivanjica|иванјица|I
+inđija|indjija|инђија|Z
+irig|ириг|I
+idvor|идвор|I
+igroš|igros|игрош|I
+ilandža|ilandza|иланджа|I
+ilinci|илинци|I
+isakovo|исаково|I
+ivanovo|иваново|I
+ivanča|ivanca|иванча|I
+izbište|izbiste|избиште|I
+jagodina|јагодина|J
+jaša tomić|jasa tomic|јаша томић|J
+jošanička banja|josanicka banja|јошаничка банја|J
+jabukovac|јабуковац|J
+jadranska lešnica|jadranska lesnica|јадранска лешница|J
+jakovo|јаково|J
+jalovik|јаловик|J
+jamena|јамена|J
+jankov most|јанков мост|J
+janošik|janosik|јаношик|J
+janča|janca|јанча|J
+jarak|јарак|J
+jarkovac|јарковац|J
+jarkovci|јарковци|J
+jarčujak|jarcujak|јарчујак|J
+jasenovo|јасеново|J
+jasika|јасика|J
+jasikovo|јасиково|J
+jazak|јазак|J
+jazovo|јазово|J
+jelav|јелав|J
+jelenča|jelenca|јеленча|J
+jermenovci|јерменовци|J
+jevremovac|јевремовац|J
+ježevica|jezevica|јежевица|J
+jošanica|josanica|јошаница|J
+joševa|joseva|јошева|J
+junkovac|јунковац|J
+jasenak|јасенак|J
+jasenica|јасеница|J
+jasikovica|јасиковица|J
+kikinda|кикинда|K
+knjaževac|knjazevac|кнјажевац|J
+kovin|ковин|K
+kragujevac|крагујевац|K
+kraljevo|кралјево|K
+kruševac|krusevac|крушевац|K
+kula|кула|K
+kuršumlija|kursumlija|куршумлија|K
+kanjiža|kanjiza|канјижа|K
+kačarevo|kacarevo|качарево|K
+kladovo|кладово|K
+kovačica|kovacica|ковачица|K
+kosjerić|kosjeric|косјерић|K
+kostolac|костолац|K
+krupanj|крупанј|K
+kučevo|kucevo|кучево|K
+kacabać|kacabac|кацабаћ|K
+kalanjevci|каланјевци|K
+kaluđerica|kaludjerica|калуђерица|K
+kamendol|камендол|K
+kamenovo|каменово|K
+kaona|каона|K
+kaonik|каоник|K
+kapidžija|kapidzija|капиджија|K
+karan|каран|K
+karavukovo|каравуково|K
+karlovčić|karlovcic|карловчић|K
+kasidol|касидол|K
+katrga|катрга|K
+kać|kac|каћ|K
+kačer|kacer|качер|K
+kačulice|kaculice|качулице|K
+kevi|кеви|K
+kisač|kisac|кисач|K
+kladušnica|kladusnica|кладушница|K
+klanica|кланица|K
+klačevica|klacevica|клачевица|K
+klek|клек|K
+klenak|кленак|K
+kličevac|klicevac|кличевац|K
+kljajićevo|kljajicevo|клјајићево|K
+kloka|клока|K
+klokočevac|klokocevac|клокочевац|K
+klupci|клупци|K
+knić|knic|кнић|K
+knićanin|knicanin|книћанин|K
+kobišnica|kobisnica|кобишница|K
+koceljeva|коцелјева|K
+kolari|колари|K
+kolut|колут|K
+komirić|komiric|комирић|K
+konak|конак|K
+konarevo|конарево|K
+konatice|конатице|K
+konjevići|konjevici|конјевићи|K
+konjuh|конјух|K
+konopnica|конопница|K
+končarevo|koncarevo|кончарево|K
+kopljare|коплјаре|K
+koraćica|koracica|кораћица|K
+korbevac|корбевац|K
+korbovo|корбово|K
+korenita|коренита|K
+korman|корман|K
+kostol|костол|K
+kotešica|kotesica|котешица|K
+kovilj|ковилј|K
+kozjak|козјак|K
+kočane|kocane|кочане|K
+kočino selo|kocino selo|кочино село|K
+koševine|kosevine|кошевине|K
+koštunići|kostunici|коштунићи|K
+kožetin|kozetin|кожетин|K
+kožlje|kozlje|кожлје|K
+kožuar|kozuar|кожуар|K
+krajišnik|krajisnik|крајишник|K
+krajkovac|крајковац|K
+kraljevci|кралјевци|K
+krasava|красава|K
+kremna|кремна|K
+krepoljin|креполјин|K
+kriva feja|крива феја|K
+krivelj|кривелј|K
+krnjevo|крнјево|K
+krnješevci|krnjesevci|крнјешевци|K
+krnule|крнуле|K
+krstac|крстац|K
+krtinska|кртинска|K
+krupaja|крупаја|K
+krušar|krusar|крушар|K
+krušce|krusce|крушце|K
+krvavica|крвавица|K
+krvije|крвије|K
+krćevac|krcevac|крћевац|K
+krčedin|krcedin|крчедин|K
+kržava|krzava|кржава|K
+kucura|куцура|K
+kukljin|куклјин|K
+kukujevci|кукујевци|K
+kulpin|кулпин|K
+kurjače|kurjace|курјаче|K
+kusadak|кусадак|K
+kusić|kusic|кусић|K
+kusiće|kusice|кусиће|K
+kutleš|kutles|кутлеш|K
+kuzmin|кузмин|K
+kušiljevo|kusiljevo|кушилјево|K
+kuštilj|kustilj|куштилј|K
+klenovnik|кленовник|K
+knežica|knezica|кнежица|K
+krivača|krivaca|кривача|K
+kulina|кулина|K
+krupac|крупац|K
+leskovac|лесковац|L
+lajkovac|лајковац|L
+lapovo|лапово|L
+lebane|лебане|L
+lučani|lucani|лучани|L
+ladovica|ладовица|L
+lalić|lalic|лалић|L
+landol|ландол|L
+lapotince|лапотинце|L
+lazac|лазац|L
+lazarevo|лазарево|L
+laznica|лазница|L
+laćarak|lacarak|лаћарак|L
+laćisled|lacisled|лаћислед|L
+lađevci|ladjevci|лађевци|L
+lebina|лебина|L
+ledinci|лединци|L
+lepaja|лепаја|L
+lešnica|lesnica|лешница|L
+leštane|lestane|лештане|L
+ležimir|lezimir|лежимир|L
+likodra|ликодра|L
+lipar|липар|L
+lipe|липе|L
+lipnički šor|lipnicki sor|липнички шор|L
+lipolist|липолист|L
+lipova|липова|L
+lipovica|липовица|L
+lisović|lisovic|лисовић|L
+lojanice|лојанице|L
+lok|лок|L
+lokve|локве|L
+lopatanj|лопатанј|L
+lovćenac|lovcenac|ловћенац|L
+lozničko polje|loznicko polje|лозничко полје|L
+lug|луг|L
+lugavčina|lugavcina|лугавчина|L
+luka|лука|L
+luke|луке|L
+lukićevo|lukicevo|лукићево|L
+lukovica|луковица|L
+lunjevac|лунјевац|L
+lužane|luzane|лужане|L
+lužnice|luznice|лужнице|L
+lepenica|лепеница|L
+lučica|lucica|лучица|L
+lepenac|лепенац|L
+ljig|лјиг|L
+ljubovija|лјубовија|LJ
+ljubanje|лјубанје|LJ
+ljubinić|ljubinic|лјубинић|LJ
+ljubiš|ljubis|лјубиш|LJ
+ljukovo|лјуково|LJ
+majdanpek|мајданпек|LJ
+mali zvornik|мали зворник|M
+mataruška banja|mataruska banja|матарушка банја|M
+mačvanska mitrovica|macvanska mitrovica|мачванска митровица|M
+medveđa|медвеђа|M
+mionica|мионица|M
+mol|мол|M
+metković|metkovic|метковић|M
+maglić|maglic|маглић|M
+majilovac|мајиловац|M
+majur|мајур|M
+makce|макце|M
+makovište|makoviste|маковиште|M
+makrešane|makresane|макрешане|M
+mala bosna|мала босна|M
+mala drenova|мала дренова|M
+mala ivanča|mala ivanca|мала иванча|M
+mala krsna|мала крсна|M
+mala moštanica|mala mostanica|мала моштаница|M
+mala plana|мала плана|M
+mala vranjska|мала вранјска|M
+mala vrbica|мала врбица|M
+male pijace|мале пијаце|M
+mali crljeni|мали црлјени|M
+mali iđoš|mali idjos|мали иђош|M
+mali požarevac|mali pozarevac|мали пожаревац|M
+mali radinci|мали радинци|M
+mali šiljegovac|mali siljegovac|мали шилјеговац|M
+malo crniće|malo crnice|мало црниће|M
+malo golovode|мало головоде|M
+malo laole|мало лаоле|M
+malo orašje|malo orasje|мало орашје|M
+malošište|malosiste|малошиште|M
+malča|malca|малча|M
+manastirica|манастирица|M
+manić|manic|манић|M
+manojlovce|манојловце|M
+manđelos|mandjelos|манђелос|M
+maovi|маови|M
+maradik|марадик|M
+margita|маргита|M
+markovac|марковац|M
+martinci|мартинци|M
+martonoš|martonos|мартонош|M
+masurica|масурица|M
+matijevac|матијевац|M
+mačkat|mackat|мачкат|M
+mehovine|меховине|M
+mekiš|mekis|мекиш|M
+melenci|меленци|M
+meljak|мелјак|M
+melnica|мелница|M
+merošina|merosina|мерошина|M
+metlić|metlic|метлић|M
+metovnica|метовница|M
+međa|medja|међа|M
+međulužje|medjuluzje|међулужје|M
+meševo|mesevo|мешево|M
+mihajlovac|михајловац|M
+mihajlovo|михајлово|M
+mijatovac|мијатовац|M
+milakovac|милаковац|M
+milatovići|milatovici|милатовићи|M
+miliva|милива|M
+milićevci|milicevci|милићевци|M
+milićevo selo|milicevo selo|милићево село|M
+miličinica|milicinica|миличиница|M
+miloševac|milosevac|милошевац|M
+milutovac|милутовац|M
+minićevo|minicevo|минићево|M
+miokovci|миоковци|M
+miraševac|mirasevac|мирашевац|M
+mirilovac|мириловац|M
+miroševce|mirosevce|мирошевце|M
+misača|misaca|мисача|M
+mislođin|mislodjin|мислођин|M
+mitrova|митрова|M
+mišar|misar|мишар|M
+mladenovo|младеново|M
+mojković|mojkovic|мојковић|M
+mokra gora|мокра гора|M
+mokranje|мокранје|M
+mokrin|мокрин|M
+moravac|моравац|M
+moravci|моравци|M
+morović|morovic|моровић|M
+mosna|мосна|M
+mozgovo|мозгово|M
+mošorin|mosorin|мошорин|M
+mramorac|мраморац|M
+mramorak|мраморак|M
+mrmoš|mrmos|мрмош|M
+mrsać|mrsac|мрсаћ|M
+mrčajevci|mrcajevci|мрчајевци|M
+mrđenovac|mrdjenovac|мрђеновац|M
+mršinci|mrsinci|мршинци|M
+mrštane|mrstane|мрштане|M
+mudrakovac|мудраковац|M
+muhovo|мухово|M
+murgaš|murgas|мургаш|M
+mustapić|mustapic|мустапић|M
+mijoska|мијоска|M
+milatovac|милатовац|M
+mramor|мрамор|M
+negotin|неготин|M
+novi bečej|novi becej|нови бечеј|N
+novi pazar|нови пазар|N
+novi sad|нови сад|N
+niška banja|niska banja|нишка банја|N
+nova varoš|nova varos|нова варош|N
+novi kneževac|novi knezevac|нови кнежевац|N
+nadalj|надалј|N
+nakovo|наково|N
+nakrivanj|накриванј|N
+natalinci|наталинци|N
+navalin|навалин|N
+nemenikuće|nemenikuce|неменикуће|N
+nepričava|nepricava|непричава|N
+neresnica|нересница|N
+neuzina|неузина|N
+nevade|неваде|N
+neštin|nestin|нештин|N
+nikinci|никинци|N
+nikolinci|николинци|N
+nova crnja|нова црнја|N
+nova gajdobra|нова гајдобра|N
+nova pazova|нова пазова|N
+novi banovci|нови бановци|N
+novi bračin|novi bracin|нови брачин|N
+novi itebej|нови итебеј|N
+novi karlovci|нови карловци|N
+novi kozarci|нови козарци|N
+novi sip|нови сип|N
+novi slankamen|нови сланкамен|N
+novi žednik|novi zednik|нови жедник|N
+novo lanište|novo laniste|ново ланиште|N
+novo miloševo|novo milosevo|ново милошево|N
+novo orahovo|ново орахово|N
+nozrina|нозрина|N
+noćaj|nocaj|ноћај|N
+njegoševo|njegosevo|нјегошево|NJ
+ovča|ovca|овча|O
+opovo|опово|O
+ostružnica|ostruznica|остружница|O
+odžaci|оджаци|O
+obrovac|обровац|O
+orašje|orasje|орашје|O
+obajgora|обајгора|O
+obrež|obrez|обреж|O
+obrva|обрва|O
+ogar|огар|O
+okletac|оклетац|O
+omoljica|омолјица|O
+oparić|oparic|опарић|O
+opornica|опорница|O
+orašac|orasac|орашац|O
+oraše|orase|ораше|O
+oreškovica|oreskovica|орешковица|O
+orljane|орлјане|O
+orlovat|орловат|O
+orom|ором|O
+osečenica|osecenica|осеченица|O
+osečina|osecina|осечина|O
+osipaonica|осипаоница|O
+osnić|osnic|оснић|O
+osoje|осоје|O
+osonica|осоница|O
+ostojićevo|ostojicevo|остојићево|O
+ostrikovac|остриковац|O
+ovsište|ovsiste|овсиште|O
+oštrelj|ostrelj|оштрелј|O
+pančevo|pancevo|панчево|O
+paraćin|paracin|параћин|P
+pirot|пирот|P
+požarevac|pozarevac|пожаревац|P
+požega|pozega|пожега|P
+prijepolje|пријеполје|P
+prokuplje|прокуплје|P
+palić|palic|палић|P
+petrovaradin|петроварадин|P
+pinosava|пиносава|P
+padej|падеј|P
+padinska skela|падинска скела|P
+pakašnica|pakasnica|пакашница|P
+paljuvi|палјуви|P
+pambukovica|памбуковица|P
+parage|параге|P
+parcani|парцани|P
+parmenac|парменац|P
+parunovac|паруновац|P
+pasi poljana|паси полјана|P
+paskovac|пасковац|P
+paune|пауне|P
+pavliš|pavlis|павлиш|P
+pačir|pacir|пачир|P
+paštrić|pastric|паштрић|P
+pejkovac|пејковац|P
+perlez|перлез|P
+pertate|пертате|P
+perućac|perucac|перућац|P
+petka|петка|P
+petkovica|петковица|P
+petlovača|petlovaca|петловача|P
+petrijevo|петријево|P
+pećani|pecani|пећани|P
+pećinci|pecinci|пећинци|P
+pečenjevce|pecenjevce|печенјевце|P
+pilatovići|pilatovici|пилатовићи|P
+piroman|пироман|P
+pivnice|пивнице|P
+plandište|plandiste|пландиште|P
+plaskovac|пласковац|P
+platičevo|platicevo|платичево|P
+plavna|плавна|P
+plažane|plazane|плажане|P
+pločica|plocica|плочица|P
+pocerski metković|pocerski metkovic|поцерски метковић|P
+pocerski pričinović|pocerski pricinovic|поцерски причиновић|P
+podina|подина|P
+podunavci|подунавци|P
+podvrška|podvrska|подвршка|P
+pogled|поглед|P
+pojate|појате|P
+poljna|полјна|P
+poljska ržana|poljska rzana|полјска ржана|P
+popadić|popadic|попадић|P
+popinci|попинци|P
+popučke|popucke|попучке|P
+poskurice|поскурице|P
+postenje|постенје|P
+potočac|potocac|поточац|P
+potočanje|potocanje|поточанје|P
+požeženo|pozezeno|пожежено|P
+prahovo|прахово|P
+pranjani|пранјани|P
+prekodolce|прекодолце|P
+preljina|прелјина|P
+prhovo|прхово|P
+pridvorice|придворице|P
+prigrevica|пригревица|P
+prilike|прилике|P
+prislonica|прислоница|P
+progar|прогар|P
+progorelica|прогорелица|P
+progoreoci|прогореоци|P
+prugovo|пругово|P
+pružatovac|pruzatovac|пружатовац|P
+prva kutina|прва кутина|P
+prćilovica|prcilovica|прћиловица|P
+pudarci|пударци|P
+pukovac|пуковац|P
+putinci|путинци|P
+pavlovac|павловац|P
+poljana|полјана|P
+popovac|поповац|P
+prijevor|пријевор|P
+ruma|рума|P
+raška|raska|рашка|R
+resavica|ресавица|R
+ribnica|рибница|R
+rudovci|рудовци|R
+rabrovac|рабровац|R
+rabrovo|раброво|R
+radaljevo|радалјево|R
+radenka|раденка|R
+radenković|radenkovic|раденковић|R
+radinac|радинац|R
+radičević|radicevic|радичевић|R
+radljevo|радлјево|R
+radoinja|радоинја|R
+radojevo|радојево|R
+radonjica|радонјица|R
+radovnica|радовница|R
+radujevac|радујевац|R
+rajno polje|рајно полје|R
+rajčilovci|rajcilovci|рајчиловци|R
+rajčinoviće|rajcinovice|рајчиновиће|R
+rakinac|ракинац|R
+raklja|раклја|R
+rakova|ракова|R
+ralja|ралја|R
+ranilović|ranilovic|раниловић|R
+ranovac|рановац|R
+rataje|ратаје|R
+ratajska|ратајска|R
+ratare|ратаре|R
+ratari|ратари|R
+ratina|ратина|R
+ratkovo|ратково|R
+ravni topolovac|равни тополовац|R
+ravno selo|равно село|R
+razgojna|разгојна|R
+rađevo selo|radjevo selo|рађево село|R
+rašanac|rasanac|рашанац|R
+raševica|rasevica|рашевица|R
+ražanj|razanj|ражанј|R
+raždaginja|razdaginja|раждагинја|R
+rekovac|рековац|R
+reljinac|релјинац|R
+repince|репинце|R
+rečica|recica|речица|R
+rgotina|рготина|R
+ribariće|рибариће|R
+riljac|рилјац|R
+ripanj|рипанј|R
+ritiševo|ritisevo|ритишево|R
+ritopek|ритопек|R
+rivica|ривица|R
+riđica|ridjica|риђица|R
+rogačica|rogacica|рогачица|R
+ropočevo|ropocevo|ропочево|R
+rožina|rozina|рожина|R
+rtkovo|ртково|R
+rubribreza|рубрибреза|R
+rudna glava|рудна глава|R
+rudnik|рудник|R
+rujišnik|rujisnik|рујишник|R
+rumenka|руменка|R
+rumska|румска|R
+runjani|рунјани|R
+ruski krstur|руски крстур|R
+rusko selo|руско село|R
+rutevac|рутевац|R
+rutoši|rutosi|рутоши|R
+ruđinci|rudjinci|руђинци|R
+rušanj|rusanj|рушанј|R
+rvati|рвати|R
+svilajnac|свилајнац|S
+senta|сента|S
+sjenica|сјеница|S
+smederevo|смедерево|S
+smederevska palanka|смедеревска паланка|S
+sombor|сомбор|S
+srbobran|србобран|S
+sremska mitrovica|сремска митровица|S
+sremski karlovci|сремски карловци|S
+stara pazova|стара пазова|S
+subotica|суботица|S
+skadar|скадар|S
+svrljig|сврлјиг|S
+sevojno|севојно|S
+sokobanja|сокобанја|S
+sremska kamenica|сремска каменица|S
+surdulica|сурдулица|S
+surčin|surcin|сурчин|S
+sainovina|саиновина|S
+sajan|сајан|S
+sakule|сакуле|S
+salakovac|салаковац|S
+salaš|salas|салаш|S
+salaš crnobarski|salas crnobarski|салаш црнобарски|S
+salaš noćajski|salas nocajski|салаш ноћајски|S
+samaila|самаила|S
+samarinovac|самариновац|S
+samoš|samos|самош|S
+sanad|санад|S
+saranovo|сараново|S
+saraorci|сараорци|S
+savino selo|савино село|S
+sebečevo|sebecevo|себечево|S
+sedlare|седларе|S
+sedlari|седлари|S
+sefkerin|сефкерин|S
+sekurič|sekuric|секурич|S
+selenča|selenca|селенча|S
+seleuš|seleus|селеуш|S
+selevac|селевац|S
+seljašnica|seljasnica|селјашница|S
+selo kostolac|село костолац|S
+senje|сенје|S
+seone|сеоне|S
+sepci|сепци|S
+seča reka|seca reka|сеча река|S
+sečanica|secanica|сечаница|S
+sečanj|secanj|сечанј|S
+sikirica|сикирица|S
+sikole|сиколе|S
+silbaš|silbas|силбаш|S
+simićevo|simicevo|симићево|S
+sinošević|sinosevic|синошевић|S
+sirakovo|сираково|S
+sirig|сириг|S
+sirogojno|сирогојно|S
+sirča|sirca|сирча|S
+sitniče|sitnice|ситниче|S
+sivac|сивац|S
+skela|скела|S
+skorenovac|скореновац|S
+skorica|скорица|S
+skržuti|skrzuti|скржути|S
+skupljen|скуплјен|S
+sladaja|сладаја|S
+slanci|сланци|S
+slavkovica|славковица|S
+slepčević|slepcevic|слепчевић|S
+smilovac|смиловац|S
+smoljinac|смолјинац|S
+soderce|содерце|S
+sokolovo|соколово|S
+solotuša|solotusa|солотуша|S
+sonta|сонта|S
+sot|сот|S
+sovljak|совлјак|S
+sremska rača|sremska raca|сремска рача|S
+sremski mihaljevci|сремски михалјевци|S
+sremčica|sremcica|сремчица|S
+srnje|срнје|S
+srpska crnja|српска црнја|S
+srpski itebej|српски итебеј|S
+srpski miletić|srpski miletic|српски милетић|S
+stajićevo|stajicevo|стајићево|S
+stalać|stalac|сталаћ|S
+stamnica|стамница|S
+stanišić|stanisic|станишић|S
+stanjevo|станјево|S
+stapari|стапари|S
+stara moravica|стара моравица|S
+stari banovci|стари бановци|S
+stari lec|стари лец|S
+stari slankamen|стари сланкамен|S
+stari trstenik|стари трстеник|S
+stari žednik|stari zednik|стари жедник|S
+stejanovci|стејановци|S
+stenjevac|стенјевац|S
+stepanovićevo|stepanovicevo|степановићево|S
+stepojevac|степојевац|S
+stojnik|стојник|S
+stopanja|стопанја|S
+stragari|страгари|S
+straža|straza|стража|S
+striža|striza|стрижа|S
+strmosten|стрмостен|S
+strojkovce|стројковце|S
+stublenica|стубленица|S
+stubline|стублине|S
+stupčevići|stupcevici|ступчевићи|S
+subotinac|суботинац|S
+subotište|subotiste|суботиште|S
+sukovo|суково|S
+supnje|супнје|S
+supska|супска|S
+surduk|сурдук|S
+susek|сусек|S
+sutjeska|сутјеска|S
+suva morava|сува морава|S
+suvi dol|суви дол|S
+suvodol|суводол|S
+suvojnica|сувојница|S
+sušica|susica|сушица|S
+svetozar miletić|svetozar miletic|светозар милетић|S
+sveštica|svestica|свештица|S
+svileuva|свилеува|S
+svilojevo|свилојево|S
+svojnovo|својново|S
+stubica|стубица|S
+temerin|темерин|T
+trstenik|трстеник|T
+tutin|тутин|T
+titel|тител|T
+topola|топола|T
+tabanovac|табановац|T
+tabanović|tabanovic|табановић|T
+taraš|taras|тараш|T
+tavnik|тавник|T
+taševo|tasevo|ташево|T
+tekija|текија|T
+telečka|telecka|телечка|T
+temska|темска|T
+teočin|teocin|теочин|T
+tečić|tecic|течић|T
+tešica|tesica|тешица|T
+tibužde|tibuzde|тибужде|T
+toba|тоба|T
+togočevce|togocevce|тогочевце|T
+tolisavac|толисавац|T
+tomaševac|tomasevac|томашевац|T
+topolnica|тополница|T
+topolovnik|тополовник|T
+torda|торда|T
+tornjoš|tornjos|торнјош|T
+totovo selo|тотово село|T
+tovariševo|tovarisevo|товаришево|T
+trbušani|trbusani|трбушани|T
+trbušnica|trbusnica|трбушница|T
+trebotin|треботин|T
+trešnjevac|tresnjevac|трешнјевац|T
+trgovište|trgoviste|трговиште|T
+trlić|trlic|трлић|T
+trmbas|трмбас|T
+trmčare|trmcare|трмчаре|T
+trnjane|трнјане|T
+troponje|тропонје|T
+trstenica|трстеница|T
+trubarevac|трубаревац|T
+trupale|трупале|T
+tršanovci|trsanovci|тршановци|T
+tršić|trsic|тршић|T
+tulari|тулари|T
+tulež|тулеж|T
+tulovo|тулово|T
+turekovac|турековац|T
+turica|турица|T
+trešnjevica|tresnjevica|трешнјевица|T
+trnjaci|трнјаци|T
+ćićevac|cicevac|ћићевац|T
+ćuprija|cuprija|ћуприја|Ć
+ćirikovac|cirikovac|ћириковац|Ć
+ćovdin|covdin|ћовдин|Ć
+ub|уб|Ć
+užice|uzice|ужице|U
+umka|умка|U
+uljma|улјма|U
+udovice|удовице|U
+umčari|umcari|умчари|U
+urovci|уровци|U
+urovica|уровица|U
+utrine|утрине|U
+uzdin|уздин|U
+uzovnica|узовница|U
+uzveće|uzvece|узвеће|U
+futog|футог|U
+farkaždin|farkazdin|фаркаждин|F
+feketić|feketic|фекетић|F
+hajdučica|hajducica|хајдучица|H
+halovo|халово|H
+hetin|хетин|H
+horgoš|horgos|хоргош|H
+hrtkovci|хртковци|H
+hum|хум|H
+crvenka|црвенка|C
+carevac|царевац|C
+cerovac|церовац|C
+cikote|цикоте|C
+crepaja|црепаја|C
+crkvenac|црквенац|C
+crkvica|црквица|C
+crljenac|црлјенац|C
+crnajka|црнајка|C
+crnuzi|црнузи|C
+crnča|crnca|црнча|C
+crvena crkva|црвена црква|C
+crvena reka|црвена река|C
+culjković|culjkovic|цулјковић|C
+cvetke|цветке|C
+cvetojevac|цветојевац|C
+čačak|cacak|чачак|Č
+čajetina|чајетина|C
+čoka|чока|Č
+čelarevo|челарево|Č
+čitluk|читлук|Č
+čalma|calma|чалма|Č
+čamurlija|camurlija|чамурлија|Č
+čantavir|cantavir|чантавир|Č
+čapljinac|capljinac|чаплјинац|Č
+čekmin|cekmin|чекмин|Č
+čenej|cenej|ченеј|Č
+čenta|centa|чента|Č
+čepure|cepure|чепуре|Č
+čerević|cerevic|черевић|Č
+čestereg|cestereg|честерег|Č
+četereže|cetereze|четереже|Č
+čibukovac|cibukovac|чибуковац|Č
+čibutkovica|cibutkovica|чибутковица|Č
+čokešina|cokesina|чокешина|Č
+čokot|cokot|чокот|Č
+čonoplja|conoplja|чоноплја|Č
+čortanovci|cortanovci|чортановци|Č
+čukojevac|cukojevac|чукојевац|Č
+čumić|cumic|чумић|Č
+čurug|curug|чуруг|Č
+čestin|cestin|честин|Č
+šabac|sabac|шабац|Š
+šid|sid|шид|Š
+šainovac|sainovac|шаиновац|Š
+šajkaš|sajkas|шајкаш|Š
+šalinac|salinac|шалинац|Š
+šanac|sanac|шанац|Š
+šapine|sapine|шапине|Š
+šarbane|sarbane|шарбане|Š
+šarlinac|sarlinac|шарлинац|Š
+šavac|savac|шавац|Š
+šavrane|savrane|шавране|Š
+šašinci|sasinci|шашинци|Š
+šepšin|sepsin|шепшин|Š
+šetonje|setonje|шетонје|Š
+ševarice|sevarice|шеварице|Š
+ševica|sevica|шевица|Š
+šiljakovac|siljakovac|шилјаковац|Š
+šimanovci|simanovci|шимановци|Š
+šišince|sisince|шишинце|Š
+šljivova|sljivova|шлјивова|Š
+šopić|sopic|шопић|Š
+štitar|stitar|штитар|Š
+štubik|stubik|штубик|Š
+šuljam|suljam|шулјам|Š
+šumane|sumane|шумане|Š
+šupljak|supljak|шуплјак|Š
+šutci|sutci|шутци|Š
+šuljkovac|suljkovac|шулјковац|Š
+šume|sume|шуме|Š
