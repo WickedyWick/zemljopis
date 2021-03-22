@@ -151,8 +151,7 @@ kunlun|K
 kilimandžaro|kilimandzaro|K
 kvatlamba|K
 kordiljeri|K
-kaskadske planine|K
-kaskadske|K
+kaskadske planine|kaskadske|K
 košćuško|koscusko|K
 k2|K
 konjuh|K
@@ -161,16 +160,14 @@ kekeš|kekes|K
 liškovac|liskovac|L
 lučevik|lucevik|L
 lelija|K
-ličkaplješivica|lickapljesivica|L
+lička plješivica|licka pljesivica|L
 lovcen|L
 lovćen|L
 leotar|L
 ljubišnja|ljubisnja|L
 ljuboten|LJ
 miroč|miroc|LJ
-mokraplanina|M
-mokra|M
-mokragora|M
+mokra planina|mokra|M
 mučanj|mucanj|M
 medvednik|M
 maljen|M
@@ -178,7 +175,7 @@ malinik|M
 malič|malic|M
 maglić|maglic|M
 mosor|M
-monteverest|M
+mont everest|M
 materhorn|M
 monblan|M
 mekinli|M
@@ -200,10 +197,9 @@ oštrik|ostrik|O
 orjen|O
 orijen|O
 obruč|obruc|O
-osogovo|O
-osogovskaplanina|O
+osogovska planina|osogovo|O
 olimp|O
-ohosdelsalado|O
+ohos del salado|O
 prokletije|P
 paštrik|pastrik|O
 povlen|P
@@ -212,21 +208,15 @@ pobijenik|P
 prenj|P
 pirin|P
 pirineji|P
-pind|P
-pindskogorje|P
-peninske planine|P
-peninske|P
-penini|P
+pind|pindsko gorje|P
+peninske planine|peninske|penini|P
 pamir|P
-pontijske planine|P
-pontijske|P
+pontijske planine|pontijske|P
 plješevica|pljesevica|P
 papuk|P
 radan|R
-ruj|R
-ruj-planina|R
-rujplanina|R
-resavskihumovi|R
+ruj-planina|ruj|rujplanina|ruj-planina|R
+resavski humovi|R
 rtanj|R
 radočelo|radocelo|P
 rogozna|R
@@ -234,8 +224,7 @@ rudnik|R
 rajac|R
 rodopske planine|R
 rodopske|R
-rujan|R
-rujen|R
+rujen|rujan|R
 romanija|R
 raduša|radusa|R
 rumija|R
@@ -245,16 +234,12 @@ rodopi|R
 retezat|R
 ruvenzori|R
 seličevica|selicevica|R
-suvaplanina|S
-staraplanina|S
-suva|S
-stara|S
+suva planina|suva|S
+stara planina|stara|S
 stolovi|S
-sokolskaplanina|S
-sokolska|S
+sokolska planina|sokolska|S
 suvobor|S
-svrljiške planine|svrljiske planine|S
-svrljiške|svrljiske|S
+svrljiške planine|svrljiske planine|svrljiške|svrljiske|S
 sokolovica|S
 stol|S
 svilaja|S
@@ -262,17 +247,12 @@ snježnik|snjeznik|S
 stogovo|S
 serbal|S
 sudeti|S
-skandinavske planine|S
-skandinavske|S
+skandinavske planine|skandinavske|S
 sahalin|S
 simijske planine|S
 simijske|S
-sieranevada|S
-sijeranevada|S
-sijerapakaraima|S
-sijeratapirapeko|S
-stanovojske planine|S
-stanovojske|S
+sijera nevada|siera nevada|S
+stanovojske planine|stanovojske|S
 sinjajevina|S
 staretina|S
 sinaj|S
@@ -286,43 +266,36 @@ tjenšan|tjensan|T
 tibesti|T
 triglav|T
 trebević|trebevic|T
-transdunavske planine|T
-transdunavske|T
+transdunavske planine|transdunavske|T
 ćićarija|cicarija|T
 učka|ucka|U
 ural|Ć
 uzlomac|U
-fruškagora|fruskagora|U
+fruška gora|fruska gora|U
 fik|F
 futadžalon|futadzalon|F
 fudži|fudzi|F
 fudžijama|fudzijama|F
-homoljske planine|F
-homoljske|H
+homoljske planine|homoljske|H
 hajla|H
 hum|H
 himalaji|H
 harc|H
 hindukuš|hindukus|H
-crnivrh|H
+crni vrh|H
 cer|C
-crkvenaplanina|C
-crkvena|C
+crkvena planina|crkvena|C
 crnoljeva|C
 cincar|C
 crvanj|C
-čemernik|cemernik|C
-čemerno|cemerno|Č
+čemernik|cemernik|čemerno|cemerno|Č
 čemernica|cemernica|Č
 čičavica|cicavica|Č
 čvrsnica|cvrsnica|Č
 čovanjoš|covanjos|Č
 čerhat|cerhat|Č
 džaja|dzaja|DŽ
-šarplanina|sarplanina|Š
-šar|sar|Š
-šara|sara|Š
-šar-planina|sar-planina|Š
+šarplanina|sarplanina|šar|sar|šara|sara|šar-planina|sar-planina|Š
 šomrda|somrda|Š
 švarcvald|svarcvald|Š
 šumava|sumava|Š

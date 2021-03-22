@@ -1,0 +1,297 @@
+azanjske planine|azanjske|азањске планине|азањске|A
+avala|авала|A
+apušenske planine|apusenske planine|apušenske|apusenske|apušeni|apuseni|апушенске планине|апушенске|апушени|A
+alpi|алпи|A
+andi|анди|A
+atlas|атлас|A
+atos|атос|A
+ararat|арарат|A
+apenini|апенини|A
+apalačke planine|apalacke planine|apalači|apalaci|apalačke|apalacke|апалачке планине|апалачи|апалачке|A
+altajske planine|altaj|altajske|алтајске планине|алтај|алтајске|A
+ahagar|ахагар|A
+asir|асир|A
+akonkagva|аконкагва|A
+azbukovica|азбуковица|A
+besnakobila|беснакобила|B
+bukovik|буковик|B
+beljanica|бељаница|B
+bukulja|букуља|B
+boranja|борања|B
+bobija|бобија|B
+banjsko brdo|бањско брдо|B
+babička gora|babicka gora|бабичка гора|A
+belava|белава|B
+bić|bic|бић|B
+bitovik|битовик|B
+bogićevica|bogicevica|богићевица|B
+bjelašnica|bjelasnica|бјелашница|B
+bjelasica|бјеласица|B
+budoš|budos|будош|B
+biokovo|биоково|B
+bitoraj|биторај|B
+belasica|беласица|B
+bihorske planine|bihorske|бихорске планине|бихорске|B
+baba|баба|B
+bistra|бистра|B
+babin zub|бабин зуб|B
+babuna|бабуна|B
+berženj|berzenj|бержењ|B
+bik|бик|B
+vardenik|варденик|V
+vidojevica|видојевица|V
+visitor|виситор|V
+venčac|vencac|венчац|B
+vujan|вујан|V
+vlašić|vlasic|влашић|V
+veliki greben|велики гребен|V
+valjevske planine|valjevske|ваљевске планине|ваљевске|V
+vidlič|vidlic|видлич|V
+vlaška planina|vlaskap lanina|vlaška|vlaska|влашка планина|влашка|V
+vršačke planine|vrsacke planine|vršačke|vrsacke|vršački breg|vrsacki breg|вршачке планине|вршачке|вршачки брег|V
+volujak|волујак|V
+vranica|враница|V
+vran|вран|V
+velež|velez|вележ|V
+visočica|visocica|височица|V
+vrmac|врмац|V
+velebit|велебит|V
+viševica|visevica|вишевица|V
+vitoš|vitos|витош|V
+vitoša|vitosa|витоша|V
+vogezi|вогези|V
+vinson|винсон|V
+vojnik|војник|V
+verhojanske planine|verhojanske|верхојанске планине|верхојанске|V
+vitorog|виторог|V
+giljeva|гиљева|G
+golija|голија|G
+goč|goc|гоч|V
+gledićke planine|gledicke planine|gledićke|gledicke|гледићке планине|гледићке|G
+gučevo|gucevo|гучево|G
+gvozdačke stene|gvozdacke stene|гвоздачке стене|G
+goljak|гољак|G
+greben|гребен|G
+grmija|грмија|G
+gramada|грамада|G
+grmeč|grmec|грмеч|G
+galičica|galicica|галичица|G
+dukat|дукат|G
+dinara|динара|D
+dinarske planine|dinarske|динарске планине|динарске|D
+deli jovan|дели јован|D
+devica|девица|D
+dešat|desat|дешат|D
+dinaridi|динариди|D
+durmitor|дурмитор|D
+divčibare|divcibare|divčibari|divcibari|дивчибари|дивчибаре|D
+đeravica|djeravica|ђеравица|Đ
+elbrus|елбрус|D
+etna|етна|E
+elgon|елгон|E
+žljeb|zljeb|жљеб|E
+žilindar|zilindar|жилиндар|Ž
+željin|zeljin|жељин|Ž
+žegovac|zegovac|жеговац|Ž
+žar|zar|жар|Ž
+žabljak|zabljak|жабљак|Ž
+žumberačka gora|zumberacka gora|жумберачка гора|Ž
+zvijezda|звијезда|Ž
+zlatibor|златибор|Z
+zlatar|златар|Z
+zelengora|зеленгора|Z
+zec|зец|Z
+igman|игман|I
+ida|ида|I
+iverak|иверак|I
+jastrebac|јастребац|J
+juhor|јухор|J
+javor|јавор|J
+jadovnik|јадовник|J
+jelica|јелица|J
+jagodnja|јагодња|J
+jablanik|јабланик|J
+jelova gora|јелова гора|J
+javorje|јаворје|J
+jarut|јарут|J
+ješevac|jesevac|јешевац|Z
+jahorina|јахорина|J
+jakupica|јакупица|J
+jablanica|јабланица|J
+jabuka|јабука|J
+koćura|kocura|коћура|J
+kukavica|кукавица|K
+kučaj|kucaj|кучај|K
+karpati|karpatske planine|karpatske|карпати|карпатске|K
+karpatsko-balkanske planine|karpatsko-balkanske|karpatsko balkanske planine|karpatsko balkanske|карпатско-балканске планине|карпатско-балканске|карпатско балканске планине|карпатско-балканске|K
+komovi|комови|K
+koritnik|коритник|K
+kopaonik|копаоник|K
+kosmaj|космај|K
+kotlenik|котленик|K
+kablar|каблар|K
+kadinjača|kadinjaca|кадињача|K
+kalafat|калафат|K
+kamenagora|каменагора|K
+kozjak|козјак|K
+krstača|krstaca|крстача|K
+kukutnica|кукутница|K
+koritnjak|коритњак|K
+kozara|козара|K
+klekovača|klekovaca|клековача|K
+kamešnica|kamesnica|камешница|K
+korab|кораб|K
+krčin|krcin|крчин|K
+kavkaske planine|кавкаске планине|kavkaz|кавказ|kavkaske|кавкаске|K
+karakorum|каракорум|K
+kunlun|кунлун|K
+kilimandžaro|kilimandzaro|килиманџаро|K
+kvatlamba|кватламба|K
+kordiljeri|кордиљери|K
+kaskadske planine|kaskadske|каскадске планине|K
+košćuško|koscusko|кошћушко|K
+k2|к2|K
+konjuh|коњух|K
+krndija|крндија|K
+kekeš|kekes|кекеш|K
+liškovac|liskovac|лишковац|L
+lučevik|lucevik|лучевик|L
+lelija|лелија|K
+lička plješivica|licka pljesivica|личка пљешивица|L
+lovćen|ловћен|lovcen|L
+leotar|леотар|L
+ljubišnja|ljubisnja|љубишња|L
+ljuboten|љуботен|LJ
+miroč|miroc|мироч|LJ
+mokra planina|mokra|мокра планина|M
+mučanj|mucanj|мучањ|M
+medvednik|медведник|M
+maljen|маљен|M
+malinik|малиник|M
+malič|malic|малич|M
+maglić|maglic|маглић|M
+mosor|мосор|M
+mont everest|монт еверест|M
+materhorn|матерхорн|M
+monblan|монблан|M
+mekinli|мекинли|M
+majevica|мајевица|M
+midžor|midzor|миџор|M
+medvednica|медведница|M
+manjača|manjaca|мањача|M
+matra|матра|M
+ninaja|нинаја|N
+nidže|nidze|ниџе|M
+nimba|нимба|N
+nebo|небо|N
+njegoš|njegos|његош|N
+ostrozub|острозуб|NJ
+ozren|озрен|O
+ovčar|ovcar|овчар|O
+ošljak|osljak|ошљак|O
+oštrik|ostrik|оштрик|O
+orjen|орјен|O
+orijen|оријен|O
+obruč|obruc|обруч|O
+osogovska planina|osogovo|осоговска планина|осогово|O
+olimp|олимп|O
+ohos del salado|охос дел саладо|O
+prokletije|проклетије|P
+paštrik|pastrik|паштрик|O
+povlen|повлен|P
+pasjača|pasjaca|пасјача|P
+pobijenik|побијеник|P
+prenj|прењ|P
+pirin|пирин|P
+pirineji|пиринеји|P
+pind|pindsko gorje|пинд|пиндско горје|P
+peninske planine|peninske|penini|пенинске планине|пенини|P
+pamir|памир|P
+pontijske planine|pontijske|понтијске планине|понтијске|P
+plješevica|pljesevica|пљешевица|P
+papuk|папук|P
+radan|радан|R
+ruj-planina|ruj|руј-планина|руј|R
+resavski humovi|ресавски хумови|R
+rtanj|ртањ|R
+radočelo|radocelo|радочело|P
+rogozna|рогозна|R
+rudnik|рудник|R
+rajac|рајац|R
+rodopske planine|родопске планине|R
+rodopske|родопске|R
+rujen|rujan|рујен|R
+romanija|романија|R
+raduša|radusa|радуша|R
+rumija|румија|R
+risnjak|рисњак|R
+rila|рила|R
+rodopi|родопи|R
+retezat|ретезат|R
+ruvenzori|рувензори|R
+seličevica|selicevica|селичевица|R
+suva planina|suva|сува планина|сува|S
+stara planina|stara|стара планина|стара|S
+stolovi|столови|S
+sokolska planina|sokolska|соколска планина|соколска|S
+suvobor|сувобор|S
+svrljiške planine|svrljiske planine|svrljiške|svrljiske|сврљишке планине|сврљишке|S
+sokolovica|соколовица|S
+stol|стол|S
+svilaja|свилаја|S
+snježnik|snjeznik|сњежник|S
+stogovo|стогово|S
+serbal|сербал|S
+sudeti|судети|S
+skandinavske planine|skandinavske|скандинавске планине|скандинавске|S
+sahalin|сахалин|S
+simijske planine|симијске планине|simijske|симијске|S
+sijera nevada|siera nevada|сијера невада|S
+stanovojske planine|stanovojske|становојске планине|становојске|S
+sinjajevina|сињајевина|S
+staretina|старетина|S
+sinaj|синај|S
+središnji masiv|sredisnji masiv|средишњи масив|S
+severne mađarske planine|severne madjarske planine|северне мађарске планине|S
+tara|тара|S
+tresibaba|тресибаба|T
+tupižnica|tupiznica|тупижница|T
+treskavica|трескавица|T
+tjenšan|tjensan|тјеншан|T
+tibesti|тибести|T
+triglav|триглав|T
+trebević|trebevic|требевић|T
+transdunavske planine|transdunavske|трансдунавске планине|T
+ćićarija|cicarija|ћићарија|T
+učka|ucka|учка|U
+ural|урал|Ć
+uzlomac|узломац|U
+fruška gora|fruska gora|фрушка гора|U
+fik|фик|F
+futadžalon|futadzalon|футаџалон|F
+fudži|fudzi|фуџи|F
+fudžijama|fudzijama|фуџијама|F
+homoljske planine|homoljske|хомољске планине|хомољске|H
+hajla|хајла|H
+hum|хум|H
+himalaji|хималаји|H
+harc|харц|H
+hindukuš|hindukus|хиндукуш|H
+crni vrh|црни врх|H
+cer|цер|C
+crkvena planina|crkvena|црквена планина|црквена|C
+crnoljeva|црнољева|C
+cincar|цинцар|C
+crvanj|црвањ|C
+čemernik|cemernik|čemerno|cemerno|чемерник|чемерно|Č
+čemernica|cemernica|чемерница|Č
+čičavica|cicavica|чичавица|Č
+čvrsnica|cvrsnica|чврсница|Č
+čovanjoš|covanjos|човањош|Č
+čerhat|cerhat|черхат|Č
+džaja|dzaja|џаја|DŽ
+šar-planina|šar|sar|šara|sara|sar-planina|шар-планина|шар|шара|Š
+šomrda|somrda|шомрда|Š
+švarcvald|svarcvald|шварцвалд|Š
+šumava|sumava|шумава|Š
+šator|sator|шатор|Š

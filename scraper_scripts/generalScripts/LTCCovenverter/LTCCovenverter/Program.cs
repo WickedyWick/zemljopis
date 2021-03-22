@@ -12,25 +12,41 @@ namespace LTCCovenverter
             string correct;
             string letter;
             string[] lines;
+            string input;
+            string output;
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            lines = System.IO.File.ReadAllLines(@"W:\TTM\scraper_scripts\drzave\newData.txt");
-            using (StreamWriter writer = new StreamWriter(@"W:\TTM\scraper_scripts\drzave\dataCorrect.txt", true))
+            //za sada potrebni full pathovi
+            try
             {
-                for(int i = 0; i < lines.Length; i++)
+                input = args[0];
+                output = args[1];
+                lines = System.IO.File.ReadAllLines(@$"{input}");
+                using (StreamWriter writer = new StreamWriter(@$"{output}"))
                 {
-                    data = lines[i].Split('|');
-                    correct = data[0];
-                    letter = data[data.Length - 1];
-                    string cirilica = Converter.ConvertIt(correct);
-                    string newD = "";
-                    for(int j = 0; j < data.Length - 1; j++)
+                    for (int i = 0; i < lines.Length; i++)
                     {
-                        newD += $"{data[j]}|";
+                        data = lines[i].Split('|');
+                        correct = data[0];
+                        letter = data[data.Length - 1];
+                        string cirilica = Converter.ConvertIt(correct);
+                        string newD = "";
+                        for (int j = 0; j < data.Length - 1; j++)
+                        {
+                            newD += $"{data[j]}|";
+                        }
+                        newD += $"{cirilica}|{letter}";
+                        writer.WriteLine(newD);
                     }
-                    newD += $"{cirilica}|{letter}";
-                    writer.WriteLine(newD);
                 }
             }
+            catch (IndexOutOfRangeException)
+            {
+                Console.WriteLine("Potrebna dva argumenta\n<FullInputPath> <FullOutputPath>");
+            }
+            
+            Console.ReadKey();
+            
+           
         }
     }
 }
