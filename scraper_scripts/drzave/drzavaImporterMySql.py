@@ -22,7 +22,7 @@ mycursor = mydb.cursor()
 countries = []
 sqlList = []
 
-with open("./newData.txt",'r',encoding='utf-8') as f :
+with open("./dataCorrect.txt",'r',encoding='utf-8') as f :
     lines = f.readlines()
 for l in lines:
     splited = l.strip().split('|')

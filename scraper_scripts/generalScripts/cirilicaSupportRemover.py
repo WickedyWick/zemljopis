@@ -62,21 +62,17 @@ letterDict = {
     ' ':' '
 }
 
-with open('./data.txt','r',encoding='utf-8') as f:
+with open('../drzave/newData.txt','r',encoding='utf-8') as f:
     lines = f.readlines()
 
-with open('./data2.txt','w',encoding='utf-8') as f:
+with open('../drzave/data.txt','w',encoding='utf-8') as f:
     for l in lines:
         splitted = l.strip().split('|')
         original = splitted[0]
         cirilica = ''
-        for c in original:
-            try:
-                cirilica += letterDict[c]
-            except(KeyError):
-                cirilica += c
+        letter =splitted[len(splitted)-1]      
         new = ''
-        for i in range(0,len(splitted)-1):
+        for i in range(0,len(splitted)-2):
             new += f'{splitted[i]}|'
-        new += f'{cirilica}|{splitted[len(splitted)-1]}'
+        new += f'{letter}'
         f.write(f'{new}\n')

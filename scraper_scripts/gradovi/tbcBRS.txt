@@ -71,7 +71,7 @@ maslovare|M
 nevesinje|N
 novi travnik|N
 novi šeher|novi seher|N
-odžak|O
+odžak|odzak|O
 olovo|O
 obudovac|O
 omarska|O

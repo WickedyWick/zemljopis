@@ -191,16 +191,14 @@ džibuti|dzibuti|d
 švedska|svedska|š
 španija|spanija|š
 šri lanka|sri lanka|š
-posmatrači generalne skupštine organizacije ujedinjenih nacija|posmatraci generalne skupstine organizacije ujedinjenih nacija|p
 vatikan|v
+palestina|p
 država palestina|drzava palestina|d
-spisak nepriznatih država|spisak nepriznatih drzava|s
 abhazija|a
 azavad|a
 azad kašmir|azad kasmir|a
 zapadna sahara|z
 južna osetija|juzna osetija|j
-republika kosovo|r
 kukova ostrva|k
 republika arcah|r
 nijue|n
@@ -208,7 +206,6 @@ pridnjestrovlje|p
 republika kina|r
 turska republika severni kipar|t
 somalilend|s
-sporne slabonaseljene teritorije (stranica ne postoji)|s
 antarktik|a
 ostrva spretli|o
 paracelska ostrva|p

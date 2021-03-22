@@ -34,9 +34,9 @@ with open('E:/Nacional secret/Zemljopis/db/category_answers_table.csv',encoding=
     csv_reader = csv.reader(csv_file, delimiter='|')
     line_count = 0
    
-    with open('../drzave/newData.txt','a',encoding='utf-8') as f:
+    with open('../planine/newData.txt','a',encoding='utf-8') as f:
         for row in csv_reader:
-            if(row[0] == '0'):
+            if(row[0] == '5'):
                 if(lastCorrect == ''):
                     lastCorrect = row[1]
                     lastCorrectLetter = row[2]

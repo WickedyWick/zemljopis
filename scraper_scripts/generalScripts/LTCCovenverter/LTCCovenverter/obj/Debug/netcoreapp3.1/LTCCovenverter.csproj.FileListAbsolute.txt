@@ -1,0 +1,13 @@
+W:\TTM\scraper_scripts\generalScripts\LTCCovenverter\LTCCovenverter\bin\Debug\netcoreapp3.1\LTCCovenverter.exe
+W:\TTM\scraper_scripts\generalScripts\LTCCovenverter\LTCCovenverter\bin\Debug\netcoreapp3.1\LTCCovenverter.deps.json
+W:\TTM\scraper_scripts\generalScripts\LTCCovenverter\LTCCovenverter\bin\Debug\netcoreapp3.1\LTCCovenverter.runtimeconfig.json
+W:\TTM\scraper_scripts\generalScripts\LTCCovenverter\LTCCovenverter\bin\Debug\netcoreapp3.1\LTCCovenverter.runtimeconfig.dev.json
+W:\TTM\scraper_scripts\generalScripts\LTCCovenverter\LTCCovenverter\bin\Debug\netcoreapp3.1\LTCCovenverter.dll
+W:\TTM\scraper_scripts\generalScripts\LTCCovenverter\LTCCovenverter\bin\Debug\netcoreapp3.1\LTCCovenverter.pdb
+W:\TTM\scraper_scripts\generalScripts\LTCCovenverter\LTCCovenverter\obj\Debug\netcoreapp3.1\LTCCovenverter.csprojAssemblyReference.cache
+W:\TTM\scraper_scripts\generalScripts\LTCCovenverter\LTCCovenverter\obj\Debug\netcoreapp3.1\LTCCovenverter.AssemblyInfoInputs.cache
+W:\TTM\scraper_scripts\generalScripts\LTCCovenverter\LTCCovenverter\obj\Debug\netcoreapp3.1\LTCCovenverter.AssemblyInfo.cs
+W:\TTM\scraper_scripts\generalScripts\LTCCovenverter\LTCCovenverter\obj\Debug\netcoreapp3.1\LTCCovenverter.csproj.CoreCompileInputs.cache
+W:\TTM\scraper_scripts\generalScripts\LTCCovenverter\LTCCovenverter\obj\Debug\netcoreapp3.1\LTCCovenverter.dll
+W:\TTM\scraper_scripts\generalScripts\LTCCovenverter\LTCCovenverter\obj\Debug\netcoreapp3.1\LTCCovenverter.pdb
+W:\TTM\scraper_scripts\generalScripts\LTCCovenverter\LTCCovenverter\obj\Debug\netcoreapp3.1\LTCCovenverter.genruntimeconfig.cache
