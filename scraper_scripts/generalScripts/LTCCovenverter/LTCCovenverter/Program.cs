@@ -44,7 +44,7 @@ namespace LTCCovenverter
                 Console.WriteLine("Potrebna dva argumenta\n<FullInputPath> <FullOutputPath>");
             }
             
-            Console.ReadKey();
+            
             
            
         }
