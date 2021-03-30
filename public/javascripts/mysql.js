@@ -205,7 +205,8 @@ function joinRoom(socket,room,username,sessionToken,localData){
             //proveri da li postoji username
             console.log(username);
             console.log(room)
-            connection.query(`select username from player where roomCode = '${room}' and username = '${username}';select sessionToken from player where roomCode = '${room}' and username = '${username}';`,(err,result,fields)=>{
+            
+            connection.query(`select username from player where roomCode = '${room}' and username = '${username}';select sessionToken from player where roomCode = '${room}' and username = '${username}';select SUM(bodovi) as ukupnoBodova from data join player on data.playerID = player.playerID where roomCode = '${room}' and username = '${username}';`,(err,result,fields)=>{
                 if(err){
                     console.log(`ERROR SELECTING USERNAME FROM PLAYER : Code ${err.code}\nMSG : ${err.sqlMessage}`)
                     socket.emit('load',{'Success' : false,
@@ -221,14 +222,26 @@ function joinRoom(socket,room,username,sessionToken,localData){
                     }else{
                         socket.join(room)
                         if(result[1][0]['sessionToken'] === sessionToken){
+                            console.log(result)
+                            console.log(result[2][0]['ukupnoBodova'])
+                            if(result[2][0]['ukupnoBodova'] === null)
                                 socket.emit('load',{'Success' : true,
                                 "MSG" : `You successefully joined room : ${room}`,
                                 "playerCount" : localData[room]['playerCount'],
                                 "playersReady" : localData[room]['playersReady'],
                                 "roundActive" : localData[room]['roundActive'],
-                                "roundNumber" : localData[room]['roundNumber']
+                                "roundNumber" : localData[room]['roundNumber'],
+                                "points" : 0
                             })
-                       
+                            else
+                                socket.emit('load',{'Success' : true,
+                                    "MSG" : `You successefully joined room : ${room}`,
+                                    "playerCount" : localData[room]['playerCount'],
+                                    "playersReady" : localData[room]['playersReady'],
+                                    "roundActive" : localData[room]['roundActive'],
+                                    "roundNumber" : localData[room]['roundNumber'],
+                                    "points" : result[2][0]['ukupnoBodova']
+                                })
                             console.log('ROOM : ' + room)
                             socket.to(room).broadcast.emit('playerJoinMsg',`${username} just joined the room!`)
                         }else{

@@ -70,7 +70,7 @@ function createRound(room,io,localData){
                         const temp = setTimeout(timeout, localData[room]['roundTimeLimit']*1000, room,localData,io);
                         //var temp = setTimeout(timeout,,room,localData,io)
                         localData[room]['intervalObj'] = temp    
-                        
+                        connection.release()
                     }
                     
                 })
@@ -135,6 +135,8 @@ function playerUnReady(room,localData,socket,io){
     }
 }
 fieldKeys = ['drzava','grad','ime','biljka','zivotinja','planina','reka','predmet']
+
+/*
 function evaluation(room,localData,io){
     t0 = perf.performance.now()
     if(localData[room]['roundActive']){ //ovi ifovi u slucaju da se se nekako evaluation funkcije u isto vreme pozovu
@@ -155,7 +157,7 @@ function evaluation(room,localData,io){
                     'predmet':[]
 
             }
-        pool.getConnection((err,connection) =>{
+        pool.getConnection((err,connection)=>{
             if(err){
                 console.log(`There was an error getting connection in evaluation function. Code : ${err.code} MSG: ${err.sqlMessage} `)
             }else{
@@ -276,32 +278,213 @@ function evaluation(room,localData,io){
         })
         }
 }   
+*/
+function evaluation(room,localData,io){
+    //ovo se poziva dva puta??
+    console.log('IT GOT HERE')
+    try{
+        if(localData[room]['roundActive']){
+            clearTimeout(localData[room]['intervalObj'])
+            console.log('evaluation STARTED')
+            localData[room]['roundActive'] = false  
+            localData[room]['playersReady'] = 0
+            localData[room]['roundNumber']+=1
+            pool.getConnection((err,connection)=>{
+            //ovi ifovi u slucaju da se se nekako evaluation funkcije u isto vreme pozovu
+                
+                dataKeys = Object.keys(localData[room]['data'])
+                myDict = {  }
+                ids = {}
+                sql = `select naziv , kategorija ,oDataID from referencedata where slovo ='${localData[room]['currentLetter']   }'and (naziv`
+                for(let i =0;i < dataKeys.length;i++){
+                    dataRow = localData[room]['data'][dataKeys[i]];
+                    for(let j=0;j<dataRow.length;j++){
+                        nazivPodatka = dataRow[j]
+                        
+                        if(nazivPodatka in myDict){
+                            if(j in myDict[nazivPodatka])
+                            {
+                                myDict[nazivPodatka][j]['count'] +=1
+                                myDict[nazivPodatka][j]['ids'].push(dataKeys[i])
+                                
+                            }
+                            else
+                            {
+                                myDict[nazivPodatka][j] = {}
+                                myDict[nazivPodatka][j]['count'] =1
+                                myDict[nazivPodatka][j]['ids'] = [dataKeys[i]]
+                            }
+                            
+                        }else{
+                            myDict[nazivPodatka] ={}
+                            myDict[nazivPodatka][j] = {}
+                            myDict[nazivPodatka][j]['count'] =1
+                            myDict[nazivPodatka][j]['ids'] = [dataKeys[i]]
+                            sql+= '=? or naziv'
+                        }
+                    }
+                    ids[dataKeys[i]] = 0
+                }
+                sql+= "='x')"
+            
+                naziviKeys = Object.keys(myDict)
+                otherDict = {}
+                connection.query(sql,naziviKeys,(err,results,fields)=>{
+                        
+                        
+                    /*  ovako results izlgeda
+                        RowDataPacket { naziv: 'apatin', kategorija: 1, oDataID: 2701 },
+                        RowDataPacket { naziv: 'alžir', kategorija: 1, oDataID: 2703 },
+                        RowDataPacket { naziv: 'alzir', kategorija: 1, oDataID: 2703 },
+                        RowDataPacket { naziv: 'aleksinac', kategorija: 1, oDataID: 2744 },
+                        RowDataPacket { naziv: 'ada', kategorija: 1, oDataID: 2745 },
+                        RowDataPacket { naziv: 'arilje', kategorija: 1, oDataID: 2748 },
+                        RowDataPacket { naziv: 'adorjan', kategorija: 1, oDataID: 2753 },
+                        RowDataPacket { naziv: 'aleksandrovo', kategorija: 1, oDataID: 2760 },
+                        RowDataPacket { naziv: 'avganistan', kategorija: 0, oDataID: 5397 },
+                        RowDataPacket { naziv: 'alžir', kategorija: 0, oDataID: 5400 },
+                        RowDataPacket { naziv: 'alzir', kategorija: 0, oDataID: 5400 },
+                        RowDataPacket { naziv: 'andora', kategorija: 0, oDataID: 5402 },
+                        RowDataPacket { naziv: 'argentina', kategorija: 0, oDataID: 5404 },
+                        RowDataPacket { naziv: 'australija', kategorija: 0, oDataID: 5405 },
+                        RowDataPacket { naziv: 'austrija', kategorija: 0, oDataID: 5406 },
+                        RowDataPacket { naziv: 'avala', kategorija: 5, oDataID: 5614 },
+                        RowDataPacket { naziv: 'arnauta', kategorija: 6, oDataID: 5910 },
+                        RowDataPacket { naziv: 'amazon', kategorija: 6, oDataID: 5913 },
+                        RowDataPacket { naziv: 'ada', kategorija: 6, oDataID: 5922 },
+                        RowDataPacket { naziv: 'ana', kategorija: 6, oDataID: 5925 },
+                        RowDataPacket { naziv: 'artičoka', kategorija: 3, oDataID: 6295 },
+                        RowDataPacket { naziv: 'ananas', kategorija: 3, oDataID: 6297 },
+                        RowDataPacket { naziv: 'aronija', kategorija: 3, oDataID: 6298 },
+                        RowDataPacket { naziv: 'anakonda', kategorija: 4, oDataID: 6762 },
+                        RowDataPacket { naziv: 'aleksa', kategorija: 2, oDataID: 7188 },
+                        RowDataPacket { naziv: 'aleksandar', kategorija: 2, oDataID: 7189 },
+                        RowDataPacket { naziv: 'aleksej', kategorija: 2, oDataID: 7191 },
+                        RowDataPacket { naziv: 'aleksandra', kategorija: 2, oDataID: 7212 },
+                        RowDataPacket { naziv: 'ana', kategorija: 2, oDataID: 7214 },
+                        RowDataPacket { naziv: 'anastasija', kategorija: 2, oDataID: 7215 }
+                    */
+                
+                    if(err)
+                        console.log(`Doslo je do problema prilikom selektovanja podataka u evaluaciji! CODE : ${err.code} MSG : ${err.sqlMessage}`)
+                    else{
+                        for(let i =0;i<results.length;i++){
+                            oDataID = results[i]['oDataID']
+                            kategorija = results[i]['kategorija']
+                        
+                        
+                            naziv = results[i]['naziv']
+                        
+                            if(naziv in myDict && kategorija in myDict[naziv]){
+                                if(oDataID in otherDict){
+                                    otherDict[oDataID]['nazivi'].push(naziv)
+                                    otherDict[oDataID]['points'] = 5
+                                    otherDict[oDataID]['count'] += myDict[naziv][kategorija]['count']
+                                    
+                                }else{
+                                otherDict[oDataID] = {}
+                                otherDict[oDataID]['nazivi'] = [naziv]
+                                otherDict[oDataID]['count'] = myDict[naziv][kategorija]['count']
+                                otherDict[oDataID]['kategorija'] = kategorija
+                                //overwrite myDict
+                                if(otherDict[oDataID]['count'] > 1)
+                                {
+                                    for(let j=0;j<myDict[naziv][kategorija]['ids'].length;j++)
+                                        ids[myDict[naziv][kategorija]['ids'][j]] +=5
+                                    otherDict[oDataID]['points'] = 5
+                                }
+                                else
+                                {
+                                    for(let j=0;j<myDict[naziv][kategorija]['ids'].length;j++)
+                                        ids[myDict[naziv][kategorija]['ids'][j]] +=10
+                                    otherDict[oDataID]['points'] = 10
+                                }   
+                                
+                                }
+                            }
+                        }
+                        
+                        pointsDict = {}
+                        pointsDict['result'] = {}
+                        otherDictKeys = Object.keys(otherDict)
+                        /*kategroija{
+                            naziv : poeni
+                        }
+                        */
+                        for(let i =0;i<otherDictKeys.length;i++){
+                            nazivi = otherDict[otherDictKeys[i]]['nazivi']
+                            kategorija = otherDict[otherDictKeys[i]]['kategorija']
+                            poeni = otherDict[otherDictKeys[i]]['points']
+                            if(!(kategorija in pointsDict['result']))
+                                pointsDict['result'][kategorija] = {}
+                            for(let j =0;j<nazivi.length;j++)
+                                pointsDict['result'][kategorija][nazivi[j]] = poeni
+                        }
+
+                        pointsDict['Success'] = true
+                        pointsDict['roundNumber'] = localData[room]['roundNumber']
+                        pointsDict['playersReady'] = localData[room]['playersReady']
+                        
+                        otherDictKeys = Object.keys(ids)
+                        sql = ""
+                        io.to(room).emit('points',pointsDict)
+                        //ovo moze i foreachom posto nije vazan redosled 
+                        for(let i =0;i<otherDictKeys.length;i++){
+                            sql += `Update data set bodovi = ${ids[otherDictKeys[i]]} where playerID = ${otherDictKeys[i]};`
+                        }
+                        
+                        connection.query(sql,(err,results,fields)=>{
+                            //Ne moram da cekam da se ovo zavrsi da bih poslao rezultate , ako ovde ima problem posaljem page refresh req tako da ce se refresovati stranica sama i poeni ce ostati kako treba
+                            if(err)
+                            {
+                                console.log(`Problem upisivanje bodova u bazu! MSG : Code : ${err.code}\nMSG: ${err.sqlMessage}`)
+                                //Dodaj jedan univerzalni err socket(ili to moze biti explotivano)
+                                io.to(room).emit('pointsErr',{"MSG":"Doslo je do problema sa upisivanjem bodova , poeni u rundi su nevazeci!"})
+                            }
+                            
+                        })
+                        
+                        localData[room]['data'] ={}
+                                  
+                    }
+                })
+                connection.release();
+            })
+        }
+    }catch(err){
+        console.log(err)
+        io.to(room).emit('points',{
+            'Success':false,
+            'roundNumber' : localData[room]['roundNumber'],
+            'playersReady':localData[room]['playersReady']
+        })
+    }
+}
 
 
 function dataCollector(io,username,room,data,round,localData){   
-    console.log("DATA COLLECTOR FUNKCIJA")
-    //OVDE POGLEDAJ DOKLE OCE!!!!
-    if(localData[room]['data'][localData[room]['players'][username]] === undefined && round == localData[room]['roundNumber']){
-        
-        pool.query(`insert into data values(DEFAULT,${localData[room]['roundID']},${localData[room]['players'][username]},?,?,?,?,?,?,?,?,0)`,data,(err,results,fields)=>{
-            if(err){
-                console.log(`Error while inserting data values : Code : ${err.code}\nMSG: ${err.sqlMessage}`)
-                localData[room]['data'][localData[room]['players'][username]] = new Array(8).fill('')
-            }else{
-                localData[room]['data'][localData[room]['players'][username]] = data                       
-                        console.log(`Data recieved for : ${username} \n${data}`)
-                        keys = Object.keys(localData[room]['data'])
-                        if(keys.length == localData[room]['playerCount'])
-                            if(localData[room]['roundActive'])
-                            {
-                                
-                                evaluation(room,localData,io)
-                                
-                                //clearuj interval i dodaj interval funckicju sa evaluationom na round end eventovima
-                            }
-            }
-        })    
-        
+        console.log("DATA COLLECTOR FUNKCIJA")
+        //OVDE POGLEDAJ DOKLE OCE!!!!
+        if(localData[room]['data'][localData[room]['players'][username]] === undefined && round == localData[room]['roundNumber']){           
+            pool.query(`insert into data values(DEFAULT,${localData[room]['roundID']},${localData[room]['players'][username]},?,?,?,?,?,?,?,?,0)`,data,(err,results,fields)=>{
+                if(err){
+                    console.log(`Error while inserting data values : Code : ${err.code}\nMSG: ${err.sqlMessage}`)
+                    //ovo dole mozda ne treba
+                    //localData[room]['data'][localData[room]['players'][username]] = new Array(8).fill('')
+                }else{
+                    localData[room]['data'][localData[room]['players'][username]] = data                       
+                            console.log(`Data recieved for : ${username} \n${data}`)
+                            keys = Object.keys(localData[room]['data'])
+                            if(keys.length == localData[room]['playerCount'])
+                                if(localData[room]['roundActive'])
+                                {
+                                    
+                                    evaluation(room,localData,io)
+                                    
+                                    //clearuj interval i dodaj interval funckicju sa evaluationom na round end eventovima
+                                }
+                }
+            })                      
 }
 
 function endRound(room,localData,io){

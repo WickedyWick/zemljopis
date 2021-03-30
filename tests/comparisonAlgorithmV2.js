@@ -46,6 +46,7 @@ function test(){
     pool.getConnection((err,connection)=>{
         dataKeys = Object.keys(localData['data'])
         myDict = {  }
+        ids = {}
         sql = "select naziv , kategorija ,oDataID from referencedata where slovo ='a' and (naziv" 
         for(let i =0;i < dataKeys.length;i++){
             dataRow = localData['data'][dataKeys[i]];
@@ -55,27 +56,29 @@ function test(){
                     if(j in myDict[nazivPodatka])
                     {
                         myDict[nazivPodatka][j]['count'] +=1
-                        myDict[nazivPodatka][j]['ids'].push(i)
+                        myDict[nazivPodatka][j]['ids'].push(dataKeys[i])
                         
                     }
                     else
                     {
                         myDict[nazivPodatka][j] = {}
                         myDict[nazivPodatka][j]['count'] =1
-                        myDict[nazivPodatka][j]['ids'] = [i]
+                        myDict[nazivPodatka][j]['ids'] = [dataKeys[i]]
                     }
                     
                 }else{
                     myDict[nazivPodatka] ={}
                     myDict[nazivPodatka][j] = {}
                     myDict[nazivPodatka][j]['count'] =1
-                    myDict[nazivPodatka][j]['ids'] = [i]
+                    myDict[nazivPodatka][j]['ids'] = [dataKeys[i]]
+                    
                     sql+= '=? or naziv'
                 }
             }
+            ids[dataKeys[i]] = 0
         }
         sql+= "='x')"
-        
+        console.log(myDict)
         naziviKeys = Object.keys(myDict)
         otherDict = {}
         connection.query(sql,naziviKeys,(err,results,fields)=>{
@@ -113,7 +116,7 @@ function test(){
                 RowDataPacket { naziv: 'ana', kategorija: 2, oDataID: 7214 },
                 RowDataPacket { naziv: 'anastasija', kategorija: 2, oDataID: 7215 }
             */
-        
+            
             if(err)
                 console.log(err)
             else{
@@ -123,8 +126,9 @@ function test(){
                    
                 
                     naziv = results[i]['naziv']
-                   
+                    
                     if(naziv in myDict && kategorija in myDict[naziv]){
+                        console.log(myDict[naziv][kategorija]['ids'])
                         if(oDataID in otherDict){
                             otherDict[oDataID]['nazivi'].push(naziv)
                             otherDict[oDataID]['points'] = 5
@@ -135,19 +139,26 @@ function test(){
                         otherDict[oDataID]['nazivi'] = [naziv]
                         otherDict[oDataID]['count'] = myDict[naziv][kategorija]['count']
                         otherDict[oDataID]['kategorija'] = kategorija
+                        
+                        
                         //overwrite myDict
                         if(otherDict[oDataID]['count'] > 1)
                         {
-                                otherDict[oDataID]['points'] = 5
+                            for(let j=0;j<myDict[naziv][kategorija]['ids'].length;j++)
+                                ids[myDict[naziv][kategorija]['ids'][j]] +=5
+                            otherDict[oDataID]['points'] = 5
                         }
                         else
+                        {
+                            for(let j=0;j<myDict[naziv][kategorija]['ids'].length;j++)
+                                    ids[myDict[naziv][kategorija]['ids'][j]] += 10
                             otherDict[oDataID]['points'] = 10
-                            
+                        }
                         //dodavaj nazive u 
                         }
                     }
                 }
-                
+                console.log(otherDict)
                 pointsDict = {}
                 otherDictKeys = Object.keys(otherDict)
                 /*kategroija{
@@ -163,7 +174,7 @@ function test(){
                     for(let j =0;j<nazivi.length;j++)
                         pointsDict[kategorija][nazivi[j]] = poeni
                 }
-                
+                console.log(ids)
                 t1 =perf.performance.now()
                 resolve(pointsDict)
                 reject('test')                
@@ -176,7 +187,10 @@ function test(){
     })
     })
 }
-for(let x = 0;x<1;x++){test().then((response)=>{
+
+test()
+/*
+for(let x = 0;x<10000;x++){test().then((response)=>{
     console.log(`Time : ${perf.performance.now() - t0}`)
     console.log(`Memory : ${process.memoryUsage().heapUsed / 1024 / 1024}`)
 },reject=>{
@@ -184,4 +198,4 @@ for(let x = 0;x<1;x++){test().then((response)=>{
  })
 }
 
-
+*/

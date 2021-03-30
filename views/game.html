@@ -51,42 +51,42 @@
               <form>
                 <div class="form-group">
                   <label for="inputDrzava">Država</label>
-                  <input type="text" class="form-control" id="inputDrzava" aria-describedby="helpDrzava" placeholder="Unesi državu :">
+                  <input type="text" class="form-control" id="inputDrzava" aria-describedby="helpDrzava" placeholder="Unesi državu :"autocomplete="off">
                   <small id="helpDrzava" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
                 </div>
                 <div class="form-group">
                     <label for="inputGrad">Grad</label>
-                    <input type="text" class="form-control" id="inputGrad" aria-describedby="helpGrad" placeholder="Unesi grad :">
+                    <input type="text" class="form-control" id="inputGrad" aria-describedby="helpGrad" placeholder="Unesi grad :" autocomplete="off">
                     <small id="helpGrad" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
                 </div>
                 <div class="form-group">
                   <label for="inputIme">Ime</label>
-                  <input type="text" class="form-control" id="inputIme" aria-describedby="helpIme" placeholder="Unesi ime :">
+                  <input type="text" class="form-control" id="inputIme" aria-describedby="helpIme" placeholder="Unesi ime :" autocomplete="off">
                   <small id="helpIme" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
                 </div>
                 <div class="form-group">
                   <label for="inputBiljka">Biljka</label>
-                  <input type="text" class="form-control" id="inputBiljka" aria-describedby="helpBiljka" placeholder="Unesi biljku :">
+                  <input type="text" class="form-control" id="inputBiljka" aria-describedby="helpBiljka" placeholder="Unesi biljku :" autocomplete="off">
                   <small id="helpBiljka" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
                 </div>
                 <div class="form-group">
                   <label for="inputZivotinja">Životinja</label>
-                  <input type="text" class="form-control" id="inputZivotinja" aria-describedby="helpZivotinja" placeholder="Unesi životinju :">
+                  <input type="text" class="form-control" id="inputZivotinja" aria-describedby="helpZivotinja" placeholder="Unesi životinju :" autocomplete="off">
                   <small id="helpZivotinja" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
                 </div>
                 <div class="form-group">
                   <label for="inputPlanina">Planina</label>
-                  <input type="text" class="form-control" id="inputPlanina" aria-describedby="helpPlanina" placeholder="Unesi planinu :">
+                  <input type="text" class="form-control" id="inputPlanina" aria-describedby="helpPlanina" placeholder="Unesi planinu :" autocomplete="off">
                   <small id="helpPlanina" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
                 </div>
                 <div class="form-group">
                   <label for="inputReka">Reka</label>
-                  <input type="text" class="form-control" id="inputReka" aria-describedby="helpReka" placeholder="Unesi reku :">
+                  <input type="text" class="form-control" id="inputReka" aria-describedby="helpReka" placeholder="Unesi reku :" autocomplete="off">
                   <small id="helpReka" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
                 </div>
                 <div class="form-group">
                   <label for="inputPredmet">Predmet</label>
-                  <input type="text" class="form-control" id="inputPredmet" aria-describedby="helpPredmet" placeholder="Unesi predmet :">
+                  <input type="text" class="form-control" id="inputPredmet" aria-describedby="helpPredmet" placeholder="Unesi predmet :" autocomplete="off">
                   <small id="helpPredmet" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
                 </div> 
               </form>
@@ -105,6 +105,9 @@
               <label>Runda : </label>
               <label id="roundNumber">0</label>
               <label id="currentLetter"></label>
+              <br>
+              <label>Poeni : </label>
+              <label id="poeni">0</label>
             </div>
             <div>
               <label id="counter"></label>
@@ -134,6 +137,7 @@
         let roundNumber;
         let t0;
         let t1;
+        let points = 0;
         const fields = ['Drzava','Grad','Predmet','Ime','Biljka','Reka','Planina','Zivotinja']
         
         $(`#helpGrad`).css("visibility", "visible")
@@ -189,6 +193,8 @@
             document.getElementById('lblPlayerCount').textContent = message['playerCount']
             roundNumber = message['roundNumber']
             document.getElementById('roundNumber').textContent = roundNumber
+            console.log(message['points'])
+            document.getElementById('poeni').textContent = String(message['points'])
             console.log(message['roundActive'])
             new Noty({
                   theme : 'metroui',
@@ -240,20 +246,23 @@
                 timeout : 5000,
                 progressBar :true
               }).show()
-          }
-          document.getElementById('currentLetter').textContent = message['currentLetter']
+              document.getElementById('currentLetter').textContent = message['currentLetter']
           
-          let duration = 61
-            myInterval = setInterval(()=>{
-            duration--
-            timer.innerHTML = duration
-            if(duration == 0){
-              
-              clearInterval(myInterval)
-            }
-          },1000)
-          readyBtn.innerText = "Gotovo";
-          gameStarted = true;
+            let duration = 61
+              myInterval = setInterval(()=>{
+              duration--
+              timer.innerHTML = duration
+              if(duration == 0){
+                
+                clearInterval(myInterval)
+              }
+            },1000)
+            readyBtn.innerText = "Gotovo";
+            gameStarted = true;
+            enableAllInputFields()
+            clearAllInputFields()
+          }
+          
         })
 
 
@@ -324,12 +333,17 @@
         })
 
         socket.on('points' , message =>{
-          if(message['Success'])
+          if(!message['Success'])
           {
+            new Noty({
+                theme : 'metroui',
+                type : 'error',
+                layout : 'topRight',
+                text : 'Problem prilikom evaluacije, runda ponistena',
+                timeout : 5000,
+                progressBar :true
+              }).show()
             
-            alert("YOURS POINTS ARE : " + message['DATA'][username])
-            t1 = performance.now();
-            console.log(`TIME : ${t1-t0}`)
           }
           else
           {
@@ -337,14 +351,45 @@
                 theme : 'metroui',
                 type : 'success',
                 layout : 'topRight',
-                text : message['MSG'],
+                text : 'Evaluacija zavrsena',
                 timeout : 5000,
                 progressBar :true
               }).show()
-            }
+              console.log(message['result'])
+              
+              for(let i=0;i<fields.length;i++){
+               
+                //$(`#input${fields[i]}`).prop("disabled", false )
+                try
+                {
+                  poeni = message['result'][i][$(`#input${fields[i]}`).val().toLowerCase()]
+                  document.getElementById(`input${fields[i]}`).value += '  + ' +  poeni
+                  points += Number(poeni)
+                }
+                catch(TypeError){
+                  
+                  document.getElementById(`input${fields[i]}`).value += '  + 0'
+                }
+              }
+              document.getElementById('poeni').textContent = String(points)
+          }
           roundNumber = message['roundNumber']
           document.getElementById('roundNumber').textContent = roundNumber
           document.getElementById('lblPlayersReady').textContent = message['playersReady']
+          
+        })
+        socket.on('pointsErr',message=>{
+          new Noty({
+              theme : 'metroui',
+              type : 'success',
+              layout : 'topRight',
+              text : message['MSG'],
+              timeout : 5000,
+              progressBar :true
+            }).show()
+            setTimeout(()=>{location.reload()},6000)
+            $('#maxDiv').hide()
+            
         })
         socket.on('roundEnd',message =>{
           t0 = performance.now()
@@ -359,7 +404,7 @@
               progressBar :true
             }).show()
             console.log(message)
-            enableAllInputFields()
+           //enableAllInputFields()
             
             var reg = /^[A-Za-zčČćĆžŽšŠđĐ]{1,42}$/g
             var allValid = true
@@ -376,7 +421,8 @@
             }           
               socket.emit('roundData',({username,roomCode,data,roundNumber}))
               //ili vidi da se ovo radi kada se dobije confirmacija da su podaci obradjeni!!!
-            clearAllInputFields()
+            //clearAllInputFields()
+            disableAllInputFields()
             gameStarted = false
             ready = false
             readyBtn.style.backgroundColor = 'red'
@@ -437,7 +483,8 @@
             if(allValid){     
               console.log('dataSent')         
               socket.emit('clientEndRound',({username,roomCode,data,roundNumber}))
-              clearAllInputFields()
+              //clearAllInputFields()
+              disableAllInputFields()
               gameStarted = false
               ready = false
               readyBtn.style.backgroundColor = 'red'
