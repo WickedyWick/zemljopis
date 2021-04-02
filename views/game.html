@@ -6,7 +6,88 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     </head>
+    <style>
+      @media only screen and (max-width: 1099.9px) {
+        .myFlexContainer{
+                display:flex;
+                flex-direction: column;             
+                justify-content: center;
+                margin-left:10%;
+                margin-right:5%;
+                margin-top:1%;                
+                align-content: center;
+                
+            }
+        ul{
+            list-style-type:none;
+            max-height: 100px;
+            overflow-y:scroll;
+        }
+        li{
+            padding-left:0.75rem;
+        }
+    }
+
+    @media only screen and (min-width: 1100.0px) {
+            .myFlexContainer{
+                display:flex;
+                             
+                justify-content: center;
+                margin-left:25%;
+                margin-right:5%;
+                margin-top:1%;
+                
+                align-content: center;
+                
+            }
+            .myFlexContainer > div{
+                flex:1;
+                flex-basis: 100%;
+                
+            }
+            #first {
+                padding-right:2rem;
+                display:inline-flex;
+                width:100%;
+                
+                
+            }
+            ul{
+                list-style-type:none;
+                max-height: 200px;
+                overflow-y:scroll;
+            }
+            li{
+                padding-left: 0.75rem;
+            }
+            #second{
+                display:inline-flex;
+                align-content: flex-end;
+            }
+            
+            
+            
+            
+                
+            
+            
+            .myRow {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                width: 100%;
+            }
+            .myColumn {
+
+                display: flex;
+                flex-direction: column;
+                flex-basis: 100%;
+                flex: 1;
+            }
+        }
+    </style>
     <body>
         <nav class="navbar navbar-dark bg-dark">
                 <a class="navbar-brand" href="/">Home</a>
@@ -45,11 +126,9 @@
         </table>
         <button onclick="dodaj()">xd</button>
         -->
-        <div class="container-fluid" id="maxDiv" style="display:none">
-          <div class="row">
-            <div class="col-xl" style="margin-left:20%;margin-top:1%">
-              <form>
-                <div class="form-group">
+        <div class="myFlexContainer myRow" id="maxDiv">
+            <div class="myColumn" id="first">                        
+                <div>
                   <label for="inputDrzava">Država</label>
                   <input type="text" class="form-control" id="inputDrzava" aria-describedby="helpDrzava" placeholder="Unesi državu :"autocomplete="off">
                   <small id="helpDrzava" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
@@ -89,30 +168,59 @@
                   <input type="text" class="form-control" id="inputPredmet" aria-describedby="helpPredmet" placeholder="Unesi predmet :" autocomplete="off">
                   <small id="helpPredmet" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
                 </div> 
-              </form>
+              
             </div>
-            <div class="col" style="margin-top:2.5%" >
-              <button class="btn btn-primary" id="btnReady" style="background-color:red;">Not ready</button>
-              <label id="lblRoomCode">Roomcode : </label>
-              <label id="lblPlayersReady"></label>
-              <label>/</label>
-              <label id="lblPlayerCount"></label>
-              <div>
-                <select id="igraci">
-                  
-                </select>
-              </div>
-              <label>Runda : </label>
-              <label id="roundNumber">0</label>
-              <label id="currentLetter"></label>
-              <br>
-              <label>Poeni : </label>
-              <label id="poeni">0</label>
+            <div class="myColumn" id="second">
+                <div>
+                    <button class="btn btn-primary" id="btnReady" style="background-color:red;">Not ready</button>
+                </div> 
+                <div id="sobaDiv">
+                    <label id="lblRoomCode">Soba : </label>
+                </div>  
+                <div id="playersDiv">
+                    <label>Igači spremni : </label>
+                    <label id="lblPlayersReady"></label>
+                    <label>/</label>
+                    <label id="lblPlayerCount"></label>
+                </div>
+              <div id="rundaDiv">
+                <label>Runda : </label>
+                <label id="roundNumber">0</label>
+                <label id="currentLetter"></label>
+                <br>
+                <label>Poeni : </label>
+                <label id="poeni">0</label>
             </div>
             <div>
-              <label id="counter"></label>
+                    <label>Vreme : </label>
+                    <label id="counter"></label>
             </div>
-          </div> 
+            <div>
+                <label>Igrači : Igrac</label>
+                <ul>
+                    <li>Igrac</li>
+                    <li>Igrac</li>
+                    <li>Igrac</li>
+                    <li>Igrac</li>
+                    <li>Igrac</li>
+                    <li>Igrac</li>
+                    <li>Igrac</li>
+                    <li>Igrac</li>
+                    <li>Igrac</li>
+                    <li>Igrac</li>
+                    <li>Igrac</li>
+                    <li>Igrac</li>
+                    <li>Igrac</li>
+                    <li>Igrac</li>
+                    <li>Igrac</li>
+                    <li>Igrac</li>
+                    <li>Igrac</li>
+                    <li>Igrac</li>
+
+                </ul>
+            </div>
+            
+          </div>
       </div>
     </body>
     <script src="/socket.io/socket.io.js"></script>
@@ -153,6 +261,16 @@
         })
         
         //pogledaj da li ova polja je okej uzeti sa svim inputima
+        function hideAllHelp(){
+          $("#helpDrzava").hide()
+          $("#helpGrad").hide()
+          $("#helpPredmet").hide()
+          $("#helpIme").hide()
+          $("#helpBiljka").hide()
+          $("#helpReka").hide()
+          $("#helpPlanina").hide()
+          $("#helpZivotinja").hide()
+        }
         function clearAllInputFields(){
           $("#inputDrzava").val('')
           $("#inputGrad").val('')
@@ -234,7 +352,44 @@
           document.getElementById('lblPlayersReady').textContent = message
         })
 
-
+        socket.on('createRoundResponse',message =>{
+            gameStarted = false
+            ready = false
+            readyBtn.style.backgroundColor = 'red'
+            readyBtn.textContent = 'Not ready!' 
+            new Noty({
+                theme : 'metroui',
+                type : 'error',
+                layout : 'topRight',
+                text : message['ERR_MSG'],
+                timeout : 5000,
+                progressBar :true
+              }).show()
+              
+        })
+        socket.on('evaluationResponse',message=>{
+          new Noty({
+                theme : 'metroui',
+                type : 'success',
+                layout : 'topRight',
+                text : message['ERR_MSG'],
+                timeout : 5000,
+                progressBar :true
+              }).show()
+              roundNumber = message['roundNumber']
+              document.getElementById('roundNumber').textContent = roundNumber
+              document.getElementById('lblPlayersReady').textContent = message['playersReady']
+        })
+        socket.on('dataCollectorResponse',message=>{
+          new Noty({
+                theme : 'metroui',
+                type : 'success',
+                layout : 'topRight',
+                text : message['ERR_MSG'],
+                timeout : 5000,
+                progressBar :true
+              }).show()
+        })
         socket.on('gameStartNotification', message => {
           console.log(message)
           if(message['Success'] == true){
@@ -333,6 +488,7 @@
         })
 
         socket.on('points' , message =>{
+          console.log(message)
           if(!message['Success'])
           {
             new Noty({
@@ -447,7 +603,7 @@
         
         
         readyBtn.addEventListener('click',(e) =>{
-          
+          //ovo popravi
           if(!gameStarted){
             if(!ready){
               socket.emit('playerReady',roomCode)
@@ -472,7 +628,7 @@
             var allValid = true
             for(let i=0;i<fields.length;i++){
               if(!reg.test($(`#input${fields[i]}`).val())){
-                $(`#help${fields[i]}`).css("visibility", "visible") // ovo NE RADI
+                $(`#help${fields[i]}`).show() // ovo NE RADI
                 allValid = false
                 data.push('')
               }else{
