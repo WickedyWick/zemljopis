@@ -196,27 +196,8 @@
                     <label id="counter"></label>
             </div>
             <div>
-                <label>Igrači : Igrac</label>
-                <ul>
-                    <li>Igrac</li>
-                    <li>Igrac</li>
-                    <li>Igrac</li>
-                    <li>Igrac</li>
-                    <li>Igrac</li>
-                    <li>Igrac</li>
-                    <li>Igrac</li>
-                    <li>Igrac</li>
-                    <li>Igrac</li>
-                    <li>Igrac</li>
-                    <li>Igrac</li>
-                    <li>Igrac</li>
-                    <li>Igrac</li>
-                    <li>Igrac</li>
-                    <li>Igrac</li>
-                    <li>Igrac</li>
-                    <li>Igrac</li>
-                    <li>Igrac</li>
-
+                <label id="localPlayer">Igrači : </label>
+                <ul id="players">                   
                 </ul>
             </div>
             
@@ -225,7 +206,7 @@
     </body>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.min.js" integrity="sha512-BHtomM5XDcUy7tDNcrcX1Eh0RogdWiMdXl3wJcKB3PFekXb3l5aDzymaTher61u6vEZySnoC/SAj2Y/p918Y3w==" crossorigin="anonymous"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous"></script>
     <script>
         data = {}
@@ -306,6 +287,7 @@
         socket.on('load', message =>{
           if(message['Success']){
             $('#maxDiv').show()
+            document.getElementById('localPlayer').textContent += username
             document.getElementById('lblRoomCode').textContent += String(roomCode)
             document.getElementById('lblPlayersReady').textContent = message['playersReady']
             document.getElementById('lblPlayerCount').textContent = message['playerCount']
@@ -419,7 +401,12 @@
           }
           
         })
-
+        socket.on('playerList',message=>{
+          for(let i =0;i<message['players'].length;i++){
+            if(message['players'][i] != username)
+              $("ul").append(`<li>${message['players'][i]}</li>`);
+          }
+        })
 
 
         socket.on('playerReadyResponse' , message =>{

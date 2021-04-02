@@ -15,10 +15,12 @@ function joinRoomSQL(socket,room,username,localData){
     if(localData[room]['playerCount'] > Object.keys(localData[room]['playersID']).length){
         pool.getConnection((err,connection) =>{
             if(err){
+                
                 console.log(`ERROR CONNECTING TO THE DATABASE : Code ${err.code}\mMSG : ${err.sqlMessage}`)
                 socket.emit('joinRoomSQLResponse',{'Success' : false,
-                    "Data" : "There was problem connecting with database please try again later"
+                    "Data" : "Doslo je do problema sa pridruzivanjem u sobu, pokusajte kasnije!"
                 })
+                
             }else{
 
                 //IF REJOIN ()..
@@ -28,8 +30,22 @@ function joinRoomSQL(socket,room,username,localData){
                     if(err){
                         console.log(`ERROR WHILE SELECTING USERNAME FROM DATABASE : Code ${err.code}\nMSG : ${err.sqlMessage}`)
                         socket.emit('joinRoomSQLResponse',{'Success' : false,
-                            "ERR_CODE": err.code   
+                            "ERR_MSG" : "Doslo je do problema , pokusajte kasnije!" 
+                            
                         })
+                        /*
+                        connection.query(`insert into error values(DEFAULT,'mysql.js','joinRoomSQL','${err.stack}','${JSON.stringify(
+                            {
+                                'localData' : localData[room],
+                                'room' : room,                                
+                                'username' : username
+                            }
+                        )}','Format sobe ili username nije validan?')`,(err,result,fields) =>{
+                            if(err){
+
+                            }
+                        })
+                        */
                     }else{
                         //console.log(result.length)
                         if(result.length ==0){
@@ -46,7 +62,7 @@ function joinRoomSQL(socket,room,username,localData){
                                             })
                                         }else
                                             socket.emit('joinRoomSQLResponse',{'Success' : false,
-                                                "ERR_MSG": "Error while trying to join the game please try later.",
+                                                "ERR_MSG": "Doslo je do problema , pokusajte kasnije!",
                                                 
                                             })
                                     }
@@ -69,7 +85,7 @@ function joinRoomSQL(socket,room,username,localData){
                         else{
                             
                                 socket.emit('joinRoomSQLResponse',{'Success':false,
-                                    "ERR_MSG": "Username already exists in that room , use another one!"
+                                    "ERR_MSG": "Korisnicko ime u toj sobi vec postoji, izaberite drugo korisnicko ime!"
                                 })
                             
                         }
@@ -87,7 +103,7 @@ function joinRoomSQL(socket,room,username,localData){
         })
     }else
         socket.emit('joinRoomSQLResponse',{'Success':false,
-            "ERR_MSG" : "Room is full already!"
+            "ERR_MSG" : "Soba je puna!"
         })
 }
 
@@ -121,8 +137,8 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData){
                     {
                         console.log(`ERROR WHILE CONNECTING TO THE DATABASE : Code : ${err.code}\nMSG : ${err.sqlMessage}`)
                         socket.emit('createRoomSQLResponse',{"Success": false,
-                            "ERR_MSG": "There was problem connecting with database please try again later",
-                            "ERR_CODE" : err.code
+                            "ERR_MSG": "Problem prilikom kreiranje sobe, pokusajte kasnije!",
+                            
                         })
                     }      
                     else{
@@ -144,7 +160,7 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData){
                                 //bolje ovo uradi..
                                 socket.emit('createRoomSQLResponse',{
                                     'Success': false,
-                                    "ERR_MSG ": "Error while creating room!"
+                                    "ERR_MSG ": "Problem prilikom kreiranje sobe, pokusajte kasnije!"
                                 }) 
 
                             }else{           
@@ -186,20 +202,20 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData){
             },(reject)=>{
                 console.log("There was problem while creating room code!")
                 socket.emit('createRoomSQLResponse',{'Success' : false,               
-                    'ERR_MSG' : "There was problem while creating room code!"
+                    'ERR_MSG' : "Problem prilikom kreiranje sobe, pokusajte ponovo!"
                 })
             
             })
 
 }
 
-function joinRoom(socket,room,username,sessionToken,localData){
+function joinRoom(socket,room,username,sessionToken,localData,io){
 
     pool.getConnection((err,connection) =>{
         if(err){
             console.log(`ERROR CONNECTING TO THE DATABASE : Code ${err.code}\mMSG : ${err.sqlMessage}`)
             socket.emit('load',{'Success' : false,
-                "ERR_MSG" : "There was problem connecting with database please try again later"
+                "ERR_MSG" : "Problem prilikom ulaska u sobu!"
             })
         }else{
             //proveri da li postoji username
@@ -210,43 +226,44 @@ function joinRoom(socket,room,username,sessionToken,localData){
                 if(err){
                     console.log(`ERROR SELECTING USERNAME FROM PLAYER : Code ${err.code}\nMSG : ${err.sqlMessage}`)
                     socket.emit('load',{'Success' : false,
-                        "ERR_MSG" : "There was problem selecting username form the database."
+                        "ERR_MSG" : "Problem prilikom ulaska u sobu!"
                     })
                 }
                 else{
                     
                     if(result[0].length == 0 || result[1].length == 0){
                         socket.emit('load',{'Success':false,
-                            "ERR_MSG" : "Username and room combination not found!"
+                            "ERR_MSG" : "Korisnicko ime u sobi ne postoji!"
                         })
                     }else{
                         socket.join(room)
                         if(result[1][0]['sessionToken'] === sessionToken){
-                            console.log(result)
-                            console.log(result[2][0]['ukupnoBodova'])
+                            
                             if(result[2][0]['ukupnoBodova'] === null)
                                 socket.emit('load',{'Success' : true,
-                                "MSG" : `You successefully joined room : ${room}`,
+                                "MSG" : `Upesan ulazak u sobu : ${room}`,
                                 "playerCount" : localData[room]['playerCount'],
                                 "playersReady" : localData[room]['playersReady'],
                                 "roundActive" : localData[room]['roundActive'],
                                 "roundNumber" : localData[room]['roundNumber'],
-                                "points" : 0
+                                "points" : 0,
+                                
                             })
                             else
                                 socket.emit('load',{'Success' : true,
-                                    "MSG" : `You successefully joined room : ${room}`,
+                                    "MSG" : `Upesan ulazak u sobu : ${room}`,
                                     "playerCount" : localData[room]['playerCount'],
                                     "playersReady" : localData[room]['playersReady'],
                                     "roundActive" : localData[room]['roundActive'],
                                     "roundNumber" : localData[room]['roundNumber'],
-                                    "points" : result[2][0]['ukupnoBodova']
+                                    "points" : result[2][0]['ukupnoBodova'],                                   
                                 })
                             console.log('ROOM : ' + room)
                             socket.to(room).broadcast.emit('playerJoinMsg',`${username} just joined the room!`)
+                            io.to(room).emit('playerList',{'players': Object.keys(localData[room]['players'])})
                         }else{
                             socket.emit('load',{'Success':false,
-                                'ERR_MSG' : 'Invalid session token'
+                                'ERR_MSG' : 'Nije moguce vratiti se u sobu nakon ulaska u drugu sobu!'
                             })
                         }
 
