@@ -271,7 +271,7 @@
         socket.on('createRoomSQLResponse',response =>{
             console.log(response)
             if(response["Success"] == false)
-                myAlert('There was a problem while creating a room ,please try later')
+                myAlert('Doslo je do problema u kreiranju sobe, pokusajte ponovo!')
             else
             {
                 localStorage.setItem('sessionToken',response['sessionToken'])
@@ -313,7 +313,7 @@
             }else{
                 if(!roomReg.test(room) && !usernameReg(username)){
                     //mylaertuj za o
-                    myAlert('Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica i engleski alfabet!\nSoba se sastoji od 8 alfanumerickih karaktetra!')
+                    myAlert('Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica,cirilica i engleski alfabet!\nSoba se sastoji od 8 alfanumerickih karaktetra!')
                 }else if(!roomReg(room)){
                     // ako je soba invalidnog formata
                     myAlert('Soba se sastoji od 8 alfanumerickih karaktetra!')
@@ -328,10 +328,11 @@
         document.getElementById('napravi').addEventListener('click',(e)=>{
             e.preventDefault(); 
             let username = document.getElementById('txb_username').value.trim()
-            let reg = /^[A-Za-zčČćĆžŽšŠđĐ ]{4,60}$/g
+            let reg = /^[A-Za-zčČćĆžŽšŠđĐ ]{4,30}$/g
             if(reg.test(username)){
                 let playerCount = document.getElementById('playerNumber').value
-                console.log(playerCount)
+
+                console.log(typeof(playerCount));
                 let roundTimeLimit = document.getElementById('roundTimeLimit').value
                 /*if(userReg.test(username))
                     console.log("Napravi")
@@ -342,11 +343,12 @@
                 */
                 socket.emit('createRoom',{username,playerCount,roundTimeLimit})
             }else{
-                myAlert("Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica i engleski alfabet!")
+                myAlert("Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica,cirilica i engleski alfabet!")
             }
         })
         document.getElementById('vrati').addEventListener('click',(e)=>{
-            if(roomReg.test(room) && usernameReg.test(username)){
+            e.preventDefault();
+            if(roomReg.test(room) && usernameReg.test(username)){   
                 window.location.href = `http://46.40.27.131:3000/game?roomCode=${room}&username=${username}`;
             }else{
                 if(!roomReg.test(room) && !usernameReg(username)){

@@ -317,7 +317,7 @@
                 }).show()
             }
           }else{
-            new Noty({
+            new Noty({  
                   theme : 'metroui',
                   type : 'warning',
                   layout : 'topRight',
@@ -408,13 +408,14 @@
           }
         })
 
-
+        
         socket.on('playerReadyResponse' , message =>{
           
           if(message['Success'] == false){
             if(message['ERR_CODE'] == 1){
               //reset ready button
               readyBtn.style.backgroundColor = 'red'
+              readyBtn.textContent = "Not ready!"
               document.getElementById('lblPlayersReady').textContent = 0
               new Noty({
                 theme : 'metroui',
@@ -431,8 +432,10 @@
             {
               if(message['STATE'] == 'Ready'){
                 readyBtn.style.backgroundColor = 'green';
+                readyBtn.textContent = "Ready";
               }else{
-                readyBtn.style.backgroundColor = 'red'
+                readyBtn.style.backgroundColor = 'red';
+                readyBtn.textContent = "Not ready!";
               }
               readyBtn.innerHTML = message['STATE']
               new Noty({
@@ -588,7 +591,7 @@
           
         })
         
-        
+        //done
         readyBtn.addEventListener('click',(e) =>{
           //ovo popravi
           if(!gameStarted){
@@ -615,7 +618,7 @@
             var allValid = true
             for(let i=0;i<fields.length;i++){
               if(!reg.test($(`#input${fields[i]}`).val())){
-                $(`#help${fields[i]}`).show() // ovo NE RADI
+                $(`#help${fields[i]}`).show() 
                 allValid = false
                 data.push('')
               }else{
@@ -632,6 +635,7 @@
               ready = false
               readyBtn.style.backgroundColor = 'red'
               readyBtn.textContent = 'Not ready!'             
+              //DISAJBLUJ OVDE DUGME i kada se vrate poeni onda ga uklljuci
               clearInterval(myInterval)
               timer.textContent = '0'
             }else{
@@ -654,17 +658,37 @@ G              progressBar :true
             const {username, roomCode} = Qs.parse(location.search,{
                 ignoreQueryPrefix: true
             })
-            
-            if(username != null && username.length >=4 && roomCode != null && roomCode.length == 8){
+            let roomReg = /^[A-Za-z0-9]{8}$/g
+            const usernameReg = /^[A-Za-zčČćĆžŽšŠđĐ ]{4,30}$/g
+            const sessionReg = /^[A-Za-z0-9/+]$/g
+            if(roomReg.test(roomCode) && usernameReg(username)){
+              //dodaj ovde regex check
                 //TODO da se proveri u bazi da li postoji room i ovaj username i ako postoji neka se samo joinuje u socketu
                 //console.log("TEST")
                 console.log("Success")
-                let sessionToken = localStorage.getItem('sessionToken')
-                socket.emit('joinRoomReq',({username,roomCode,sessionToken}))
-                
+                let sessionToken = localStorage.getItem('sessionToken') //REGEXUJ SESSION TOKEN
+                if(sessionReg.test(sessionReg))
+                  socket.emit('joinRoomR(eq',({username,roomCode,sessionToken}))
+                else
+                  new Noty({
+                    theme : 'metroui',
+                    type : 'error',
+                    layout : 'topRight',
+                    text : "Session token nije validan!",
+                    timeout : 5000,
+                    progressBar :true
+                  }).show()
                 //$('#maxDiv').show(); ovo stavi u response
             }
             else{
+                  new Noty({
+                  theme : 'metroui',
+                  type : 'error',
+                  layout : 'topRight',
+                  text : "Format sobe ili korisnickog imena nisu validni!",
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
                 /*
                 if(!alert("Game not found!"))
                   window.location.href='/';
