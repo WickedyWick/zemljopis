@@ -25,6 +25,9 @@ app.use('/public', express.static('public'));
 io.on('connection', socket => {
     console.log('New WS Connection ...')
     
+    socket.on('test',test=>{
+        console.log(test);
+    });
     socket.on('joinRoomSQL',({username,room}) =>{
         //socket.emit('message',`Welcome to the room ${room}`)
         //socket.broadcast.emit('message',`${username} has joined the chat`)
@@ -33,12 +36,24 @@ io.on('connection', socket => {
         joinRoomSQL(socket,room,username,localData)
         //vuci iz baze sada sve
     })
+    socket.on('joinRoomSQLM',(obj)=>{
+        joinRoomSQL(socket,obj['room'],obj['username'],localData);
+    })
     socket.on('createRoom',({username,playerCount,roundTimeLimit}) =>{
+        
         createRoom(socket,username,playerCount,roundTimeLimit,localData)
     })
-    socket.on('joinRoomReq',({username,roomCode,sessionToken}) =>{
-        joinRoom(socket,roomCode,username,sessionToken,localData)
+    socket.on('createRoomM', (obj)=>{
+        createRoom(socket,obj['username'],obj['playerCount'],obj['roundTimeLimit'],localData)
+        
     })
+    socket.on('joinRoomReq',({username,roomCode,sessionToken}) =>{
+        joinRoom(socket,roomCode,username,sessionToken,localData,io)
+    })
+    socket.on('joinRoomReqM',(obj) =>{
+        joinRoom(socket,obj["roomCode"],obj["username"],obj["sessionToken"],localData,io)
+    })
+    
     //socket.to().broadcast('test,')
     //socket.emit('message','Welcome')
     //socket.broadcast.to
@@ -64,7 +79,7 @@ io.on('connection', socket => {
         clearTimeout(localData[roomCode]['intervalObj'])
         const temp = setTimeout(evaluation, 7000, roomCode,localData,io);
         localData[roomCode]['intervalObj'] = temp
-        dataCollector(io,username,roomCode,data,roundNumber,localData)
+        dataCollector(io,username,roomCode,data,roundNumber,localData,socket)
         
         socket.to(roomCode).emit('roundEnd',{'Success': true,
         'MSG' : "Round end! Evaluation started!",
@@ -72,23 +87,36 @@ io.on('connection', socket => {
         })
         
     })
+    socket.on("clientEndRoundM",obj =>{
+        clearTimeout(localData[obj["roomCode"]]['intervalObj'])
+        const temp = setTimeout(evaluation, 7000, obj["roomCode"],localData,io);
+        localData[roomCode]['intervalObj'] = temp
+        dataCollector(io,obj["username"],obj["roomCode"],obj["data"],obj["roundNumber"],localData,socket)
+        
+        socket.to(roomCode).emit('roundEnd',{'Success': true,
+        'MSG' : "Round end! Evaluation started!",
+        'CODE' : 2
+        })
+    });
     //ovo su podaci za runde
     //kada svaki klijent posalje podatke neka se pogleda koliko njih je poslalo ima se 10 sekundi da svi posalju
     socket.on('roundData',({username,roomCode,data,roundNumber}) =>{
         
-        dataCollector(io,username,roomCode,data,roundNumber,localData)
+        dataCollector(io,username,roomCode,data,roundNumber,localData,socket)
     })
     socket.on('disconnect',() => {
-        
+        socket.leave()
+        console.log("Discconect");
         //make this work 
         //io.emit('message','A user has left the chat')
+        
     })
     
     
     
 })
 console.log('Server started!')
-    
+
 app.get('/',(req,res) => {
     res.sendFile('./views/index.html', {root: __dirname})
 })
@@ -102,7 +130,9 @@ app.get('/game', (req,res) => {
     res.sendFile('./views/game.html', {root : __dirname})
     
 })
-
+app.get('/mock' , (req,res)=>{
+    res.sendFile('./views/mock.html',{root : __dirname})
+})
 //use i middleware funkcije
 //use ce se aktivarati za svaki req kaserveru ali samo akododje do koda,znaci ako nijedno od gore nije aktivarana
 // posto use func ne zna da mi saljemo specificno 404 error page moramo da stavimo i status kod
