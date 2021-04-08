@@ -6,7 +6,7 @@ const {createRoom,joinRoomSQL,joinRoom} = require('./public/javascripts/mysql.js
 //kreatuje server
 const server = app.listen(3000)
 const io = socketio(server)
-const {playerReady, playerUnReady,timeout,dataCollector,evaluation}  = require('./public/javascripts/utils.js')
+const {playerReady, playerUnReady,timeout,dataCollector,evaluation,predlagac}  = require('./public/javascripts/utils.js')
 var path = require('path')
 //TODO 
 // Manipualte localData propertly
@@ -53,7 +53,12 @@ io.on('connection', socket => {
     socket.on('joinRoomReqM',(obj) =>{
         joinRoom(socket,obj["roomCode"],obj["username"],obj["sessionToken"],localData,io)
     })
-    
+    socket.on('predlagacM',(obj)=>{
+        predlagac(obj["predlog"],obj["slovo"],obj["kategorija"])
+    })
+    socket.on('predlagac',({predlog,slovo,kategorija})=>{
+        predlagac(predlog,slovo,kategorija)
+    })
     //socket.to().broadcast('test,')
     //socket.emit('message','Welcome')
     //socket.broadcast.to
