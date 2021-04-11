@@ -296,6 +296,7 @@ function evaluation(room,localData,io){
             localData[room]['roundActive'] = false  
             localData[room]['playersReady'] = 0
             localData[room]['roundNumber']+=1
+            
             pool.getConnection((err,connection)=>{
             //ovi ifovi u slucaju da se se nekako evaluation funkcije u isto vreme pozovu
                 if(err)
@@ -448,6 +449,7 @@ function evaluation(room,localData,io){
                             }
 
                         
+                            console.log(pointsDict);
                         
                             otherDictKeys = Object.keys(ids)
                             sql = ""
@@ -456,7 +458,7 @@ function evaluation(room,localData,io){
                             for(let i =0;i<otherDictKeys.length;i++){
                                 sql += `Update data set bodovi = ${ids[otherDictKeys[i]]} where playerID = ${otherDictKeys[i]} and roundID = ${localData[room]['roundID']};`
                             }
-                            
+                            console.log(ids);
                             connection.query(sql,(err,results,fields)=>{
                                 //Ne moram da cekam da se ovo zavrsi da bih poslao rezultate , ako ovde ima problem posaljem page refresh req tako da ce se refresovati stranica sama i poeni ce ostati kako treba
                                 if(err)
@@ -492,7 +494,9 @@ function evaluation(room,localData,io){
 function dataCollector(io,username,room,data,round,localData,socket){   
         console.log("DATA COLLECTOR FUNKCIJA")
         //OVDE POGLEDAJ DOKLE OCE!!!!
-        if(localData[room]['data'][localData[room]['players'][username]] === undefined && round == localData[room]['roundNumber']){           
+        
+        if(localData[room]['data'][localData[room]['players'][username]] === undefined && round == localData[room]['roundNumber']){   
+            console.log("IT GETS HERE");
             pool.query(`insert into data values(DEFAULT,${localData[room]['roundID']},${localData[room]['players'][username]},?,?,?,?,?,?,?,?,0)`,data,(err,results,fields)=>{
                 if(err){
                     console.log(`Error while inserting data values : Code : ${err.code}\nMSG: ${err.sqlMessage}`)
@@ -517,16 +521,16 @@ function dataCollector(io,username,room,data,round,localData,socket){
             })                      
 }
 
-function endRound(room,localData,io){
-    
-}
-
-
-
-
 }   
-function miniTimeout(){
 
+function predlagac(predlog,slovo,kategorija){
+    pool.query(`insert into predlozi (DEFAULT,?,?,${kategorija}`,[predlog,slovo],(err,results,fields)=>{
+        if(err){
+            console.log("Doslo je do problema u toku unosenja predloga");
+        }
+        else
+            console.log("Predlog dodat");
+    });
 }
 
 function timeout(room,localData,io){
@@ -572,6 +576,7 @@ module.exports = {
     playerUnReady,
     timeout,
     dataCollector,
-    evaluation
+    evaluation,
+    predlagac
     
 }

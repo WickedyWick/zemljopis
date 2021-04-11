@@ -286,6 +286,7 @@
         }
         socket.on('load', message =>{
           if(message['Success']){
+            console.log(message)
             $('#maxDiv').show()
             document.getElementById('localPlayer').textContent += username
             document.getElementById('lblRoomCode').textContent += String(roomCode)
@@ -660,15 +661,15 @@ G              progressBar :true
             })
             let roomReg = /^[A-Za-z0-9]{8}$/g
             const usernameReg = /^[A-Za-zčČćĆžŽšŠđĐ ]{4,30}$/g
-            const sessionReg = /^[A-Za-z0-9/+]$/g
-            if(roomReg.test(roomCode) && usernameReg(username)){
+            const sessionReg = /^[A-Za-z0-9/+]{48}$/i
+            if(roomReg.test(roomCode) && usernameReg.test(username)){
               //dodaj ovde regex check
                 //TODO da se proveri u bazi da li postoji room i ovaj username i ako postoji neka se samo joinuje u socketu
                 //console.log("TEST")
                 console.log("Success")
                 let sessionToken = localStorage.getItem('sessionToken') //REGEXUJ SESSION TOKEN
-                if(sessionReg.test(sessionReg))
-                  socket.emit('joinRoomR(eq',({username,roomCode,sessionToken}))
+                if(sessionReg.test(sessionToken))
+                  socket.emit('joinRoomReq',({username,roomCode,sessionToken}))
                 else
                   new Noty({
                     theme : 'metroui',

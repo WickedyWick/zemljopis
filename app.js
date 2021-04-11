@@ -54,6 +54,7 @@ io.on('connection', socket => {
         joinRoom(socket,obj["roomCode"],obj["username"],obj["sessionToken"],localData,io)
     })
     socket.on('predlagacM',(obj)=>{
+        console.log(obj)
         predlagac(obj["predlog"],obj["slovo"],obj["kategorija"])
     })
     socket.on('predlagac',({predlog,slovo,kategorija})=>{
@@ -96,6 +97,7 @@ io.on('connection', socket => {
         clearTimeout(localData[obj["roomCode"]]['intervalObj'])
         const temp = setTimeout(evaluation, 7000, obj["roomCode"],localData,io);
         localData[roomCode]['intervalObj'] = temp
+        console.log(obj)
         dataCollector(io,obj["username"],obj["roomCode"],obj["data"],obj["roundNumber"],localData,socket)
         
         socket.to(roomCode).emit('roundEnd',{'Success': true,
@@ -109,8 +111,13 @@ io.on('connection', socket => {
         
         dataCollector(io,username,roomCode,data,roundNumber,localData,socket)
     })
+    socket.on('roundDataM',(obj)=>{
+        
+        
+        dataCollector(io,obj['username'],obj['roomCode'],obj['data'],obj['roundNumber'],localData,socket)
+    })
     socket.on('disconnect',() => {
-        socket.leave()
+        //socket.leave()
         console.log("Discconect");
         //make this work 
         //io.emit('message','A user has left the chat')
