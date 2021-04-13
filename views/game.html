@@ -638,6 +638,7 @@
                 data.push('')               
               }else{
                 data.push($(`#input${fields[i]}`).val().toLowerCase())
+                //document.getElementById(`predloziBtn${fields[i]}`).disabled =  false;
               }              
               dataReg.lastIndex =0;       
             }           
@@ -779,7 +780,7 @@ G              progressBar :true
         }
         function predlozi(field){
           
-          let val = $(`#input${field}`).val().trim().toLowerCase()
+          let val = $(`#input${field}`).val().toLowerCase().split('+')[0].trim()
           console.log(val)
           if(dataReg.test(val)){
             let k = kDict[field]
@@ -797,6 +798,7 @@ G              progressBar :true
             $(`#help${field}`).show()
           }
           dataReg.lastIndex = 0;
+          document.getElementById(`predloziBtn${field}`).disabled = true;
         }
         //vidi kako dynamic ide u js-u
         
