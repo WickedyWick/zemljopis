@@ -19,7 +19,7 @@ function playerReady(room,localData,socket,io){
             //setuj interval i povezi svaki intervral id sa sobom
             socket.emit('playerReadyResponse',{'Success' : true,
                 "MSG" : "Uspeh!",
-                "STATE" : "Ready",
+                "STATE" : "Spreman",
                 "CODE" : 1
                 
             })
@@ -30,7 +30,7 @@ function playerReady(room,localData,socket,io){
             //send back positive feedback about readying up
             socket.emit('playerReadyResponse',{'Success' : true,
                 "MSG" : "Uspeh!" ,
-                "STATE" : "Ready",
+                "STATE" : "Spreman",
                 "CODE" : 1
 
         })
@@ -126,8 +126,8 @@ function playerUnReady(room,localData,socket,io){
         io.to(room).emit('playerCountUpdate',localData[room]['playersReady'] -= 1)
         
         socket.emit('playerReadyResponse',{'Success' : true,
-                "MSG" : "Upseh!" ,
-                "STATE" : "Not ready!",
+                "MSG" : "Uspeh!" ,
+                "STATE" : "Nisi spreman",
                 "CODE" : 1
         })
     }
@@ -449,7 +449,7 @@ function evaluation(room,localData,io){
                             }
 
                         
-                            console.log(pointsDict);
+                            //console.log(pointsDict);
                         
                             otherDictKeys = Object.keys(ids)
                             sql = ""
@@ -458,17 +458,18 @@ function evaluation(room,localData,io){
                             for(let i =0;i<otherDictKeys.length;i++){
                                 sql += `Update data set bodovi = ${ids[otherDictKeys[i]]} where playerID = ${otherDictKeys[i]} and roundID = ${localData[room]['roundID']};`
                             }
-                            console.log(ids);
-                            connection.query(sql,(err,results,fields)=>{
-                                //Ne moram da cekam da se ovo zavrsi da bih poslao rezultate , ako ovde ima problem posaljem page refresh req tako da ce se refresovati stranica sama i poeni ce ostati kako treba
-                                if(err)
-                                {
-                                    console.log(`Problem upisivanje bodova u bazu! MSG : Code : ${err.code}\nMSG: ${err.sqlMessage}`)
-                                    //Dodaj jedan univerzalni err socket(ili to moze biti explotivano)
-                                    io.to(room).emit('pointsErr',{"MSG":"Doslo je do problema sa upisivanjem bodova , poeni u rundi su nevazeći!"})
-                                }
-                                
-                            })
+                            //console.log(ids);
+                            if(sql != "")
+                                connection.query(sql,(err,results,fields)=>{
+                                    //Ne moram da cekam da se ovo zavrsi da bih poslao rezultate , ako ovde ima problem posaljem page refresh req tako da ce se refresovati stranica sama i poeni ce ostati kako treba
+                                    if(err)
+                                    {
+                                        console.log(`Problem upisivanje bodova u bazu! MSG : Code : ${err.code}\nMSG: ${err.sqlMessage}`)
+                                        //Dodaj jedan univerzalni err socket(ili to moze biti explotivano)
+                                        io.to(room).emit('pointsErr',{"MSG":"Doslo je do problema sa upisivanjem bodova , poeni u rundi su nevazeći!"})
+                                    }
+                                    
+                                })
                             
                             localData[room]['data'] ={}
                                     
@@ -524,9 +525,12 @@ function dataCollector(io,username,room,data,round,localData,socket){
 }   
 
 function predlagac(predlog,slovo,kategorija){
+    console.log(predlog)
+    console.log(slovo)
+    console.log(kategorija)
     pool.query(`insert into predlozi (DEFAULT,?,?,${kategorija}`,[predlog,slovo],(err,results,fields)=>{
         if(err){
-            console.log("Doslo je do problema u toku unosenja predloga");
+            console.log(`Doslo je do problema u toku unosenja predloga : ERR : ${err.sqlMessage}\nCode : ${err.code} ` );
         }
         else
             console.log("Predlog dodat");

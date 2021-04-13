@@ -9,6 +9,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     </head>
     <style>
+      html,body{
+        max-width: 100%;
+        overflow-x: hidden;
+      }
       @media only screen and (max-width: 1099.9px) {
         .myFlexContainer{
                 display:flex;
@@ -27,6 +31,9 @@
         }
         li{
             padding-left:0.75rem;
+        }
+        .myBtn{
+          margin-top:5px;
         }
     }
 
@@ -66,13 +73,13 @@
                 display:inline-flex;
                 align-content: flex-end;
             }
-            
-            
-            
-            
-                
-            
-            
+            .support{
+                display:flex;
+                flex-direction: row;
+            }
+            .myBtn{
+              margin-left:5px;
+            }
             .myRow {
                 display: flex;
                 flex-direction: row;
@@ -130,43 +137,68 @@
             <div class="myColumn" id="first">                        
                 <div>
                   <label for="inputDrzava">Država</label>
-                  <input type="text" class="form-control" id="inputDrzava" aria-describedby="helpDrzava" placeholder="Unesi državu :"autocomplete="off">
-                  <small id="helpDrzava" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
+                  <div class="support">
+                    <input type="text" class="form-control" id="inputDrzava" aria-describedby="helpDrzava" placeholder="Unesi državu :"autocomplete="off">                
+                    <button class="btn btn-dark myBtn" id="predloziBtnDrzava">Predloži</button>
+                  </div>
+                  <small id="helpDrzava" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova i minimalna duzina je 2 karaktera.</small>
+                  
                 </div>
                 <div class="form-group">
                     <label for="inputGrad">Grad</label>
-                    <input type="text" class="form-control" id="inputGrad" aria-describedby="helpGrad" placeholder="Unesi grad :" autocomplete="off">
-                    <small id="helpGrad" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
+                    <div class="support">
+                      <input type="text" class="form-control" id="inputGrad" aria-describedby="helpGrad" placeholder="Unesi grad :" autocomplete="off">
+                      <button class="btn btn-dark myBtn" id="predloziBtnGrad" >Predloži</button>
+                    </div>
+                    <small id="helpGrad" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova i minimalna duzina je 2 karaktera.</small>
                 </div>
                 <div class="form-group">
                   <label for="inputIme">Ime</label>
-                  <input type="text" class="form-control" id="inputIme" aria-describedby="helpIme" placeholder="Unesi ime :" autocomplete="off">
-                  <small id="helpIme" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
+                  <div class="support">
+                    <input type="text" class="form-control" id="inputIme" aria-describedby="helpIme" placeholder="Unesi ime :" autocomplete="off">
+                    <button class="btn btn-dark myBtn" id="predloziBtnIme" >Predloži</button>
+                  </div>
+                  <small id="helpIme" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova i minimalna duzina je 2 karaktera.</small>
                 </div>
                 <div class="form-group">
                   <label for="inputBiljka">Biljka</label>
-                  <input type="text" class="form-control" id="inputBiljka" aria-describedby="helpBiljka" placeholder="Unesi biljku :" autocomplete="off">
-                  <small id="helpBiljka" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
+                  <div class="support">
+                    <input type="text" class="form-control" id="inputBiljka" aria-describedby="helpBiljka" placeholder="Unesi biljku :" autocomplete="off">
+                    <button class="btn btn-dark myBtn" id="predloziBtnBiljka">Predloži</button>
+                  </div>  
+                  <small id="helpBiljka" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova i minimalna duzina je 2 karaktera.</small>
                 </div>
                 <div class="form-group">
                   <label for="inputZivotinja">Životinja</label>
-                  <input type="text" class="form-control" id="inputZivotinja" aria-describedby="helpZivotinja" placeholder="Unesi životinju :" autocomplete="off">
-                  <small id="helpZivotinja" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
+                  <div class="support">
+                    <input type="text" class="form-control" id="inputZivotinja" aria-describedby="helpZivotinja" placeholder="Unesi životinju :" autocomplete="off">
+                    <button class="btn btn-dark myBtn" id="predloziBtnZivotinja">Predloži</button>
+                  </div>
+                  <small id="helpZivotinja" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova i minimalna duzina je 2 karaktera.</small>
                 </div>
                 <div class="form-group">
                   <label for="inputPlanina">Planina</label>
-                  <input type="text" class="form-control" id="inputPlanina" aria-describedby="helpPlanina" placeholder="Unesi planinu :" autocomplete="off">
-                  <small id="helpPlanina" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
+                  <div class="support">
+                    <input type="text" class="form-control" id="inputPlanina" aria-describedby="helpPlanina" placeholder="Unesi planinu :" autocomplete="off">
+                    <button class="btn btn-dark myBtn" id="predloziBtnPlanina">Predloži</button>
+                  </div>
+                  <small id="helpPlanina" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova i minimalna duzina je 2 karaktera.</small>
                 </div>
                 <div class="form-group">
                   <label for="inputReka">Reka</label>
-                  <input type="text" class="form-control" id="inputReka" aria-describedby="helpReka" placeholder="Unesi reku :" autocomplete="off">
-                  <small id="helpReka" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
+                  <div class="support">
+                    <input type="text" class="form-control" id="inputReka" aria-describedby="helpReka" placeholder="Unesi reku :" autocomplete="off">
+                    <button class="btn btn-dark myBtn" id="predloziBtnReka">Predloži</button>
+                  </div>
+                  <small id="helpReka" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova i minimalna duzina je 2 karaktera.</small>
                 </div>
                 <div class="form-group">
                   <label for="inputPredmet">Predmet</label>
-                  <input type="text" class="form-control" id="inputPredmet" aria-describedby="helpPredmet" placeholder="Unesi predmet :" autocomplete="off">
-                  <small id="helpPredmet" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova.</small>
+                  <div class="support">
+                    <input type="text" class="form-control" id="inputPredmet" aria-describedby="helpPredmet" placeholder="Unesi predmet :" autocomplete="off">
+                    <button class="btn btn-dark myBtn" id="predloziBtnPredmet">Predloži</button>
+                  </div>
+                  <small id="helpPredmet" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova i minimalna duzina je 2 karaktera.</small>
                 </div> 
               
             </div>
@@ -227,7 +259,10 @@
         let t0;
         let t1;
         let points = 0;
-        const fields = ['Drzava','Grad','Predmet','Ime','Biljka','Reka','Planina','Zivotinja']
+        let currentLetter = ''
+        let dataReg = new RegExp()
+        const fields = ['Drzava','Grad','Ime','Biljka','Zivotinja','Planina','Reka','Predmet']
+        const kDict = {'Drzava':'d','Grad':'g','Ime':'i','Biljka':'b','Zivotinja':'z','Planina':'p','Reka':'r','Predmet':'pr'}
         
         $(`#helpGrad`).css("visibility", "visible")
         
@@ -240,7 +275,26 @@
         socket.on('joinMessage', message =>{
             console.log(message)
         })
-        
+        function disableAllPButtons(){
+          $("#predloziBtnDrzava").prop("disabled", true )
+          $("#predloziBtnGrad").prop("disabled", true )
+          $("#predloziBtnIme").prop("disabled", true )
+          $("#predloziBtnBijka").prop("disabled", true )
+          $("#predloziBtnZivotinja").prop("disabled", true )
+          $("#predloziBtnPlanina").prop("disabled", true )
+          $("#predloziBtnReka").prop("disabled", true )
+          $("#predloziBtnPredmet").prop("disabled", true )
+        }
+        function enableAllPButtons(){
+          $("#predloziBtnDrzava").prop("disabled", false )
+          $("#predloziBtnGrad").prop("disabled", false )
+          $("#predloziBtnIme").prop("disabled", false )
+          $("#predloziBtnBijka").prop("disabled", false )
+          $("#predloziBtnZivotinja").prop("disabled", false )
+          $("#predloziBtnPlanina").prop("disabled", false )
+          $("#predloziBtnReka").prop("disabled", false )
+          $("#predloziBtnPredmet").prop("disabled", false )
+        }
         //pogledaj da li ova polja je okej uzeti sa svim inputima
         function hideAllHelp(){
           $("#helpDrzava").hide()
@@ -288,13 +342,14 @@
           if(message['Success']){
             console.log(message)
             $('#maxDiv').show()
+            disableAllPButtons()
             document.getElementById('localPlayer').textContent += username
             document.getElementById('lblRoomCode').textContent += String(roomCode)
             document.getElementById('lblPlayersReady').textContent = message['playersReady']
             document.getElementById('lblPlayerCount').textContent = message['playerCount']
             roundNumber = message['roundNumber']
             document.getElementById('roundNumber').textContent = roundNumber
-            console.log(message['points'])
+            points = message['points']
             document.getElementById('poeni').textContent = String(message['points'])
             console.log(message['roundActive'])
             new Noty({
@@ -306,7 +361,7 @@
                   progressBar :true
                 }).show()
             if(message['roundActive']){  
-
+              readyBtn.disabled = true;
               disableAllInputFields()
               new Noty({
                   theme : 'metroui',
@@ -384,7 +439,22 @@
                 timeout : 5000,
                 progressBar :true
               }).show()
-              document.getElementById('currentLetter').textContent = message['currentLetter']
+              hideAllHelp()
+              disableAllPButtons()
+              currentLetter = message['currentLetter']
+              if(currentLetter == "ć" || currentLetter == "č")
+                dataReg = new RegExp(`^c[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+              else if(currentLetter == "lj" || currentLetter == "nj")
+                dataReg = new RegExp(`^${currentLetter}[A-Za-zčČćĆžŽšŠđĐ ]{1,40}$`,'g')
+              else if(currentLetter == "dž")
+                dataReg = new RegExp(`^dz[A-Za-zčČćĆžŽšŠđĐ ]{1,40}$`,'g')
+              else if(currentLetter == "ž")
+                dataReg = new RegExp(`^z[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+              else if(currentLetter == "š")
+                dataReg = new RegExp(`^s[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+              else
+                dataReg = new RegExp(`^${currentLetter}[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+              document.getElementById('currentLetter').textContent = currentLetter
           
             let duration = 61
               myInterval = setInterval(()=>{
@@ -416,7 +486,7 @@
             if(message['ERR_CODE'] == 1){
               //reset ready button
               readyBtn.style.backgroundColor = 'red'
-              readyBtn.textContent = "Not ready!"
+              readyBtn.textContent = "Nisi spreman!"
               document.getElementById('lblPlayersReady').textContent = 0
               new Noty({
                 theme : 'metroui',
@@ -431,14 +501,12 @@
           else{
             if(message['CODE'] == 1)
             {
-              if(message['STATE'] == 'Ready'){
-                readyBtn.style.backgroundColor = 'green';
-                readyBtn.textContent = "Ready";
+              if(message['STATE'] == 'Spreman'){
+                readyBtn.style.backgroundColor = 'green';               
               }else{
-                readyBtn.style.backgroundColor = 'red';
-                readyBtn.textContent = "Not ready!";
+                readyBtn.style.backgroundColor = 'red';               
               }
-              readyBtn.innerHTML = message['STATE']
+              readyBtn.textContent = message['STATE']
               new Noty({
                 theme : 'metroui',
                 type : 'success',
@@ -449,6 +517,7 @@
               }).show()
             }
           }
+          readyBtn.disabled = false;
         })
 
         socket.on('discMessage',message =>{
@@ -480,6 +549,7 @@
 
         socket.on('points' , message =>{
           console.log(message)
+          readyBtn.disabled = false;
           if(!message['Success'])
           {
             new Noty({
@@ -494,6 +564,7 @@
           }
           else
           {
+            enableAllPButtons()
             new Noty({
                 theme : 'metroui',
                 type : 'success',
@@ -518,6 +589,7 @@
                   document.getElementById(`input${fields[i]}`).value += '  + 0'
                 }
               }
+              console.log(points)
               document.getElementById('poeni').textContent = String(points)
           }
           roundNumber = message['roundNumber']
@@ -540,6 +612,8 @@
         })
         socket.on('roundEnd',message =>{
           t0 = performance.now()
+          $(`#help${field}`).show() 
+          readyBtn.disabled = true;
           if(message['Success']){
             //SEND ALL DATA TO SERVER FOR REVALUETION
             new Noty({
@@ -553,18 +627,18 @@
             console.log(message)
            //enableAllInputFields()
             
-            var reg = /^[A-Za-zčČćĆžŽšŠđĐ]{1,42}$/g
+           
             var allValid = true
             var data = []
            
                 
             for(let i=0;i<fields.length;i++){
-              if(!reg.test($(`#input${fields[i]}`).val())){
+              if(!dataReg.test($(`#input${fields[i]}`).val().toLowerCase())){
                 data.push('')               
               }else{
                 data.push($(`#input${fields[i]}`).val().toLowerCase())
               }              
-              reg.lastIndex =0;       
+              dataReg.lastIndex =0;       
             }           
               socket.emit('roundData',({username,roomCode,data,roundNumber}))
               //ili vidi da se ovo radi kada se dobije confirmacija da su podaci obradjeni!!!
@@ -598,36 +672,41 @@
           if(!gameStarted){
             if(!ready){
               socket.emit('playerReady',roomCode)
-              readyBtn.setAttribute("disabled","disabled")
-              console.log(readyBtn)
+             // readyBtn.setAttribute("disabled","disabled")
+              readyBtn.disabled = true;
+              //console.log(readyBtn)
               ready = true
-              setTimeout(readyBtn.removeAttribute("disabled"),2000)
+              //setTimeout(readyBtn.removeAttribute("disabled"),2000)
             }
             else{
               socket.emit('playerUnReady',roomCode)
-              readyBtn.setAttribute("disabled","disabled")
+              
+              //readyBtn.setAttribute("disabled","disabled")
               console.log(readyBtn)
+              readyBtn.disabled = true;
               ready = false
-              setTimeout(readyBtn.removeAttribute("disabled"),2000)
+              //setTimeout(readyBtn.removeAttribute("disabled"),2000)
             }
           }else{
             //proveri da li su sva polja validna i posalji
             //ovo resi
-            //var reg = RegExp('[A-Za-zčČćĆžŽšŠđĐ]{1,42}'/g)
+            //var dataReg = RegExp('[A-Za-zčČćĆžŽšŠđĐ]{1,42}'/g)
             data =[]
-            const reg = /^[A-Za-zčČćĆžŽšŠđĐ ]{2,42}$/g
+            hideAllHelp()
+            
             var allValid = true
             for(let i=0;i<fields.length;i++){
-              if(!reg.test($(`#input${fields[i]}`).val())){
+              if(!dataReg.test($(`#input${fields[i]}`).val().toLowerCase())){
                 $(`#help${fields[i]}`).show() 
                 allValid = false
                 data.push('')
               }else{
                 data.push($(`#input${fields[i]}`).val().toLowerCase())
               }
-              reg.lastIndex = 0             
+              dataReg.lastIndex = 0             
             }
-            if(allValid){     
+            if(allValid){
+              readyBtn.disabled = true;     
               console.log('dataSent')         
               socket.emit('clientEndRound',({username,roomCode,data,roundNumber}))
               //clearAllInputFields()
@@ -635,7 +714,7 @@
               gameStarted = false
               ready = false
               readyBtn.style.backgroundColor = 'red'
-              readyBtn.textContent = 'Not ready!'             
+              readyBtn.textContent = 'Nisi spreman'             
               //DISAJBLUJ OVDE DUGME i kada se vrate poeni onda ga uklljuci
               clearInterval(myInterval)
               timer.textContent = '0'
@@ -648,7 +727,7 @@
               theme : 'metroui',
               type : 'success',
               layout : 'topRight',
-              text : reg.test(document.getElementById('inputDrzava').value),
+              text : dataReg.test(document.getElementById('inputDrzava').value),
               timeout : 5000,
 G              progressBar :true
             }).show()
@@ -661,7 +740,7 @@ G              progressBar :true
             })
             let roomReg = /^[A-Za-z0-9]{8}$/g
             const usernameReg = /^[A-Za-zčČćĆžŽšŠđĐ ]{4,30}$/g
-            const sessionReg = /^[A-Za-z0-9/+]{48}$/i
+            const sessionReg = /^[A-Za-z0-9/+]{48}$/g
             if(roomReg.test(roomCode) && usernameReg.test(username)){
               //dodaj ovde regex check
                 //TODO da se proveri u bazi da li postoji room i ovaj username i ako postoji neka se samo joinuje u socketu
@@ -697,7 +776,202 @@ G              progressBar :true
                 */
             }
         }
-
+        function predlozi(field){
+          let val = $(`#input${field}`).val().trim().toLowerCase()
+          if(dataReg.test(val)){
+            let k = kDict[field]
+            socket.emit("predlagac",({val,currentLetter,k}));                      
+            new Noty({
+                  theme : 'metroui',
+                  type : 'success',
+                  layout : 'topRight',
+                  text : "Vas odgovor je uspesno predložen!",
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+          }
+          else{
+            $(`#help${field}`).show()
+          }
+        }
+        //vidi kako dynamic ide u js-u
+        document.getElementById("predloziBtnDrzava").addEventListener("click",(e)=>{
+            
+          let val = $(`#inputDrzava`).val().toLowerCase()
+          if(dataReg.test(val))
+          {
+            socket.emit("predlagac",(val,currentLetter,'d'));
+            new Noty({
+                  theme : 'metroui',
+                  type : 'success',
+                  layout : 'topRight',
+                  text : "Vas odgovor je uspesno predložen!",
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+                
+          }
+          else{
+            console.log("pError")
+          }
+          
+          dataReg.lastIndex = 0
+        });
+        document.getElementById("predloziBtnGrad").addEventListener("click",(e)=>{
+          
+          let val = $(`#inputGrad`).val().toLowerCase()
+          if(dataReg.test(val))
+          {
+            socket.emit("predlagac",(val,currentLetter,'g'));
+            new Noty({
+                  theme : 'metroui',
+                  type : 'success',
+                  layout : 'topRight',
+                  text : "Vas odgovor je uspesno predložen!",
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+                
+          }
+          else{
+            console.log("pError")
+          }
+          
+          dataReg.lastIndex = 0
+        });
+        document.getElementById("predloziBtnIme").addEventListener("click",(e)=>{
+           
+          let val = $(`#inputIme`).val().toLowerCase()
+          if(dataReg.test(val))
+          {
+            socket.emit("predlagac",(val,currentLetter,'i'));
+            new Noty({
+                  theme : 'metroui',
+                  type : 'success',
+                  layout : 'topRight',
+                  text : "Vas odgovor je uspesno predložen!",
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+                
+          }
+          else{
+            console.log("pError")
+          }
+          
+          dataReg.lastIndex = 0
+        });
+        document.getElementById("predloziBtnBiljka").addEventListener("click",(e)=>{
+           
+          let val = $(`#inputBiljka`).val().toLowerCase()
+          if(dataReg.test(val))
+          {
+            socket.emit("predlagac",(val,currentLetter,'b'))
+            new Noty({
+                  theme : 'metroui',
+                  type : 'success',
+                  layout : 'topRight',
+                  text : "Vas odgovor je uspesno predložen!",
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+                
+          }
+          else{
+            console.log("pError")
+          }
+          
+          dataReg.lastIndex = 0
+        });
+        document.getElementById("predloziBtnZivotinja").addEventListener("click",(e)=>{
+            
+          let val = $(`#inputZivotinja`).val().toLowerCase()
+          if(dataReg.test(val))
+          {
+            socket.emit("predlagac",(val,currentLetter,'z'));
+            new Noty({
+                  theme : 'metroui',
+                  type : 'success',
+                  layout : 'topRight',
+                  text : "Vas odgovor je uspesno predložen!",
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+                
+          }
+          else{
+            console.log("pError")
+          }
+          
+          dataReg.lastIndex = 0
+        });
+        document.getElementById("predloziBtnPlanina").addEventListener("click",(e)=>{
+            
+          let val = $(`#inputPlanina`).val().toLowerCase()
+          if(dataReg.test(val))
+          {
+            socket.emit("predlagac",(val,currentLetter,'p'));
+            new Noty({
+                  theme : 'metroui',
+                  type : 'success',
+                  layout : 'topRight',
+                  text : "Vas odgovor je uspesno predložen!",
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+                
+          }
+          else{
+            console.log("pError")
+          }
+          
+          dataReg.lastIndex = 0
+        });
+        document.getElementById("predloziBtnReka").addEventListener("click",(e)=>{
+            
+          let val = $(`#inputReka`).val().toLowerCase()
+          if(dataReg.test(val))
+          {
+            socket.emit("predlagac",(val,currentLetter,"r"));
+            new Noty({
+                  theme : 'metroui',
+                  type : 'success',
+                  layout : 'topRight',
+                  text : "Vas odgovor je uspesno predložen!",
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+                
+          }
+          else{
+            console.log("pError")
+          }
+          
+          dataReg.lastIndex = 0
+        });
+        document.getElementById("predloziBtnPredmet").addEventListener("click",(e)=>{
+            
+          let val = $(`#inputPredmet`).val().toLowerCase()
+          if(dataReg.test(val))
+          {
+            socket.emit("predlagac",(val,currentLetter,'pr'));
+            new Noty({
+                  theme : 'metroui',
+                  type : 'success',
+                  layout : 'topRight',
+                  text : "Vas odgovor je uspesno predložen!",
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+                
+          }
+          else{
+            console.log("pError")
+          }
+          
+          dataReg.lastIndex = 0
+        });
+        
         function dodaj(){
             
             //console.log(username, room)
