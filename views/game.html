@@ -139,7 +139,7 @@
                   <label for="inputDrzava">Država</label>
                   <div class="support">
                     <input type="text" class="form-control" id="inputDrzava" aria-describedby="helpDrzava" placeholder="Unesi državu :"autocomplete="off">                
-                    <button class="btn btn-dark myBtn" id="predloziBtnDrzava">Predloži</button>
+                    <button class="btn btn-dark myBtn" id="predloziBtnDrzava" onclick="predlozi('Drzava')">Predloži</button>
                   </div>
                   <small id="helpDrzava" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova i minimalna duzina je 2 karaktera.</small>
                   
@@ -148,7 +148,7 @@
                     <label for="inputGrad">Grad</label>
                     <div class="support">
                       <input type="text" class="form-control" id="inputGrad" aria-describedby="helpGrad" placeholder="Unesi grad :" autocomplete="off">
-                      <button class="btn btn-dark myBtn" id="predloziBtnGrad" >Predloži</button>
+                      <button class="btn btn-dark myBtn" id="predloziBtnGrad" onclick="predlozi('Grad')">Predloži</button>
                     </div>
                     <small id="helpGrad" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova i minimalna duzina je 2 karaktera.</small>
                 </div>
@@ -156,7 +156,7 @@
                   <label for="inputIme">Ime</label>
                   <div class="support">
                     <input type="text" class="form-control" id="inputIme" aria-describedby="helpIme" placeholder="Unesi ime :" autocomplete="off">
-                    <button class="btn btn-dark myBtn" id="predloziBtnIme" >Predloži</button>
+                    <button class="btn btn-dark myBtn" id="predloziBtnIme" onclick="predlozi('Ime')" >Predloži</button>
                   </div>
                   <small id="helpIme" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova i minimalna duzina je 2 karaktera.</small>
                 </div>
@@ -164,7 +164,7 @@
                   <label for="inputBiljka">Biljka</label>
                   <div class="support">
                     <input type="text" class="form-control" id="inputBiljka" aria-describedby="helpBiljka" placeholder="Unesi biljku :" autocomplete="off">
-                    <button class="btn btn-dark myBtn" id="predloziBtnBiljka">Predloži</button>
+                    <button class="btn btn-dark myBtn" id="predloziBtnBiljka" onclick="predlozi('Biljka')">Predloži</button>
                   </div>  
                   <small id="helpBiljka" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova i minimalna duzina je 2 karaktera.</small>
                 </div>
@@ -172,7 +172,7 @@
                   <label for="inputZivotinja">Životinja</label>
                   <div class="support">
                     <input type="text" class="form-control" id="inputZivotinja" aria-describedby="helpZivotinja" placeholder="Unesi životinju :" autocomplete="off">
-                    <button class="btn btn-dark myBtn" id="predloziBtnZivotinja">Predloži</button>
+                    <button class="btn btn-dark myBtn" id="predloziBtnZivotinja" onclick="predlozi('Zivotinja')">Predloži</button>
                   </div>
                   <small id="helpZivotinja" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova i minimalna duzina je 2 karaktera.</small>
                 </div>
@@ -180,7 +180,7 @@
                   <label for="inputPlanina">Planina</label>
                   <div class="support">
                     <input type="text" class="form-control" id="inputPlanina" aria-describedby="helpPlanina" placeholder="Unesi planinu :" autocomplete="off">
-                    <button class="btn btn-dark myBtn" id="predloziBtnPlanina">Predloži</button>
+                    <button class="btn btn-dark myBtn" id="predloziBtnPlanina" onclick="predlozi('Planina')">Predloži</button>
                   </div>
                   <small id="helpPlanina" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova i minimalna duzina je 2 karaktera.</small>
                 </div>
@@ -188,7 +188,7 @@
                   <label for="inputReka">Reka</label>
                   <div class="support">
                     <input type="text" class="form-control" id="inputReka" aria-describedby="helpReka" placeholder="Unesi reku :" autocomplete="off">
-                    <button class="btn btn-dark myBtn" id="predloziBtnReka">Predloži</button>
+                    <button class="btn btn-dark myBtn" id="predloziBtnReka" onclick="predlozi('Reka')">Predloži</button>
                   </div>
                   <small id="helpReka" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova i minimalna duzina je 2 karaktera.</small>
                 </div>
@@ -196,7 +196,7 @@
                   <label for="inputPredmet">Predmet</label>
                   <div class="support">
                     <input type="text" class="form-control" id="inputPredmet" aria-describedby="helpPredmet" placeholder="Unesi predmet :" autocomplete="off">
-                    <button class="btn btn-dark myBtn" id="predloziBtnPredmet">Predloži</button>
+                    <button class="btn btn-dark myBtn" id="predloziBtnPredmet" onclick="predlozi('Predmet')">Predloži</button>
                   </div>
                   <small id="helpPredmet" class="form-text text-muted" style="display:none" >Polje moze da sadrzi samo slova i minimalna duzina je 2 karaktera.</small>
                 </div> 
@@ -279,7 +279,7 @@
           $("#predloziBtnDrzava").prop("disabled", true )
           $("#predloziBtnGrad").prop("disabled", true )
           $("#predloziBtnIme").prop("disabled", true )
-          $("#predloziBtnBijka").prop("disabled", true )
+          $("#predloziBtnBiljka").prop("disabled", true )
           $("#predloziBtnZivotinja").prop("disabled", true )
           $("#predloziBtnPlanina").prop("disabled", true )
           $("#predloziBtnReka").prop("disabled", true )
@@ -289,7 +289,7 @@
           $("#predloziBtnDrzava").prop("disabled", false )
           $("#predloziBtnGrad").prop("disabled", false )
           $("#predloziBtnIme").prop("disabled", false )
-          $("#predloziBtnBijka").prop("disabled", false )
+          $("#predloziBtnBiljka").prop("disabled", false )
           $("#predloziBtnZivotinja").prop("disabled", false )
           $("#predloziBtnPlanina").prop("disabled", false )
           $("#predloziBtnReka").prop("disabled", false )
@@ -612,7 +612,8 @@
         })
         socket.on('roundEnd',message =>{
           t0 = performance.now()
-          $(`#help${field}`).show() 
+          //$(`#help${field}`).show() 
+          hideAllHelp()
           readyBtn.disabled = true;
           if(message['Success']){
             //SEND ALL DATA TO SERVER FOR REVALUETION
@@ -777,7 +778,9 @@ G              progressBar :true
             }
         }
         function predlozi(field){
+          
           let val = $(`#input${field}`).val().trim().toLowerCase()
+          console.log(val)
           if(dataReg.test(val)){
             let k = kDict[field]
             socket.emit("predlagac",({val,currentLetter,k}));                      
@@ -793,184 +796,10 @@ G              progressBar :true
           else{
             $(`#help${field}`).show()
           }
+          dataReg.lastIndex = 0;
         }
         //vidi kako dynamic ide u js-u
-        document.getElementById("predloziBtnDrzava").addEventListener("click",(e)=>{
-            
-          let val = $(`#inputDrzava`).val().toLowerCase()
-          if(dataReg.test(val))
-          {
-            socket.emit("predlagac",(val,currentLetter,'d'));
-            new Noty({
-                  theme : 'metroui',
-                  type : 'success',
-                  layout : 'topRight',
-                  text : "Vas odgovor je uspesno predložen!",
-                  timeout : 5000,
-                  progressBar :true
-                }).show()
-                
-          }
-          else{
-            console.log("pError")
-          }
-          
-          dataReg.lastIndex = 0
-        });
-        document.getElementById("predloziBtnGrad").addEventListener("click",(e)=>{
-          
-          let val = $(`#inputGrad`).val().toLowerCase()
-          if(dataReg.test(val))
-          {
-            socket.emit("predlagac",(val,currentLetter,'g'));
-            new Noty({
-                  theme : 'metroui',
-                  type : 'success',
-                  layout : 'topRight',
-                  text : "Vas odgovor je uspesno predložen!",
-                  timeout : 5000,
-                  progressBar :true
-                }).show()
-                
-          }
-          else{
-            console.log("pError")
-          }
-          
-          dataReg.lastIndex = 0
-        });
-        document.getElementById("predloziBtnIme").addEventListener("click",(e)=>{
-           
-          let val = $(`#inputIme`).val().toLowerCase()
-          if(dataReg.test(val))
-          {
-            socket.emit("predlagac",(val,currentLetter,'i'));
-            new Noty({
-                  theme : 'metroui',
-                  type : 'success',
-                  layout : 'topRight',
-                  text : "Vas odgovor je uspesno predložen!",
-                  timeout : 5000,
-                  progressBar :true
-                }).show()
-                
-          }
-          else{
-            console.log("pError")
-          }
-          
-          dataReg.lastIndex = 0
-        });
-        document.getElementById("predloziBtnBiljka").addEventListener("click",(e)=>{
-           
-          let val = $(`#inputBiljka`).val().toLowerCase()
-          if(dataReg.test(val))
-          {
-            socket.emit("predlagac",(val,currentLetter,'b'))
-            new Noty({
-                  theme : 'metroui',
-                  type : 'success',
-                  layout : 'topRight',
-                  text : "Vas odgovor je uspesno predložen!",
-                  timeout : 5000,
-                  progressBar :true
-                }).show()
-                
-          }
-          else{
-            console.log("pError")
-          }
-          
-          dataReg.lastIndex = 0
-        });
-        document.getElementById("predloziBtnZivotinja").addEventListener("click",(e)=>{
-            
-          let val = $(`#inputZivotinja`).val().toLowerCase()
-          if(dataReg.test(val))
-          {
-            socket.emit("predlagac",(val,currentLetter,'z'));
-            new Noty({
-                  theme : 'metroui',
-                  type : 'success',
-                  layout : 'topRight',
-                  text : "Vas odgovor je uspesno predložen!",
-                  timeout : 5000,
-                  progressBar :true
-                }).show()
-                
-          }
-          else{
-            console.log("pError")
-          }
-          
-          dataReg.lastIndex = 0
-        });
-        document.getElementById("predloziBtnPlanina").addEventListener("click",(e)=>{
-            
-          let val = $(`#inputPlanina`).val().toLowerCase()
-          if(dataReg.test(val))
-          {
-            socket.emit("predlagac",(val,currentLetter,'p'));
-            new Noty({
-                  theme : 'metroui',
-                  type : 'success',
-                  layout : 'topRight',
-                  text : "Vas odgovor je uspesno predložen!",
-                  timeout : 5000,
-                  progressBar :true
-                }).show()
-                
-          }
-          else{
-            console.log("pError")
-          }
-          
-          dataReg.lastIndex = 0
-        });
-        document.getElementById("predloziBtnReka").addEventListener("click",(e)=>{
-            
-          let val = $(`#inputReka`).val().toLowerCase()
-          if(dataReg.test(val))
-          {
-            socket.emit("predlagac",(val,currentLetter,"r"));
-            new Noty({
-                  theme : 'metroui',
-                  type : 'success',
-                  layout : 'topRight',
-                  text : "Vas odgovor je uspesno predložen!",
-                  timeout : 5000,
-                  progressBar :true
-                }).show()
-                
-          }
-          else{
-            console.log("pError")
-          }
-          
-          dataReg.lastIndex = 0
-        });
-        document.getElementById("predloziBtnPredmet").addEventListener("click",(e)=>{
-            
-          let val = $(`#inputPredmet`).val().toLowerCase()
-          if(dataReg.test(val))
-          {
-            socket.emit("predlagac",(val,currentLetter,'pr'));
-            new Noty({
-                  theme : 'metroui',
-                  type : 'success',
-                  layout : 'topRight',
-                  text : "Vas odgovor je uspesno predložen!",
-                  timeout : 5000,
-                  progressBar :true
-                }).show()
-                
-          }
-          else{
-            console.log("pError")
-          }
-          
-          dataReg.lastIndex = 0
-        });
+        
         
         function dodaj(){
             
