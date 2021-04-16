@@ -525,10 +525,8 @@ function dataCollector(io,username,room,data,round,localData,socket){
 }   
 
 function predlagac(predlog,slovo,kategorija){
-    console.log(predlog)
-    console.log(slovo)
-    console.log(kategorija)
-    pool.query(`insert into predlozi (DEFAULT,?,?,${kategorija}`,[predlog,slovo],(err,results,fields)=>{
+   
+    pool.query(`insert into predlozi values(DEFAULT,?,?,${kategorija});`,[predlog,slovo],(err,results,fields)=>{
         if(err){
             console.log(`Doslo je do problema u toku unosenja predloga : ERR : ${err.sqlMessage}\nCode : ${err.code} ` );
         }

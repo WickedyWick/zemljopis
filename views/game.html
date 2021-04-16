@@ -263,6 +263,7 @@
         let dataReg = new RegExp()
         const fields = ['Drzava','Grad','Ime','Biljka','Zivotinja','Planina','Reka','Predmet']
         const kDict = {'Drzava':'d','Grad':'g','Ime':'i','Biljka':'b','Zivotinja':'z','Planina':'p','Reka':'r','Predmet':'pr'}
+        const sessionReg = /^[A-Za-z0-9/+]{48}$/g
         
         $(`#helpGrad`).css("visibility", "visible")
         
@@ -343,6 +344,7 @@
             console.log(message)
             $('#maxDiv').show()
             disableAllPButtons()
+            sessionToken = localStorage.getItem('sessionToken')
             document.getElementById('localPlayer').textContent += username
             document.getElementById('lblRoomCode').textContent += String(roomCode)
             document.getElementById('lblPlayersReady').textContent = message['playersReady']
@@ -431,44 +433,67 @@
         socket.on('gameStartNotification', message => {
           console.log(message)
           if(message['Success'] == true){
-            new Noty({
-                theme : 'metroui',
-                type : 'success',
-                layout : 'topRight',
-                text : message['MSG'],
-                timeout : 5000,
-                progressBar :true
-              }).show()
-              hideAllHelp()
-              disableAllPButtons()
-              currentLetter = message['currentLetter']
-              if(currentLetter == "ć" || currentLetter == "č")
-                dataReg = new RegExp(`^c[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
-              else if(currentLetter == "lj" || currentLetter == "nj")
-                dataReg = new RegExp(`^${currentLetter}[A-Za-zčČćĆžŽšŠđĐ ]{1,40}$`,'g')
-              else if(currentLetter == "dž")
-                dataReg = new RegExp(`^dz[A-Za-zčČćĆžŽšŠđĐ ]{1,40}$`,'g')
-              else if(currentLetter == "ž")
-                dataReg = new RegExp(`^z[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
-              else if(currentLetter == "š")
-                dataReg = new RegExp(`^s[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
-              else
-                dataReg = new RegExp(`^${currentLetter}[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
-              document.getElementById('currentLetter').textContent = currentLetter
-          
-            let duration = 61
-              myInterval = setInterval(()=>{
-              duration--
-              timer.innerHTML = duration
-              if(duration == 0){
-                
-                clearInterval(myInterval)
-              }
-            },1000)
-            readyBtn.innerText = "Gotovo";
-            gameStarted = true;
-            enableAllInputFields()
-            clearAllInputFields()
+            if(sessionToken == localStorage.getItem('sessionToken'))
+            {
+              new Noty({
+                  theme : 'metroui',
+                  type : 'success',
+                  layout : 'topRight',
+                  text : message['MSG'],
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+                hideAllHelp()
+                disableAllPButtons()
+                currentLetter = message['currentLetter']
+                if(currentLetter == "ć" || currentLetter == "č")
+                  dataReg = new RegExp(`^c[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+                else if(currentLetter == "lj" || currentLetter == "nj")
+                  dataReg = new RegExp(`^${currentLetter}[A-Za-zčČćĆžŽšŠđĐ ]{1,40}$`,'g')
+                else if(currentLetter == "dž")
+                  dataReg = new RegExp(`^dz[A-Za-zčČćĆžŽšŠđĐ ]{1,40}$`,'g')
+                else if(currentLetter == "ž")
+                  dataReg = new RegExp(`^z[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+                else if(currentLetter == "š")
+                  dataReg = new RegExp(`^s[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+                else
+                  dataReg = new RegExp(`^${currentLetter}[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+                document.getElementById('currentLetter').textContent = currentLetter
+            
+              let duration = 61
+                myInterval = setInterval(()=>{
+                duration--
+                timer.innerHTML = duration
+                if(duration == 0){
+                  
+                  clearInterval(myInterval)
+                }
+              },1000)
+              readyBtn.innerText = "Gotovo";
+              gameStarted = true;
+              enableAllInputFields()
+              clearAllInputFields()
+            }
+            else{
+              disableAllInputFields();
+              disableAllPButtons();
+              readyBtn.disabled = true;
+              //daj ovde neki notifikation
+              new Noty({
+                  theme : 'metroui',
+                  type : 'error',
+                  layout : 'topRight',
+                  text : "Mozete biti samo u jednoj sobi u isto vreme.",
+                  timeout : 4000,
+                  progressBar :true
+                }).show()
+              setTimeout(()=>{
+                location.reload()
+              },4000)
+              
+            }
+          }else{
+            //game unable to start
           }
           
         })
@@ -580,9 +605,15 @@
                 //$(`#input${fields[i]}`).prop("disabled", false )
                 try
                 {
+                  
                   poeni = message['result'][i][$(`#input${fields[i]}`).val().toLowerCase()]
-                  document.getElementById(`input${fields[i]}`).value += '  + ' +  poeni
-                  points += Number(poeni)
+                  if(poeni != undefined){
+                    document.getElementById(`input${fields[i]}`).value += '  + ' +  poeni
+                    points += Number(poeni)
+                  }
+                  else{
+                    document.getElementById(`input${fields[i]}`).value += '  + 0'
+                  }
                 }
                 catch(TypeError){
                   
@@ -748,7 +779,7 @@ G              progressBar :true
                 //TODO da se proveri u bazi da li postoji room i ovaj username i ako postoji neka se samo joinuje u socketu
                 //console.log("TEST")
                 console.log("Success")
-                let sessionToken = localStorage.getItem('sessionToken') //REGEXUJ SESSION TOKEN
+                const sessionToken = localStorage.getItem('sessionToken') //REGEXUJ SESSION TOKEN
                 if(sessionReg.test(sessionToken))
                   socket.emit('joinRoomReq',({username,roomCode,sessionToken}))
                 else
@@ -784,6 +815,8 @@ G              progressBar :true
           console.log(val)
           if(dataReg.test(val)){
             let k = kDict[field]
+            console.log(k)
+            
             socket.emit("predlagac",({val,currentLetter,k}));                      
             new Noty({
                   theme : 'metroui',

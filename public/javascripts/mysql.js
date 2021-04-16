@@ -12,99 +12,106 @@ Return object
 
 //double conn open?
 function joinRoomSQL(socket,room,username,localData){
-    if(localData[room]['playerCount'] > Object.keys(localData[room]['playersID']).length){
-        pool.getConnection((err,connection) =>{
-            if(err){
-                
-                console.log(`ERROR CONNECTING TO THE DATABASE : Code ${err.code}\mMSG : ${err.sqlMessage}`)
-                socket.emit('joinRoomSQLResponse',{'Success' : false,
-                    "Data" : "Doslo je do problema sa pridruzivanjem u sobu, pokusajte kasnije!"
-                })
-                
-            }else{
-
-                //IF REJOIN ()..
-                //Ovde prvo query da se vidida li postoji username u sobi, ako ne postoji moze ako postoji mora drugo ime //koristi proceduru
-                connection.query(`select username from player where roomCode = '${room}' and username = '${username}';`,(err,result,fields) =>{
+    if(room in localData){
+        if(localData[room]['playerCount'] > Object.keys(localData[room]['playersID']).length){
+            pool.getConnection((err,connection) =>{
+                if(err){
                     
-                    if(err){
-                        console.log(`ERROR WHILE SELECTING USERNAME FROM DATABASE : Code ${err.code}\nMSG : ${err.sqlMessage}`)
-                        socket.emit('joinRoomSQLResponse',{'Success' : false,
-                            "ERR_MSG" : "Doslo je do problema , pokusajte kasnije!" 
-                            
-                        })
-                        /*
-                        connection.query(`insert into error values(DEFAULT,'mysql.js','joinRoomSQL','${err.stack}','${JSON.stringify(
-                            {
-                                'localData' : localData[room],
-                                'room' : room,                                
-                                'username' : username
-                            }
-                        )}','Format sobe ili username nije validan?')`,(err,result,fields) =>{
-                            if(err){
+                    console.log(`ERROR CONNECTING TO THE DATABASE : Code ${err.code}\mMSG : ${err.sqlMessage}`)
+                    socket.emit('joinRoomSQLResponse',{'Success' : false,
+                        "Data" : "Doslo je do problema sa pridruzivanjem u sobu, pokusajte kasnije!"
+                    })
+                    
+                }else{
 
-                            }
-                        })
-                        */
-                    }else{
-                        //console.log(result.length)
-                        if(result.length ==0){
-                            
-                        //ovde proveri results lol.
-                                let sessionToken = cryptoRandomString({length: 48, type: 'base64'})
-                                connection.query(`insert into player values(DEFAULT,'${room}','${username}','${sessionToken}');`, (err,results,fields) =>{
-                                    if(err){
-                                        console.log(`ERROR WHILE INSERTING PLAYER INTO DATABASE : Code ${err.code}\nMSG : ${err.sqlMessage}`)
-                                        if(err.code =="ER_NO_REFERENCED_ROW_2" ){
-                                            socket.emit('joinRoomSQLResponse',{'Success' : false,
-                                                "ERR_MSG": "Soba ne postoji!",
-                                            
-                                            })
-                                        }else
-                                            socket.emit('joinRoomSQLResponse',{'Success' : false,
-                                                "ERR_MSG": "Doslo je do problema , pokusajte kasnije!",
-                                                
-                                            })
-                                    }
-                                    else{
-                                        
-                                        localData[room]['players'][username] = results.insertId
-                                        localData[room]['playersID'][results.insertId] = username
-                                        
-                                        //socket join neka bude kada se poveze na game socket.join(room)
-                                        socket.emit('joinRoomSQLResponse',{'Success' : true,
-                                            'username': username,
-                                            'roomCode': room,
-                                            'sessionToken': sessionToken
-                                        })
-                                    }
-                                } )
-                                
-                            
-                        }
-                        else{
-                            
-                                socket.emit('joinRoomSQLResponse',{'Success':false,
-                                    "ERR_MSG": "Korisnicko ime u toj sobi vec postoji, izaberite drugo korisnicko ime!"
-                                })
-                            
-                        }
+                    //IF REJOIN ()..
+                    //Ovde prvo query da se vidida li postoji username u sobi, ako ne postoji moze ako postoji mora drugo ime //koristi proceduru
+                    connection.query(`select username from player where roomCode = '${room}' and username = '${username}';`,(err,result,fields) =>{
                         
-                        //pokrij ovo na klijentu
-                        //socket.emit('joinRoomSQLResponse',{'Success' : true,
-                            //'/roomCode': room   
-                        //})
-                        //socket.to(room).broadcast.emit('joinMessage',`${username} has joined the room!`)
-                
-                    }
-                })
-            }
-            connection.release()
-        })
-    }else
+                        if(err){
+                            console.log(`ERROR WHILE SELECTING USERNAME FROM DATABASE : Code ${err.code}\nMSG : ${err.sqlMessage}`)
+                            socket.emit('joinRoomSQLResponse',{'Success' : false,
+                                "ERR_MSG" : "Doslo je do problema , pokusajte kasnije!" 
+                                
+                            })
+                            /*
+                            connection.query(`insert into error values(DEFAULT,'mysql.js','joinRoomSQL','${err.stack}','${JSON.stringify(
+                                {
+                                    'localData' : localData[room],
+                                    'room' : room,                                
+                                    'username' : username
+                                }
+                            )}','Format sobe ili username nije validan?')`,(err,result,fields) =>{
+                                if(err){
+
+                                }
+                            })
+                            */
+                        }else{
+                            //console.log(result.length)
+                            if(result.length ==0){
+                                
+                            //ovde proveri results lol.
+                                    let sessionToken = cryptoRandomString({length: 48, type: 'base64'})
+                                    connection.query(`insert into player values(DEFAULT,'${room}','${username}','${sessionToken}');`, (err,results,fields) =>{
+                                        if(err){
+                                            console.log(`ERROR WHILE INSERTING PLAYER INTO DATABASE : Code ${err.code}\nMSG : ${err.sqlMessage}`)
+                                            if(err.code =="ER_NO_REFERENCED_ROW_2" ){
+                                                socket.emit('joinRoomSQLResponse',{'Success' : false,
+                                                    "ERR_MSG": "Soba ne postoji!",
+                                                
+                                                })
+                                            }else
+                                                socket.emit('joinRoomSQLResponse',{'Success' : false,
+                                                    "ERR_MSG": "Doslo je do problema , pokusajte kasnije!",
+                                                    
+                                                })
+                                        }
+                                        else{
+                                            
+                                            localData[room]['players'][username] = results.insertId
+                                            localData[room]['playersID'][results.insertId] = username
+                                            
+                                            //socket join neka bude kada se poveze na game socket.join(room)
+                                            socket.emit('joinRoomSQLResponse',{'Success' : true,
+                                                'username': username,
+                                                'roomCode': room,
+                                                'sessionToken': sessionToken
+                                            })
+                                        }
+                                    } )
+                                    
+                                
+                            }
+                            else{
+                                
+                                    socket.emit('joinRoomSQLResponse',{'Success':false,
+                                        "ERR_MSG": "Korisnicko ime u toj sobi vec postoji, izaberite drugo korisnicko ime!"
+                                    })
+                                
+                            }
+                            
+                            //pokrij ovo na klijentu
+                            //socket.emit('joinRoomSQLResponse',{'Success' : true,
+                                //'/roomCode': room   
+                            //})
+                            //socket.to(room).broadcast.emit('joinMessage',`${username} has joined the room!`)
+                    
+                        }
+                    })
+                }
+                connection.release()
+            })
+        }else{
+            socket.emit('joinRoomSQLResponse',{'Success':false,
+                "ERR_MSG" : "Soba je puna!"
+            })}
+        }   
+    else{
         socket.emit('joinRoomSQLResponse',{'Success':false,
-            "ERR_MSG" : "Soba je puna!"
+            "ERR_MSG" : "Soba ne postoji ili vise nije aktivna!"
         })
+    }
 }
 
 function createRoom(socket,username,playerCount,roundTimeLimit,localData){
