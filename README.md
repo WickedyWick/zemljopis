@@ -35,5 +35,5 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
 - Nakon instalacije Node-a, potrebno je otvoriti konzolu u root folderu gde je projekat kloniran 
 - Potrebno je uneti lokalnu adresu sa portom u formatu *lokalnaAdresa:3000* (**3000 je default port**) u ***public/javascripts/config.js*** fajlu
 - Takodje je potrebno konfigurisati bazu podataka , to je moguće uraditi u ***public/javascripts/trueMysql.js*** fajlu
-- Izvršiti sledeće komande ``` npm install ``` i ``` npm app ``` da bi pokrenuli aplikaciju
+- Izvršiti sledeće komande ``` npm install ``` i ``` node app ``` da bi pokrenuli aplikaciju
 - Default adresa aplikacije je *localhost:3000*
