@@ -19,7 +19,7 @@ localData = {}
 // }
 // popuni sve to kad se soba kreira
 // playeReady na clientov zahtev za dugme +-  pa onda pC == pR pa pocni
-
+katDict = {'d':0,'g':1,'i':2,'b':3,'z':4,'p':5,'r':6,'pr':7}
 app.use('/public', express.static('public'));
 // Run when client connects
 io.on('connection', socket => {
@@ -48,6 +48,7 @@ io.on('connection', socket => {
         
     })
     socket.on('joinRoomReq',({username,roomCode,sessionToken}) =>{
+        console.log(localData)
         joinRoom(socket,roomCode,username,sessionToken,localData,io)
     })
     socket.on('joinRoomReqM',(obj) =>{
@@ -57,8 +58,13 @@ io.on('connection', socket => {
         console.log(obj)
         predlagac(obj["predlog"],obj["slovo"],obj["kategorija"])
     })
-    socket.on('predlagac',({predlog,slovo,kategorija})=>{
-        predlagac(predlog,slovo,kategorija)
+    socket.on('predlagac',({val,currentLetter,k})=>{
+        try{
+            
+            predlagac(val,currentLetter,katDict[k])
+        }catch{
+            console.log("error with predlagac")
+        }
     })
     //socket.to().broadcast('test,')
     //socket.emit('message','Welcome')
@@ -94,9 +100,10 @@ io.on('connection', socket => {
         
     })
     socket.on("clientEndRoundM",obj =>{
+        console.log(obj)
         clearTimeout(localData[obj["roomCode"]]['intervalObj'])
         const temp = setTimeout(evaluation, 7000, obj["roomCode"],localData,io);
-        localData[roomCode]['intervalObj'] = temp
+        localData[obj["roomCode"]]['intervalObj'] = temp
         console.log(obj)
         dataCollector(io,obj["username"],obj["roomCode"],obj["data"],obj["roundNumber"],localData,socket)
         
@@ -113,7 +120,7 @@ io.on('connection', socket => {
     })
     socket.on('roundDataM',(obj)=>{
         
-        
+        console.log(obj)
         dataCollector(io,obj['username'],obj['roomCode'],obj['data'],obj['roundNumber'],localData,socket)
     })
     socket.on('disconnect',() => {

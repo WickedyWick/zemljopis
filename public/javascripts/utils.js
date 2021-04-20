@@ -454,11 +454,15 @@ function evaluation(room,localData,io){
                             otherDictKeys = Object.keys(ids)
                             sql = ""
                             io.to(room).emit('points',pointsDict)
-                            //ovo moze i foreachom posto nije vazan redosled 
+                            pointsDict ={}
+                            names = localData[room]['playersID']
+                            
                             for(let i =0;i<otherDictKeys.length;i++){
                                 sql += `Update data set bodovi = ${ids[otherDictKeys[i]]} where playerID = ${otherDictKeys[i]} and roundID = ${localData[room]['roundID']};`
+                                pointsDict[names[otherDictKeys[i]]] = ids[otherDictKeys[i]]
                             }
                             //console.log(ids);
+                            io.to(room).emit("totalPoints",pointsDict)
                             if(sql != "")
                                 connection.query(sql,(err,results,fields)=>{
                                     //Ne moram da cekam da se ovo zavrsi da bih poslao rezultate , ako ovde ima problem posaljem page refresh req tako da ce se refresovati stranica sama i poeni ce ostati kako treba

@@ -1,2 +1,2 @@
-function serverAdress(){return "lokalnadresa:3000 "}
+function serverAdress(){return "http://46.40.27.131:3000"}
 
