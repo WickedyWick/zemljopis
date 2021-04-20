@@ -311,7 +311,7 @@
                 socket.emit('joinRoomSQL',{username,room})                
                 //pop alert
             }else{
-                if(!roomReg.test(room) && !usernameReg(username)){
+                if(!roomReg.test(room) && !usernameReg.test(username)){
                     //mylaertuj za o
                     myAlert('Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica,cirilica i engleski alfabet!\nSoba se sastoji od 8 alfanumerickih karaktetra!')
                 }else if(!roomReg(room)){
@@ -348,6 +348,10 @@
         })
         document.getElementById('vrati').addEventListener('click',(e)=>{
             e.preventDefault();
+            let room = document.getElementById('txb_roomCode').value.trim()
+            let username = document.getElementById('txb_username').value.trim()
+            let roomReg = /^[A-Za-z0-9]{8}$/g
+            const usernameReg = /^[A-Za-zčČćĆžŽšŠđĐ ]{4,30}$/g
             if(roomReg.test(room) && usernameReg.test(username)){   
                 window.location.href = `http://46.40.27.131:3000/game?roomCode=${room}&username=${username}`;
             }else{

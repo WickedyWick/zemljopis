@@ -261,6 +261,7 @@
         let points = 0;
         let currentLetter = ''
         let dataReg = new RegExp()
+        let pList = [];
         const fields = ['Drzava','Grad','Ime','Biljka','Zivotinja','Planina','Reka','Predmet']
         const kDict = {'Drzava':'d','Grad':'g','Ime':'i','Biljka':'b','Zivotinja':'z','Planina':'p','Reka':'r','Predmet':'pr'}
         const sessionReg = /^[A-Za-z0-9/+]{48}$/g
@@ -346,6 +347,7 @@
             disableAllPButtons()
             sessionToken = localStorage.getItem('sessionToken')
             document.getElementById('localPlayer').textContent += username
+            pList.push(username)
             document.getElementById('lblRoomCode').textContent += String(roomCode)
             document.getElementById('lblPlayersReady').textContent = message['playersReady']
             document.getElementById('lblPlayerCount').textContent = message['playerCount']
@@ -498,9 +500,13 @@
           
         })
         socket.on('playerList',message=>{
+          
           for(let i =0;i<message['players'].length;i++){
-            if(message['players'][i] != username)
+            if(!pList.includes(message['players'][i]))
+            {
+              pList.push(message['players'][i])
               $("ul").append(`<li>${message['players'][i]}</li>`);
+            }
           }
         })
 

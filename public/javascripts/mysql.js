@@ -78,6 +78,7 @@ function joinRoomSQL(socket,room,username,localData){
                                                 'roomCode': room,
                                                 'sessionToken': sessionToken
                                             })
+
                                         }
                                     } )
                                     
