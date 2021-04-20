@@ -240,6 +240,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.min.js" integrity="sha512-BHtomM5XDcUy7tDNcrcX1Eh0RogdWiMdXl3wJcKB3PFekXb3l5aDzymaTher61u6vEZySnoC/SAj2Y/p918Y3w==" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous"></script>
+    <script src="../public/javascripts/config.js"></script>
     <script>
         data = {}
         // document.getElementById("test").addEventListener('click', (e) =>{
@@ -268,8 +269,9 @@
         
         $(`#helpGrad`).css("visibility", "visible")
         
-        // dodaj start button za leadera 
-        const socket = io('http://46.40.27.131:3000/');
+        // dodaj start button za leadera
+        serverAddress = serverAdress()
+        const socket = io(serverAddress);
         socket.on('message', message =>{
             console.log(message)
         })
@@ -448,16 +450,19 @@
                 hideAllHelp()
                 disableAllPButtons()
                 currentLetter = message['currentLetter']
-                if(currentLetter == "ć" || currentLetter == "č")
-                  dataReg = new RegExp(`^c[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+                //OVDE JE GRESKA zato trebalo bi da postoji C ILI Č 
+                if(currentLetter == "ć")
+                  dataReg = new RegExp(`^(c|ć)[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+                else if(currentLetter == "č")
+                  dataReg = new RegExp(`^(c|č)[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
                 else if(currentLetter == "lj" || currentLetter == "nj")
                   dataReg = new RegExp(`^${currentLetter}[A-Za-zčČćĆžŽšŠđĐ ]{1,40}$`,'g')
                 else if(currentLetter == "dž")
-                  dataReg = new RegExp(`^dz[A-Za-zčČćĆžŽšŠđĐ ]{1,40}$`,'g')
+                  dataReg = new RegExp(`^(dz|dž)[A-Za-zčČćĆžŽšŠđĐ ]{1,40}$`,'g')
                 else if(currentLetter == "ž")
-                  dataReg = new RegExp(`^z[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+                  dataReg = new RegExp(`^(z|ž)[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
                 else if(currentLetter == "š")
-                  dataReg = new RegExp(`^s[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+                  dataReg = new RegExp(`^(s|š)[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
                 else
                   dataReg = new RegExp(`^${currentLetter}[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
                 document.getElementById('currentLetter').textContent = currentLetter
@@ -505,11 +510,13 @@
             if(!pList.includes(message['players'][i]))
             {
               pList.push(message['players'][i])
-              $("ul").append(`<li>${message['players'][i]}</li>`);
+              $("ul").append(`<li id="${message['players']}">${message['players'][i]}</li>`);
             }
           }
         })
-
+        socket.on('totalPoints',message=>{
+          console.log(message)
+        })
         
         socket.on('playerReadyResponse' , message =>{
           
@@ -634,6 +641,7 @@
           document.getElementById('lblPlayersReady').textContent = message['playersReady']
           
         })
+        
         socket.on('pointsErr',message=>{
           new Noty({
               theme : 'metroui',

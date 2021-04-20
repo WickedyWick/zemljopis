@@ -243,8 +243,8 @@
     </body>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.min.js" integrity="sha512-BHtomM5XDcUy7tDNcrcX1Eh0RogdWiMdXl3wJcKB3PFekXb3l5aDzymaTher61u6vEZySnoC/SAj2Y/p918Y3w==" crossorigin="anonymous"></script>
- 
-    <script>
+    <script src="../public/javascripts/config.js"></script>
+    <script >
        
         /*
         let index = Math.floor(Math.random() * 2)
@@ -260,8 +260,9 @@
         */
                 
             
-  
-        const socket = io('http://46.40.27.131:3000/');
+        
+        const serverAddress = serverAdress()
+        const socket = io(serverAddress);
         const userReg = RegExp("[0-9A-Za-z]{4,30}\g");
         const roomReg = RegExp("[0-9A-Za-z]{8}\g")
         socket.on('message', message =>{
@@ -276,7 +277,7 @@
             {
                 localStorage.setItem('sessionToken',response['sessionToken'])
                 console.log(response['sessionToken'])
-                window.location.href = `http://46.40.27.131:3000/game?roomCode=${response['roomCode']}&username=${response['username']}`;
+                window.location.href = `${serverAddress}/game?roomCode=${response['roomCode']}&username=${response['username']}`;
 
             }
         })
@@ -288,7 +289,7 @@
             else
             {
                 localStorage.setItem('sessionToken',response['sessionToken'])
-                window.location.href = `http://46.40.27.131:3000/game?roomCode=${response['roomCode']}&username=${response['username']}`
+                window.location.href = `${serverAddress}/game?roomCode=${response['roomCode']}&username=${response['username']}`
             }
             
         })
@@ -353,7 +354,7 @@
             let roomReg = /^[A-Za-z0-9]{8}$/g
             const usernameReg = /^[A-Za-zčČćĆžŽšŠđĐ ]{4,30}$/g
             if(roomReg.test(room) && usernameReg.test(username)){   
-                window.location.href = `http://46.40.27.131:3000/game?roomCode=${room}&username=${username}`;
+                window.location.href = `${serverAddress}/game?roomCode=${room}&username=${username}`;
             }else{
                 if(!roomReg.test(room) && !usernameReg(username)){
                     //mylaertuj za o
