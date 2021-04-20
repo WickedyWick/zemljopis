@@ -277,7 +277,7 @@
             {
                 localStorage.setItem('sessionToken',response['sessionToken'])
                 console.log(response['sessionToken'])
-                window.location.href = `${serverAddress}/game?roomCode=${response['roomCode']}&username=${response['username']}`;
+                window.location.href = `/game?roomCode=${response['roomCode']}&username=${response['username']}`;
 
             }
         })
@@ -289,7 +289,7 @@
             else
             {
                 localStorage.setItem('sessionToken',response['sessionToken'])
-                window.location.href = `${serverAddress}/game?roomCode=${response['roomCode']}&username=${response['username']}`
+                window.location.href = `/game?roomCode=${response['roomCode']}&username=${response['username']}`
             }
             
         })
@@ -354,7 +354,7 @@
             let roomReg = /^[A-Za-z0-9]{8}$/g
             const usernameReg = /^[A-Za-zčČćĆžŽšŠđĐ ]{4,30}$/g
             if(roomReg.test(room) && usernameReg.test(username)){   
-                window.location.href = `${serverAddress}/game?roomCode=${room}&username=${username}`;
+                window.location.href = `/game?roomCode=${room}&username=${username}`;
             }else{
                 if(!roomReg.test(room) && !usernameReg(username)){
                     //mylaertuj za o
