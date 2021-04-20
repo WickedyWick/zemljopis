@@ -2,6 +2,15 @@
 
 Nacionalna geografija / zemljopis web aplikacija
 
+#DOZVOLE
+    Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lokalno igranje za maksimalno 2 igrača).
+    
+## PLANOVI
+- Projekat je planiran da bude hostovan i potpuno besplatan za sve korisnike , projekat će sadrzati reklame (jedan baner na strani koji ne ometa rad igre, GOOGLE AD SENSE).
+- Najverovatnije će biti opcija da škole dobiju ili kupe(možda jos nisam siguran kako će sve ići ali neće biti više od 25 evra po školi godišnje) specijalnu dozvolu gde mogu da menjaju kod -po njihovim potrebama i hostuju lokalno.
+- Cilj je da se barem isplati cena hostovanja i domena.
+- Sve navedeno je moguće da se promeni.
+
 ## STATE
     In development
 
