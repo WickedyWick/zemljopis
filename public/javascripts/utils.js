@@ -462,7 +462,9 @@ function evaluation(room,localData,io){
                                 pointsDict[names[otherDictKeys[i]]] = ids[otherDictKeys[i]]
                             }
                             //console.log(ids);
-                            io.to(room).emit("totalPoints",pointsDict)
+                            io.to(room).emit("playerList",{'players':pointsDict,
+                                        "MODE" : "UPDATE"
+                                    })
                             if(sql != "")
                                 connection.query(sql,(err,results,fields)=>{
                                     //Ne moram da cekam da se ovo zavrsi da bih poslao rezultate , ako ovde ima problem posaljem page refresh req tako da ce se refresovati stranica sama i poeni ce ostati kako treba

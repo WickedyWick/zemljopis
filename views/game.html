@@ -262,7 +262,7 @@
         let points = 0;
         let currentLetter = ''
         let dataReg = new RegExp()
-        let pList = [];
+        let pList = {}
         const fields = ['Drzava','Grad','Ime','Biljka','Zivotinja','Planina','Reka','Predmet']
         const kDict = {'Drzava':'d','Grad':'g','Ime':'i','Biljka':'b','Zivotinja':'z','Planina':'p','Reka':'r','Predmet':'pr'}
         const sessionReg = /^[A-Za-z0-9/+]{48}$/g
@@ -273,11 +273,11 @@
         serverAddress = serverAdress()
         const socket = io(serverAddress);
         socket.on('message', message =>{
-            console.log(message)
+           
         })
         
         socket.on('joinMessage', message =>{
-            console.log(message)
+            
         })
         function disableAllPButtons(){
           $("#predloziBtnDrzava").prop("disabled", true )
@@ -344,12 +344,12 @@
         }
         socket.on('load', message =>{
           if(message['Success']){
-            console.log(message)
+           
             $('#maxDiv').show()
             disableAllPButtons()
             sessionToken = localStorage.getItem('sessionToken')
             document.getElementById('localPlayer').textContent += username
-            pList.push(username)
+            
             document.getElementById('lblRoomCode').textContent += String(roomCode)
             document.getElementById('lblPlayersReady').textContent = message['playersReady']
             document.getElementById('lblPlayerCount').textContent = message['playerCount']
@@ -357,7 +357,8 @@
             document.getElementById('roundNumber').textContent = roundNumber
             points = message['points']
             document.getElementById('poeni').textContent = String(message['points'])
-            console.log(message['roundActive'])
+            pList[username] = points
+            
             new Noty({
                   theme : 'metroui',
                   type : 'success',
@@ -435,7 +436,7 @@
               }).show()
         })
         socket.on('gameStartNotification', message => {
-          console.log(message)
+         
           if(message['Success'] == true){
             if(sessionToken == localStorage.getItem('sessionToken'))
             {
@@ -505,18 +506,33 @@
           
         })
         socket.on('playerList',message=>{
-          
-          for(let i =0;i<message['players'].length;i++){
-            if(!pList.includes(message['players'][i]))
-            {
-              pList.push(message['players'][i])
-              $("ul").append(`<li id="${message['players']}">${message['players'][i]}</li>`);
+          //ovde treba da se reqestaju poeni takodje..
+          console.log(message)
+          if(message["MODE"]== "START"){
+            let keys = Object.keys(message['players'])
+            for(let i =0;i<keys.length;i++){
+              if(!(keys[i] in pList))
+              {
+                pList[keys[i]] = message['players'][keys[i]]               
+                $("ul").append(`<li id="${keys[i]}">${keys[i]} | ${message['players'][keys[i]]}</li>`);
+              }
+            }
+          }else if(message["MODE"] == "UPDATE"){
+            let keys = Object.keys(message['players'])
+            console.log(keys)
+            for(let i =0;i<keys.length;i++){
+              
+              try{
+                txt =document.getElementById(String(keys[i])).innerText
+                liP = Number(txt.split('|')[1].trim())
+                document.getElementById(keys[i]).textContent = String(liP +=message['players'][keys[i]])
+              }catch(TypeError){
+                
+              }
             }
           }
         })
-        socket.on('totalPoints',message=>{
-          console.log(message)
-        })
+       
         
         socket.on('playerReadyResponse' , message =>{
           
@@ -586,7 +602,7 @@
         })
 
         socket.on('points' , message =>{
-          console.log(message)
+          
           readyBtn.disabled = false;
           if(!message['Success'])
           {
@@ -611,7 +627,7 @@
                 timeout : 5000,
                 progressBar :true
               }).show()
-              console.log(message['result'])
+              
               
               for(let i=0;i<fields.length;i++){
                
@@ -633,7 +649,7 @@
                   document.getElementById(`input${fields[i]}`).value += '  + 0'
                 }
               }
-              console.log(points)
+              
               document.getElementById('poeni').textContent = String(points)
           }
           roundNumber = message['roundNumber']
@@ -670,7 +686,7 @@
               timeout : 5000,
               progressBar :true
             }).show()
-            console.log(message)
+            
            //enableAllInputFields()
             
            
@@ -729,7 +745,7 @@
               socket.emit('playerUnReady',roomCode)
               
               //readyBtn.setAttribute("disabled","disabled")
-              console.log(readyBtn)
+              
               readyBtn.disabled = true;
               ready = false
               //setTimeout(readyBtn.removeAttribute("disabled"),2000)
@@ -754,7 +770,7 @@
             }
             if(allValid){
               readyBtn.disabled = true;     
-              console.log('dataSent')         
+                   
               socket.emit('clientEndRound',({username,roomCode,data,roundNumber}))
               //clearAllInputFields()
               disableAllInputFields()
@@ -792,7 +808,7 @@ G              progressBar :true
               //dodaj ovde regex check
                 //TODO da se proveri u bazi da li postoji room i ovaj username i ako postoji neka se samo joinuje u socketu
                 //console.log("TEST")
-                console.log("Success")
+                
                 const sessionToken = localStorage.getItem('sessionToken') //REGEXUJ SESSION TOKEN
                 if(sessionReg.test(sessionToken))
                   socket.emit('joinRoomReq',({username,roomCode,sessionToken}))
@@ -826,10 +842,10 @@ G              progressBar :true
         function predlozi(field){
           
           let val = $(`#input${field}`).val().toLowerCase().split('+')[0].trim()
-          console.log(val)
+          
           if(dataReg.test(val)){
             let k = kDict[field]
-            console.log(k)
+           
             
             socket.emit("predlagac",({val,currentLetter,k}));                      
             new Noty({
