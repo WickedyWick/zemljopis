@@ -505,6 +505,16 @@
           }
           
         })
+        socket.on('playerLeft',message=>{
+          new Noty({
+            theme : 'metroui',
+                  type : 'info',
+                  layout : 'topRight',
+                  text : message,
+                  timeout : 4000,
+                  progressBar :true
+          }).show()
+        })
         socket.on('playerList',message=>{
           //ovde treba da se reqestaju poeni takodje..
           console.log(message)
@@ -527,7 +537,7 @@
                 liP = Number(txt.split('|')[1].trim())
                 document.getElementById(keys[i]).textContent = String(liP +=message['players'][keys[i]])
               }catch(TypeError){
-                
+
               }
             }
           }

@@ -260,6 +260,13 @@ function joinRoom(socket,room,username,sessionToken,localData,io){
                         else{
                             if(result[1][0]['sessionToken'] === sessionToken){
                                 socket.join(room)
+                                try{
+                                sockets[socket.id]['username'] = username
+                                sockets[socket.id]['room'] = room
+                                }catch(err){
+                                    console.log(`Error while inserting username and room into sockets\nErr : ${err}`)
+                                }
+                                //console.log(sockets)
                                 if(result[2][0]['ukupnoBodova'] === null)
                                     socket.emit('load',{'Success' : true,
                                     "MSG" : `Uspešan ulazak u sobu : ${room}`,

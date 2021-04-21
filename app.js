@@ -20,10 +20,12 @@ localData = {}
 // popuni sve to kad se soba kreira
 // playeReady na clientov zahtev za dugme +-  pa onda pC == pR pa pocni
 katDict = {'d':0,'g':1,'i':2,'b':3,'z':4,'p':5,'r':6,'pr':7}
+sockets = {}
 app.use('/public', express.static('public'));
 // Run when client connects
 io.on('connection', socket => {
     console.log('New WS Connection ...')
+    sockets[String(socket.id)] = {}
     
     socket.on('test',test=>{
         console.log(test);
@@ -34,34 +36,42 @@ io.on('connection', socket => {
         
         //socket.join(room)
         joinRoomSQL(socket,room,username,localData)
+        
         //vuci iz baze sada sve
     })
     socket.on('joinRoomSQLM',(obj)=>{
         joinRoomSQL(socket,obj['room'],obj['username'],localData);
+        
     })
     socket.on('createRoom',({username,playerCount,roundTimeLimit}) =>{
         
         createRoom(socket,username,playerCount,roundTimeLimit,localData)
+        
     })
     socket.on('createRoomM', (obj)=>{
         createRoom(socket,obj['username'],obj['playerCount'],obj['roundTimeLimit'],localData)
         
+        
     })
     socket.on('joinRoomReq',({username,roomCode,sessionToken}) =>{
-        console.log(localData)
+        
         joinRoom(socket,roomCode,username,sessionToken,localData,io)
+        
     })
     socket.on('joinRoomReqM',(obj) =>{
         joinRoom(socket,obj["roomCode"],obj["username"],obj["sessionToken"],localData,io)
+        
     })
     socket.on('predlagacM',(obj)=>{
-        console.log(obj)
+        
         predlagac(obj["predlog"],obj["slovo"],obj["kategorija"])
+        
     })
     socket.on('predlagac',({val,currentLetter,k})=>{
         try{
             
             predlagac(val,currentLetter,katDict[k])
+
         }catch{
             console.log("error with predlagac")
         }
@@ -76,16 +86,14 @@ io.on('connection', socket => {
     //io.emit() SVI korisnici
 
     //Runs when clients disconnects
-    socket.on('disconnectMSG',({username,roomCode}) =>{
-        socket.to(roomCode).broadcast.emit('discMessage', `${username} has just left the room!`)
-        playerUnReady(roomCode,localData,socket,io)
-    })
+    
     socket.on('playerUnReady',roomCode =>{
-        playerUnReady(roomCode,localData,socket,io)
+        playerUnReady(roomCode,localData,socket,io,"BTN",sockets)
     })
     socket.on('playerReady',roomCode =>{
         
-        playerReady(roomCode,localData,socket,io)
+        playerReady(roomCode,localData,socket,io,sockets)
+        
     })
     socket.on('clientEndRound',({username,roomCode,data,roundNumber}) =>{
         clearTimeout(localData[roomCode]['intervalObj'])
@@ -125,7 +133,23 @@ io.on('connection', socket => {
     })
     socket.on('disconnect',() => {
         //socket.leave()
-        console.log("Discconect");
+        try{
+            
+            //console.log(sockets)
+            
+            
+            io.to(sockets[socket.id]['room']).emit("playerLeft",`${sockets[socket.id]['username']} je izašao iz sobe`)  
+            socket.leave(sockets[socket.id]['room'])            
+            if(sockets[socket.id]['ready'])  
+                playerUnReady(sockets[socket.id]['room'],localData,socket,io,"DISC",sockets)                
+            else                 
+                delete sockets[socket.id]
+
+                
+            
+        }catch(err){
+            console.log(`Error during dissconnecting\nErr : ${err}`)
+        }
         //make this work 
         //io.emit('message','A user has left the chat')
         
@@ -149,9 +173,10 @@ app.get('/game', (req,res) => {
     res.sendFile('./views/game.html', {root : __dirname})
     
 })
+/*
 app.get('/mock' , (req,res)=>{
     res.sendFile('./views/mock.html',{root : __dirname})
-})
+})*/
 //use i middleware funkcije
 //use ce se aktivarati za svaki req kaserveru ali samo akododje do koda,znaci ako nijedno od gore nije aktivarana
 // posto use func ne zna da mi saljemo specificno 404 error page moramo da stavimo i status kod

@@ -2,7 +2,7 @@ const perf = require('perf_hooks')
 const e = require('express')
 var pool = require('./trueMysql.js')
 const { strict } = require('assert')
-function playerReady(room,localData,socket,io){
+function playerReady(room,localData,socket,io,sockets){
     //console.log("PLAYERS REAADY : " + localData[room]['playersReady'])
     //console.log("PLAYER COUNT : " + localData[room]['playerCount'])
     if(localData[room]['playersReady'] < localData[room]['playerCount'])
@@ -10,7 +10,11 @@ function playerReady(room,localData,socket,io){
            
         //send to everyone after 
         io.to(room).emit('playerCountUpdate',localData[room]['playersReady'] += 1)
-        
+        try{
+            sockets[socket.id]['ready'] = true
+        }catch(err){
+            console.log(`Error while readying the socket\nErr : ${err}`)   
+        }
         
         //socket.to(room).broadcast.emit('test',temp)
         if(localData[room]['playersReady'] == localData[room]['playerCount']){
@@ -120,16 +124,25 @@ function chooseLetter(room,localData){
     })
 }
 
-function playerUnReady(room,localData,socket,io){
+function playerUnReady(room,localData,socket,io,mode,sockets){
     if(localData[room]['playersReady'] > 0 && localData[room]['playersReady'] <= localData[room]['playerCount']){
         //KADA PLAYER UNREADUJE - DISCONECTUJE neka dobije neki status code da mora da ceka drugu rundu!
+       
         io.to(room).emit('playerCountUpdate',localData[room]['playersReady'] -= 1)
-        
-        socket.emit('playerReadyResponse',{'Success' : true,
-                "MSG" : "Uspeh!" ,
-                "STATE" : "Nisi spreman",
-                "CODE" : 1
-        })
+        try{
+            sockets[socket.id]['ready'] = false
+        }catch(err){
+            console.log(`Error while unreadying the socket\nErr : ${err}`)   
+        }
+        if(mode == "BTN")
+            socket.emit('playerReadyResponse',{'Success' : true,
+                    "MSG" : "Uspeh!" ,
+                    "STATE" : "Nisi spreman",
+                    "CODE" : 1
+            })
+        else if(mode == "DISC")
+            delete sockets[socket.id]
+       
     }
     else
     {
