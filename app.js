@@ -6,7 +6,7 @@ const {createRoom,joinRoomSQL,joinRoom} = require('./public/javascripts/mysql.js
 //kreatuje server
 const server = app.listen(3000)
 const io = socketio(server)
-const {playerReady, playerUnReady,timeout,dataCollector,evaluation,predlagac}  = require('./public/javascripts/utils.js')
+const {playerReady, playerUnReady,timeout,dataCollector,evaluation,predlagac,startVoteKick,voteKickCounter}  = require('./public/javascripts/utils.js')
 var path = require('path')
 //TODO 
 // Manipualte localData propertly
@@ -106,6 +106,12 @@ io.on('connection', socket => {
         'CODE' : 2
         })
         
+    })
+    socket.on('voteKickStart',({usernameM,roomCode})=>{
+        startVoteKick(roomCode,usernameM,localData,socket,io)
+    })
+    socket.on('voteKickCounter',({username,roomCode,mode})=>{
+        voteKickCounter(roomCode,username,mode,localData,socket,io)
     })
     socket.on("clientEndRoundM",obj =>{
         console.log(obj)

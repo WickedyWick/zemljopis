@@ -110,8 +110,8 @@ function joinRoomSQL(socket,room,username,localData){
         }   
     else{
         socket.emit('joinRoomSQLResponse',{'Success':false,
-            "ERR_MSG" : "Soba ne postoji ili vise nije aktivna!"
-        })
+                "ERR_MSG" : "Soba više ne postoji , kreirajte novu !"
+            })
     }
 }
 
@@ -138,7 +138,7 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData){
             
         })
     */
-  
+        
             createRoomCode().then((response) =>{
                 pool.getConnection((err,connection) => {
                     if (err) 
@@ -188,6 +188,7 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData){
                                     'intervalObj' : null,
                                     'availableLetters':["a","b","c","č","ć","d","dž","đ","e","f","g","h","i","j","k","l","lj","m","n","nj","o","p","r","s","š","t","u","v","z","ž"],
                                     'currentLetter': '',
+                                    'evalFuncExecuting' : false,
                                     'data': {}
                                     
                                 }
@@ -218,110 +219,118 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData){
 }
 
 function joinRoom(socket,room,username,sessionToken,localData,io){
-
-    pool.getConnection((err,connection) =>{
-        if(err){
-            console.log(`ERROR CONNECTING TO THE DATABASE : Code ${err.code}\mMSG : ${err.sqlMessage}`)
-            socket.emit('load',{'Success' : false,
-                "ERR_MSG" : "Problem prilikom ulaska u sobu!"
-            })
-        }else{
-            //proveri da li postoji username
-            console.log(username);
-            console.log(room)
-            //select username, SUM(bodovi) from player join data on player.playerID = data.playerID where roomCode = "MQul2FvC" GROUP by username #ukupni bodovi za sve korisniike u sobi
-            //select SUM(bodovi) from player join data on player.playerID = data.playerID where username = "Aleasjk" and roomCode = "MQul2FvC" #ukupni bodovi za specificnog usera
-            //daje null ili 0 (null ako nije odigrana ni jedna runda)
-            //********* */testiraj ovde da li je brze querivati ostale querije npr if(kicked ==0) pa opet queri if(sessiontoken===) pa opet queri za ostale***************
-            connection.query(`select username , kicked from player where roomCode = '${room}' and username = '${username}';select sessionToken from player where roomCode = '${room}' and username = '${username}';select SUM(bodovi) as ukupnoBodova from data join player on data.playerID = player.playerID where roomCode = '${room}' and username = '${username}';select username, SUM(bodovi) as ukupnoBodova from player join data on player.playerID = data.playerID where username != "${username}" and roomCode = "${room}" and kicked =0 group by username`,(err,result,fields)=>{
-                if(err){
-                    console.log(`ERROR SELECTING USERNAME FROM PLAYER : Code ${err.code}\nMSG : ${err.sqlMessage}`)
-                    socket.emit('load',{'Success' : false,
-                        "ERR_MSG" : "Problem prilikom ulaska u sobu!"
-                    })
-                }
-                else{
-                    
-                    if(result[0].length == 0 ){
-                        socket.emit('load',{'Success':false,
-                            "ERR_MSG" : "Korisnicko ime u sobi ne postoji!"
-                        })
-                    }else if(result[1].length == 0){
-                        socket.emit('load',{'Success':false,
-                            "ERR_MSG" : "Token sesije ne postoji , nije se moguće vratiti u sobu!"
+    if(room in localData){
+        pool.getConnection((err,connection) =>{
+            if(err){
+                console.log(`ERROR CONNECTING TO THE DATABASE : Code ${err.code}\mMSG : ${err.sqlMessage}`)
+                socket.emit('load',{'Success' : false,
+                    "ERR_MSG" : "Problem prilikom ulaska u sobu!"
+                })
+            }else{
+                //proveri da li postoji username
+                console.log(username);
+                console.log(room)
+                //select username, SUM(bodovi) from player join data on player.playerID = data.playerID where roomCode = "MQul2FvC" GROUP by username #ukupni bodovi za sve korisniike u sobi
+                //select SUM(bodovi) from player join data on player.playerID = data.playerID where username = "Aleasjk" and roomCode = "MQul2FvC" #ukupni bodovi za specificnog usera
+                //daje null ili 0 (null ako nije odigrana ni jedna runda)
+                //********* */testiraj ovde da li je brze querivati ostale querije npr if(kicked ==0) pa opet queri if(sessiontoken===) pa opet queri za ostale***************
+                connection.query(`select username , kicked from player where roomCode = '${room}' and username = '${username}';select sessionToken from player where roomCode = '${room}' and username = '${username}';select SUM(bodovi) as ukupnoBodova from data join player on data.playerID = player.playerID where roomCode = '${room}' and username = '${username}';select username, SUM(bodovi) as ukupnoBodova from player join data on player.playerID = data.playerID where username != "${username}" and roomCode = "${room}" and kicked = 0 group by username`,(err,result,fields)=>{
+                    if(err){
+                        console.log(`ERROR SELECTING USERNAME FROM PLAYER : Code ${err.code}\nMSG : ${err.sqlMessage}`)
+                        socket.emit('load',{'Success' : false,
+                            "ERR_MSG" : "Problem prilikom ulaska u sobu!"
                         })
                     }
                     else{
-                        
-                        if(result[0][0]['kicked'] == 1)
+                        //console.log(result)
+                        if(result[0].length == 0 ){
                             socket.emit('load',{'Success':false,
-                                "ERR_MSG" : "Izbačeni ste , nije moguće vratiti se u sobu."
+                                "ERR_MSG" : "Korisnicko ime u sobi ne postoji!"
                             })
+                        }else if(result[1].length == 0){
+                            socket.emit('load',{'Success':false,
+                                "ERR_MSG" : "Token sesije ne postoji , nije se moguće vratiti u sobu!"
+                            })
+                        }
                         else{
-                            if(result[1][0]['sessionToken'] === sessionToken){
-                                socket.join(room)
-                                try{
-                                sockets[socket.id]['username'] = username
-                                sockets[socket.id]['room'] = room
-                                }catch(err){
-                                    console.log(`Error while inserting username and room into sockets\nErr : ${err}`)
-                                }
-                                //console.log(sockets)
-                                if(result[2][0]['ukupnoBodova'] === null)
-                                    socket.emit('load',{'Success' : true,
-                                    "MSG" : `Uspešan ulazak u sobu : ${room}`,
-                                    "playerCount" : localData[room]['playerCount'],
-                                    "playersReady" : localData[room]['playersReady'],
-                                    "roundActive" : localData[room]['roundActive'],
-                                    "roundNumber" : localData[room]['roundNumber'],
-                                    "points" : 0,
-                                    
+                            
+                            if(result[0][0]['kicked'] == 1)
+                                socket.emit('load',{'Success':false,
+                                    "ERR_MSG" : "Izbačeni ste , nije moguće vratiti se u sobu."
                                 })
-                                else
-                                    socket.emit('load',{'Success' : true,
+                            else{
+                                if(result[1][0]['sessionToken'] === sessionToken){
+                                    socket.join(room)
+                                    try{
+                                    sockets[socket.id]['username'] = username
+                                    sockets[socket.id]['room'] = room
+                                    }catch(err){
+                                        console.log(`Error while inserting username and room into sockets\nErr : ${err}`)
+                                    }
+                                    //console.log(sockets)
+                                    if(result[2][0]['ukupnoBodova'] === null)
+                                        socket.emit('load',{'Success' : true,
                                         "MSG" : `Uspešan ulazak u sobu : ${room}`,
                                         "playerCount" : localData[room]['playerCount'],
                                         "playersReady" : localData[room]['playersReady'],
                                         "roundActive" : localData[room]['roundActive'],
                                         "roundNumber" : localData[room]['roundNumber'],
-                                        "points" : result[2][0]['ukupnoBodova'],                                   
+                                        "points" : 0,
+                                        
                                     })
-                                console.log('ROOM : ' + room)
-                                //pretvorvi ovo u dict sa for loopopm
-                                playerPointDict = {}
-                                players = Object.keys(localData[room]['players'])
-                                
-                                //ne treba provera da li vec postoji u dictionary jer su usernamovi po sobi unique
-                                    // mora dva fora prvi za one usere koji su odigrali rundu, drugi za one koji nisu jer im baza daje rezultat null , 
-                                // *******mozda moze brze ako proverim broj rundi , ali u slucaju da korisnik nije prisutan u sobi prilikom pocetka evaluacije njegov data se nece kreirati za tu rundu ****
-                                // ->ako hocu da se kreira onda moram tamo for (isto mi dodje mislim)
-                                for(let i=0;i<result[3].length;i++){
-                                    let usr = result[3][i]['username']
-                                    if(usr != null || user != "null")
-                                        playerPointDict[usr] = result[3][i]['ukupnoBodova']
+                                    else
+                                        socket.emit('load',{'Success' : true,
+                                            "MSG" : `Uspešan ulazak u sobu : ${room}`,
+                                            "playerCount" : localData[room]['playerCount'],
+                                            "playersReady" : localData[room]['playersReady'],
+                                            "roundActive" : localData[room]['roundActive'],
+                                            "roundNumber" : localData[room]['roundNumber'],
+                                            "points" : result[2][0]['ukupnoBodova'],                                   
+                                        })
+                                    console.log('ROOM : ' + room)
+                                    //pretvorvi ovo u dict sa for loopopm
+                                    playerPointDict = {}
+                                    players = Object.keys(localData[room]['players'])
+                                    
+                                    //ne treba provera da li vec postoji u dictionary jer su usernamovi po sobi unique
+                                        // mora dva fora prvi za one usere koji su odigrali rundu, drugi za one koji nisu jer im baza daje rezultat null , 
+                                    // *******mozda moze brze ako proverim broj rundi , ali u slucaju da korisnik nije prisutan u sobi prilikom pocetka evaluacije njegov data se nece kreirati za tu rundu ****
+                                    // ->ako hocu da se kreira onda moram tamo for (isto mi dodje mislim)
+                                    for(let i=0;i<result[3].length;i++){
+                                        let usr = result[3][i]['username']
+                                        if(usr != null || user != "null")
+                                            playerPointDict[usr] = result[3][i]['ukupnoBodova']
+                                    }
+                                    console.log(localData[room])
+                                    for(let i=0;i<players.length;i++){
+                                        if(!(players[i] in playerPointDict))
+                                            playerPointDict[players[i]] = 0
+                                    }
+                                    socket.to(room).broadcast.emit('playerJoinMsg',`${username} just joined the room!`)
+                                    //MODE START ILI UPDATE (= ili += na klijentu)
+                                    io.to(room).emit('playerList',{'players' :playerPointDict,
+                                        "MODE" : "START"
+                                    })
+                                    if('kickVote' in localData[room])
+                                        socket.emit('startVoteKickResponse',{"Success" : true,
+                                        "MSG": `U toku je glasanje za izbacivanje igrača : ${username}`,                
+                                        "username" : username})
+                                }else{
+                                    socket.emit('load',{'Success':false,
+                                        'ERR_MSG' : 'Nije moguce vratiti se u sobu nakon ulaska u drugu sobu!'
+                                    })
                                 }
-                                for(let i=0;i<players.length;i++){
-                                    if(!(players[i] in playerPointDict))
-                                        playerPointDict[players[i]] = 0
-                                }
-                                socket.to(room).broadcast.emit('playerJoinMsg',`${username} just joined the room!`)
-                                //MODE START ILI UPDATE (= ili += na klijentu)
-                                io.to(room).emit('playerList',{'players' :playerPointDict,
-                                    "MODE" : "START"
-                                })
-                            }else{
-                                socket.emit('load',{'Success':false,
-                                    'ERR_MSG' : 'Nije moguce vratiti se u sobu nakon ulaska u drugu sobu!'
-                                })
                             }
+                            
                         }
-                        
                     }
-                }
-            })
-        }
-        connection.release()
-    })
+                })
+            }
+            connection.release()
+        })
+    }else
+    socket.emit("roomNotExist","Soba više ne postoji , kreirajte novu!");
+    
 }
 
 function createRoomCode() {

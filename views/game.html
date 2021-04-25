@@ -14,6 +14,15 @@
         overflow-x: hidden;
       }
       @media only screen and (max-width: 1099.9px) {
+        span:hover{
+              border-style:solid;
+              border-width:1px;
+              border-color: black;
+              text-decoration: none;
+              border-radius : 25%;
+              cursor: pointer;
+            }
+        
         .myFlexContainer{
                 display:flex;
                 flex-direction: column;             
@@ -38,6 +47,14 @@
     }
 
     @media only screen and (min-width: 1100.0px) {
+            span:hover{
+              border-style:solid;
+              border-width:1px;
+              border-color: black;
+              text-decoration: none;
+              border-radius : 25%;
+              cursor: pointer;
+            }
             .myFlexContainer{
                 display:flex;
                              
@@ -96,16 +113,15 @@
         }
     </style>
     <body>
-        <nav class="navbar navbar-dark bg-dark">
+        <nav class="navbar navbar-dark bg-dark" style="position:sticky">
                 <a class="navbar-brand" href="/">Home</a>
                 
         </nav>
-            <div class="alert alert-danger" id="danger-alert" >
-                    <a href="#" class="close" data-dismiss="alert">&times;</a>
-                    <strong>Success!</strong> Your message has been sent successfully.
-                </div>
+            <div class="alert alert-danger" id="vote-alert" >
+              <!--<strong>Success!</strong> Your message has been sent successfully-->
+              </div>
         <script>
-            $("#danger-alert").hide();
+            $("#vote-alert").hide();
         </script>
         <!-- skontaj kako ces layout da namestis
         <table id="table" class="table table-bordered table-dark" >
@@ -263,6 +279,7 @@
         let currentLetter = ''
         let dataReg = new RegExp()
         let pList = {}
+        let kicked = false
         const fields = ['Drzava','Grad','Ime','Biljka','Zivotinja','Planina','Reka','Predmet']
         const kDict = {'Drzava':'d','Grad':'g','Ime':'i','Biljka':'b','Zivotinja':'z','Planina':'p','Reka':'r','Predmet':'pr'}
         const sessionReg = /^[A-Za-z0-9/+]{48}$/g
@@ -342,9 +359,108 @@
           $("#inputZivotinja").prop("disabled", false )
 
         }
+        function myAlert(test){
+            $("#vote-alert").show()
+            $("#vote-alert").html(`<a href="#" class="close" data-dismiss="alert" >&times;</a><label class="vLabel">Glasanje da se izbaci igrač : ${test}</label> <button class="btn myVBtn" id="forVoteKick" onclick="voteFor()">Za</button><button class="btn myVBtn" id="againstVoteKick" onclick="voteAgainst()">Protiv</button> `)
+           
+            $("#vote-alert").fadeTo(7000)
+              //$("#vote-alert").slideUp(500)
+            
+            
+        }
+        function voteFor(){
+          mode = "FOR"
+          socket.emit("voteKickCounter",({username,roomCode,mode}))
+          $("#vote-alert").html("")
+          $("#vote-alert").slideUp(500)
+          $("#vote-alert").hide()
+          
+        }
+        function voteAgainst(){
+          mode = "AGAINST"
+          socket.emit("voteKickCounter",({username,roomCode,mode}))
+          $("#vote-alert").html("")
+          $("#vote-alert").slideUp(500)
+          $("#vote-alert").hide()
+        }
+        socket.on('kickResult',message=>{
+          if(message['Success']){
+            if(message['username'] == username){
+              kicked = true;
+              if(ready)
+                socket.emit('playerUnReady',roomCode)
+              
+              $("#vote-alert").html("")
+              $("#vote-alert").hide()
+              
+              $("#maxDiv").hide()
+              new Noty({
+                  theme : 'metroui',
+                  type : 'error',
+                  layout : 'topRight',
+                  text : message['SPEC_MSG'],
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+                setTimeout(()=>{
+                  window.location.href = "/"
+              },5000)
+            }else{
+              $("#vote-alert").html("")
+              $("#vote-alert").hide()
+              document.getElementById('lblPlayerCount').textContent = String(Number(document.getElementById('lblPlayerCount').textContent) -1)
+              node = document.getElementById(`${message['username']}`)
+              node.parentNode.removeChild(node);
+              new Noty({
+                  theme : 'metroui',
+                  type : 'success',
+                  layout : 'topRight',
+                  text : message['MSG'],
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+                
+            }
+          }else{
+            $("#vote-alert").html("")
+            $("#vote-alert").hide()
+            new Noty({
+                  theme : 'metroui',
+                  type : 'info',
+                  layout : 'topRight',
+                  text : message['ERR_MSG'],
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+          }
+        })
+        socket.on('voteKickCounterResponse',message=>{
+          if(message['Success'])
+          new Noty({
+                  theme : 'metroui',
+                  type : 'success',
+                  layout : 'topRight',
+                  text : message['MSG'],
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+          else
+          new Noty({
+                  theme : 'metroui',
+                  type : 'error',
+                  layout : 'topRight',
+                  text : message['ERR_MSG'],
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+        })
+        /*ovo mora u u startVote eventu ili dodaj funckicju 
+        document.getElementById('forVoteKick').addEventListener('click',(e)=>{
+          
+        })*/
         socket.on('load', message =>{
           if(message['Success']){
-           
+            
             $('#maxDiv').show()
             disableAllPButtons()
             sessionToken = localStorage.getItem('sessionToken')
@@ -380,6 +496,7 @@
                 }).show()
             }
           }else{
+            $('#maxDiv').hide()
             new Noty({  
                   theme : 'metroui',
                   type : 'warning',
@@ -391,7 +508,17 @@
           }
 
         })  
-
+        socket.on("roomNotExist",message =>{
+          new Noty({  
+                  theme : 'metroui',
+                  type : 'warning',
+                  layout : 'topRight',
+                  text : message['ERR_MSG'],
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+          $("#maxDiv").hide()
+        })
         socket.on('playerCountUpdate', message =>{
          
           document.getElementById('lblPlayersReady').textContent = message
@@ -448,6 +575,7 @@
                   timeout : 5000,
                   progressBar :true
                 }).show()
+                document.getElementById('lblPlayersReady').textContent = 0
                 hideAllHelp()
                 disableAllPButtons()
                 currentLetter = message['currentLetter']
@@ -479,6 +607,7 @@
               },1000)
               readyBtn.innerText = "Gotovo";
               gameStarted = true;
+              ready =false;
               enableAllInputFields()
               clearAllInputFields()
             }
@@ -506,14 +635,15 @@
           
         })
         socket.on('playerLeft',message=>{
-          new Noty({
-            theme : 'metroui',
-                  type : 'info',
-                  layout : 'topRight',
-                  text : message,
-                  timeout : 4000,
-                  progressBar :true
-          }).show()
+          if(message != username)
+            new Noty({
+              theme : 'metroui',
+                    type : 'info',
+                    layout : 'topRight',
+                    text : message,
+                    timeout : 4000,
+                    progressBar :true
+            }).show()
         })
         socket.on('playerList',message=>{
           //ovde treba da se reqestaju poeni takodje..
@@ -524,7 +654,7 @@
               if(!(keys[i] in pList))
               {
                 pList[keys[i]] = message['players'][keys[i]]               
-                $("ul").append(`<li id="${keys[i]}">${keys[i]} | ${message['players'][keys[i]]}</li>`);
+                $("ul").append(`<li id="${keys[i]}">${keys[i]} | <label id="${keys[i]}Points">${message['players'][keys[i]]}</label> <span onclick="voteKick(\'${keys[i]}\')" class="mySpan">&#10006;</span></li>`);
               }
             }
           }else if(message["MODE"] == "UPDATE"){
@@ -533,17 +663,49 @@
             for(let i =0;i<keys.length;i++){
               
               try{
-                txt =document.getElementById(String(keys[i])).innerText
-                liP = Number(txt.split('|')[1].trim())
-                document.getElementById(keys[i]).textContent = String(liP +=message['players'][keys[i]])
+                //txt =document.getElementById(String(keys[i])).innerText
+                //liP = Number(txt.split('|')[1].trim().split(' ')[0]) + Number(message['players'][keys[i]])
+                document.getElementById(keys[i]+'Points').textContent = Number(document.getElementById(keys[i]+'Points').textContent) + Number(message['players'][keys[i]])
+
               }catch(TypeError){
 
               }
             }
           }
         })
-       
-        
+        function voteKick(usernameM){
+          socket.emit('voteKickStart',({usernameM,roomCode}))
+          //na result eventu enabluj
+          //ovo ne radi KEK
+          $(".mySpan").each((i,obj)=>{           
+            $(obj).prop('disabled',true)
+          })
+        }
+        socket.on('startVoteKickResponse',message=>{
+          if(message['Success']){
+            myAlert(message['username'])
+
+            new Noty({
+                theme : 'metroui',
+                type : 'info',
+                layout : 'topRight',
+                text : message['MSG'],
+                timeout : 3000,
+                progressBar :true
+              }).show()
+          }
+          else
+          {
+            new Noty({
+                theme : 'metroui',
+                type : 'info',
+                layout : 'topRight',
+                text : message['ERR_MSG'],
+                timeout : 5000,
+                progressBar :true
+              }).show()
+          }
+        })
         socket.on('playerReadyResponse' , message =>{
           
           if(message['Success'] == false){
@@ -682,56 +844,54 @@
             
         })
         socket.on('roundEnd',message =>{
-          t0 = performance.now()
-          //$(`#help${field}`).show() 
-          hideAllHelp()
-          readyBtn.disabled = true;
-          if(message['Success']){
-            //SEND ALL DATA TO SERVER FOR REVALUETION
-            new Noty({
-              theme : 'metroui',
-              type : 'success',
-              layout : 'topRight',
-              text : message['MSG'],
-              timeout : 5000,
-              progressBar :true
-            }).show()
+         
+            t0 = performance.now()
+            //$(`#help${field}`).show() 
+            hideAllHelp()
+            readyBtn.disabled = true;
+            if(message['Success']){
+              //SEND ALL DATA TO SERVER FOR REVALUETION
+              new Noty({
+                theme : 'metroui',
+                type : 'success',
+                layout : 'topRight',
+                text : message['MSG'],
+                timeout : 5000,
+                progressBar :true
+              }).show()
+              
+            //enableAllInputFields()
+              
             
-           //enableAllInputFields()
+              var allValid = true
+              var data = []
             
-           
-            var allValid = true
-            var data = []
-           
-                
-            for(let i=0;i<fields.length;i++){
-              if(!dataReg.test($(`#input${fields[i]}`).val().toLowerCase())){
-                data.push('')               
-              }else{
-                data.push($(`#input${fields[i]}`).val().toLowerCase())
-                //document.getElementById(`predloziBtn${fields[i]}`).disabled =  false;
-              }              
-              dataReg.lastIndex =0;       
-            }           
-              socket.emit('roundData',({username,roomCode,data,roundNumber}))
-              //ili vidi da se ovo radi kada se dobije confirmacija da su podaci obradjeni!!!
-            //clearAllInputFields()
-            disableAllInputFields()
-            gameStarted = false
-            ready = false
-            readyBtn.style.backgroundColor = 'red'
-            readyBtn.textContent = 'Not ready!'           
-            clearInterval(myInterval)
-            timer.textContent = '0'
-          }
+                  
+              for(let i=0;i<fields.length;i++){
+                if(!dataReg.test($(`#input${fields[i]}`).val().toLowerCase())){
+                  data.push('')               
+                }else{
+                  data.push($(`#input${fields[i]}`).val().toLowerCase())
+                  //document.getElementById(`predloziBtn${fields[i]}`).disabled =  false;
+                }              
+                dataReg.lastIndex =0;       
+              }           
+              if(!kicked)
+                socket.emit('roundData',({username,roomCode,data,roundNumber}))
+                //ili vidi da se ovo radi kada se dobije confirmacija da su podaci obradjeni!!!
+              //clearAllInputFields()
+              disableAllInputFields()
+              gameStarted = false
+              ready = false
+              readyBtn.style.backgroundColor = 'red'
+              readyBtn.textContent = 'Not ready!'           
+              clearInterval(myInterval)
+              timer.textContent = '0'
+            }
+          
         })
 
-        function myAlert(test){
-            $("#danger-alert").html(`<a href="#" class="close" data-dismiss="alert">&times;</a><strong>Failure</strong> ${test}`)
-            $("#danger-alert").fadeTo(2000, 500).slideUp(500, () =>{
-                $("#danger-alert").slideUp(500);
-            });   
-        }
+        
 
         window.addEventListener('unload',(e) =>{
           if(!readyBtn.style.backgroundColor == "red" && !readyBtn.innerText == 'Not ready!')
@@ -742,6 +902,7 @@
         //done
         readyBtn.addEventListener('click',(e) =>{
           //ovo popravi
+          
           if(!gameStarted){
             if(!ready){
               socket.emit('playerReady',roomCode)
@@ -780,8 +941,9 @@
             }
             if(allValid){
               readyBtn.disabled = true;     
-                   
+              if(!kicked){
               socket.emit('clientEndRound',({username,roomCode,data,roundNumber}))
+              }
               //clearAllInputFields()
               disableAllInputFields()
               gameStarted = false
