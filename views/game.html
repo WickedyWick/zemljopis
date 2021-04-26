@@ -308,7 +308,38 @@
         const dataDictKeys = ['drzava','grad','ime','biljka','zivotinja','planina','reka','predmet']
         const kDict = {'Drzava':'d','Grad':'g','Ime':'i','Biljka':'b','Zivotinja':'z','Planina':'p','Reka':'r','Predmet':'pr'}
         const sessionReg = /^[A-Za-z0-9/+]{48}$/g
-        
+        let letterDict = {            
+            'a':'а',
+            'b':'б',
+            'v':'в',
+            'g':'г',
+            'd':'д',
+            'đ':'ђ',
+            'e':'е',
+            'ž':'ж',
+            'z':'з',
+            'i':'и',
+            'j':'ј',
+            'k':'к',
+            'l':'л',
+            'lj':'љ',
+            'm':'м',
+            'n':'н',
+            'nj':'њ',
+            'o':'о',
+            'p':'п',
+            'r':'р',
+            's':'с',
+            't':'т',
+            'ć':'ћ',
+            'u':'у',
+            'f':'ф',
+            'h':'х',
+            'c':'ц',
+            'č':'ч',
+            'dž':'џ',
+            'š':'ш',
+        } // ovo moze vrv i na severu da bude 
         $(`#helpGrad`).css("visibility", "visible")
         
         // dodaj start button za leadera
@@ -751,19 +782,19 @@
                 currentLetter = message['currentLetter']
                 //OVDE JE GRESKA zato trebalo bi da postoji C ILI Č 
                 if(currentLetter == "ć")
-                  dataReg = new RegExp(`^(c|ć)[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+                  dataReg = new RegExp(`^(c|ć|ћ)[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,41}$`,'g')
                 else if(currentLetter == "č")
-                  dataReg = new RegExp(`^(c|č)[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+                  dataReg = new RegExp(`^(c|č|ч)[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,41}$`,'g')
                 else if(currentLetter == "lj" || currentLetter == "nj")
-                  dataReg = new RegExp(`^${currentLetter}[A-Za-zčČćĆžŽšŠđĐ ]{1,40}$`,'g')
+                  dataReg = new RegExp(`^${currentLetter|letterDict[currentLetter]}[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,40}$`,'g')
                 else if(currentLetter == "dž")
-                  dataReg = new RegExp(`^(dz|dž)[A-Za-zčČćĆžŽšŠđĐ ]{1,40}$`,'g')
+                  dataReg = new RegExp(`^(dz|dž|џ)[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,40}$`,'g')
                 else if(currentLetter == "ž")
-                  dataReg = new RegExp(`^(z|ž)[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+                  dataReg = new RegExp(`^(z|ž|ж)[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,41}$`,'g')
                 else if(currentLetter == "š")
-                  dataReg = new RegExp(`^(s|š)[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+                  dataReg = new RegExp(`^(s|š|ш)[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,41}$`,'g')
                 else
-                  dataReg = new RegExp(`^${currentLetter}[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+                  dataReg = new RegExp(`^${currentLetter|letterDict[currentLetter]}[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
                 document.getElementById('currentLetter').textContent = currentLetter
             
               let duration = 61
@@ -967,7 +998,7 @@
           }
           else
           {
-            enableAllPButtons()
+            //enableAllPButtons()
             enableHistoryReg()
             new Noty({
                 theme : 'metroui',
@@ -992,11 +1023,13 @@
                   }
                   else{
                     document.getElementById(`input${fields[i]}`).value += '  + 0'
+                    $(`#predloziBtn${fields[i]}`).prop("disabled", false)
                   }
                 }
                 catch(TypeError){
                   
                   document.getElementById(`input${fields[i]}`).value += '  + 0'
+                  $(`#predloziBtn${fields[i]}`).prop("disabled", false)
                 }
               }
               
