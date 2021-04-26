@@ -415,14 +415,14 @@
           $("#inputZivotinja").prop("disabled", false )
 
         }
-        function disableHistoryReg(){
+        function disableHistoryReq(){
           let keys = Object.keys(pList)
           $("#localPlayer").css("pointer-events","none");
           for(let i =0;i<keys.length;i++){
             $(`#${keys[i]}`).css("pointer-events","none")
           }
         }
-        function enableHistoryReg(){
+        function enableHistoryReq(){
           let keys = Object.keys(pList)
           $("#localPlayer").css("pointer-events","auto");
           for(let i =0;i<keys.length;i++){
@@ -459,7 +459,7 @@
           //clickable
           disableAllPButtons()
           console.log(historyData) 
-          if(targetRound == roundNumber){
+          if(targetRound != roundNumber){
             if(player in historyData){
               if(targetRound in historyData[player]){
                 // ako postoji ispisi iz ovog objekta
@@ -490,6 +490,7 @@
                   progressBar :true
                 }).show()
           }
+          $(`#${player}`).css("pointer-events","auto");
         }
         document.getElementById("localPlayer").addEventListener('click',(e)=>{
           $("#localPlayer").css("pointer-events","none"); //not clicable 
@@ -497,7 +498,7 @@
           enableAllPButtons()
           //clickable
           console.log(historyData)  
-          if(targetRound == roundNumber){
+          if(targetRound != roundNumber){
             if(username in historyData){
               if(targetRound in historyData[username]){
                 // ako postoji ispisi iz ovog objekta
@@ -529,6 +530,7 @@
                   progressBar :true
                 }).show()
           }
+          $("#localPlayer").css("pointer-events","auto");
           //alert('test')
         })
         socket.on('historyReqResponse',message=>{
@@ -778,7 +780,7 @@
                 document.getElementById('lblPlayersReady').textContent = 0
                 hideAllHelp()
                 disableAllPButtons()
-                disableHistoryReg()
+                disableHistoryReq()
                 currentLetter = message['currentLetter']
                 //OVDE JE GRESKA zato trebalo bi da postoji C ILI Č 
                 if(currentLetter == "ć")
@@ -794,9 +796,9 @@
                 else if(currentLetter == "š")
                   dataReg = new RegExp(`^(s|š|ш)[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,41}$`,'g')
                 else
-                  dataReg = new RegExp(`^${currentLetter|letterDict[currentLetter]}[A-Za-zčČćĆžŽšŠđĐ ]{1,41}$`,'g')
+                  dataReg = new RegExp(`^(${currentLetter}|${letterDict[currentLetter]})[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,41}$`,'g')
                 document.getElementById('currentLetter').textContent = currentLetter
-            
+                console.log(dataReg)
               let duration = 61
                 myInterval = setInterval(()=>{
                 duration--
@@ -999,7 +1001,7 @@
           else
           {
             //enableAllPButtons()
-            enableHistoryReg()
+            enableHistoryReq()
             new Noty({
                 theme : 'metroui',
                 type : 'success',
@@ -1023,13 +1025,15 @@
                   }
                   else{
                     document.getElementById(`input${fields[i]}`).value += '  + 0'
-                    $(`#predloziBtn${fields[i]}`).prop("disabled", false)
+                    if(document.getElementById(`input${fields[i]}`).value != "")
+                      $(`#predloziBtn${fields[i]}`).prop("disabled", false)
                   }
                 }
                 catch(TypeError){
                   
                   document.getElementById(`input${fields[i]}`).value += '  + 0'
-                  $(`#predloziBtn${fields[i]}`).prop("disabled", false)
+                  if(document.getElementById(`input${fields[i]}`).value != "")
+                    $(`#predloziBtn${fields[i]}`).prop("disabled", false)
                 }
               }
               
@@ -1088,7 +1092,7 @@
                 if(!dataReg.test($(`#input${fields[i]}`).val().toLowerCase())){
                   data.push('')               
                 }else{
-                  data.push($(`#input${fields[i]}`).val().toLowerCase())
+                  data.push($(`#input${fields[i]}`).val().toLowerCase().trim())
                   //document.getElementById(`predloziBtn${fields[i]}`).disabled =  false;
                 }              
                 dataReg.lastIndex =0;       
@@ -1155,7 +1159,7 @@
                 data.push('')
                 
               }else{
-                data.push($(`#input${fields[i]}`).val().toLowerCase())
+                data.push($(`#input${fields[i]}`).val().toLowerCase().trim())
               }
 
               dataReg.lastIndex = 0             
