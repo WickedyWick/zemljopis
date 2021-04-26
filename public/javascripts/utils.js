@@ -55,7 +55,39 @@ function playerReady(room,localData,socket,io,sockets){
     }
 
 }
-
+function historyReq(room,username,round,localData,socket){
+    
+    if(room in localData){
+        if(round in localData[room]['roundIDS']){ //
+            pool.query(`Select drzava, grad, ime, biljka, zivotinja, planina, reka, predmet from data where roundID = ${localData[room]['roundIDS'][round]} and playerID = ${localData[room]['players'][username]}`,(err,results,fields)=>{
+                if(err){
+                    console.log(`THERE WAS AN ERROR WHILE SELECTING HISTORY:\nCODE : ${err.code}\nMSG : ${err.sqlMessage}`)
+                    socket.emit("historyReqResponse",{"Success":false,
+                        "ERR_MSG":"Došlo je do problema prilikom prikazivanja traženih podataka!"
+                    })
+                }else{
+                    //console.log(results)
+                    if(results.length==0){
+                        socket.emit("historyReqResponse",{"Success":false,
+                            "ERR_MSG": "Nema traženih podataka!"
+                        })
+                    }else{
+                        socket.emit("historyReqResponse",{"Success":true,
+                            "Data" : results[0],
+                            "MSG" : "Podaci pronadjeni!",
+                            "username" :username,
+                            "round":round
+                        })
+                    }
+                }
+            })
+        }else{
+            console.log("ROUND DOESNT EXITST?!")
+        }
+    }else{
+        socket.emit('roomNotExist',"Soba više ne postoji, kreirajte novu!")
+    }
+}
 function createRound(room,io,localData){
     if(room in localData){
         pool.getConnection((err,connection) =>{
@@ -73,6 +105,7 @@ function createRound(room,io,localData){
                         }else{                     
                             localData[room]['roundActive'] = true
                             console.log("ROUND START:")
+                            localData[room]['roundIDS'][localData[room]['roundNumber']] = results.insertId
                             localData[room]['roundID'] = results.insertId
                             localData[room]['playersReady'] = 0
                             io.to(room).emit("gameStartNotification",{'Success' : true,
@@ -86,7 +119,7 @@ function createRound(room,io,localData){
                             
                             //var temp = setTimeout(timeout,,room,localData,io)
                             localData[room]['intervalObj'] = temp    
-                            connection.release()
+                            
                         }
                         
                     })
@@ -102,6 +135,7 @@ function createRound(room,io,localData){
                 
 
             }
+            connection.release()
         })
     }else
     socket.emit('roomNotExist',"Soba više ne postoji , kreirajte novu!")
@@ -732,6 +766,7 @@ module.exports = {
     evaluation,
     predlagac,
     startVoteKick,
-    voteKickCounter
+    voteKickCounter,
+    historyReq
     
 }

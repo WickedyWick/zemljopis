@@ -6,7 +6,7 @@ const {createRoom,joinRoomSQL,joinRoom} = require('./public/javascripts/mysql.js
 //kreatuje server
 const server = app.listen(3000)
 const io = socketio(server)
-const {playerReady, playerUnReady,timeout,dataCollector,evaluation,predlagac,startVoteKick,voteKickCounter}  = require('./public/javascripts/utils.js')
+const {playerReady, playerUnReady,timeout,dataCollector,evaluation,predlagac,startVoteKick,voteKickCounter,historyReq}  = require('./public/javascripts/utils.js')
 var path = require('path')
 //TODO 
 // Manipualte localData propertly
@@ -160,7 +160,13 @@ io.on('connection', socket => {
         //io.emit('message','A user has left the chat')
         
     })
-    
+    socket.on('historyReq',({roomCode,player,targetRound})=>{       
+        /*
+        console.log(roomCode)
+        console.log(player)
+        console.log(targetRound)*/
+        historyReq(roomCode,player,targetRound,localData,socket)
+    })
     
     
 })

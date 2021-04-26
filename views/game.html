@@ -14,6 +14,14 @@
         overflow-x: hidden;
       }
       @media only screen and (max-width: 1099.9px) {
+        .nameLabel:hover{
+          border-style:solid;
+              border-width:1px;
+              border-color: black;
+              text-decoration: none;
+              border-radius : 25%;
+              cursor: pointer;
+        }
         span:hover{
               border-style:solid;
               border-width:1px;
@@ -47,6 +55,14 @@
     }
 
     @media only screen and (min-width: 1100.0px) {
+            .nameLabel:hover{
+                border-style:solid;
+                    border-width:1px;
+                    border-color: black;
+                    text-decoration: none;
+                    border-radius : 25%;
+                    cursor: pointer;
+            }
             span:hover{
               border-style:solid;
               border-width:1px;
@@ -231,9 +247,14 @@
                     <label>/</label>
                     <label id="lblPlayerCount"></label>
                 </div>
+              <div>
+                <select id="roundSelect">
+                  
+                </select>
+              </div>
               <div id="rundaDiv">
                 <label>Runda : </label>
-                <label id="roundNumber">0</label>
+                <label id="roundNumber">1</label>
                 <label id="currentLetter"></label>
                 <br>
                 <label>Poeni : </label>
@@ -244,7 +265,7 @@
                     <label id="counter"></label>
             </div>
             <div>
-                <label id="localPlayer">Igrači : </label>
+                <label >Igrači : <label id="localPlayer" class="nameLabel"></label></label>
                 <ul id="players">                   
                 </ul>
             </div>
@@ -280,7 +301,11 @@
         let dataReg = new RegExp()
         let pList = {}
         let kicked = false
+        let historyData = {}
+        historyData[username] = {}
+        let select = document.getElementById('roundSelect')
         const fields = ['Drzava','Grad','Ime','Biljka','Zivotinja','Planina','Reka','Predmet']
+        const dataDictKeys = ['drzava','grad','ime','biljka','zivotinja','planina','reka','predmet']
         const kDict = {'Drzava':'d','Grad':'g','Ime':'i','Biljka':'b','Zivotinja':'z','Planina':'p','Reka':'r','Predmet':'pr'}
         const sessionReg = /^[A-Za-z0-9/+]{48}$/g
         
@@ -359,6 +384,20 @@
           $("#inputZivotinja").prop("disabled", false )
 
         }
+        function disableHistoryReg(){
+          let keys = Object.keys(pList)
+          $("#localPlayer").css("pointer-events","none");
+          for(let i =0;i<keys.length;i++){
+            $(`#${keys[i]}`).css("pointer-events","none")
+          }
+        }
+        function enableHistoryReg(){
+          let keys = Object.keys(pList)
+          $("#localPlayer").css("pointer-events","auto");
+          for(let i =0;i<keys.length;i++){
+            $(`#${keys[i]}`).css("pointer-events","auto")
+          }
+        }
         function myAlert(test){
             $("#vote-alert").show()
             $("#vote-alert").html(`<a href="#" class="close" data-dismiss="alert" >&times;</a><label class="vLabel">Glasanje da se izbaci igrač : ${test}</label> <button class="btn myVBtn" id="forVoteKick" onclick="voteFor()">Za</button><button class="btn myVBtn" id="againstVoteKick" onclick="voteAgainst()">Protiv</button> `)
@@ -383,6 +422,121 @@
           $("#vote-alert").slideUp(500)
           $("#vote-alert").hide()
         }
+        function historyReq(player){
+          $(`#${player}`).css("pointer-events","none"); //not clicable 
+          let targetRound = select.value
+          //clickable
+          disableAllPButtons()
+          console.log(historyData) 
+          if(targetRound == roundNumber){
+            if(player in historyData){
+              if(targetRound in historyData[player]){
+                // ako postoji ispisi iz ovog objekta
+                let arr = historyData[player][targetRound] //ovo ne radi
+                console.log(arr)
+                for(let i =0;i < dataDictKeys.length;i++){
+                  $(`#input${fields[i]}`).val(arr[i])
+                
+                }
+                $(`#${player}`).css("pointer-events","auto");
+              }else{
+                //socket emituj request za rundu i username
+                
+                socket.emit('historyReq',({roomCode,player,targetRound}))
+              }
+            }else{
+              //socket emituj request za rundu i username
+              historyData[player] = {}
+              socket.emit('historyReq',({roomCode,player,targetRound}))
+            }
+          }else{
+            new Noty({
+                  theme : 'metroui',
+                  type : 'info',
+                  layout : 'topRight',
+                  text : `Trenutna runda još nije završena.`,
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+          }
+        }
+        document.getElementById("localPlayer").addEventListener('click',(e)=>{
+          $("#localPlayer").css("pointer-events","none"); //not clicable 
+          let targetRound = select.value
+          enableAllPButtons()
+          //clickable
+          console.log(historyData)  
+          if(targetRound == roundNumber){
+            if(username in historyData){
+              if(targetRound in historyData[username]){
+                // ako postoji ispisi iz ovog objekta
+                let arr = historyData[username][targetRound]
+                console.log(arr) //ovo ne radi
+                for(let i =0;i < dataDictKeys.length;i++){
+                  $(`#input${fields[i]}`).val(arr[i])
+                
+                }
+                $("#localPlayer").css("pointer-events","auto");
+              }else{
+                //socket emituj request za rundu i username
+                let player = username
+                socket.emit('historyReq',({roomCode,player,targetRound}))
+              }
+            }else{
+              //socket emituj request za rundu i username
+              historyData[username] = {}
+              let player = username
+              socket.emit('historyReq',({roomCode,player,targetRound}))
+            }
+          }else{
+            new Noty({
+                  theme : 'metroui',
+                  type : 'info',
+                  layout : 'topRight',
+                  text : `Trenutna runda još nije završena.`,
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+          }
+          //alert('test')
+        })
+        socket.on('historyReqResponse',message=>{
+          console.log(message)
+          if(message['username'] == username)
+            $("#localPlayer").css("pointer-events","auto");
+          else
+            $(`#${message['username']}`).css("pointer-events","auto");
+          if(message['Success']){
+            new Noty({
+                  theme : 'metroui',
+                  type : 'info',
+                  layout : 'topRight',
+                  text : `Prikazani podaci za ${message['username']} u rundi ${message['round']}`,
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+              let data = message['Data']
+              let arr = []
+              //historyData[message['username']][message['round']] = data
+              for(let i =0;i < dataDictKeys.length;i++){
+                $(`#input${fields[i]}`).val(data[dataDictKeys[i]])
+                arr.push(data[dataDictKeys[i]])
+              }
+              historyData[message['username']][message['round']] = arr
+              
+
+              
+          }else{
+            new Noty({
+                  theme : 'metroui',
+                  type : 'warning',
+                  layout : 'topRight',
+                  text : message['ERR_MSG'],
+                  timeout : 5000,
+                  progressBar :true
+                }).show()
+          }
+        })
         socket.on('kickResult',message=>{
           if(message['Success']){
             if(message['username'] == username){
@@ -464,13 +618,22 @@
             $('#maxDiv').show()
             disableAllPButtons()
             sessionToken = localStorage.getItem('sessionToken')
-            document.getElementById('localPlayer').textContent += username
+            document.getElementById('localPlayer').textContent = username
             
             document.getElementById('lblRoomCode').textContent += String(roomCode)
             document.getElementById('lblPlayersReady').textContent = message['playersReady']
             document.getElementById('lblPlayerCount').textContent = message['playerCount']
             roundNumber = message['roundNumber']
             document.getElementById('roundNumber').textContent = roundNumber
+            
+            for(let i =1;i<=roundNumber;i++){
+              let opt = document.createElement('option');
+              opt.appendChild(document.createTextNode(i))
+              opt.value = i
+              select.appendChild(opt)
+              if(i == roundNumber)
+                opt.selected = 'selected'
+            }
             points = message['points']
             document.getElementById('poeni').textContent = String(message['points'])
             pList[username] = points
@@ -549,6 +712,12 @@
                 progressBar :true
               }).show()
               roundNumber = message['roundNumber']
+             
+              let opt = document.createElement('option')
+              opt.appendChild(document.createTextNode(roundNumber))
+              opt.value = roundNumber
+              opt.selected = 'selected'
+              select.appendChild(opt)
               document.getElementById('roundNumber').textContent = roundNumber
               document.getElementById('lblPlayersReady').textContent = message['playersReady']
         })
@@ -578,6 +747,7 @@
                 document.getElementById('lblPlayersReady').textContent = 0
                 hideAllHelp()
                 disableAllPButtons()
+                disableHistoryReg()
                 currentLetter = message['currentLetter']
                 //OVDE JE GRESKA zato trebalo bi da postoji C ILI Č 
                 if(currentLetter == "ć")
@@ -615,6 +785,7 @@
               disableAllInputFields();
               disableAllPButtons();
               readyBtn.disabled = true;
+              
               //daj ovde neki notifikation
               new Noty({
                   theme : 'metroui',
@@ -654,7 +825,7 @@
               if(!(keys[i] in pList))
               {
                 pList[keys[i]] = message['players'][keys[i]]               
-                $("ul").append(`<li id="${keys[i]}">${keys[i]} | <label id="${keys[i]}Points">${message['players'][keys[i]]}</label> <span onclick="voteKick(\'${keys[i]}\')" class="mySpan">&#10006;</span></li>`);
+                $("ul").append(`<li id="${keys[i]}"><label class="nameLabel" onclick="historyReq('${keys[i]}')">${keys[i]}</label> | <label id="${keys[i]}Points">${message['players'][keys[i]]}</label> <span onclick="voteKick(\'${keys[i]}\')" class="mySpan">&#10006;</span></li>`);
               }
             }
           }else if(message["MODE"] == "UPDATE"){
@@ -770,6 +941,12 @@
         })
         socket.on('roundNumberUpdate', message=>{
           roundNumber = message
+          select = document.getElementById('roundSelect')
+          let opt = document.createElement('option')
+          opt.appendChild(document.createTextNode(roundNumber))
+          opt.value = roundNumber
+          opt.selected = 'selected'
+          select.appendChild(opt)
           document.getElementById('roundNumber').textContent = roundNumber 
         })
 
@@ -791,6 +968,7 @@
           else
           {
             enableAllPButtons()
+            enableHistoryReg()
             new Noty({
                 theme : 'metroui',
                 type : 'success',
@@ -825,6 +1003,12 @@
               document.getElementById('poeni').textContent = String(points)
           }
           roundNumber = message['roundNumber']
+          select = document.getElementById('roundSelect')
+          let opt = document.createElement('option')
+          opt.appendChild(document.createTextNode(roundNumber))
+          opt.value = roundNumber
+          opt.selected = 'selected'
+          select.appendChild(opt)
           document.getElementById('roundNumber').textContent = roundNumber
           document.getElementById('lblPlayersReady').textContent = message['playersReady']
           
@@ -880,6 +1064,8 @@
                 socket.emit('roundData',({username,roomCode,data,roundNumber}))
                 //ili vidi da se ovo radi kada se dobije confirmacija da su podaci obradjeni!!!
               //clearAllInputFields()
+              historyData[username][roundNumber] = data
+             
               disableAllInputFields()
               gameStarted = false
               ready = false
@@ -934,9 +1120,11 @@
                 $(`#help${fields[i]}`).show() 
                 allValid = false
                 data.push('')
+                
               }else{
                 data.push($(`#input${fields[i]}`).val().toLowerCase())
               }
+
               dataReg.lastIndex = 0             
             }
             if(allValid){
@@ -944,7 +1132,9 @@
               if(!kicked){
               socket.emit('clientEndRound',({username,roomCode,data,roundNumber}))
               }
+             
               //clearAllInputFields()
+              historyData[username][roundNumber] = data
               disableAllInputFields()
               gameStarted = false
               ready = false

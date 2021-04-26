@@ -182,9 +182,10 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData){
                                     'roundNumber' : 1,
                                     'roundTimeLimit': Number(roundTimeLimit),
                                     'roundActive' : false,
-                                    'roundID': null,
+                                    'roundID': null, //ovo mozda sada nije potrebno
+                                    'roundIDS' :{},
                                     'players' : {},
-                                    'playersID' : {},
+                                    'playersID' : {},                                    
                                     'intervalObj' : null,
                                     'availableLetters':["a","b","c","č","ć","d","dž","đ","e","f","g","h","i","j","k","l","lj","m","n","nj","o","p","r","s","š","t","u","v","z","ž"],
                                     'currentLetter': '',
