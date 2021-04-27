@@ -1,45 +1,37 @@
 const perf = require('perf_hooks')
 const e = require('express')
 var pool = require('./trueMysql.js')
-const { strict } = require('assert')
+const { strict } = require('assert') //ne znam sta je ovo 
+
+/*******
+    if(room in localData) se proverava u slucaju da se srusi aplikacija i da nekako user posalje request ili ako korisnik ostane u sobi dugo (ostavi tab otvoreen) i pokusa da nastavi da igra a soba vise nije aktivna
+    sobe ce biti aktivne 6 sati
+    i svakih 6 sati ce idi taskscheduled cleaner starih soba
+*/
 function playerReady(room,localData,socket,io,sockets){
-    //console.log("PLAYERS REAADY : " + localData[room]['playersReady'])
-    //console.log("PLAYER COUNT : " + localData[room]['playerCount'])
     if(room in localData){
         if(localData[room]['playersReady'] < localData[room]['playerCount'])
         {
-            
-            //send to everyone after 
             io.to(room).emit('playerCountUpdate',localData[room]['playersReady'] += 1)
             try{
                 sockets[socket.id]['ready'] = true
             }catch(err){
                 console.log(`Error while readying the socket\nErr : ${err}`)   
             }
-            
-            //socket.to(room).broadcast.emit('test',temp)
-            if(localData[room]['playersReady'] == localData[room]['playerCount']){
-                //game starts
-                //TODO start game endgine with timers
-                //setuj interval i povezi svaki intervral id sa sobom
+            if(localData[room]['playersReady'] == localData[room]['playerCount']){               
                 socket.emit('playerReadyResponse',{'Success' : true,
                     "MSG" : "Uspeh!",
                     "STATE" : "Spreman",
-                    "CODE" : 1
-                    
-                })
-                
+                    "CODE" : 1                    
+                })                
                 createRound(room,io,localData)
             }
             else
-                //send back positive feedback about readying up
                 socket.emit('playerReadyResponse',{'Success' : true,
                     "MSG" : "Uspeh!" ,
                     "STATE" : "Spreman",
                     "CODE" : 1
-
-            })
-            
+            })           
         }   
         else
         {
@@ -53,10 +45,8 @@ function playerReady(room,localData,socket,io,sockets){
     }else{
         socket.emit("roomNotExist","Soba više ne postoji , kreirajte novu!");
     }
-
 }
-function historyReq(room,username,round,localData,socket){
-    
+function historyReq(room,username,round,localData,socket){  
     if(room in localData){
         if(round in localData[room]['roundIDS']){ //
             pool.query(`Select drzava, grad, ime, biljka, zivotinja, planina, reka, predmet from data where roundID = ${localData[room]['roundIDS'][round]} and playerID = ${localData[room]['players'][username]}`,(err,results,fields)=>{
@@ -65,8 +55,7 @@ function historyReq(room,username,round,localData,socket){
                     socket.emit("historyReqResponse",{"Success":false,
                         "ERR_MSG":"Došlo je do problema prilikom prikazivanja traženih podataka!"
                     })
-                }else{
-                    //console.log(results)
+                }else{                    
                     if(results.length==0){
                         socket.emit("historyReqResponse",{"Success":false,
                             "ERR_MSG": "Nema traženih podataka!"
@@ -82,6 +71,9 @@ function historyReq(room,username,round,localData,socket){
                 }
             })
         }else{
+            socket.emit("historyReqResponse",{"Success":false,
+                "ERR_MSG" : "Runda još nije odigrana"
+            })
             console.log("ROUND DOESNT EXITST?!")
         }
     }else{
@@ -97,14 +89,12 @@ function createRound(room,io,localData){
                 chooseLetter(room,localData).then((response)=>{
                     connection.query('insert into round values(DEFAULT,?,?,?)',[localData[room]['roundNumber'],room,response],(err,results,fields)=>{
                         if(err){
-                            console.log(`ERROR CREATING ROUND : Code ${err.code}\nMSG : ${err.sqlMessage}`)
-                            //RESETUJ OVDE SVE
+                            console.log(`ERROR CREATING ROUND : Code ${err.code}\nMSG : ${err.sqlMessage}`)                           
                             io.to(room).emit('createRoundResponse',{
                                 "ERR_MSG" : "Problem pri kreiranju runde , pokusajte ponovo!"
                             })
                         }else{                     
                             localData[room]['roundActive'] = true
-                            console.log("ROUND START:")
                             localData[room]['roundIDS'][localData[room]['roundNumber']] = results.insertId
                             localData[room]['roundID'] = results.insertId
                             localData[room]['playersReady'] = 0
@@ -112,28 +102,19 @@ function createRound(room,io,localData){
                                         "MSG" : "Everyone is ready, game will start shortly!",
                                         "currentLetter":response,
                                         "CODE" : 1
-                                    })
-                                    
-                            const temp = setTimeout(timeout, localData[room]['roundTimeLimit']*1000, room,localData,io);
-                            
-                            
+                                    })                                   
+                            const temp = setTimeout(timeout, localData[room]['roundTimeLimit']*1000, room,localData,io);                           
                             //var temp = setTimeout(timeout,,room,localData,io)
-                            localData[room]['intervalObj'] = temp    
-                            
+                            localData[room]['intervalObj'] = temp                                
                         }
                         
-                    })
-                    
-                    
+                    })                    
                 },reject =>{
                     console.log("ERROR " , reject)
                     io.to(room).emit('createRoomResponse',{
                         "ERR_MSG" : "Kraj igre, sva slova su iskorišćena!"
                     })
                 })
-                
-                
-
             }
             connection.release()
         })
@@ -141,38 +122,22 @@ function createRound(room,io,localData){
     socket.emit('roomNotExist',"Soba više ne postoji , kreirajte novu!")
 }
 
-function chooseLetter(room,localData){
-    
-    return new Promise((resolve,reject)=>{
-       
-                //prebaci selectovanje u drugu funkciju da moze da zove ponovo ako slovo vec postoji
-                
-                        //result je niz dictionarija
-        //values = ["a","b","c","č","ć","d","dž","đ","e","f","g","h","i","j","k","l","lj","m","n","nj","o","p","r","s","š","t","u","v","z","ž"]
-        //ili ubaci niz dostupnih slova (jer sto vise rundi to veca sansa da se ponove slova)
+function chooseLetter(room,localData){    
+    return new Promise((resolve,reject)=>{ 
         letter = (localData[room]['availableLetters'][Math.floor(Math.random() * localData[room]['availableLetters'].length)])
-        // save this in dict memory
-        
         let index = localData[room]['availableLetters'].indexOf(letter)
         if(index !== -1){
             localData[room]['availableLetters'].splice(index,1)
             localData[room]['currentLetter'] = letter
             resolve(letter)
         }
-        reject("No more letter left, game over!")
-        
-        
-       
-                    
-                
+        reject("No more letter left, game over!")              
     })
 }
 
 function playerUnReady(room,localData,socket,io,mode,sockets){
     if(room in localData){
         if(localData[room]['playersReady'] > 0 && localData[room]['playersReady'] <= localData[room]['playerCount']){
-            //KADA PLAYER UNREADUJE - DISCONECTUJE neka dobije neki status code da mora da ceka drugu rundu!
-        
             io.to(room).emit('playerCountUpdate',localData[room]['playersReady'] -= 1)
             try{
                 sockets[socket.id]['ready'] = false
@@ -186,8 +151,7 @@ function playerUnReady(room,localData,socket,io,mode,sockets){
                         "CODE" : 1
                 })
             else if(mode == "DISC")
-                delete sockets[socket.id]
-        
+                delete sockets[socket.id]        
         }
         else
         {
@@ -202,152 +166,7 @@ function playerUnReady(room,localData,socket,io,mode,sockets){
     socket.emit('roomNotExist',"Soba više ne postoji , kreirajte novu!")
 }
 fieldKeys = ['drzava','grad','ime','biljka','zivotinja','planina','reka','predmet']
-
-/*
 function evaluation(room,localData,io){
-    t0 = perf.performance.now()
-    if(localData[room]['roundActive']){ //ovi ifovi u slucaju da se se nekako evaluation funkcije u isto vreme pozovu
-        console.log('evaluation STARTED')
-        localData[room]['roundActive'] = false  
-        localData[room]['playersReady'] = 0
-        localData[room]['roundNumber']+=1
-        
-        clearTimeout(localData[room]['intervalObj'])
-        
-        mysqlData = {'drzava':[],
-                    'grad':[],
-                    'ime':[],
-                    'biljka':[],
-                    'zivotinja':[],
-                    'planina':[],
-                    'reka':[],
-                    'predmet':[]
-
-            }
-        pool.getConnection((err,connection)=>{
-            if(err){
-                console.log(`There was an error getting connection in evaluation function. Code : ${err.code} MSG: ${err.sqlMessage} `)
-            }else{
-            let slovo = localData[room]['currentLetter'];
-         
-            connection.query(`select naziv from drzava where slovo = '${slovo}'; select naziv from grad where slovo = '${slovo}'; select naziv from ime where slovo = '${slovo}'; select naziv from biljka where slovo = '${slovo}'; select naziv from zivotinja where slovo = '${slovo}';select naziv from planina where slovo = '${slovo}';select naziv from reka where slovo = '${slovo}';select naziv from predmet where slovo = '${slovo}';`,(err,results)=>{
-                if(err){
-                    console.log(`ERROR WHILE SELECTING FROM DATABASE : Code : ${err.code}\nMSG : ${err.sqlMessage}`)
-                    io.to(room).emit('points',{'Success' : false,
-                            "ERR_MSG" : 'There was an error during evaluation!',                           
-                            "ERR_CODE" : 3
-                            })
-                }
-                else{
-                    for(let i=0;i<results.length;i++){
-                        results[i].forEach(element => mysqlData[fieldKeys[i]].push(element['naziv']))
-                    }
-                                                    
-                    //1. uporedi sve i dodeli poene vrednostima
-                    playerIDKeys = Object.keys(localData[room]['data'])
-                    //make it global 
-                    
-                    data = {'drzava': {},
-                            'grad': {},
-                            'ime' : {},
-                            'biljka' : {},
-                            'zivotinja' : {},
-                            'planina' : {},
-                            'reka' : {},
-                            'predmet':{}
-                                }           
-                    points = {}
-                    
-                    //probaj prvo da preborjis koliko se puta rec ponavlja
-                    for(let i =0;i<playerIDKeys.length;i++){
-                        let temp = localData[room]['data'][playerIDKeys[i]] // data niz
-                        points[playerIDKeys[i]] = 0
-                        for(let j=0;j<fieldKeys.length;j++){   
-                            
-                            if(data[fieldKeys[j]][temp[j]] === undefined){
-                                data[fieldKeys[j]][temp[j]] = [1,playerIDKeys[i]]
-                            }else
-                            {
-                                data[fieldKeys[j]][temp[j]][0] += 1
-                                data[fieldKeys[j]][temp[j]].push(playerIDKeys[i])
-                            }
-                        }
-                    }
-                   
-                    // za svaki prebrojan rezultat ]
-                    for(let i =0;i<fieldKeys.length;i++){
-                        fieldCountKeys = Object.keys(data[fieldKeys[i]])
-                        for(let j=0;j<fieldCountKeys.length;j++){
-                            if(!mysqlData[fieldKeys[i]].includes(fieldCountKeys[j]))
-                                delete data[fieldKeys[i]][fieldCountKeys[j]]
-                        }
-                    }
-                    
-                    for(let i =0;i<fieldKeys.length;i++){
-                        fieldCountKeys = Object.keys(data[fieldKeys[i]])
-                        //ako je jedini odgovor +20
-                        if(fieldCountKeys.length == 1 && fieldCountKeys[0][0] == 1){                   
-                            points[fieldCountKeys[0][1]] +=20
-                        }else{
-                            for(let j=0;j<fieldCountKeys.length;j++){
-                                let temp = data[fieldKeys[i]][fieldCountKeys[j]]
-                                if(temp[0] == 1){
-                                    for(let k =1;k<temp.length;k++){
-                                        points[temp[k]] += 10
-                                    }                 
-                                }
-                                else if(temp[0] > 1){
-                                    for(let k =1;k<temp.length;k++){
-                                        points[temp[k]] += 5
-                                    }   
-                                }
-                            }
-                        }
-                    }
-                    //reverse points
-                    uPoints = {}
-                    let sql = ""
-                
-                    
-                    // upoints ne radi (sawpuj points value/key)
-                    for(let i=0;i<playerIDKeys.length;i++){
-                        uPoints[localData[room]['playersID'][playerIDKeys[i]]] = points[playerIDKeys[i]]
-                        sql +=`update data set bodovi = ${points[playerIDKeys[i]]} where playerID = ${playerIDKeys[i]} and roundID = ${localData[room]['roundID']};`
-                    }
-                
-                    
-                    connection.query(sql,(err,results)=>{
-                        
-                        if(err){
-                            console.log(`ERROR WHILE UPDATING POINTS INTO THE DATABASE : Code :${err.code}\nMSG : ${err.sqlMessage}` )
-                            io.to(room).emit('points',{'Success' : false,
-                            'roundNumber' : localData[room]['roundNumber'],
-                            'playersReady' : localData[room]['playersReady'] ,
-                            "MSG" : "Error during evaluationuation",
-                            })
-                        }else{
-                            io.to(room).emit('points',{'Success' : true,
-                            "MSG" : 'evaluationuation finished',
-                            'roundNumber' : localData[room]['roundNumber'],
-                            'playersReady' : localData[room]['playersReady'] ,
-                            "DATA" : uPoints
-                            })
-                        }
-                        localData[room]['data'] = {}
-                        t1 = perf.performance.now();
-                        console.log(`TIME : ${t1-t0}ms`)
-                    })
-                }
-            })
-            }
-            connection.release()
-            
-        })
-        }
-}   
-*/
-function evaluation(room,localData,io){
-    //ovo se poziva dva puta??
     if(room in localData){
         try{
             if(localData[room]['roundActive']){
@@ -408,8 +227,7 @@ function evaluation(room,localData,io){
                         naziviKeys = Object.keys(myDict)
                         otherDict = {}
                         connection.query(sql,naziviKeys,(err1,results,fields)=>{
-                                
-                                
+                              
                             /*  ovako results izlgeda
                                 RowDataPacket { naziv: 'apatin', kategorija: 1, oDataID: 2701 },
                                 RowDataPacket { naziv: 'alžir', kategorija: 1, oDataID: 2703 },
@@ -457,10 +275,7 @@ function evaluation(room,localData,io){
                                 for(let i =0;i<results.length;i++){
                                     oDataID = results[i]['oDataID']
                                     kategorija = results[i]['kategorija']
-                                
-                                
-                                    naziv = results[i]['naziv']
-                                
+                                    naziv = results[i]['naziv']                              
                                     if(naziv in myDict && kategorija in myDict[naziv]){
                                         if(oDataID in otherDict){
                                             otherDict[oDataID]['nazivi'].push(naziv)
@@ -534,14 +349,11 @@ function evaluation(room,localData,io){
                                         if(err)
                                         {
                                             console.log(`Problem upisivanje bodova u bazu! MSG : Code : ${err.code}\nMSG: ${err.sqlMessage}`)
-                                            //Dodaj jedan univerzalni err socket(ili to moze biti explotivano)
                                             io.to(room).emit('pointsErr',{"MSG":"Doslo je do problema sa upisivanjem bodova , poeni u rundi su nevazeći!"})
                                         }
                                         
-                                    })
-                                
-                                localData[room]['data'] ={}
-                                        
+                                    })                                
+                                localData[room]['data'] ={}                                        
                             }
                         })
                     }
@@ -555,39 +367,30 @@ function evaluation(room,localData,io){
                 'roundNumber' : localData[room]['roundNumber'],
                 'playersReady':localData[room]['playersReady']
             })
+            localData[room]['data'] ={}
             localData[room]['evalFuncExecuting'] = false;
         }
     }else
-    socket.emit('roomNotExist',"Soba više ne postoji , kreirajte novu!")
-    
+    socket.emit('roomNotExist',"Soba više ne postoji , kreirajte novu!")    
 }
 
-
 function dataCollector(io,username,room,data,round,localData,socket){   
-        console.log("DATA COLLECTOR FUNKCIJA")
-        //OVDE POGLEDAJ DOKLE OCE!!!!
         if(room in localData){
-            if(localData[room]['data'][localData[room]['players'][username]] === undefined && round == localData[room]['roundNumber']){   
-                console.log("IT GETS HERE");
+            if(localData[room]['data'][localData[room]['players'][username]] === undefined && round == localData[room]['roundNumber']){                  
                 pool.query(`insert into data values(DEFAULT,${localData[room]['roundID']},${localData[room]['players'][username]},?,?,?,?,?,?,?,?,0)`,data,(err,results,fields)=>{
                     if(err){
                         console.log(`Error while inserting data values : Code : ${err.code}\nMSG: ${err.sqlMessage}`)
                         socket.to(room).emit("dataCollectorResponse",{
                             "ERR_MSG": "Doslo je do problema prilikom unosenja podataka, podaci nevažeci!"
                         })
-                        //ovo dole mozda ne treba
-                        //localData[room]['data'][localData[room]['players'][username]] = new Array(8).fill('')
                     }else{
                         localData[room]['data'][localData[room]['players'][username]] = data                       
                                 console.log(`Data recieved for : ${username} \n${data}`)
                                 keys = Object.keys(localData[room]['data'])
                                 if(keys.length == localData[room]['playerCount'])
                                     if(localData[room]['roundActive'])
-                                    {
-                                        
+                                    {                                       
                                         evaluation(room,localData,io)
-                                        
-                                        //clearuj interval i dodaj interval funckicju sa evaluationom na round end eventovima
                                     }
                     }
                 })                      
@@ -621,15 +424,12 @@ function startVoteKick(room,username,localData,socket,io){
 }
 
 function kickEval(room,localData,io){
+    console.log(room)
    if(!localData[room]['kickVote']['funcCalled'])
    {
        if(!localData[room]['evalFuncExecuting'])
        {
             localData[room]['kickVote']['funcCalled'] = true
-            //postavi sql da je kicked =1
-            //obrisi u player i playerID 
-            //posalji IO 
-            //ako je timer zvao onda je prekinutO ?:D
             console.log(localData[room])
             if(((localData[room]['kickVote']['for'] / localData[room]['playerCount']) *100 ) > 50){ // procenti
                 username = localData[room]['kickVote']['username']
@@ -650,7 +450,6 @@ function kickEval(room,localData,io){
                         let tempID = localData[room]['players'][username]
                         delete localData[room]['players'][username]
                         delete localData[room]['playersID'][tempID]
-
                         delete localData[room]['kickVote']
                     }
                 })
@@ -661,19 +460,19 @@ function kickEval(room,localData,io){
                 })
             }
         }else{
-            // da ne bude problema prilkom evaluacije bolje ovako
             setTimeout(kickEval,room,localData,io,4000)
+            console.log("eval exectuing")
         }
         
    }else{
+       console.log("Ongoing kick eval")
        //nista se ne desi 
    }
 }
 
 function voteKickCounter(room,username,mode,locaData,socket,io){
     if(room in localData){
-        if('kickVote' in locaData[room]){
-            
+        if('kickVote' in locaData[room]){           
             if(!localData[room]['kickVote']['alreadyVoted'].includes(username))
             {
                 localData[room]['kickVote']['alreadyVoted'].push(username)
@@ -685,13 +484,10 @@ function voteKickCounter(room,username,mode,locaData,socket,io){
                 socket.emit("voteKickCounterResponse",{ "Success" : true,
                             "MSG": "Uspešno glasanje!"
                     })
-                if(((localData[room]['kickVote']['for'] / localData[room]['playerCount']) *100 ) > 50){
+               
+                 if(locaData[room]['kickVote']['totalVotes'] == localData[room]['playerCount']){
                     kickEval(room,localData,io)
-                    clearTimeout(localData[room]['kickVote']['timeoutID'])
-                }else if(locaData[room]['totalVotes'] == localData[room]['playerCount']){
-                    io.to(room).emit('kickResult',{'Success':false,
-                        "ERR_MSG":"Glasanje završeno , nedovoljno glasova za izbacivanje!" 
-                    })
+                         
                     clearTimeout(localData[room]['kickVote']['timeoutID'])
                     delete localData[room]['kickVote']
                 }
@@ -721,23 +517,14 @@ function predlagac(predlog,slovo,kategorija){
 }
 
 function timeout(room,localData,io){
-        //castuj ovo od requesta klijenta
-        //za sada fino radi :3
-        
-        
-        //neka roundEnd bude request da clienti posalju podatke
-
-        //do ovde radi
         io.to(room).emit('roundEnd',{'Success': true,
         'MSG' : "Round end! evaluationuation started!",        
         'CODE' : 2
-        })
-                
+        })               
         clearTimeout(localData[room]['intervalObj'])
         const temp = setTimeout(evaluation, 7000, room,localData,io);
         localData[room]['intervalObj'] = temp
-
-    
+  
 }
 
 /*

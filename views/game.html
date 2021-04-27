@@ -280,11 +280,6 @@
     <script src="../public/javascripts/config.js"></script>
     <script>
         data = {}
-        // document.getElementById("test").addEventListener('click', (e) =>{
-        //   e.preventDefault();
-        //   $('small').show();
-        // })
-        //dodaj timeout na ready button i posalji unready signal kad se izadje sa stranice
         const {username, roomCode} = Qs.parse(location.search,{
                 ignoreQueryPrefix: true
             })
@@ -372,7 +367,6 @@
           $("#predloziBtnReka").prop("disabled", false )
           $("#predloziBtnPredmet").prop("disabled", false )
         }
-        //pogledaj da li ova polja je okej uzeti sa svim inputima
         function hideAllHelp(){
           $("#helpDrzava").hide()
           $("#helpGrad").hide()
@@ -429,15 +423,17 @@
             $(`#${keys[i]}`).css("pointer-events","auto")
           }
         }
+        //popup alert multi use
         function myAlert(test){
             $("#vote-alert").show()
             $("#vote-alert").html(`<a href="#" class="close" data-dismiss="alert" >&times;</a><label class="vLabel">Glasanje da se izbaci igrač : ${test}</label> <button class="btn myVBtn" id="forVoteKick" onclick="voteFor()">Za</button><button class="btn myVBtn" id="againstVoteKick" onclick="voteAgainst()">Protiv</button> `)
            
             $("#vote-alert").fadeTo(7000)
-              //$("#vote-alert").slideUp(500)
+              
             
             
         }
+        // glas za
         function voteFor(){
           mode = "FOR"
           socket.emit("voteKickCounter",({username,roomCode,mode}))
@@ -446,6 +442,7 @@
           $("#vote-alert").hide()
           
         }
+        //glas protiv
         function voteAgainst(){
           mode = "AGAINST"
           socket.emit("voteKickCounter",({username,roomCode,mode}))
@@ -453,17 +450,17 @@
           $("#vote-alert").slideUp(500)
           $("#vote-alert").hide()
         }
+        //funcija za trazenje istorije drugih igraca
         function historyReq(player){
-          $(`#${player}`).css("pointer-events","none"); //not clicable 
+          $(`#${player}`).css("pointer-events","none"); 
           let targetRound = select.value
-          //clickable
           disableAllPButtons()
+          disableAllInputFields()
           console.log(historyData) 
           if(targetRound != roundNumber){
             if(player in historyData){
               if(targetRound in historyData[player]){
-                // ako postoji ispisi iz ovog objekta
-                let arr = historyData[player][targetRound] //ovo ne radi
+                let arr = historyData[player][targetRound] 
                 console.log(arr)
                 for(let i =0;i < dataDictKeys.length;i++){
                   $(`#input${fields[i]}`).val(arr[i])
@@ -471,8 +468,6 @@
                 }
                 $(`#${player}`).css("pointer-events","auto");
               }else{
-                //socket emituj request za rundu i username
-                
                 socket.emit('historyReq',({roomCode,player,targetRound}))
               }
             }else{
@@ -489,33 +484,30 @@
                   timeout : 5000,
                   progressBar :true
                 }).show()
+                $(`#${player}`).css("pointer-events","auto");
           }
-          $(`#${player}`).css("pointer-events","auto");
+         
         }
+        //ako localplayer trazi istoriju
         document.getElementById("localPlayer").addEventListener('click',(e)=>{
           $("#localPlayer").css("pointer-events","none"); //not clicable 
           let targetRound = select.value
-          enableAllPButtons()
-          //clickable
-          console.log(historyData)  
+          disableAllInputFields()
+          disableAllPButtons()
           if(targetRound != roundNumber){
             if(username in historyData){
               if(targetRound in historyData[username]){
-                // ako postoji ispisi iz ovog objekta
                 let arr = historyData[username][targetRound]
-                console.log(arr) //ovo ne radi
                 for(let i =0;i < dataDictKeys.length;i++){
                   $(`#input${fields[i]}`).val(arr[i])
-                
+                  
                 }
                 $("#localPlayer").css("pointer-events","auto");
               }else{
-                //socket emituj request za rundu i username
                 let player = username
                 socket.emit('historyReq',({roomCode,player,targetRound}))
               }
             }else{
-              //socket emituj request za rundu i username
               historyData[username] = {}
               let player = username
               socket.emit('historyReq',({roomCode,player,targetRound}))
@@ -529,16 +521,16 @@
                   timeout : 5000,
                   progressBar :true
                 }).show()
+                $("#localPlayer").css("pointer-events","auto");
           }
-          $("#localPlayer").css("pointer-events","auto");
+          
           //alert('test')
         })
+        //daje requestovane podatke istorije
         socket.on('historyReqResponse',message=>{
           console.log(message)
-          if(message['username'] == username)
-            $("#localPlayer").css("pointer-events","auto");
-          else
-            $(`#${message['username']}`).css("pointer-events","auto");
+          enableHistoryReq()
+          
           if(message['Success']){
             new Noty({
                   theme : 'metroui',
@@ -551,14 +543,20 @@
               let data = message['Data']
               let arr = []
               //historyData[message['username']][message['round']] = data
-              for(let i =0;i < dataDictKeys.length;i++){
-                $(`#input${fields[i]}`).val(data[dataDictKeys[i]])
-                arr.push(data[dataDictKeys[i]])
+              if(message['username'] == username){
+                for(let i =0;i < dataDictKeys.length;i++){
+                  $(`#input${fields[i]}`).val(data[dataDictKeys[i]])
+                  arr.push(data[dataDictKeys[i]])
+                  
+                }               
+              }else{
+                for(let i =0;i < dataDictKeys.length;i++){
+                  $(`#input${fields[i]}`).val(data[dataDictKeys[i]])
+                  arr.push(data[dataDictKeys[i]])
+                  
+                }
               }
-              historyData[message['username']][message['round']] = arr
-              
-
-              
+              historyData[message['username']][message['round']] = arr           
           }else{
             new Noty({
                   theme : 'metroui',
@@ -570,16 +568,15 @@
                 }).show()
           }
         })
+        //rezultat kikovanja
         socket.on('kickResult',message=>{
           if(message['Success']){
             if(message['username'] == username){
               kicked = true;
               if(ready)
-                socket.emit('playerUnReady',roomCode)
-              
+                socket.emit('playerUnReady',roomCode)              
               $("#vote-alert").html("")
-              $("#vote-alert").hide()
-              
+              $("#vote-alert").hide()             
               $("#maxDiv").hide()
               new Noty({
                   theme : 'metroui',
@@ -598,6 +595,11 @@
               document.getElementById('lblPlayerCount').textContent = String(Number(document.getElementById('lblPlayerCount').textContent) -1)
               node = document.getElementById(`${message['username']}`)
               node.parentNode.removeChild(node);
+              delete pList[message['username']]
+              let keys = Object.keys(pList)
+              for(let i=0;i<keys.length;i++){
+                $(`#span${keys[i]}`).css('pointer-events','auto')
+              }
               new Noty({
                   theme : 'metroui',
                   type : 'success',
@@ -605,12 +607,15 @@
                   text : message['MSG'],
                   timeout : 5000,
                   progressBar :true
-                }).show()
-                
+                }).show()                
             }
           }else{
             $("#vote-alert").html("")
             $("#vote-alert").hide()
+            let keys = Object.keys(pList)
+            for(let i=0;i<keys.length;i++){
+                $(`#span${keys[i]}`).css('pointer-events','auto')
+              }
             new Noty({
                   theme : 'metroui',
                   type : 'info',
@@ -621,6 +626,7 @@
                 }).show()
           }
         })
+        //vote response notifikaicja
         socket.on('voteKickCounterResponse',message=>{
           if(message['Success'])
           new Noty({
@@ -641,10 +647,8 @@
                   progressBar :true
                 }).show()
         })
-        /*ovo mora u u startVote eventu ili dodaj funckicju 
-        document.getElementById('forVoteKick').addEventListener('click',(e)=>{
-          
-        })*/
+        //glavni load listter
+        //prikazuje sve podatke potrebne
         socket.on('load', message =>{
           if(message['Success']){
             
@@ -704,6 +708,7 @@
           }
 
         })  
+        //ako soba ne postoji response ako je if(room in localData) tacan
         socket.on("roomNotExist",message =>{
           new Noty({  
                   theme : 'metroui',
@@ -715,11 +720,12 @@
                 }).show()
           $("#maxDiv").hide()
         })
+        //updatavnje igraca nakon kikovanja
         socket.on('playerCountUpdate', message =>{
          
           document.getElementById('lblPlayersReady').textContent = message
         })
-
+        //error tokom kreiranja runde
         socket.on('createRoundResponse',message =>{
             gameStarted = false
             ready = false
@@ -735,6 +741,7 @@
               }).show()
               
         })
+        // response ako bude problema tokom evaluacije
         socket.on('evaluationResponse',message=>{
           new Noty({
                 theme : 'metroui',
@@ -754,6 +761,7 @@
               document.getElementById('roundNumber').textContent = roundNumber
               document.getElementById('lblPlayersReady').textContent = message['playersReady']
         })
+        //response ako bude problema u datacolleturu lose napravljeno
         socket.on('dataCollectorResponse',message=>{
           new Noty({
                 theme : 'metroui',
@@ -764,6 +772,9 @@
                 progressBar :true
               }).show()
         })
+        //event za pocinjane runde 
+        // ovde se desava disablujenje odredjenih funckija 
+        // odredjivanje regexa
         socket.on('gameStartNotification', message => {
          
           if(message['Success'] == true){
@@ -788,7 +799,7 @@
                 else if(currentLetter == "č")
                   dataReg = new RegExp(`^(c|č|ч)[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,41}$`,'g')
                 else if(currentLetter == "lj" || currentLetter == "nj")
-                  dataReg = new RegExp(`^$({currentLetter}|${letterDict[currentLetter]})[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,40}$`,'g')
+                  dataReg = new RegExp(`^$(${currentLetter}|${letterDict[currentLetter]})[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,40}$`,'g')
                 else if(currentLetter == "dž")
                   dataReg = new RegExp(`^(dz|dž|џ)[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,40}$`,'g')
                 else if(currentLetter == "ž")
@@ -858,7 +869,7 @@
               if(!(keys[i] in pList))
               {
                 pList[keys[i]] = message['players'][keys[i]]               
-                $("ul").append(`<li id="${keys[i]}"><label class="nameLabel" onclick="historyReq('${keys[i]}')">${keys[i]}</label> | <label id="${keys[i]}Points">${message['players'][keys[i]]}</label> <span onclick="voteKick(\'${keys[i]}\')" class="mySpan">&#10006;</span></li>`);
+                $("ul").append(`<li id="${keys[i]}"><label class="nameLabel" onclick="historyReq('${keys[i]}')">${keys[i]}</label> | <label id="${keys[i]}Points">${message['players'][keys[i]]}</label> <span onclick="voteKick(\'${keys[i]}\')" class="mySpan" id="span${keys[i]}">&#10006;</span></li>`);
               }
             }
           }else if(message["MODE"] == "UPDATE"){
@@ -867,8 +878,6 @@
             for(let i =0;i<keys.length;i++){
               
               try{
-                //txt =document.getElementById(String(keys[i])).innerText
-                //liP = Number(txt.split('|')[1].trim().split(' ')[0]) + Number(message['players'][keys[i]])
                 document.getElementById(keys[i]+'Points').textContent = Number(document.getElementById(keys[i]+'Points').textContent) + Number(message['players'][keys[i]])
 
               }catch(TypeError){
@@ -877,18 +886,24 @@
             }
           }
         })
+        //funckicja za glasanje
         function voteKick(usernameM){
           socket.emit('voteKickStart',({usernameM,roomCode}))
           //na result eventu enabluj
-          //ovo ne radi KEK
-          $(".mySpan").each((i,obj)=>{           
-            $(obj).prop('disabled',true)
-          })
+          let keys = Object.keys(pList)
+          for(let i=0;i<keys.length;i++){
+            $(`#span${keys[i]}`).css('pointer-events','none')
+          }
+          
         }
+        //start vote kick event prikazuje popup za glasanje za izbacivanje
         socket.on('startVoteKickResponse',message=>{
           if(message['Success']){
             myAlert(message['username'])
-
+            let keys = Object.keys(pList)
+            for(let i=0;i<keys.length;i++){
+                $(`#span${keys[i]}`).css('pointer-events','none')
+            }
             new Noty({
                 theme : 'metroui',
                 type : 'info',
@@ -910,6 +925,7 @@
               }).show()
           }
         })
+        //player ready response
         socket.on('playerReadyResponse' , message =>{
           
           if(message['Success'] == false){
@@ -949,7 +965,7 @@
           }
           readyBtn.disabled = false;
         })
-
+        //player disc messsage event
         socket.on('discMessage',message =>{
           new Noty({
               theme : 'metroui',
@@ -960,7 +976,7 @@
               progressBar :true
             }).show()
         })
-
+        //playerjoin event ispis
         socket.on('playerJoinMsg', message =>{    
           
             new Noty({
@@ -972,6 +988,7 @@
               progressBar :true
             }).show()
         })
+        //roundnumberupdate event
         socket.on('roundNumberUpdate', message=>{
           roundNumber = message
           select = document.getElementById('roundSelect')
@@ -982,9 +999,8 @@
           select.appendChild(opt)
           document.getElementById('roundNumber').textContent = roundNumber 
         })
-
-        socket.on('points' , message =>{
-          
+        //points socket listener event gde se dodaju poeni 
+        socket.on('points' , message =>{         
           readyBtn.disabled = false;
           if(!message['Success'])
           {
@@ -1000,7 +1016,6 @@
           }
           else
           {
-            //enableAllPButtons()
             enableHistoryReq()
             new Noty({
                 theme : 'metroui',
@@ -1009,15 +1024,10 @@
                 text : 'Evaluacija zavrsena',
                 timeout : 5000,
                 progressBar :true
-              }).show()
-              
-              
+              }).show()  
               for(let i=0;i<fields.length;i++){
-               
-                //$(`#input${fields[i]}`).prop("disabled", false )
                 try
-                {
-                  
+                {                  
                   poeni = message['result'][i][$(`#input${fields[i]}`).val().toLowerCase()]
                   if(poeni != undefined){
                     document.getElementById(`input${fields[i]}`).value += '  + ' +  poeni
@@ -1047,10 +1057,9 @@
           opt.selected = 'selected'
           select.appendChild(opt)
           document.getElementById('roundNumber').textContent = roundNumber
-          document.getElementById('lblPlayersReady').textContent = message['playersReady']
-          
+          document.getElementById('lblPlayersReady').textContent = message['playersReady']          
         })
-        
+        //err listner
         socket.on('pointsErr',message=>{
           new Noty({
               theme : 'metroui',
@@ -1064,14 +1073,13 @@
             $('#maxDiv').hide()
             
         })
+        //socket listener za kraj runde od strane servera nakon isteka vremena ili nakon sto je neki drugi igrac zavrsio
         socket.on('roundEnd',message =>{
-         
+            
             t0 = performance.now()
-            //$(`#help${field}`).show() 
             hideAllHelp()
             readyBtn.disabled = true;
-            if(message['Success']){
-              //SEND ALL DATA TO SERVER FOR REVALUETION
+            if(message['Success']){            
               new Noty({
                 theme : 'metroui',
                 type : 'success',
@@ -1080,29 +1088,19 @@
                 timeout : 5000,
                 progressBar :true
               }).show()
-              
-            //enableAllInputFields()
-              
-            
               var allValid = true
-              var data = []
-            
-                  
+              var data = []           
               for(let i=0;i<fields.length;i++){
                 if(!dataReg.test($(`#input${fields[i]}`).val().toLowerCase())){
                   data.push('')               
                 }else{
                   data.push($(`#input${fields[i]}`).val().toLowerCase().trim())
-                  //document.getElementById(`predloziBtn${fields[i]}`).disabled =  false;
                 }              
                 dataReg.lastIndex =0;       
               }           
               if(!kicked)
                 socket.emit('roundData',({username,roomCode,data,roundNumber}))
-                //ili vidi da se ovo radi kada se dobije confirmacija da su podaci obradjeni!!!
-              //clearAllInputFields()
-              historyData[username][roundNumber] = data
-             
+              historyData[username][roundNumber] = data           
               disableAllInputFields()
               gameStarted = false
               ready = false
@@ -1112,45 +1110,29 @@
               timer.textContent = '0'
             }
           
-        })
-
-        
-
+        })    
+        // ovo ne radi 
         window.addEventListener('unload',(e) =>{
           if(!readyBtn.style.backgroundColor == "red" && !readyBtn.innerText == 'Not ready!')
-            socket.emit('disconnectMSG',({username,roomCode}))
-          
-        })
-        
-        //done
+            socket.emit('disconnectMSG',({username,roomCode}))         
+        })      
+        //ready button click event listner // sluzi za ready upovanje i slanje zahteva za kraj runde ako su sva polja validno popunjena
         readyBtn.addEventListener('click',(e) =>{
-          //ovo popravi
-          
           if(!gameStarted){
             if(!ready){
               socket.emit('playerReady',roomCode)
-             // readyBtn.setAttribute("disabled","disabled")
               readyBtn.disabled = true;
-              //console.log(readyBtn)
               ready = true
-              //setTimeout(readyBtn.removeAttribute("disabled"),2000)
             }
             else{
-              socket.emit('playerUnReady',roomCode)
-              
-              //readyBtn.setAttribute("disabled","disabled")
-              
+              socket.emit('playerUnReady',roomCode)            
               readyBtn.disabled = true;
               ready = false
-              //setTimeout(readyBtn.removeAttribute("disabled"),2000)
             }
           }else{
-            //proveri da li su sva polja validna i posalji
-            //ovo resi
-            //var dataReg = RegExp('[A-Za-zčČćĆžŽšŠđĐ]{1,42}'/g)
+            
             data =[]
             hideAllHelp()
-            
             var allValid = true
             for(let i=0;i<fields.length;i++){
               if(!dataReg.test($(`#input${fields[i]}`).val().toLowerCase())){
@@ -1161,7 +1143,6 @@
               }else{
                 data.push($(`#input${fields[i]}`).val().toLowerCase().trim())
               }
-
               dataReg.lastIndex = 0             
             }
             if(allValid){
@@ -1169,33 +1150,19 @@
               if(!kicked){
               socket.emit('clientEndRound',({username,roomCode,data,roundNumber}))
               }
-             
-              //clearAllInputFields()
               historyData[username][roundNumber] = data
               disableAllInputFields()
               gameStarted = false
               ready = false
               readyBtn.style.backgroundColor = 'red'
               readyBtn.textContent = 'Nisi spreman'             
-              //DISAJBLUJ OVDE DUGME i kada se vrate poeni onda ga uklljuci
               clearInterval(myInterval)
               timer.textContent = '0'
-            }else{
-              //alertuj da podaci nisu validni
             }
-            //this should be it for now
-            /*
-            new Noty({
-              theme : 'metroui',
-              type : 'success',
-              layout : 'topRight',
-              text : dataReg.test(document.getElementById('inputDrzava').value),
-              timeout : 5000,
-G              progressBar :true
-            }).show()
-            */
           }
         })
+
+        //windows on load event gde se regexuju podaci radi zastite i salje zahtev za ulazak u sobu
         window.onload = (e)=>{
             const {username, roomCode} = Qs.parse(location.search,{
                 ignoreQueryPrefix: true
@@ -1204,11 +1171,7 @@ G              progressBar :true
             const usernameReg = /^[A-Za-zčČćĆžŽšŠđĐ ]{4,30}$/g
             const sessionReg = /^[A-Za-z0-9/+]{48}$/g
             if(roomReg.test(roomCode) && usernameReg.test(username)){
-              //dodaj ovde regex check
-                //TODO da se proveri u bazi da li postoji room i ovaj username i ako postoji neka se samo joinuje u socketu
-                //console.log("TEST")
-                
-                const sessionToken = localStorage.getItem('sessionToken') //REGEXUJ SESSION TOKEN
+                const sessionToken = localStorage.getItem('sessionToken') 
                 if(sessionReg.test(sessionToken))
                   socket.emit('joinRoomReq',({username,roomCode,sessionToken}))
                 else
@@ -1220,7 +1183,7 @@ G              progressBar :true
                     timeout : 5000,
                     progressBar :true
                   }).show()
-                //$('#maxDiv').show(); ovo stavi u response
+
             }
             else{
                   new Noty({
@@ -1231,21 +1194,14 @@ G              progressBar :true
                   timeout : 5000,
                   progressBar :true
                 }).show()
-                /*
-                if(!alert("Game not found!"))
-                  window.location.href='/';
-                //myAlert()
-                */
+  
             }
         }
-        function predlozi(field){
-          
-          let val = $(`#input${field}`).val().toLowerCase().split('+')[0].trim()
-          
+        //Funkcija za predlaganje odgovora
+        function predlozi(field){          
+          let val = $(`#input${field}`).val().toLowerCase().split('+')[0].trim()          
           if(dataReg.test(val)){
             let k = kDict[field]
-           
-            
             socket.emit("predlagac",({val,currentLetter,k}));                      
             new Noty({
                   theme : 'metroui',
@@ -1262,22 +1218,7 @@ G              progressBar :true
           dataReg.lastIndex = 0;
           document.getElementById(`predloziBtn${field}`).disabled = true;
         }
-        //vidi kako dynamic ide u js-u
-        
-        
-        function dodaj(){
-            
-            //console.log(username, room)
-            let xd = ['','Srbija','Subotica','Sanja','Suncokret','Sda','Sada','ss','','S','12']
-            var table = document.getElementById("table")
-            var row = table.insertRow(2)
-                row.editable='true'
-            for(let i =0;i<11;i++){
-                let cell = row.insertCell(i)
-                // use new paragraph for new line
-                cell.innerHTML = xd[i] + '<p></p>'
-            }
-        }
+
     </script>
 </html>
 <!-- KORISTI TIMER NA CLIENT SIDU-->
