@@ -37,3 +37,35 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
 - Takodje je potrebno konfigurisati bazu podataka , to je moguće uraditi u ***public/javascripts/trueMysql.js*** fajlu
 - Izvršiti sledeće komande ``` npm install ``` i ``` node app ``` da bi pokrenuli aplikaciju
 - Default adresa aplikacije je *localhost:3000*
+
+### FILE STRUCTURE
+    .
+    ├── db                      # Folder za baze
+    ├── public                  # Folder za slike, js i css fajlove (express layout)
+    │   ├── images              # Folder za slike
+    │   ├── javascripts         # Folder za javascript fajlove
+    │   └── stylesheets         # Folder za style fajlove
+    ├── scraper_scripts         # Folder za skripte
+    │   ├── biljke              # Fajlovi vezani za biljke (za unošenje u bazu)
+    │   ├── data                # Fajlovi vezani za za unošenje u bazu (OLD)
+    │   ├── drzave              # Fajlovi vezani za drzava (za unošenje u bazu)
+    │   ├── generalScripts      # Generalne scripte za manipulaciju podacima
+    │   ├── gradovi             # Fajlovi vezani za gradove (za unošenje u bazu)
+    │   ├── imena               # Fajlovi vezani za imena (za unošenje u bazu)
+    │   ├── oldScripts          # Stare scripte (OLD)
+    │   ├── planine             # Fajlovi vezani za planine (za unošenje u bazu)
+    │   ├── reke                # Fajlovi vezani za reke (za unošenje u bazu)
+    │   ├── zivotinje           # Fajlovi vezani za zivotinje (za unošenje u bazu)
+    ├── tests                   # Testovi 
+    ├── views                   # Html fajlovi (express layout)
+    ├── WindowsFormsApp1        # C# aplikacija za brze sortiranje validnih podataka
+    ├── xls                     # xls fajlovi 
+    ├── app.js                  # server
+    ├── errCodeList.json        # beskorisno
+    ├── idea.txt                # OLD
+    ├── package-lock.json       # package-lock.json
+    ├── package.json            # package.json
+    ├── README.md               # README.md
+    ├── sucCodeList.json        # beskorisno
+    ├── todo                    # licna todo lista (localno updatovana)
+     
