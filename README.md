@@ -74,7 +74,7 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
 - Bodovovanje i pregled rezultata drugih igrača u sobi po rundama
 - Vote kick sistem, da ne mora da se pravi nova soba ako jedan igrač odluči da prestane da igra
 - Jednostavan Base64 sessionToken koji se čuva u localStorage-u koji ograničava da korisnik ne može da bude u više soba u isto vreme 
-- -> Takodje omougućava da samo registrovani korisnik u tom browseru može da pristupi sobi , a ne neko drugi ko zna sobu i ime 
+- -> Takodje omogućava da samo registrovani korisnik u tom browseru može da pristupi sobi , a ne neko drugi ko zna sobu i ime 
 - Room-based sistem
 
 ### POZNATI BUGOVI
@@ -82,6 +82,7 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
 
 ### PLANOVI
 - Mogući neki live chat u sobi
+- Mogući account sistem ako projekat bude išao dobro
 
 ### TODO
 - Dodaj bug tracking i reporting sistem 
