@@ -4,7 +4,7 @@ Nacionalna geografija / zemljopis web aplikacija
 
 # ANDROID KLIJENT
 
-* [Android] (https://github.com/WickedyWick/Zemljopis-Android) - android
+* [Android](https://github.com/WickedyWick/Zemljopis-Android) - android
 
 # DOZVOLE
 Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lokalno igranje za maksimalno 2 igrača).
@@ -92,3 +92,4 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
 - Dodaj bug tracking i reporting sistem 
 
 ### NOTE
+- Neće biti dodate nove funkcionalnosti za TTM takmičenje osim možda bug fixova , sto čini ovu verziju finalnu za takmičenje
