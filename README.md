@@ -90,3 +90,5 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
 
 ### TODO
 - Dodaj bug tracking i reporting sistem 
+
+### NOTE
