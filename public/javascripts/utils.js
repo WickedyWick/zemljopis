@@ -424,7 +424,7 @@ function startVoteKick(room,username,localData,socket,io){
 }
 
 function kickEval(room,localData,io){
-    console.log(room)
+   
    if(!localData[room]['kickVote']['funcCalled'])
    {
        if(!localData[room]['evalFuncExecuting'])

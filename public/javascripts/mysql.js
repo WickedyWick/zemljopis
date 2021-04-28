@@ -1,16 +1,6 @@
 const utils  = require('./utils.js')
 var pool = require('./trueMysql.js')
 const cryptoRandomString = require('crypto-random-string');
-/*
-Return object
-{
-    Success : false/true,
-    ERR_MSG za false || MSG za true
-}
-*/
-//Pogledaj u bazi vezu izmedju data i round
-
-//double conn open?
 function joinRoomSQL(socket,room,username,localData){
     if(room in localData){
         if(localData[room]['playerCount'] > Object.keys(localData[room]['playersID']).length){
@@ -22,10 +12,7 @@ function joinRoomSQL(socket,room,username,localData){
                         "Data" : "Doslo je do problema sa pridruzivanjem u sobu, pokusajte kasnije!"
                     })
                     
-                }else{
-
-                    //IF REJOIN ()..
-                    //Ovde prvo query da se vidida li postoji username u sobi, ako ne postoji moze ako postoji mora drugo ime //koristi proceduru
+                }else{                  
                     connection.query(`select username from player where roomCode = '${room}' and username = '${username}';`,(err,result,fields) =>{
                         
                         if(err){
@@ -34,24 +21,8 @@ function joinRoomSQL(socket,room,username,localData){
                                 "ERR_MSG" : "Doslo je do problema , pokusajte kasnije!" 
                                 
                             })
-                            /*
-                            connection.query(`insert into error values(DEFAULT,'mysql.js','joinRoomSQL','${err.stack}','${JSON.stringify(
-                                {
-                                    'localData' : localData[room],
-                                    'room' : room,                                
-                                    'username' : username
-                                }
-                            )}','Format sobe ili username nije validan?')`,(err,result,fields) =>{
-                                if(err){
-
-                                }
-                            })
-                            */
                         }else{
-                            //console.log(result.length)
                             if(result.length ==0){
-                                
-                            //ovde proveri results lol.
                                     let sessionToken = cryptoRandomString({length: 48, type: 'base64'})
                                     connection.query(`insert into player values(DEFAULT,'${room}','${username}','${sessionToken}',0);`, (err,results,fields) =>{
                                         if(err){
@@ -67,12 +38,9 @@ function joinRoomSQL(socket,room,username,localData){
                                                     
                                                 })
                                         }
-                                        else{
-                                            
+                                        else{                                           
                                             localData[room]['players'][username] = results.insertId
                                             localData[room]['playersID'][results.insertId] = username
-                                            
-                                            //socket join neka bude kada se poveze na game socket.join(room)
                                             socket.emit('joinRoomSQLResponse',{'Success' : true,
                                                 'username': username,
                                                 'roomCode': room,
@@ -90,14 +58,7 @@ function joinRoomSQL(socket,room,username,localData){
                                         "ERR_MSG": "Korisnicko ime u toj sobi vec postoji, izaberite drugo korisnicko ime!"
                                     })
                                 
-                            }
-                            
-                            //pokrij ovo na klijentu
-                            //socket.emit('joinRoomSQLResponse',{'Success' : true,
-                                //'/roomCode': room   
-                            //})
-                            //socket.to(room).broadcast.emit('joinMessage',`${username} has joined the room!`)
-                    
+                            }                  
                         }
                     })
                 }
@@ -118,27 +79,7 @@ function joinRoomSQL(socket,room,username,localData){
 function createRoom(socket,username,playerCount,roundTimeLimit,localData){
    
     //Prvo se kreira soba , pa se pravi igrac, pa se pravi runda kada se svi pridruze!
-    // kada su svi ready
-   
-    /*
-    con.connect( err => {
-            if (err){ 
-                console.log(err.sqlMessage)
-                throw err
-            }
-            con.query("SELECT * FROM room",  (err, result, fields) => {
-                if (err){
-                    c
-                    console.log(err.sqlMessage)
-                    throw err
-                }                               
-                console.log(result)
-                socket.emit('message',result)
-            });
-            
-        })
-    */
-        
+    // kada su svi ready      
             createRoomCode().then((response) =>{
                 pool.getConnection((err,connection) => {
                     if (err) 
@@ -159,13 +100,6 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData){
                             if (err){
                                 //ER_DUP_ENTRY for duplicate entry
                                 console.log(`ERROR WHILE INSERTING VALUES INTO ROOM : Code : ${err.code}\nMSG : ${err.sqlMessage}`)
-                                /*return {"Success": false,
-                                    "Data": "There was problem creating room, please try again later"
-                                }*/
-                                
-                                //// TODO AKO ERR proveri koji error -> ako je room exist error
-                                //-> ili sve stavi u jednu funckiju a ne dve da moram da cekam
-                                //bolje ovo uradi..
                                 socket.emit('createRoomSQLResponse',{
                                     'Success': false,
                                     "ERR_MSG ": "Problem prilikom kreiranje sobe, pokusajte kasnije!"
@@ -173,9 +107,6 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData){
 
                             }else{           
                                 console.log("Room creation successfull!")
-                                //socket.join(response)
-                                
-                                
                                 localData[response] = {
                                     'playerCount' : playerCount,
                                     'playersReady' : 0,
@@ -196,8 +127,6 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData){
                                 localData[response]['players'][username] = results[1].insertId
                                 localData[response]['playersID'][results[1].insertId] = username
                                 socket.emit('createRoomSQLResponse',{'Success':true,
-                                        //'Data':result,
-                                        
                                         'roomCode':response,
                                         'username': username,
                                         'sessionToken': sessionToken
@@ -228,9 +157,6 @@ function joinRoom(socket,room,username,sessionToken,localData,io){
                     "ERR_MSG" : "Problem prilikom ulaska u sobu!"
                 })
             }else{
-                //proveri da li postoji username
-                console.log(username);
-                console.log(room)
                 //select username, SUM(bodovi) from player join data on player.playerID = data.playerID where roomCode = "MQul2FvC" GROUP by username #ukupni bodovi za sve korisniike u sobi
                 //select SUM(bodovi) from player join data on player.playerID = data.playerID where username = "Aleasjk" and roomCode = "MQul2FvC" #ukupni bodovi za specificnog usera
                 //daje null ili 0 (null ako nije odigrana ni jedna runda)
@@ -287,9 +213,7 @@ function joinRoom(socket,room,username,sessionToken,localData,io){
                                             "roundActive" : localData[room]['roundActive'],
                                             "roundNumber" : localData[room]['roundNumber'],
                                             "points" : result[2][0]['ukupnoBodova'],                                   
-                                        })
-                                    console.log('ROOM : ' + room)
-                                    //pretvorvi ovo u dict sa for loopopm
+                                        })                                    
                                     playerPointDict = {}
                                     players = Object.keys(localData[room]['players'])
                                     

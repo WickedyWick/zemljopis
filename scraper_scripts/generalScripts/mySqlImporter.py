@@ -1,7 +1,7 @@
 '''
 Categories 
-1: Drzava
-0: Grad
+0: Drzava 
+1: Grad 
 2: Ime
 3: Biljka
 4: Zivotinja
@@ -13,12 +13,12 @@ Categories
 import mysql.connector
 import sys
 import os.path
-categoryDict ={'drzava':1,'grad':0,'ime':2,'biljka':3,'zivotinja':4,'planina':5,'reka':6,'predmet':7}
+categoryDict ={'drzava':0,'grad':1,'ime':2,'biljka':3,'zivotinja':4,'planina':5,'reka':6,'predmet':7}
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
   password="",
-  database="zemljopis"
+  database="zemljopisv2"
 )
 mycursor = mydb.cursor()
 countries = []
@@ -41,7 +41,7 @@ if(len(sys.argv) == 3):
                 vals.append((splited[i],letter,categoryDict[cat],lastID))
             mycursor.executemany('insert into referencedata values(DEFAULT,%s,%s,%s,%s)',vals)
     except:
-        print("ERROR")
+        raise Exception;
 
 
 
