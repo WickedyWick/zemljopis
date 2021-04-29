@@ -23,6 +23,11 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
 * [NodeJS](https://nodejs.org/en/) - server
 * [XAMPP](https://www.apachefriends.org/index.html) - baza podataka
 
+## DEMO 
+
+* [90s](https://www.youtube.com/watch?v=lvL02iGEqRk) -90 sekundi
+* [FULL DEMO](https://www.youtube.com/watch?v=COptxK_RlOs) - FULL DEMO
+
 ## Instalacija i konfiguracija 
 
 ### XAMPP
@@ -83,10 +88,15 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
 
 ### POZNATI BUGOVI
 - Daje server error nekada kada se korisnik disconnectuje (playerUnready event)
+- Omogucava predlozi dugme nekada na prazan rezultat
+- Moguće ući više puta u sobu sa istim korisnikom u istom browseru 
+- Nepravilne poruke u nekim situacijama
 
 ### PLANOVI
 - Mogući neki live chat u sobi
 - Mogući account sistem ako projekat bude išao dobro
+
+
 
 ### TODO
 - Dodaj bug tracking i reporting sistem 
