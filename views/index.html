@@ -315,7 +315,7 @@
                 if(!roomReg.test(room) && !usernameReg.test(username)){
                     //mylaertuj za o
                     myAlert('Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica,cirilica i engleski alfabet!\nSoba se sastoji od 8 alfanumerickih karaktetra!')
-                }else if(!roomReg(room)){
+                }else if(!roomReg.test(room)){
                     // ako je soba invalidnog formata
                     myAlert('Soba se sastoji od 8 alfanumerickih karaktetra!')
                 }
@@ -356,10 +356,10 @@
             if(roomReg.test(room) && usernameReg.test(username)){   
                 window.location.href = `/game?roomCode=${room}&username=${username}`;
             }else{
-                if(!roomReg.test(room) && !usernameReg(username)){
+                if(!roomReg.test(room) && !usernameReg.test(username)){
                     //mylaertuj za o
                     myAlert('Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica i engleski alfabet!\nSoba se sastoji od 8 alfanumerickih karaktetra!')
-                }else if(!roomReg(room)){
+                }else if(!roomReg.test(room)){
                     // ako je soba invalidnog formata
                     myAlert('Soba se sastoji od 8 alfanumerickih karaktetra!')
                 }
