@@ -38,7 +38,7 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
 ### NODEJS
 - Nakon instalacije Node-a, potrebno je otvoriti konzolu u root folderu gde je projekat kloniran 
 - Potrebno je uneti lokalnu adresu sa portom u formatu *lokalnaAdresa:3000* (**3000 je default port**) u ***public/javascripts/config.js*** fajlu
-- Takodje je potrebno konfigurisati bazu podataka , to je moguće uraditi u ***public/javascripts/trueMysql.js*** fajlu
+- Takođe je potrebno konfigurisati bazu podataka , to je moguće uraditi u ***public/javascripts/trueMysql.js*** fajlu
 - Izvršiti sledeće komande ``` npm install ``` i ``` node app ``` da bi pokrenuli aplikaciju
 - Default adresa aplikacije je *localhost:3000*
 
@@ -59,7 +59,7 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
     │   ├── oldScripts          # Stare scripte (OLD)
     │   ├── planine             # Fajlovi vezani za planine (za unošenje u bazu)
     │   ├── reke                # Fajlovi vezani za reke (za unošenje u bazu)
-    │   ├── zivotinje           # Fajlovi vezani za zivotinje (za unošenje u bazu)
+    │   └── zivotinje           # Fajlovi vezani za zivotinje (za unošenje u bazu)
     ├── tests                   # Testovi 
     ├── views                   # Html fajlovi (express layout)
     ├── WindowsFormsApp1        # C# aplikacija za brze sortiranje validnih podataka
@@ -71,14 +71,14 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
     ├── package.json            # package.json
     ├── README.md               # README.md
     ├── sucCodeList.json        # beskorisno
-    ├── todo                    # licna todo lista (localno updatovana)
+    └── todo                    # licna todo lista (localno updatovana)
      
 ### FUNKCIONALNOSTI
 - Podaci prihvaćeni u latinici (sa kvačicama i bez) i ćirilici
 - Bodovovanje i pregled rezultata drugih igrača u sobi po rundama
 - Vote kick sistem, da ne mora da se pravi nova soba ako jedan igrač odluči da prestane da igra
 - Jednostavan Base64 sessionToken koji se čuva u localStorage-u koji ograničava da korisnik ne može da bude u više soba u isto vreme 
-- -> Takodje omogućava da samo registrovani korisnik u tom browseru može da pristupi sobi , a ne neko drugi ko zna sobu i ime 
+- -> Takođe omogućava da samo registrovani korisnik u tom browseru može da pristupi sobi , a ne neko drugi ko zna sobu i ime 
 - Room-based sistem
 
 ### POZNATI BUGOVI
@@ -90,6 +90,9 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
 
 ### TODO
 - Dodaj bug tracking i reporting sistem 
+- Refactoring
 
-### NOTE
+### TTM
 - Neće biti dodate nove funkcionalnosti za TTM takmičenje osim možda bug fixova , sto čini ovu verziju finalnu za takmičenje
+- Baza podataka je još jako mala
+- Glavni cilj mog projekta je zabava, ali to nije jedina stvar što doprinosi. Iz mog ličnog iskustva i okruženja primetio sam da tokom godina počnu da se zaboravljaju stvari naučene iz škole ako se ne upotrebljavaju , moj projekat omogućava da se upotrebljava znanje iz oblasti geografije. Odlučio sam da napravim (portujem , kako god) online verziju igre poznatu u narodu kao nacionalna geografija ili zemljopis. Sa sve većom upotrebnom računara, mobilnih telefona , tableta ... potrebno je imati mogućnost igrati igru i na tim uređajima , pogotovo u trenutnoj pandemiji. Ovaj projekat ne pomaže direktno studentima ali je tu da pruži zabavu sa drugarima i u isto vreme proširi ili održava znanje o geografiji.
