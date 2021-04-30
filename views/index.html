@@ -304,7 +304,7 @@
         //dodaj ova govna
         document.getElementById('pridruzi').addEventListener('click',(e)=>{
             let roomReg = /^[A-Za-z0-9]{8}$/g
-            const usernameReg = /^[A-Za-zčČćĆžŽšŠđĐ ]{4,30}$/g
+            const usernameReg = /^[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{4,30}$/g
             e.preventDefault();
             let username = document.getElementById('txb_username').value.trim()
             let room = document.getElementById('txb_roomCode').value.trim()
@@ -329,7 +329,7 @@
         document.getElementById('napravi').addEventListener('click',(e)=>{
             e.preventDefault(); 
             let username = document.getElementById('txb_username').value.trim()
-            let reg = /^[A-Za-zčČćĆžŽšŠđĐ ]{4,30}$/g
+            let reg = /^[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{4,30}$/g
             if(reg.test(username)){
                 let playerCount = document.getElementById('playerNumber').value
 
@@ -352,7 +352,7 @@
             let room = document.getElementById('txb_roomCode').value.trim()
             let username = document.getElementById('txb_username').value.trim()
             let roomReg = /^[A-Za-z0-9]{8}$/g
-            const usernameReg = /^[A-Za-zčČćĆžŽšŠđĐ ]{4,30}$/g
+            const usernameReg = /^[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{4,30}$/g
             if(roomReg.test(room) && usernameReg.test(username)){   
                 window.location.href = `/game?roomCode=${room}&username=${username}`;
             }else{

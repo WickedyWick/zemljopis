@@ -2,7 +2,38 @@ const perf = require('perf_hooks')
 const e = require('express')
 var pool = require('./trueMysql.js')
 const { strict } = require('assert') //ne znam sta je ovo 
-
+const letterDict = {            
+    'a':'а',
+    'b':'б',
+    'v':'в',
+    'g':'г',
+    'd':'д',
+    'đ':'ђ',
+    'e':'е',
+    'ž':'ж',
+    'z':'з',
+    'i':'и',
+    'j':'ј',
+    'k':'к',
+    'l':'л',
+    'lj':'љ',
+    'm':'м',
+    'n':'н',
+    'nj':'њ',
+    'o':'о',
+    'p':'п',
+    'r':'р',
+    's':'с',
+    't':'т',
+    'ć':'ћ',
+    'u':'у',
+    'f':'ф',
+    'h':'х',
+    'c':'ц',
+    'č':'ч',
+    'dž':'џ',
+    'š':'ш',
+}
 /*******
     if(room in localData) se proverava u slucaju da se srusi aplikacija i da nekako user posalje request ili ako korisnik ostane u sobi dugo (ostavi tab otvoreen) i pokusa da nastavi da igra a soba vise nije aktivna
     sobe ce biti aktivne 6 sati
@@ -101,6 +132,7 @@ function createRound(room,io,localData){
                             io.to(room).emit("gameStartNotification",{'Success' : true,
                                         "MSG" : "Everyone is ready, game will start shortly!",
                                         "currentLetter":response,
+                                        "cirilicaLetter": letterDict[response],
                                         "CODE" : 1
                                     })                                   
                             const temp = setTimeout(timeout, localData[room]['roundTimeLimit']*1000, room,localData,io);                           
