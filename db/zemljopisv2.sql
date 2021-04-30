@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2021 at 09:44 PM
+-- Generation Time: Apr 30, 2021 at 04:03 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -217,7 +217,13 @@ INSERT INTO `data` (`dataID`, `roundID`, `playerID`, `drzava`, `grad`, `ime`, `b
 (168, 164, 322, 'хондурас', 'hhhhhaaaaa', 'hhhhhaaaaa', 'hhhhhaaaaa', 'hhhhhaaaaa', 'hhhhhaaaaa', 'hhhhhaaaaa', 'hhhhhaaaaa', 0),
 (169, 165, 324, 'gruzija', 'gggg', 'gggg', 'gggg', 'gggg', 'gggg', 'gggg', 'gsdadas', 10),
 (170, 165, 325, 'грузија', '', '', '', '', '', '', '', 0),
-(171, 166, 326, 'ljubovija', '', 'ljubica', '', '', '', '', '', 10);
+(171, 166, 326, 'ljubovija', '', 'ljubica', '', '', '', '', '', 10),
+(172, 168, 332, 'tunis', '', '', '', '', '', '', '', 5),
+(173, 168, 333, 'tunis', '', '', '', '', '', '', '', 5),
+(174, 169, 336, 'kkkkkkk', 'kragujevac', 'kkkkkkk', 'kkkkkkk', 'kkkkkkk', 'kkkkkkk', 'kkkkkkk', 'kkkkkkk', 10),
+(175, 169, 337, '', 'крагујевац', 'katarina', '', '', '', '', '', 10),
+(176, 170, 339, 'južnoafrička republika', 'јјјјј', 'јована', 'јјјјј', 'јјјјј', 'јјјјј', 'јјјјј', 'јјјјј', 20),
+(177, 170, 338, 'juznoafricka republika', '', '', '', '', '', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -6045,7 +6051,36 @@ INSERT INTO `originaldata` (`dataID`, `naziv`, `slovo`, `kategorija`) VALUES
 (5804, 'šargan', 'š', 4),
 (5805, 'šilac', 'š', 4),
 (5806, 'škarpina', 'š', 4),
-(5807, 'nipple', 'n', 5);
+(5807, 'nipple', 'n', 5),
+(5808, 'antena', 'a', 7),
+(5809, 'bubanj', 'b', 7),
+(5810, 'cigla', 'c', 7),
+(5811, 'česma', 'č', 7),
+(5812, 'ćup', 'ć', 7),
+(5813, 'daska', 'd', 7),
+(5814, 'džemper', 'dž', 7),
+(5815, 'đubrovnik', 'đ', 7),
+(5816, 'epruveta', 'е', 7),
+(5817, 'flaša', 'f', 7),
+(5818, 'greda', 'g', 7),
+(5819, 'harpun', 'h', 7),
+(5820, 'igla', 'i', 7),
+(5821, 'jakna', 'j', 7),
+(5822, 'kajak', 'k', 7),
+(5823, 'lampa', 'l', 7),
+(5824, 'ljuljaška', 'lj', 7),
+(5825, 'mač', 'm', 7),
+(5826, 'naočare', 'n', 7),
+(5827, 'njihalica', 'nj', 7),
+(5828, 'orman', 'o', 7),
+(5829, 'parket', 'p', 7),
+(5830, 'radio', 'r', 7),
+(5831, 'šal', 'š', 7),
+(5832, 'telefon', 't', 7),
+(5833, 'upaljač', 'u', 7),
+(5834, 'vaza', 'v', 7),
+(5835, 'zatvarač', 'z', 7),
+(5836, 'žeton', 'ž', 7);
 
 -- --------------------------------------------------------
 
@@ -6375,13 +6410,27 @@ INSERT INTO `player` (`playerID`, `roomCode`, `username`, `sessionToken`, `kicke
 (317, 'dLghyiZm', 'Gejara', 'xdvsmEJWd7GYjwmQrNTwcChJGk19Cjj+dYrGY2JrpCvsEvSb', 0),
 (318, 'Tf7sB9iJ', 'aleksa', 'c1DZhknWTHm1hCH1zcL9DHlUCsMzVZqH1kOomT0Q6osYqX+Y', 1),
 (319, 'EAnJGc33', 'Aleksa', '5DrVnS0LSP7koG9deDNAz05RRJ7aUnw6lR2AyP3y5fXnAr/V', 1),
-(320, 'EAnJGc33', 'Crveni', 'U02qAL9mLIQRIi777JJrk1EzGQamV62g7KQPOBdacIhYYKTv', 0),
+(320, 'EAnJGc33', 'Crveni', 'U02qAL9mLIQRIi777JJrk1EzGQamV62g7KQPOBdacIhYYKTv', 1),
 (321, 'c4FW3Nl4', 'Aleksa', 'RA9sainaWO8oSV+O5dlIynOAsxUaFW8U5sd0sERCaOtXLUiS', 1),
-(322, 'c4FW3Nl4', 'Crveni', 'WKJ7ISRrH0wnSKHHJ1tXujm9lwYLbRAqO6HKkSuninXRyZ0q', 0),
+(322, 'c4FW3Nl4', 'Crveni', 'WKJ7ISRrH0wnSKHHJ1tXujm9lwYLbRAqO6HKkSuninXRyZ0q', 1),
 (323, 'rt5BjlWY', 'Aleksa', 'Bb/O87I5TPg5mEib8tQC5m+JSGzK0AsI6JJUZyAZ9YvmatId', 1),
 (324, '9j91ptIu', 'Aleksa', 'Hf4eSz/VbVrdTYNykqmIblJT+3QXYeOOXeh/8Il4UvfP456z', 1),
-(325, '9j91ptIu', 'Crveni', 'DixAM3nsmWkcY6oMCuJK8MrZzpuhmViva/G1/4yZrCVvZsWj', 0),
-(326, 'FRFX8O25', 'Aleksa', 'OwRmCHb+nbsUwlAY0Cg+e2TLYj+V0J6oUT9p/vyX9XKwqftj', 0);
+(325, '9j91ptIu', 'Crveni', 'DixAM3nsmWkcY6oMCuJK8MrZzpuhmViva/G1/4yZrCVvZsWj', 1),
+(326, 'FRFX8O25', 'Aleksa', 'OwRmCHb+nbsUwlAY0Cg+e2TLYj+V0J6oUT9p/vyX9XKwqftj', 0),
+(327, '5NC3FcsH', 'Aleksa', 'e4Cm1+NUrHGVDtXUYcMKTzoArCk9VBUPo8lSit1IewhJOcUX', 0),
+(328, 'zWFIHJWy', 'Aleksa', 'xkdI8nCjWo+h9cvifpDdTL12iRygDJRwYhgD6dMjwU7HQtgW', 0),
+(329, 'zWFIHJWy', 'wick', 'hLhT553x+DzIL0wtanwROVC/CmI3j4J1TLM83sAmg8Kfj7yc', 0),
+(330, '0MDagFGI', 'sdadas', 'RBVaASfBm4jMqoriscYlrzy099GEYIQJ/CL6KjwR3/aiemOS', 0),
+(331, '0MDagFGI', 'aleksa', 'XuHFckUGWyanKsJbZGKYhIYi4zC5woJw4pZ8ddld5eXAf0DZ', 0),
+(332, 'xDUTFogJ', 'sdadas', 'qT2xSO9NK1V1Bjou8vTPsJOTuZQa/q7rLGdgyqWi8eCD3bfO', 0),
+(333, 'xDUTFogJ', 'wick', 'OEL80c/ZJjTTpO36NMjxEMFOJbgLHjQrC0vvXCLCxb/hu5t+', 0),
+(334, 'TM6DAevg', 'Aleksa', '5m3BSguxZlZxdOsGOZJcbK33cmKC6imnSUuCpp4i3X9gTOJs', 0),
+(335, 'TM6DAevg', 'Crveni', '9qEB06glmJ5UXGCedLObUrKaWEmETv5yhs0T4pDRXnFT2ss9', 1),
+(336, 'Sr6WKJAQ', 'Aleksa', '8R521j2ZMkNFLG9SupXFw5DpOGPjNsjnTP10Ze7pB1W7bK/V', 0),
+(337, 'Sr6WKJAQ', 'Crveni', 'dysm67bGp1qcchkw+R6cuzNk56Cm+0jI+Nizg29ZxY02K9/F', 1),
+(338, 'OhTsciEu', 'Aleksa', 'pwn6Xp/fdgGXWtfeWF4A9ohAissOut5PdCZqCEffBAwYG2kO', 0),
+(339, 'OhTsciEu', 'Crveni', 'SbJvDzsWByD0rcesIdx5oag/udaU1z3dGq72q05UDburUgF2', 1),
+(340, 'ThogxD5m', 'aleksa', 'bl7JEAreweus+CNV6Bp+np08D03gonjjMRdW7zVkb9hMSm0k', 0);
 
 -- --------------------------------------------------------
 
@@ -6413,7 +6462,11 @@ INSERT INTO `predlozi` (`predlogID`, `predlog`, `slovo`, `kategorija`) VALUES
 (10, 'србија', 's', 3),
 (11, 'sss', 's', 6),
 (12, 'gggg', 'g', 1),
-(13, 'gggg', 'g', 2);
+(13, 'gggg', 'g', 2),
+(14, 'kkkkkkk', 'k', 0),
+(15, 'kkkkkkk', 'k', 2),
+(16, 'јјјјј', 'j', 3),
+(17, 'јјјјј', 'j', 1);
 
 -- --------------------------------------------------------
 
@@ -19781,7 +19834,76 @@ INSERT INTO `referencedata` (`rDataID`, `naziv`, `slovo`, `kategorija`, `oDataID
 (13337, 'шилац', 'š', 4, 5805),
 (13338, 'škarpina', 'š', 4, 5806),
 (13339, 'skarpina', 'š', 4, 5806),
-(13340, 'шкарпина', 'š', 4, 5806);
+(13340, 'шкарпина', 'š', 4, 5806),
+(13341, 'antena', 'a', 7, 5808),
+(13342, 'антена', 'a', 7, 5808),
+(13343, 'bubanj', 'b', 7, 5809),
+(13344, 'бубањ', 'b', 7, 5809),
+(13345, 'cigla', 'c', 7, 5810),
+(13346, 'цигла', 'c', 7, 5810),
+(13347, 'česma', 'č', 7, 5811),
+(13348, 'чесма', 'č', 7, 5811),
+(13349, 'ćup', 'ć', 7, 5812),
+(13350, 'cup', 'ć', 7, 5812),
+(13351, 'ћуп', 'ć', 7, 5812),
+(13352, 'daska', 'd', 7, 5813),
+(13353, 'даска', 'd', 7, 5813),
+(13354, 'džemper', 'dž', 7, 5814),
+(13355, 'dzemper', 'dž', 7, 5814),
+(13356, 'џемпер', 'dž', 7, 5814),
+(13357, 'đubrovnik', 'đ', 7, 5815),
+(13358, 'djubrovnik', 'đ', 7, 5815),
+(13359, 'ђубровник', 'đ', 7, 5815),
+(13360, 'epruveta', 'е', 7, 5816),
+(13361, 'епрувета', 'е', 7, 5816),
+(13362, 'flaša', 'f', 7, 5817),
+(13363, 'flasa', 'f', 7, 5817),
+(13364, 'флаша', 'f', 7, 5817),
+(13365, 'greda', 'g', 7, 5818),
+(13366, 'греда', 'g', 7, 5818),
+(13367, 'harpun', 'h', 7, 5819),
+(13368, 'харпун', 'h', 7, 5819),
+(13369, 'igla', 'i', 7, 5820),
+(13370, 'игла', 'i', 7, 5820),
+(13371, 'jakna', 'j', 7, 5821),
+(13372, 'јакна', 'j', 7, 5821),
+(13373, 'kajak', 'k', 7, 5822),
+(13374, 'кајак', 'k', 7, 5822),
+(13375, 'lampa', 'l', 7, 5823),
+(13376, 'лампа', 'l', 7, 5823),
+(13377, 'ljuljaška', 'lj', 7, 5824),
+(13378, 'ljuljaska', 'lj', 7, 5824),
+(13379, 'љуљашка', 'lj', 7, 5824),
+(13380, 'mač', 'm', 7, 5825),
+(13381, 'mac', 'm', 7, 5825),
+(13382, 'мач', 'm', 7, 5825),
+(13383, 'naočare', 'n', 7, 5826),
+(13384, 'naocare', 'n', 7, 5826),
+(13385, 'наочаре', 'n', 7, 5826),
+(13386, 'njihalica', 'nj', 7, 5827),
+(13387, 'њихалица', 'nj', 7, 5827),
+(13388, 'orman', 'o', 7, 5828),
+(13389, 'орман', 'o', 7, 5828),
+(13390, 'parket', 'p', 7, 5829),
+(13391, 'паркет', 'p', 7, 5829),
+(13392, 'radio', 'r', 7, 5830),
+(13393, 'радио', 'r', 7, 5830),
+(13394, 'šal', 'š', 7, 5831),
+(13395, 'sal', 'š', 7, 5831),
+(13396, 'шал', 'š', 7, 5831),
+(13397, 'telefon', 't', 7, 5832),
+(13398, 'телефон', 't', 7, 5832),
+(13399, 'upaljač', 'u', 7, 5833),
+(13400, 'upaljac', 'u', 7, 5833),
+(13401, 'упаљач', 'u', 7, 5833),
+(13402, 'vaza', 'v', 7, 5834),
+(13403, 'ваза', 'v', 7, 5834),
+(13404, 'zatvarač', 'z', 7, 5835),
+(13405, 'zatvarac', 'z', 7, 5835),
+(13406, 'затварач', 'z', 7, 5835),
+(13407, 'žeton', 'ž', 7, 5836),
+(13408, 'zeton', 'ž', 7, 5836),
+(13409, 'жетон', 'ž', 7, 5836);
 
 -- --------------------------------------------------------
 
@@ -20027,7 +20149,15 @@ INSERT INTO `room` (`roomID`, `roomCode`, `playerNumber`, `dateCreated`, `active
 (223, 'c4FW3Nl4', 2, '2021-04-28 09:47:10', 0),
 (224, 'rt5BjlWY', 1, '2021-04-28 09:48:58', 0),
 (225, '9j91ptIu', 2, '2021-04-28 09:55:16', 0),
-(226, 'FRFX8O25', 1, '2021-04-28 14:51:20', 0);
+(226, 'FRFX8O25', 1, '2021-04-28 14:51:20', 0),
+(227, '5NC3FcsH', 1, '2021-04-29 12:42:40', 0),
+(228, 'zWFIHJWy', 2, '2021-04-29 12:42:51', 0),
+(229, '0MDagFGI', 2, '2021-04-29 12:59:05', 0),
+(230, 'xDUTFogJ', 2, '2021-04-29 13:01:31', 0),
+(231, 'TM6DAevg', 2, '2021-04-29 14:39:51', 0),
+(232, 'Sr6WKJAQ', 2, '2021-04-29 14:48:50', 0),
+(233, 'OhTsciEu', 2, '2021-04-29 14:58:42', 0),
+(234, 'ThogxD5m', 1, '2021-04-29 15:40:24', 0);
 
 -- --------------------------------------------------------
 
@@ -20212,7 +20342,11 @@ INSERT INTO `round` (`roundID`, `roundNumber`, `roomCode`, `slovo`) VALUES
 (163, 2, 'EAnJGc33', 's'),
 (164, 1, 'c4FW3Nl4', 'h'),
 (165, 1, '9j91ptIu', 'g'),
-(166, 1, 'FRFX8O25', 'lj');
+(166, 1, 'FRFX8O25', 'lj'),
+(167, 1, '5NC3FcsH', 'ž'),
+(168, 1, 'xDUTFogJ', 't'),
+(169, 1, 'Sr6WKJAQ', 'k'),
+(170, 1, 'OhTsciEu', 'j');
 
 --
 -- Indexes for dumped tables
@@ -20274,43 +20408,43 @@ ALTER TABLE `round`
 -- AUTO_INCREMENT for table `data`
 --
 ALTER TABLE `data`
-  MODIFY `dataID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
+  MODIFY `dataID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
 
 --
 -- AUTO_INCREMENT for table `originaldata`
 --
 ALTER TABLE `originaldata`
-  MODIFY `dataID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5808;
+  MODIFY `dataID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5837;
 
 --
 -- AUTO_INCREMENT for table `player`
 --
 ALTER TABLE `player`
-  MODIFY `playerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=327;
+  MODIFY `playerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=341;
 
 --
 -- AUTO_INCREMENT for table `predlozi`
 --
 ALTER TABLE `predlozi`
-  MODIFY `predlogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `predlogID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `referencedata`
 --
 ALTER TABLE `referencedata`
-  MODIFY `rDataID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13341;
+  MODIFY `rDataID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13410;
 
 --
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `roomID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
+  MODIFY `roomID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=235;
 
 --
 -- AUTO_INCREMENT for table `round`
 --
 ALTER TABLE `round`
-  MODIFY `roundID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+  MODIFY `roundID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
 
 --
 -- Constraints for dumped tables
