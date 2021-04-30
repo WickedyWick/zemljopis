@@ -772,6 +772,8 @@
                   dataReg = new RegExp(`^$(${currentLetter}|${cirilicaLetter})[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,40}$`,'g')
                 else if(currentLetter == "dž")
                   dataReg = new RegExp(`^(dz|dž|џ)[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,40}$`,'g')
+                else if(currentLetter == "đ")
+                  dataReg = new RegExp(`^(đ|dj|ђ)[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,40}$`,'g') 
                 else if(currentLetter == "ž")
                   dataReg = new RegExp(`^(z|ž|ж)[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,41}$`,'g')
                 else if(currentLetter == "š")
