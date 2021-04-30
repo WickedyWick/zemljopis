@@ -90,17 +90,31 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
 - Daje server error nekada kada se korisnik disconnectuje (playerUnready event)
 - Omogucava predlozi dugme nekada na prazan rezultat
 - Moguće ući više puta u sobu sa istim korisnikom u istom browseru 
-- Nepravilne poruke u nekim situacijama
+- Nepravilne poruke u nekim situacijama 
 
 ### PLANOVI
 - Mogući neki live chat u sobi
 - Mogući account sistem ako projekat bude išao dobro
 
-
-
 ### TODO
 - Dodaj bug tracking i reporting sistem 
 - Refactoring
+- Napravi external javascript fajlove za game.html i index.html
+- Dodaj 'Room Cleaner' koji jednom u 24h briše neaktivne sobe u localData
+
+### BASIC LOGIC
+- Podaci koji je koriste više puta u sobi se čuvaju u memoriji u formi dictionary-a
+- Igrač se mora registrovati na index.js stranici
+- Prilikom registracije svakom igraču je dodeljen base64 sessionToken da neko drugi ne može da udje u sobu ako zna ime i kod sobe
+- Postoji history i vote kick sistem
+- Da bi runda počela svi igrači moraju biti spremni
+- Na početku svake runde proverava se da li je sessionToken isti kao i kada ste ušli u sobu , tako se brani da korisnik ne može da igra u dve sobe u isto vreme
+- Ako izađete iz sobe i uđete u drugu sobu , ne može se vratiti u prvobitnu
+- Ako izađete iz sobe i ne uđete u drugu sobu, moguće je vratiti se pritiskom na dugme "Vrati se u sobu" ili jednostavno ulaženjem na isti URL sa odgovarajućim parametrima
+- Window.onload event regexuje parametre i salje ih na proveru
+- Load listener prima odgovarajuće podatke i ispisuje ih
+- Runda počinje na gameStartNotification eventu
+- Klijent može da okonča rundu ako je popunio validno sva polja (clientEndRound) ili server request (roundEnd)
 
 ### TTM
 - Neće biti dodate nove funkcionalnosti za TTM takmičenje osim možda bug fixova , sto čini ovu verziju finalnu za takmičenje
