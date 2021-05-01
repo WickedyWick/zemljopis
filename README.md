@@ -27,6 +27,7 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
 
 * [90s](https://www.youtube.com/watch?v=lvL02iGEqRk) -90 sekundi
 * [FULL DEMO](https://www.youtube.com/watch?v=COptxK_RlOs) - FULL DEMO
+* [ANDROID DEMO](https://www.youtube.com/watch?v=CoAYXbh9bSI) - Android demo
 
 ## Instalacija i konfiguracija 
 
