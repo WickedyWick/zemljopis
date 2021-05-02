@@ -86,16 +86,20 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
 - Jednostavan Base64 sessionToken koji se čuva u localStorage-u koji ograničava da korisnik ne može da bude u više soba u isto vreme 
 - -> Takođe omogućava da samo registrovani korisnik u tom browseru može da pristupi sobi , a ne neko drugi ko zna sobu i ime 
 - Room-based sistem
+- Pošto je baza još mala i jako je teško pa skoro nemoguće imati SVE podatke , napravljen je predloži sistem gde mogu da se predlože nepravilni rezultati , koji idu na razmatranje 
+- Funkcionalnosti su prikazane u full demo videu
 
 ### POZNATI BUGOVI
 - Daje server error nekada kada se korisnik disconnectuje (playerUnready event)
-- Omogucava predlozi dugme nekada na prazan rezultat
+- Omogucava predloži dugme nekada na prazan rezultat
 - Moguće ući više puta u sobu sa istim korisnikom u istom browseru 
 - Nepravilne poruke u nekim situacijama 
 
 ### PLANOVI
+- Popuniti bazu
 - Mogući neki live chat u sobi
 - Mogući account sistem ako projekat bude išao dobro
+
 
 ### TODO
 - Dodaj bug tracking i reporting sistem 
