@@ -55,7 +55,7 @@ function playerReady(room,localData,socket,io,sockets){
                     "STATE" : "Spreman",
                     "CODE" : 1                    
                 })                
-                createRound(room,io,localData)
+                createRound(room,io,localData,sockets)
             }
             else
                 socket.emit('playerReadyResponse',{'Success' : true,
@@ -111,7 +111,7 @@ function historyReq(room,username,round,localData,socket){
         socket.emit('roomNotExist',"Soba više ne postoji, kreirajte novu!")
     }
 }
-function createRound(room,io,localData){
+function createRound(room,io,localData,sockets){
     if(room in localData){
         pool.getConnection((err,connection) =>{
             if(err){
@@ -135,9 +135,15 @@ function createRound(room,io,localData){
                                         "cirilicaLetter": letterDict[response],
                                         "CODE" : 1
                                     })                                   
+                            
+                            
                             const temp = setTimeout(timeout, localData[room]['roundTimeLimit']*1000, room,localData,io);                           
                             //var temp = setTimeout(timeout,,room,localData,io)
                             localData[room]['intervalObj'] = temp                                
+                            let keys = Object.keys(io.sockets.adapter.rooms[room]['sockets'])
+                            for(let i=0;i<keys.length;i++){
+                                sockets[keys[i]]['ready'] = false;
+                            }
                         }
                         
                     })                    
@@ -168,6 +174,7 @@ function chooseLetter(room,localData){
 }
 
 function playerUnReady(room,localData,socket,io,mode,sockets){
+    
     if(room in localData){
         if(localData[room]['playersReady'] > 0 && localData[room]['playersReady'] <= localData[room]['playerCount']){
             io.to(room).emit('playerCountUpdate',localData[room]['playersReady'] -= 1)
@@ -258,8 +265,9 @@ function evaluation(room,localData,io){
                     
                         naziviKeys = Object.keys(myDict)
                         otherDict = {}
+                        console.log("IT GOT HERE2")
                         connection.query(sql,naziviKeys,(err1,results,fields)=>{
-                              
+                            console.log("IT GOT HERE")
                             /*  ovako results izlgeda
                                 RowDataPacket { naziv: 'apatin', kategorija: 1, oDataID: 2701 },
                                 RowDataPacket { naziv: 'alžir', kategorija: 1, oDataID: 2703 },
@@ -462,7 +470,7 @@ function kickEval(room,localData,io){
        if(!localData[room]['evalFuncExecuting'])
        {
             localData[room]['kickVote']['funcCalled'] = true
-            console.log(localData[room])
+            
             if(((localData[room]['kickVote']['for'] / localData[room]['playerCount']) *100 ) > 50){ // procenti
                 username = localData[room]['kickVote']['username']
                 pool.query("update player set kicked =1 where username = ?",[username],(err,results,fields)=>{

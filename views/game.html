@@ -997,6 +997,7 @@
                 timeout : 5000,
                 progressBar :true
               }).show()  
+              console.log(message)
               for(let i=0;i<fields.length;i++){
                 try
                 {                  
@@ -1006,16 +1007,16 @@
                     points += Number(poeni)
                   }
                   else{
-                    document.getElementById(`input${fields[i]}`).value += '  + 0'
                     if(document.getElementById(`input${fields[i]}`).value != "")
                       $(`#predloziBtn${fields[i]}`).prop("disabled", false)
+                    document.getElementById(`input${fields[i]}`).value += '  + 0'                                       
                   }
                 }
                 catch(TypeError){
                   
-                  document.getElementById(`input${fields[i]}`).value += '  + 0'
                   if(document.getElementById(`input${fields[i]}`).value != "")
                     $(`#predloziBtn${fields[i]}`).prop("disabled", false)
+                  document.getElementById(`input${fields[i]}`).value += '  + 0'                  
                 }
               }
               

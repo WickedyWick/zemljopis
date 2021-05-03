@@ -90,8 +90,6 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
 - Funkcionalnosti su prikazane u full demo videu
 
 ### POZNATI BUGOVI
-- Daje server error nekada kada se korisnik disconnectuje (playerUnready event)
-- Omogucava predloži dugme nekada na prazan rezultat
 - Moguće ući više puta u sobu sa istim korisnikom u istom browseru 
 - Nepravilne poruke u nekim situacijama 
 
