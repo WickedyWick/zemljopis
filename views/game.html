@@ -295,6 +295,7 @@
         let currentLetter = ''
         let dataReg = new RegExp()
         let pList = {}
+        let pListKeys;
         let kicked = false
         let historyData = {}
         historyData[username] = {}
@@ -304,8 +305,7 @@
         const kDict = {'Drzava':'d','Grad':'g','Ime':'i','Biljka':'b','Zivotinja':'z','Planina':'p','Reka':'r','Predmet':'pr'}
         const sessionReg = /^[A-Za-z0-9/+]{48}$/g
         
-        $(`#helpGrad`).css("visibility", "visible")
-        
+       
         // dodaj start button za leadera
         serverAddress = serverAdress()
         const socket = io(serverAddress);
@@ -379,18 +379,27 @@
 
         }
         function disableHistoryReq(){
-          let keys = Object.keys(pList)
+          
           $("#localPlayer").css("pointer-events","none");
-          for(let i =0;i<keys.length;i++){
-            $(`#${keys[i]}`).css("pointer-events","none")
+          for(let i =0;i<pListKeys.length;i++){
+            $(`#${pListKeys[i]}`).css("pointer-events","none")
           }
         }
         function enableHistoryReq(){
-          let keys = Object.keys(pList)
           $("#localPlayer").css("pointer-events","auto");
-          for(let i =0;i<keys.length;i++){
-            $(`#${keys[i]}`).css("pointer-events","auto")
+          for(let i =0;i<pListKeys.length;i++){
+            $(`#${pListKeys[i]}`).css("pointer-events","auto")
           }
+        }
+        function enableKick(){
+          for(let i=0;i<pListKeys.length;i++){
+                $(`#span${pListKeys[i]}`).css('pointer-events','auto')
+              }
+        }
+        function disableKick(){
+          for(let i=0;i<pListKeys.length;i++){
+                $(`#span${pListKeys[i]}`).css('pointer-events','none')
+              }
         }
         //popup alert multi use
         function myAlert(test){
@@ -565,10 +574,8 @@
               node = document.getElementById(`${message['username']}`)
               node.parentNode.removeChild(node);
               delete pList[message['username']]
-              let keys = Object.keys(pList)
-              for(let i=0;i<keys.length;i++){
-                $(`#span${keys[i]}`).css('pointer-events','auto')
-              }
+              pListKeys= Object.keys(pList)
+              enableKick()
               new Noty({
                   theme : 'metroui',
                   type : 'success',
@@ -581,10 +588,8 @@
           }else{
             $("#vote-alert").html("")
             $("#vote-alert").hide()
-            let keys = Object.keys(pList)
-            for(let i=0;i<keys.length;i++){
-                $(`#span${keys[i]}`).css('pointer-events','auto')
-              }
+            
+            enableKick()
             new Noty({
                   theme : 'metroui',
                   type : 'info',
@@ -643,7 +648,7 @@
             points = message['points']
             document.getElementById('poeni').textContent = String(message['points'])
             pList[username] = points
-            
+            pListKeys = Object.keys(pList)
             new Noty({
                   theme : 'metroui',
                   type : 'success',
@@ -844,9 +849,10 @@
                 $("ul").append(`<li id="${keys[i]}"><label class="nameLabel" onclick="historyReq('${keys[i]}')">${keys[i]}</label> | <label id="${keys[i]}Points">${message['players'][keys[i]]}</label> <span onclick="voteKick(\'${keys[i]}\')" class="mySpan" id="span${keys[i]}">&#10006;</span></li>`);
               }
             }
+            pListKeys = Object.keys(pList)
           }else if(message["MODE"] == "UPDATE"){
             let keys = Object.keys(message['players'])
-            console.log(keys)
+            
             for(let i =0;i<keys.length;i++){
               
               try{
@@ -862,20 +868,16 @@
         function voteKick(usernameM){
           socket.emit('voteKickStart',({usernameM,roomCode}))
           //na result eventu enabluj
-          let keys = Object.keys(pList)
-          for(let i=0;i<keys.length;i++){
-            $(`#span${keys[i]}`).css('pointer-events','none')
-          }
+          
+          disableKick()
           
         }
         //start vote kick event prikazuje popup za glasanje za izbacivanje
         socket.on('startVoteKickResponse',message=>{
           if(message['Success']){
             myAlert(message['username'])
-            let keys = Object.keys(pList)
-            for(let i=0;i<keys.length;i++){
-                $(`#span${keys[i]}`).css('pointer-events','none')
-            }
+            
+            disableKick()
             new Noty({
                 theme : 'metroui',
                 type : 'info',
@@ -1194,4 +1196,3 @@
 
     </script>
 </html>
-<!-- KORISTI TIMER NA CLIENT SIDU-->
