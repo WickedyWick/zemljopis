@@ -15,6 +15,7 @@ app.use('/public', express.static('public'));
 io.on('connection', socket => {
     console.log('New WS Connection ...')
     sockets[String(socket.id)] = {}    
+    
     socket.on('test',test=>{
         console.log(test);
     });
@@ -115,6 +116,10 @@ io.on('connection', socket => {
     socket.on('historyReq',({roomCode,player,targetRound})=>{       
         
         historyReq(roomCode,player,targetRound,localData,socket)
+    })
+    socket.on('historyReq',(obj)=>{
+        console.log(obj);
+        historyReq(obj['roomCode'],obj['player'],obj['targetRound'],localData,socket)
     })
     
     
