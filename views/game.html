@@ -704,7 +704,8 @@
             gameStarted = false
             ready = false
             readyBtn.style.backgroundColor = 'red'
-            readyBtn.textContent = 'Not ready!' 
+            document.getElementById('lblPlayersReady').textContent = '0'
+            readyBtn.textContent = 'Nisi spreman!' 
             new Noty({
                 theme : 'metroui',
                 type : 'error',
@@ -852,16 +853,19 @@
             pListKeys = Object.keys(pList)
           }else if(message["MODE"] == "UPDATE"){
             let keys = Object.keys(message['players'])
+            // ovde prvoeri da li postoji uPlisti etc i uzimaj value iz pliste a ne sa htmla
             
             for(let i =0;i<keys.length;i++){
-              
               try{
-                document.getElementById(keys[i]+'Points').textContent = Number(document.getElementById(keys[i]+'Points').textContent) + Number(message['players'][keys[i]])
-
-              }catch(TypeError){
+                if(keys[i] in pList) {
+                  pList[keys[i]] += message['players'][keys[i]]
+                  document.getElementById(keys[i]+'Points').textContent = pList[keys[i]]
+                  }
+              }
+              catch(TypeError){
 
               }
-            }
+            } 
           }
         })
         //funckicja za glasanje

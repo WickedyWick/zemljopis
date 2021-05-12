@@ -79,8 +79,15 @@ io.on('connection', socket => {
     socket.on('voteKickStart',({usernameM,roomCode})=>{
         startVoteKick(roomCode,usernameM,localData,socket,io)
     })
+    socket.on("voteKickStartM",(obj)=>{
+        startVoteKick(obj['roomCode'],obj['usernameM'],localData,socket,io);
+    })
     socket.on('voteKickCounter',({username,roomCode,mode})=>{
         voteKickCounter(roomCode,username,mode,localData,socket,io)
+    })
+    socket.on("voteKickCounterM",(obj)=>{
+        
+        voteKickCounter(obj['roomCode'],obj['username'],obj['mode'],localData,socket,io);
     })
     socket.on("clientEndRoundM",obj =>{
         clearTimeout(localData[obj["roomCode"]]['intervalObj'])
@@ -117,7 +124,7 @@ io.on('connection', socket => {
         
         historyReq(roomCode,player,targetRound,localData,socket)
     })
-    socket.on('historyReq',(obj)=>{
+    socket.on('historyReqM',(obj)=>{
         console.log(obj);
         historyReq(obj['roomCode'],obj['player'],obj['targetRound'],localData,socket)
     })
