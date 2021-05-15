@@ -124,6 +124,7 @@ function createRound(room,io,localData,sockets){
                             io.to(room).emit('createRoundResponse',{
                                 "ERR_MSG" : "Problem pri kreiranju runde , pokusajte ponovo!"
                             })
+                            localData[room]['playersReady'] = 0
                         }else{                     
                             localData[room]['roundActive'] = true
                             localData[room]['roundIDS'][localData[room]['roundNumber']] = results.insertId

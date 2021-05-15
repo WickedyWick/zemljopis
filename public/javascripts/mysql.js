@@ -172,7 +172,7 @@ function joinRoom(socket,room,username,sessionToken,localData,io){
                         //console.log(result)
                         if(result[0].length == 0 ){
                             socket.emit('load',{'Success':false,
-                                "ERR_MSG" : "Korisnicko ime u sobi ne postoji!"
+                                "ERR_MSG" : "Korisničko ime u sobi ne postoji!"
                             })
                         }else if(result[1].length == 0){
                             socket.emit('load',{'Success':false,
@@ -226,7 +226,7 @@ function joinRoom(socket,room,username,sessionToken,localData,io){
                                         if(usr != null || user != "null")
                                             playerPointDict[usr] = result[3][i]['ukupnoBodova']
                                     }
-                                    console.log(localData[room])
+                                    
                                     for(let i=0;i<players.length;i++){
                                         if(!(players[i] in playerPointDict))
                                             playerPointDict[players[i]] = 0
@@ -242,7 +242,7 @@ function joinRoom(socket,room,username,sessionToken,localData,io){
                                         "username" : username})
                                 }else{
                                     socket.emit('load',{'Success':false,
-                                        'ERR_MSG' : 'Nije moguce vratiti se u sobu nakon ulaska u drugu sobu!'
+                                        'ERR_MSG' : 'Nije moguće vratiti se u sobu nakon ulaska u drugu sobu!'
                                     })
                                 }
                             }
