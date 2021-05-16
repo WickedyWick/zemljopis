@@ -1,6 +1,8 @@
 const utils  = require('./utils.js')
 var pool = require('./trueMysql.js')
 const cryptoRandomString = require('crypto-random-string');
+var moment = require('moment')
+
 function joinRoomSQL(socket,room,username,localData){
     if(room in localData){
         if(localData[room]['playerCount'] > Object.keys(localData[room]['playersID']).length){
@@ -107,6 +109,7 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData){
 
                             }else{           
                                 console.log("Room creation successfull!")
+                                let date = new Date();
                                 localData[response] = {
                                     'playerCount' : playerCount,
                                     'playersReady' : 0,
@@ -121,11 +124,15 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData){
                                     'availableLetters':["a","b","c","č","ć","d","dž","đ","e","f","g","h","i","j","k","l","lj","m","n","nj","o","p","r","s","š","t","u","v","z","ž"],
                                     'currentLetter': '',
                                     'evalFuncExecuting' : false,
-                                    'data': {}
+                                    'data': {},
+                                    'momentCreated' : moment([date.getFullYear(),date.getMonth()+1,date.getDate(),date.getHours(),date.getMinutes(),date.getSeconds()])
                                     
                                 }
                                 localData[response]['players'][username] = results[1].insertId
                                 localData[response]['playersID'][results[1].insertId] = username
+                                
+                                
+
                                 socket.emit('createRoomSQLResponse',{'Success':true,
                                         'roomCode':response,
                                         'username': username,
@@ -135,6 +142,7 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData){
                             
                         });
                     }
+                   
                     connection.release()
                 })
             
