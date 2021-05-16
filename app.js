@@ -5,12 +5,39 @@ const app = express()
 const {createRoom,joinRoomSQL,joinRoom} = require('./public/javascripts/mysql.js')
 const server = app.listen(3000)
 const io = socketio(server)
+const cron = require("node-cron")
+let moment = require("moment")
+moment.defaultFormat()
 const {playerReady, playerUnReady,timeout,dataCollector,evaluation,predlagac,startVoteKick,voteKickCounter,historyReq}  = require('./public/javascripts/utils.js')
 var path = require('path')
+
 localData = {}
 katDict = {'d':0,'g':1,'i':2,'b':3,'z':4,'p':5,'r':6,'pr':7}
-sockets = {}
 app.use('/public', express.static('public'));
+cron.schedule("0 12 * * *",()=>{
+    console.log("****** Running Cron Job ******")
+    console.log("Cleaning localData")
+    let date = new Date();
+    let currentMoment = moment([date.getFullYear(),date.getMonth(),date.getDay(),date.getHours(),date.getMinutes(),date.getSeconds()])
+    let lKeys = Object.keys(localData)
+    for(let i =0;lKeys.length;i++){
+        if(currentMoment.diff(localData[lKeys[i]]['momentCreated'],'hours') > 6){
+            delete localData[lKeys[i]]
+        }
+    }
+})
+cron.schedule("0 0 * * *",()=>{
+    console.log("****** Running Cron Job ******")
+    console.log("Cleaning localData")
+    let date = new Date();
+    let currentMoment = moment([date.getFullYear(),date.getMonth(),date.getDay(),date.getHours(),date.getMinutes(),date.getSeconds()])
+    let lKeys = Object.keys(localData)
+    for(let i =0;lKeys.length;i++){
+        if(currentMoment.diff(localData[lKeys[i]]['momentCreated'],'hours') > 6){
+            delete localData[lKeys[i]]
+        }
+    }
+})
 // Run when client connects
 io.on('connection', socket => {
     console.log('New WS Connection ...')
