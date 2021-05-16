@@ -102,7 +102,6 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
 ### TODO
 - Dodaj bug tracking i reporting sistem 
 - Refactoring
-- Napravi external javascript fajlove za game.html i index.html
 - Dodaj 'Room Cleaner' koji jednom u 24h briše neaktivne sobe u localData
 
 ### BASIC LOGIC
