@@ -120,7 +120,7 @@ io.on('connection', socket => {
         localData[obj["roomCode"]]['intervalObj'] = temp
         dataCollector(io,obj["username"],obj["roomCode"],obj["data"],obj["roundNumber"],localData,socket)   
         socket.to(roomCode).emit('roundEnd',{'Success': true,
-        'MSG' : "Round end! Evaluation started!",
+        'MSG' : "Runda završena, evaluacija počinje!",
         'CODE' : 2
         })
     }); 

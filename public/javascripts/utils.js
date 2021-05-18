@@ -558,10 +558,11 @@ function predlagac(predlog,slovo,kategorija){
 }
 
 function timeout(room,localData,io){
+        /*
         io.to(room).emit('roundEnd',{'Success': true,
         'MSG' : "Round end! evaluationuation started!",        
         'CODE' : 2
-        })               
+        })*/               
         clearTimeout(localData[room]['intervalObj'])
         const temp = setTimeout(evaluation, 7000, room,localData,io);
         localData[room]['intervalObj'] = temp

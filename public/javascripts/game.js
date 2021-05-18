@@ -480,12 +480,54 @@ socket.on('gameStartNotification', message => {
             progressBar :true
         }).show()
         document.getElementById('lblPlayersReady').textContent = 0
+        
+        document.getElementById('currentLetter').textContent = currentLetter
+        let duration = 61
+        myInterval = setInterval(()=>{
+        duration--
+        timer.innerHTML = duration
+        if(duration == 0){
+            hideAllHelp()
+            readyBtn.disabled = true;
+            new Noty({
+            theme : 'metroui',
+            type : 'success',
+            layout : 'topRight',
+            text : "Runda završena, evaluacija počinje!",
+            timeout : 5000,
+            progressBar :true
+            }).show()
+        
+        
+            var data = []           
+            for(let i=0;i<fields.length;i++){
+            if(!dataReg.test($(`#input${fields[i]}`).val().toLowerCase())){
+                data.push('')               
+            }else{
+                data.push($(`#input${fields[i]}`).val().toLowerCase().trim())
+            }              
+            dataReg.lastIndex =0;       
+            }           
+            if(!kicked)
+                socket.emit('roundData',({username,roomCode,data,roundNumber}))
+            historyData[username][roundNumber] = data           
+            disableAllInputFields()
+            gameStarted = false
+            ready = false
+            readyBtn.style.backgroundColor = 'red'
+            readyBtn.textContent = 'Nisi spreman!'           
+            timer.textContent = '0'   
+            clearInterval(myInterval)
+        }
+        },1000)
+        readyBtn.innerText = "Gotovo";
+        gameStarted = true;
+        ready =false;
         hideAllHelp()
         disableAllPButtons()
         disableHistoryReq()
         currentLetter = message['currentLetter']
-        cirilicaLetter = message['cirilicaLetter']
-        //OVDE JE GRESKA zato trebalo bi da postoji C ILI Č 
+        cirilicaLetter = message['cirilicaLetter']      
         if(currentLetter == "ć")
             dataReg = new RegExp(`^(c|ć|ћ)[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,41}$`,'g')
         else if(currentLetter == "č")
@@ -502,19 +544,6 @@ socket.on('gameStartNotification', message => {
             dataReg = new RegExp(`^(s|š|ш)[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,41}$`,'g')
         else
             dataReg = new RegExp(`^(${currentLetter}|${cirilicaLetter})[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,41}$`,'g')
-        document.getElementById('currentLetter').textContent = currentLetter
-        let duration = 61
-        myInterval = setInterval(()=>{
-        duration--
-        timer.innerHTML = duration
-        if(duration == 0){
-            
-            clearInterval(myInterval)
-        }
-        },1000)
-        readyBtn.innerText = "Gotovo";
-        gameStarted = true;
-        ready =false;
         enableAllInputFields()
         clearAllInputFields()
     }
@@ -768,7 +797,7 @@ socket.on('pointsErr',message=>{
 //socket listener za kraj runde od strane servera nakon isteka vremena ili nakon sto je neki drugi igrac zavrsio
 socket.on('roundEnd',message =>{
     
-    t0 = performance.now()
+   
     hideAllHelp()
     readyBtn.disabled = true;
     if(message['Success']){            
@@ -780,7 +809,8 @@ socket.on('roundEnd',message =>{
         timeout : 5000,
         progressBar :true
         }).show()
-        var allValid = true
+        
+        
         var data = []           
         for(let i=0;i<fields.length;i++){
         if(!dataReg.test($(`#input${fields[i]}`).val().toLowerCase())){
@@ -791,13 +821,13 @@ socket.on('roundEnd',message =>{
         dataReg.lastIndex =0;       
         }           
         if(!kicked)
-        socket.emit('roundData',({username,roomCode,data,roundNumber}))
+            socket.emit('roundData',({username,roomCode,data,roundNumber}))
         historyData[username][roundNumber] = data           
         disableAllInputFields()
         gameStarted = false
         ready = false
         readyBtn.style.backgroundColor = 'red'
-        readyBtn.textContent = 'Not ready!'           
+        readyBtn.textContent = 'Nisi spreman!'           
         clearInterval(myInterval)
         timer.textContent = '0'
     }
