@@ -1,14 +1,30 @@
 
 const serverAddress = serverAdress()
 const socket = io(serverAddress);
-const userReg = RegExp("[0-9A-Za-z]{4,30}\g");
-const roomReg = RegExp("[0-9A-Za-z]{8}\g")
-socket.on('message', message =>{
-    console.log(message)
-})
-//TODO dodaj type reconnect 
+const roomReg = /^[A-Za-z0-9]{8}$/g
+const usernameReg = /^[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{4,30}$/g
+let pridruziBtn = document.getElementById('pridruzi')
+let usernameInput = document.getElementById('txb_username')
+let roomCodeInput = document.getElementById('txb_roomCode')
+let roundTimeDDL = document.getElementById('roundTimeLimit')
+let playerNumberDDL = document.getElementById('playerNumber')
+let napraviBtn = document.getElementById('napravi')
+let vratiBtn = document.getElementById('vrati')
+function disableButtons(){
+    $(pridruziBtn).prop("disabled", true )
+    $(napraviBtn).prop("disabled", true )
+    $(vratiBtn).prop("disabled", true )
+
+}
+function enableButtons(){
+    $(pridruziBtn).prop("disabled", true )
+    $(napraviBtn).prop("disabled", true )
+    $(vratiBtn).prop("disabled", true )
+
+}
 socket.on('createRoomSQLResponse',response =>{
-    console.log(response)
+    
+    enableButtons()
     if(response["Success"] == false)
         myAlert('Doslo je do problema u kreiranju sobe, pokusajte ponovo!')
     else
@@ -20,7 +36,7 @@ socket.on('createRoomSQLResponse',response =>{
     }
 })
 socket.on('joinRoomSQLResponse' , response=>{
-    
+    enableButtons()
     if(response["Success"] == false)
         //make this more robust
         myAlert(response["ERR_MSG"])
@@ -37,15 +53,11 @@ function myAlert(test){
         $("#danger-alert").slideUp(500);
     });   
 }
-        
-
-        //dodaj ova govna
-document.getElementById('pridruzi').addEventListener('click',(e)=>{
-    let roomReg = /^[A-Za-z0-9]{8}$/g
-    const usernameReg = /^[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{4,30}$/g
+pridruziBtn.addEventListener('click',(e)=>{  
     e.preventDefault();
-    let username = document.getElementById('txb_username').value.trim()
-    let room = document.getElementById('txb_roomCode').value.trim()
+    let username = usernameInput.value.trim()
+    let room = roomCodeInput.value.trim()
+    disableButtons()
     if(roomReg.test(room) && usernameReg.test(username)){                      
         socket.emit('joinRoomSQL',{username,room})                
         //pop alert
@@ -59,51 +71,44 @@ document.getElementById('pridruzi').addEventListener('click',(e)=>{
         }
         else{
             //ako je useranme invalidnog formnata
-            myAlert('Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica i engleski alfabet!')
+            myAlert('Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica, cirilica i engleski alfabet!')
         }
+        enableButtons()
     }
 })
        
-document.getElementById('napravi').addEventListener('click',(e)=>{
+napraviBtn.addEventListener('click',(e)=>{
     e.preventDefault(); 
-    let username = document.getElementById('txb_username').value.trim()
-    let reg = /^[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{4,30}$/g
-    if(reg.test(username)){
-        let playerCount = document.getElementById('playerNumber').value
-
-        console.log(typeof(playerCount));
-        let roundTimeLimit = document.getElementById('roundTimeLimit').value
-        /*if(userReg.test(username))
-            console.log("Napravi")
-            //socket.emit('createRoom',username)
-        else
-            myAlert("Username must be longer than 4 and shorter than 30 characters, only numbers and letters")
-            //pop awlert
-        */
+    let username =usernameInput.value.trim()
+    disableButtons()  
+    if(usernameReg.test(username)){
+        let playerCount = playerNumberDDL.value
+        let roundTimeLimit = roundTimeDDL.value
         socket.emit('createRoom',{username,playerCount,roundTimeLimit})
     }else{
-        myAlert("Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica,cirilica i engleski alfabet!")
+        myAlert("Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica, cirilica i engleski alfabet!")
+        enableButtons()
     }
 })
-document.getElementById('vrati').addEventListener('click',(e)=>{
+vratiBtn.addEventListener('click',(e)=>{
     e.preventDefault();
-    let room = document.getElementById('txb_roomCode').value.trim()
-    let username = document.getElementById('txb_username').value.trim()
-    let roomReg = /^[A-Za-z0-9]{8}$/g
-    const usernameReg = /^[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{4,30}$/g
+    let room = roomCodeInput.value.trim()
+    let username = usernameInput.value.trim() 
+    disableButtons()
     if(roomReg.test(room) && usernameReg.test(username)){   
         window.location.href = `/game?roomCode=${room}&username=${username}`;
     }else{
         if(!roomReg.test(room) && !usernameReg.test(username)){
             //mylaertuj za o
-            myAlert('Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica i engleski alfabet!\nSoba se sastoji od 8 alfanumerickih karaktetra!')
+            myAlert('Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica, cirilica i engleski alfabet!\nSoba se sastoji od 8 alfanumerickih karaktetra!')
         }else if(!roomReg.test(room)){
             // ako je soba invalidnog formata
             myAlert('Soba se sastoji od 8 alfanumerickih karaktetra!')
         }
         else{
             //ako je useranme invalidnog formnata
-            myAlert('Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica i engleski alfabet!')
+            myAlert('Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica, cirilica i engleski alfabet!')
         }
+        enableButtons()
     }
 })

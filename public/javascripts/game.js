@@ -803,11 +803,6 @@ socket.on('roundEnd',message =>{
     }
     
 })    
-// ovo ne radi 
-window.addEventListener('unload',(e) =>{
-    if(!readyBtn.style.backgroundColor == "red" && !readyBtn.innerText == 'Not ready!')
-    socket.emit('disconnectMSG',({username,roomCode}))         
-})      
 //ready button click event listner // sluzi za ready upovanje i slanje zahteva za kraj runde ako su sva polja validno popunjena
 readyBtn.addEventListener('click',(e) =>{
     if(!gameStarted){
