@@ -102,7 +102,6 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
 ### TODO
 - Dodaj bug tracking i reporting sistem 
 - Refactoring
-- Dodaj 'Room Cleaner' koji jednom u 24h briše neaktivne sobe u localData
 
 ### BASIC LOGIC
 - Podaci koji je koriste više puta u sobi se čuvaju u memoriji u formi dictionary-a
