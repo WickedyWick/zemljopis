@@ -117,7 +117,3 @@ Zabranjeno kopiranje i korišćenje koda osim za lične potrebe (testiranje i lo
 - Runda počinje na gameStartNotification eventu
 - Klijent može da okonča rundu ako je popunio validno sva polja (clientEndRound) ili server request (roundEnd)
 
-### TTM
-- Neće biti dodate nove funkcionalnosti za TTM takmičenje osim možda bug fixova , sto čini ovu verziju finalnu za takmičenje
-- Baza podataka je još jako mala
-- Glavni cilj mog projekta je zabava, ali to nije jedina stvar što doprinosi. Iz mog ličnog iskustva i okruženja primetio sam da tokom godina počnu da se zaboravljaju stvari naučene iz škole ako se ne upotrebljavaju , moj projekat omogućava da se upotrebljava znanje iz oblasti geografije. Odlučio sam da napravim (portujem , kako god) online verziju igre poznatu u narodu kao nacionalna geografija ili zemljopis. Sa sve većom upotrebnom računara, mobilnih telefona , tableta ... potrebno je imati mogućnost igrati igru i na tim uređajima , pogotovo u trenutnoj pandemiji. Ovaj projekat ne pomaže direktno studentima ali je tu da pruži zabavu sa drugarima i u isto vreme proširi ili održava znanje o geografiji.
