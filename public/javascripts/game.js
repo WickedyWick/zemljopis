@@ -406,11 +406,12 @@ socket.on("roomNotExist",message =>{
             theme : 'metroui',
             type : 'warning',
             layout : 'topRight',
-            text : message['ERR_MSG'],
+            text : message,
             timeout : 5000,
             progressBar :true
         }).show()
     $("#maxDiv").hide()
+    setTimeout(()=>{location.href = "/"},4000)
 })
 //updatavnje igraca nakon kikovanja
 socket.on('playerCountUpdate', message =>{
@@ -565,7 +566,7 @@ socket.on('gameStartNotification', message => {
             progressBar :true
         }).show()
         setTimeout(()=>{
-        location.reload()
+        location.href = "/"
         },4000)
         
     }
@@ -793,7 +794,7 @@ socket.on('pointsErr',message=>{
         timeout : 5000,
         progressBar :true
     }).show()
-    setTimeout(()=>{location.reload()},6000)
+    setTimeout(()=>{location.reload()},1500)
     $('#maxDiv').hide()
     
 })
