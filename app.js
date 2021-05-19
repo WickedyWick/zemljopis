@@ -7,7 +7,7 @@ const server = app.listen(3000)
 const io = socketio(server)
 const cron = require("node-cron")
 let moment = require("moment")
-const {playerReady, playerUnReady,timeout,dataCollector,evaluation,predlagac,startVoteKick,voteKickCounter,historyReq}  = require('./public/javascripts/utils.js')
+const {playerReady, playerUnReady,timeout,dataCollector,evaluation,predlagac,startVoteKick,voteKickCounter,historyReq,returnRoom}  = require('./public/javascripts/utils.js')
 var path = require('path')
 
 localData = {}
@@ -149,11 +149,13 @@ io.on('connection', socket => {
         
         historyReq(roomCode,player,targetRound,localData,socket)
     })
-    socket.on('historyReqM',(obj)=>{
-        console.log(obj);
+    socket.on('historyReqM',(obj)=>{        
         historyReq(obj['roomCode'],obj['player'],obj['targetRound'],localData,socket)
     })
     
+    socket.on("returnRoom",sessionToken =>{
+        returnRoom(sessionToken, localData, socket)
+    })
     
 })
 console.log('Server started!')

@@ -550,7 +550,7 @@ function predlagac(predlog,slovo,kategorija){
    
     pool.query(`insert into predlozi values(DEFAULT,?,?,${kategorija});`,[predlog,slovo],(err,results,fields)=>{
         if(err){
-            console.log(`Doslo je do problema u toku unosenja predloga : ERR : ${err.sqlMessage}\nCode : ${err.code} ` );
+            console.log(`Doslo je do problema u toku unosenja predloga : ERR : ${err.sqlMessage}\nCode : ${err.code} `);
         }
         else
             console.log("Predlog dodat");
@@ -569,23 +569,32 @@ function timeout(room,localData,io){
   
 }
 
-/*
-function startRound(room,localData,io,letter){
-    localData[room]['roundActive'] = true
-    console.log("GAME START:")
-    //localData[room]['currentLetter'] = letter
-    io.to(room).emit("gameStartNotification",{'Success' : true,
-                "MSG" : "Everyone is ready, game will start shortly!",
-                "currentLetter":letter,
-                "CODE" : 1
-            })
-            
-    const temp = setTimeout(timeout, localData[room]['roundTimeLimit']*1000, room,localData,io);
-    //var temp = setTimeout(timeout,,room,localData,io)
-    localData[room]['intervalObj'] = temp
+function returnRoom(sessionToken,localData,socket){    
+    pool.query(`select username,roomCode , kicked from player where sessionToken = ? `,sessionToken,(err, results, fields)=>{
+        if(err){
+            console.log(`Došlo je do problema prilikom vraćanja u sobu : ERR : ${err.sqlMessage}\nCode : ${err.code} `)           
+        }else{
+            if(results.length == 0){
+                socket.emit("returnRoomResponse",{"Success":false,
+                    "ERR_MSG" : "Nije moguće vratiti se u sobu, napravite novu!"
+                })
+            }else{
+                if(results[0]['roomCode'] in localData){
+                    if(results[0]['kicked'] == 1){
+                        socket.emit("returnRoomResponse",{"Success":false,
+                            "ERR_MSG" : "Izbačeni ste iz sobe!"
+                        })
+                    }else{
+                        socket.emit("returnRoomResponse",{"Success" : true,
+                            "username" : results[0]['username'],
+                            "roomCode" : results[0]['roomCode']
+                        })
+                    }
+                }
+            }
+        }
+    })
 }
-*/
-
 
 module.exports = {
     playerReady,
@@ -596,6 +605,7 @@ module.exports = {
     predlagac,
     startVoteKick,
     voteKickCounter,
-    historyReq
+    historyReq,
+    returnRoom
     
 }

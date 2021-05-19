@@ -481,7 +481,7 @@ socket.on('gameStartNotification', message => {
         }).show()
         document.getElementById('lblPlayersReady').textContent = 0
         
-        document.getElementById('currentLetter').textContent = currentLetter
+       
         let duration = 61
         myInterval = setInterval(()=>{
         duration--
@@ -527,7 +527,8 @@ socket.on('gameStartNotification', message => {
         disableAllPButtons()
         disableHistoryReq()
         currentLetter = message['currentLetter']
-        cirilicaLetter = message['cirilicaLetter']      
+        cirilicaLetter = message['cirilicaLetter'] 
+        document.getElementById('currentLetter').textContent = currentLetter     
         if(currentLetter == "ć")
             dataReg = new RegExp(`^(c|ć|ћ)[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,41}$`,'g')
         else if(currentLetter == "č")
