@@ -23,8 +23,10 @@ const fields = ['Drzava','Grad','Ime','Biljka','Zivotinja','Planina','Reka','Pre
 const dataDictKeys = ['drzava','grad','ime','biljka','zivotinja','planina','reka','predmet']
 const kDict = {'Drzava':'d','Grad':'g','Ime':'i','Biljka':'b','Zivotinja':'z','Planina':'p','Reka':'r','Predmet':'pr'}
 const sessionReg = /^[A-Za-z0-9/+]{48}$/g
-
-
+let lblPlayerCount = document.getElementById('lblPlayerCount')
+let lblPlayersReady = document.getElementById('lblPlayersReady')
+let lblRoundNumber =document.getElementById('roundNumber')
+let lblPoeni = document.getElementById('poeni')
 // dodaj start button za leadera
 serverAddress = serverAdress()
 const socket = io(serverAddress);
@@ -286,7 +288,7 @@ socket.on('kickResult',message=>{
     }else{
         $("#vote-alert").html("")
         $("#vote-alert").hide()
-        document.getElementById('lblPlayerCount').textContent = String(Number(document.getElementById('lblPlayerCount').textContent) -1)
+        lblPlayerCount.textContent = String(Number(lblPlayerCount.textContent) -1)
         node = document.getElementById(`${message['username']}`)
         node.parentNode.removeChild(node);
         delete pList[message['username']]
@@ -348,10 +350,10 @@ socket.on('load', message =>{
     document.getElementById('localPlayer').textContent = username
     
     document.getElementById('lblRoomCode').textContent += String(roomCode)
-    document.getElementById('lblPlayersReady').textContent = message['playersReady']
-    document.getElementById('lblPlayerCount').textContent = message['playerCount']
+    lblPlayersReady.textContent = message['playersReady']
+    lblPlayerCount.textContent = message['playerCount']
     roundNumber = message['roundNumber']
-    document.getElementById('roundNumber').textContent = roundNumber
+    lblRoundNumber.textContent = roundNumber
     
     for(let i =1;i<=roundNumber;i++){
         let opt = document.createElement('option');
@@ -362,7 +364,7 @@ socket.on('load', message =>{
         opt.selected = 'selected'
     }
     points = message['points']
-    document.getElementById('poeni').textContent = String(message['points'])
+    lblPoeni.textContent = String(message['points'])
     pList[username] = points
     pListKeys = Object.keys(pList)
     new Noty({
@@ -413,14 +415,14 @@ socket.on("roomNotExist",message =>{
 //updatavnje igraca nakon kikovanja
 socket.on('playerCountUpdate', message =>{
     
-    document.getElementById('lblPlayersReady').textContent = message
+    lblPlayersReady.textContent = message
 })
 //error tokom kreiranja runde
 socket.on('createRoundResponse',message =>{
     gameStarted = false
     ready = false
     readyBtn.style.backgroundColor = 'red'
-    document.getElementById('lblPlayersReady').textContent = '0'
+    lblPlayersReady.textContent = '0'
     readyBtn.textContent = 'Nisi spreman!' 
     new Noty({
         theme : 'metroui',
@@ -449,8 +451,8 @@ socket.on('evaluationResponse',message=>{
         opt.value = roundNumber
         opt.selected = 'selected'
         select.appendChild(opt)
-        document.getElementById('roundNumber').textContent = roundNumber
-        document.getElementById('lblPlayersReady').textContent = message['playersReady']
+        lblRoundNumber.textContent = roundNumber
+        lblPlayersReady.textContent = message['playersReady']
 })
 //response ako bude problema u datacolleturu lose napravljeno
 socket.on('dataCollectorResponse',message=>{
@@ -475,11 +477,11 @@ socket.on('gameStartNotification', message => {
             theme : 'metroui',
             type : 'success',
             layout : 'topRight',
-            text : message['MSG'],
+            text : "Svi su spremni , runda počinje",
             timeout : 5000,
             progressBar :true
         }).show()
-        document.getElementById('lblPlayersReady').textContent = 0
+        lblPlayersReady.textContent = 0
         
        
         let duration = 61
@@ -655,7 +657,7 @@ socket.on('playerReadyResponse' , message =>{
         //reset ready button
         readyBtn.style.backgroundColor = 'red'
         readyBtn.textContent = "Nisi spreman!"
-        document.getElementById('lblPlayersReady').textContent = 0
+        lblPlayersReady.textContent = 0
         new Noty({
         theme : 'metroui',
         type : 'error',
@@ -719,7 +721,7 @@ socket.on('roundNumberUpdate', message=>{
     opt.value = roundNumber
     opt.selected = 'selected'
     select.appendChild(opt)
-    document.getElementById('roundNumber').textContent = roundNumber 
+    lblRoundNumber.textContent = roundNumber 
 })
 //points socket listener event gde se dodaju poeni 
 socket.on('points' , message =>{         
@@ -769,7 +771,7 @@ socket.on('points' , message =>{
         }
         }
         
-        document.getElementById('poeni').textContent = String(points)
+        lblPoeni.textContent = String(points)
     }
     roundNumber = message['roundNumber']
     select = document.getElementById('roundSelect')
@@ -778,8 +780,8 @@ socket.on('points' , message =>{
     opt.value = roundNumber
     opt.selected = 'selected'
     select.appendChild(opt)
-    document.getElementById('roundNumber').textContent = roundNumber
-    document.getElementById('lblPlayersReady').textContent = message['playersReady']          
+    lblRoundNumber.textContent = roundNumber
+    lblPlayersReady.textContent = message['playersReady']          
 })
 //err listner
 socket.on('pointsErr',message=>{

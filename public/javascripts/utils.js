@@ -130,8 +130,7 @@ function createRound(room,io,localData,sockets){
                             localData[room]['roundIDS'][localData[room]['roundNumber']] = results.insertId
                             localData[room]['roundID'] = results.insertId
                             localData[room]['playersReady'] = 0
-                            io.to(room).emit("gameStartNotification",{'Success' : true,
-                                        "MSG" : "Everyone is ready, game will start shortly!",
+                            io.to(room).emit("gameStartNotification",{'Success' : true,                                     
                                         "currentLetter":response,
                                         "cirilicaLetter": letterDict[response],
                                         "CODE" : 1
