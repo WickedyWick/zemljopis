@@ -18,9 +18,9 @@ function disableButtons(){
 
 }
 function enableButtons(){
-    $(pridruziBtn).prop("disabled", true )
-    $(napraviBtn).prop("disabled", true )
-    $(vratiBtn).prop("disabled", true )
+    $(pridruziBtn).prop("disabled", false )
+    $(napraviBtn).prop("disabled", false )
+    $(vratiBtn).prop("disabled", false )
 
 }
 socket.on('createRoomSQLResponse',response =>{
@@ -49,7 +49,7 @@ socket.on('joinRoomSQLResponse' , response=>{
     
 })
 socket.on('returnRoomResponse', message=>{
-    disableButtons()
+    enableButtons()
     if(message['Success'] == false){
         myAlert(message["ERR_MSG"])
     }else if(message['Success'] == true){
@@ -106,7 +106,8 @@ vratiBtn.addEventListener('click',(e)=>{
     if(tokenReg.test(sessionToken)){
         socket.emit("returnRoom",sessionToken)
     }else{
+        enableButtons()
         myAlert("Nije se moguće vratiti u sobu, napravite novu ili se pridružite drugoj sobi!")
     }      
-    enableButtons()
+   
 })

@@ -125,7 +125,7 @@ function disableKick(){
 //popup alert multi use
 function myAlert(test){
     $("#vote-alert").show()
-    $("#vote-alert").html(`<a href="#" class="close" data-dismiss="alert" >&times;</a><label class="vLabel">Glasanje da se izbaci igrač : ${test}</label> <button class="btn myVBtn" id="forVoteKick" onclick="voteFor()">Za</button><button class="btn myVBtn" id="againstVoteKick" onclick="voteAgainst()">Protiv</button> `)
+    $("#vote-alert").html(`<div style="text-align: center"><a href="#" class="close" data-dismiss="alert" >&times;</a><label class="vLabel">Glasanje da se izbaci igrač : ${test}</label> <button class="btn myVBtn" style="font-size:14px;padding:3px;padding-right:10px" id="forVoteKick" onclick="voteFor()">Za</button><button class="btn myVBtn" style="font-size:14px;padding:3px" id="againstVoteKick" onclick="voteAgainst()">Protiv</button></div> `)
     
     $("#vote-alert").fadeTo(7000)
         
@@ -378,6 +378,7 @@ socket.on('load', message =>{
     if(message['roundActive']){  
         readyBtn.disabled = true;
         disableAllInputFields()
+        gameStarted = true;
         new Noty({
             theme : 'metroui',
             type : 'info',
@@ -598,6 +599,11 @@ socket.on('playerList',message=>{
         }
     }
     pListKeys = Object.keys(pList)
+        if(gameStarted){
+            disableAllPButtons()
+            disableHistoryReq()
+            disableKick()
+        }
     }else if(message["MODE"] == "UPDATE"){
     let keys = Object.keys(message['players'])
     // ovde prvoeri da li postoji uPlisti etc i uzimaj value iz pliste a ne sa htmla
@@ -742,6 +748,7 @@ socket.on('points' , message =>{
     else
     {
     enableHistoryReq()
+    enableKick()
     new Noty({
         theme : 'metroui',
         type : 'success',
