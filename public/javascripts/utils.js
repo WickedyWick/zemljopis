@@ -464,50 +464,57 @@ function startVoteKick(room,username,localData,socket,io){
 }
 
 function kickEval(room,localData,io){
-   
-   if(!localData[room]['kickVote']['funcCalled'])
-   {
-       if(!localData[room]['evalFuncExecuting'])
-       {
-            localData[room]['kickVote']['funcCalled'] = true
-            
-            if(((localData[room]['kickVote']['for'] / localData[room]['playerCount']) *100 ) > 50){ // procenti
-                username = localData[room]['kickVote']['username']
-                pool.query("update player set kicked =1 where username = ?",[username],(err,results,fields)=>{
-                    if(err){
-                        console.log(`ERROR WHILE KICKING PLAYER : Code : ${err.code}\nMSG : ${err.sqlMessage}`)
-                        io.to(room).emit("kickResult",{'Success':false,
-                                "ERR_MSG": "Doslo je do problema prilikom izbacivanja igrača , pokušajte ponovo kasnije!"
+    try{
+        if(!localData[room]['kickVote']['funcCalled'])
+        {
+            if(!localData[room]['evalFuncExecuting'])
+            {
+                    localData[room]['kickVote']['funcCalled'] = true
+                    
+                    if(((localData[room]['kickVote']['for'] / localData[room]['playerCount']) *100 ) > 50){ // procenti
+                        username = localData[room]['kickVote']['username']
+                        pool.query("update player set kicked =1 where username = ?",[username],(err,results,fields)=>{
+                            if(err){
+                                console.log(`ERROR WHILE KICKING PLAYER : Code : ${err.code}\nMSG : ${err.sqlMessage}`)
+                                io.to(room).emit("kickResult",{'Success':false,
+                                        "ERR_MSG": "Doslo je do problema prilikom izbacivanja igrača , pokušajte ponovo kasnije!"
+                                })
+                            }else{
+                                
+                                localData[room]['playerCount'] -= 1
+                                io.to(room).emit("kickResult",{'Success':true,
+                                        "username" : username,
+                                        "MSG": "Igrač je izabačen!",
+                                        "SPEC_MSG" : "Izbačeni ste iz sobe!"
+                                })
+                                let tempID = localData[room]['players'][username]
+                                delete localData[room]['players'][username]
+                                delete localData[room]['playersID'][tempID]
+                                delete localData[room]['kickVote']
+                            }
                         })
                     }else{
                         
-                        localData[room]['playerCount'] -= 1
-                        io.to(room).emit("kickResult",{'Success':true,
-                                "username" : username,
-                                "MSG": "Igrač je izabačen!",
-                                "SPEC_MSG" : "Izbačeni ste iz sobe!"
+                        io.to(room).emit('kickResult',{'Success':false,
+                            "ERR_MSG":"Glasanje završeno , nedovoljno glasova za izbacivanje!" 
                         })
-                        let tempID = localData[room]['players'][username]
-                        delete localData[room]['players'][username]
-                        delete localData[room]['playersID'][tempID]
                         delete localData[room]['kickVote']
                     }
-                })
-            }else{
+                }else{
+                    setTimeout(kickEval,room,localData,io,4000)
+                    console.log("eval exectuing")
+                }
                 
-                io.to(room).emit('kickResult',{'Success':false,
-                    "ERR_MSG":"Glasanje završeno , nedovoljno glasova za izbacivanje!" 
-                })
-            }
         }else{
-            setTimeout(kickEval,room,localData,io,4000)
-            console.log("eval exectuing")
+            console.log("Ongoing kick eval")
+            //nista se ne desi 
         }
+    }catch(TypeError){
         
-   }else{
-       console.log("Ongoing kick eval")
-       //nista se ne desi 
-   }
+        io.to(room).emit('kickResult',{'Success':false,
+            "ERR_MSG":"Glasanje isteklo!" 
+        })
+    }
 }
 
 function voteKickCounter(room,username,mode,locaData,socket,io){
@@ -526,6 +533,7 @@ function voteKickCounter(room,username,mode,locaData,socket,io){
                     })
                
                  if(locaData[room]['kickVote']['totalVotes'] == localData[room]['playerCount']){
+                    
                     kickEval(room,localData,io)
                          
                     clearTimeout(localData[room]['kickVote']['timeoutID'])
@@ -589,6 +597,10 @@ function returnRoom(sessionToken,localData,socket){
                             "roomCode" : results[0]['roomCode']
                         })
                     }
+                }else{
+                    socket.emit("returnRoomResponse",{"Success":false,
+                            "ERR_MSG" : "Soba više nepostoji, napravite novu!"
+                        })
                 }
             }
         }
