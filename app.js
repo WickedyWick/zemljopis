@@ -7,7 +7,9 @@ const server = app.listen(3000)
 const io = socketio(server)
 const cron = require("node-cron")
 let moment = require("moment")
+require('dotenv').config({path: __dirname + '/.env'})
 const {playerReady, playerUnReady,timeout,dataCollector,evaluation,predlagac,startVoteKick,voteKickCounter,historyReq,returnRoom}  = require('./public/javascripts/utils.js')
+const {getRooms,getRoomsAtDate,getRoomsBetweenDates,getRounds,getRoundsAtDate,getRoundsBetweenDates,getPlayers,getPlayersAtDate,getPlayersBetweenDates} = require("./public/javascripts/stats.js")
 var path = require('path')
 
 localData = {}
@@ -168,12 +170,58 @@ app.get('/uputstvo',(req,res) => {
     res.sendFile('./views/uputstvo.html', {root: __dirname})
 })
 
-app.get('/game', (req,res) => {
-    
-    res.sendFile('./views/game.html', {root : __dirname})
-    
+app.get('/game', (req,res) => {    
+    res.sendFile('./views/game.html', {root : __dirname})    
+})
+app.get('/about.html',(req,res)=>{
+    res.sendFile('./views/about.html' , {root: __dirname})
 })
 
+app.get('/admin/:key/:action/:date?/:toDate?',(req,res) =>{
+    if(req.params.key == process.env.ADMIN_TOKEN){
+        //actions:
+        //number of Rooms Created
+        //number Of Rooms Created At Certain date
+        //number Of Rooms Created Between 2 dates
+        //number of Rounds created
+        //number Of Rounds created At Certain date
+        //number Of rounds Created Between 2 dates
+        //number of players registered
+        //number of players registered at certain date
+        //number of players registered between 2 dates
+        if(req.params.action == "room"){
+            if(req.params.date != undefined){
+                if(req.param.toDate != undefined){
+                    getRoomsBetweenDates(res,req.params.date,req.params.toDate)
+                }else
+                    getRoomsAtDate(res,req.params.date)
+            }else
+                getRooms(res)
+        }
+        else if(req.params.action == "player"){
+            if(req.params.date != undefined){
+                if(req.param.toDate != undefined){
+                    getPlayersBetweenDates(res,req.params.date,req.params.toDate)
+                }else
+                    getPlayersAtDate(res,req.params.date)
+            }else
+                getPlayers(res)
+        }else if(req.params.action == "round"){
+            if(req.params.date != undefined){
+                if(req.param.toDate != undefined){
+                    getRoundsBetweenDates(res,req.params.date,req.params.toDate)
+                }else
+                    getRoundsAtDate(res,req.params.date)
+            }else
+                getRounds(res)
+        }
+        
+    }else{
+        
+        res.status(403).send("<h1>403 FORBIDDEN</h1>")
+    }
+
+})
 app.use((req,res) =>{
     res.status(404).sendFile('./views/404.html', {root: __dirname})
 })

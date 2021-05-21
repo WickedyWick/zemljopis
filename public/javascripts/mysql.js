@@ -94,7 +94,7 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData){
                     }      
                     else{
                         let sessionToken = cryptoRandomString({length: 48, type: 'base64'})
-                        let sql = `insert into room values(DEFAULT,'${response}',${playerCount},NOW(),0);insert into player values(DEFAULT,'${response}','${username}','${sessionToken}',0);`;
+                        let sql = `insert into room values(DEFAULT,'${response}',${playerCount},curdate(),0);insert into player values(DEFAULT,'${response}','${username}','${sessionToken}',0);`;
                         
                         let trueRes =0;
                         

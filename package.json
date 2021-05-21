@@ -10,6 +10,7 @@
     "crypto-random-string": "^3.3.1",
     "date-diff": "^0.2.2",
     "debug": "~2.6.9",
+    "dotenv": "^9.0.2",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "^1.9.2",
