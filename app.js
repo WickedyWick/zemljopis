@@ -191,7 +191,8 @@ app.get('/admin/:key/:action/:date?/:toDate?',(req,res) =>{
         //number of players registered between 2 dates
         if(req.params.action == "room"){
             if(req.params.date != undefined){
-                if(req.param.toDate != undefined){
+                if(req.params.toDate != undefined){
+                    
                     getRoomsBetweenDates(res,req.params.date,req.params.toDate)
                 }else
                     getRoomsAtDate(res,req.params.date)
@@ -200,7 +201,7 @@ app.get('/admin/:key/:action/:date?/:toDate?',(req,res) =>{
         }
         else if(req.params.action == "player"){
             if(req.params.date != undefined){
-                if(req.param.toDate != undefined){
+                if(req.params.toDate != undefined){
                     getPlayersBetweenDates(res,req.params.date,req.params.toDate)
                 }else
                     getPlayersAtDate(res,req.params.date)
@@ -208,7 +209,7 @@ app.get('/admin/:key/:action/:date?/:toDate?',(req,res) =>{
                 getPlayers(res)
         }else if(req.params.action == "round"){
             if(req.params.date != undefined){
-                if(req.param.toDate != undefined){
+                if(req.params.toDate != undefined){
                     getRoundsBetweenDates(res,req.params.date,req.params.toDate)
                 }else
                     getRoundsAtDate(res,req.params.date)
