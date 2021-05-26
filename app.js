@@ -71,11 +71,12 @@ io.on('connection', socket => {
             console.log("error with predlagac")
         }
     })
+    /*
     socket.on("register", key =>{
         console.log("registered")
         socket.join(key)
         console.log(io.sockets.adapter.rooms[key]['sockets'])
-    })
+    })*/
     socket.on('predlagac',({val,currentLetter,k})=>{
         try{            
             predlagac(val,currentLetter,katDict[k])
