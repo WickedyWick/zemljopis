@@ -182,7 +182,9 @@ app.get('/game', (req,res) => {
 app.get('/about',(req,res)=>{
     res.sendFile('./views/about.html' , {root: __dirname})
 })
-
+app.get('/loaderio-7f60fd2d4c10aaa9f33aded96b50c574',(req,res)=>{
+    res.sendFile('./views/loaderio-7f60fd2d4c10aaa9f33aded96b50c574.txt',{root:__dirname})
+})
 app.get('/admin/:key/:action/:date?/:toDate?',(req,res) =>{
     if(req.params.key == process.env.ADMIN_TOKEN){
         //actions:
