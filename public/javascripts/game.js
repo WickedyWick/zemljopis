@@ -17,6 +17,7 @@ let pList = {}
 let pListKeys;
 let kicked = false
 let historyData = {}
+let vreme = 0;
 historyData[username] = {}
 let select = document.getElementById('roundSelect')
 const fields = ['Drzava','Grad','Ime','Biljka','Zivotinja','Planina','Reka','Predmet']
@@ -354,7 +355,7 @@ socket.on('load', message =>{
     lblPlayerCount.textContent = message['playerCount']
     roundNumber = message['roundNumber']
     lblRoundNumber.textContent = roundNumber
-    
+    vreme = message['vreme']
     for(let i =1;i<=roundNumber;i++){
         let opt = document.createElement('option');
         opt.appendChild(document.createTextNode(i))
@@ -486,7 +487,7 @@ socket.on('gameStartNotification', message => {
         lblPlayersReady.textContent = 0
         
        
-        let duration = 61
+        let duration = vreme
         myInterval = setInterval(()=>{
         duration--
         timer.innerHTML = duration

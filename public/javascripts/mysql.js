@@ -78,10 +78,11 @@ function joinRoomSQL(socket,room,username,localData){
     }
 }
 
-function createRoom(socket,username,playerCount,roundTimeLimit,localData){
+function createRoom(socket,username,playerCount,roundTimeLimit,localData,io){
    
     //Prvo se kreira soba , pa se pravi igrac, pa se pravi runda kada se svi pridruze!
     // kada su svi ready      
+           // io.to("TESTKEY").emit("mTest",{"test":"EMITER"})    
             createRoomCode().then((response) =>{
                 pool.getConnection((err,connection) => {
                     if (err) 
@@ -210,6 +211,7 @@ function joinRoom(socket,room,username,sessionToken,localData,io){
                                         "playersReady" : localData[room]['playersReady'],
                                         "roundActive" : localData[room]['roundActive'],
                                         "roundNumber" : localData[room]['roundNumber'],
+                                        "vreme": localData[room]['roundTimeLimit'],
                                         "points" : 0,
                                         
                                     })
@@ -220,6 +222,7 @@ function joinRoom(socket,room,username,sessionToken,localData,io){
                                             "playersReady" : localData[room]['playersReady'],
                                             "roundActive" : localData[room]['roundActive'],
                                             "roundNumber" : localData[room]['roundNumber'],
+                                            "vreme": localData[room]['roundTimeLimit'],
                                             "points" : result[2][0]['ukupnoBodova'],                                   
                                         })                                    
                                     playerPointDict = {}
