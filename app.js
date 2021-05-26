@@ -53,10 +53,10 @@ io.on('connection', socket => {
         joinRoomSQL(socket,obj['room'],obj['username'],localData);       
     })
     socket.on('createRoom',({username,playerCount,roundTimeLimit}) =>{        
-        createRoom(socket,username,playerCount,roundTimeLimit,localData)        
+        createRoom(socket,username,playerCount,roundTimeLimit,localData,io)        
     })
     socket.on('createRoomM', (obj)=>{
-        createRoom(socket,obj['username'],obj['playerCount'],obj['roundTimeLimit'],localData) 
+        createRoom(socket,obj['username'],obj['playerCount'],obj['roundTimeLimit'],localData,io) 
     })
     socket.on('joinRoomReq',({username,roomCode,sessionToken}) =>{        
         joinRoom(socket,roomCode,username,sessionToken,localData,io)       
@@ -70,6 +70,11 @@ io.on('connection', socket => {
         }catch{
             console.log("error with predlagac")
         }
+    })
+    socket.on("register", key =>{
+        console.log("registered")
+        socket.join(key)
+        console.log(io.sockets.adapter.rooms[key]['sockets'])
     })
     socket.on('predlagac',({val,currentLetter,k})=>{
         try{            
@@ -173,7 +178,7 @@ app.get('/uputstvo',(req,res) => {
 app.get('/game', (req,res) => {    
     res.sendFile('./views/game.html', {root : __dirname})    
 })
-app.get('/about.html',(req,res)=>{
+app.get('/about',(req,res)=>{
     res.sendFile('./views/about.html' , {root: __dirname})
 })
 
@@ -189,6 +194,7 @@ app.get('/admin/:key/:action/:date?/:toDate?',(req,res) =>{
         //number of players registered
         //number of players registered at certain date
         //number of players registered between 2 dates
+        //number of clients connected
         if(req.params.action == "room"){
             if(req.params.date != undefined){
                 if(req.params.toDate != undefined){
@@ -223,6 +229,7 @@ app.get('/admin/:key/:action/:date?/:toDate?',(req,res) =>{
     }
 
 })
+//app.use(require('express-status-monitor')());
 app.use((req,res) =>{
     res.status(404).sendFile('./views/404.html', {root: __dirname})
 })
