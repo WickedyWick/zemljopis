@@ -164,10 +164,13 @@ io.on('connection', socket => {
     socket.on("returnRoom",sessionToken =>{
         returnRoom(sessionToken, localData, socket)
     })
+
     
 })
 console.log('Server started!')
-
+app.get('/favicon.ico',(req,res)=>{
+    res.sendFile("./favicon.ico",{root:__dirname})
+})
 app.get('/',(req,res) => {
     res.sendFile('./views/index.html', {root: __dirname})
 })
