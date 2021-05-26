@@ -533,11 +533,11 @@ function voteKickCounter(room,username,mode,locaData,socket,io){
                     })
                
                  if(locaData[room]['kickVote']['totalVotes'] == localData[room]['playerCount']){
-                    
+                    clearTimeout(localData[room]['kickVote']['timeoutID'])
                     kickEval(room,localData,io)
                          
-                    clearTimeout(localData[room]['kickVote']['timeoutID'])
-                    delete localData[room]['kickVote']
+                    
+                    //delete localData[room]['kickVote']
                 }
             }
             else
