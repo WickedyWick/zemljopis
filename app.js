@@ -171,25 +171,25 @@ io.on('connection', socket => {
 })
 console.log('Server started!')
 app.get('/favicon.ico',(req,res)=>{
-    res.setHeader("Content-Type: text/html; charset=UTF-8")
+    res.setHeader("Content-Type" ,"text/html; charset=UTF-8")
     res.sendFile("./favicon.ico",{root:__dirname})
 })
 app.get('/',(req,res) => {
-    res.setHeader("Content-Type: text/html; charset=UTF-8")
+    res.setHeader("Content-Type" ,"text/html; charset=UTF-8")
     res.sendFile('./views/index.html', {root: __dirname})
 })
 
 app.get('/uputstvo',(req,res) => {
-    res.setHeader("Content-Type: text/html; charset=UTF-8")
+    res.setHeader("Content-Type" ,"text/html; charset=UTF-8")
     res.sendFile('./views/uputstvo.html', {root: __dirname})
 })
 
 app.get('/game', (req,res) => {    
-    res.setHeader("Content-Type: text/html; charset=UTF-8")
+    res.setHeader("Content-Type" ,"text/html; charset=UTF-8")
     res.sendFile('./views/game.html', {root : __dirname})    
 })
 app.get('/about',(req,res)=>{
-    res.setHeader("Content-Type: text/html; charset=UTF-8")
+    res.setHeader("Content-Type" ,"text/html; charset=UTF-8")
     res.sendFile('./views/about.html' , {root: __dirname})
 })
 app.get('/loaderio-7f60fd2d4c10aaa9f33aded96b50c574',(req,res)=>{
