@@ -486,7 +486,9 @@ socket.on('gameStartNotification', message => {
         }).show()
         lblPlayersReady.textContent = 0
         
-       
+        currentLetter = message['currentLetter']
+        cirilicaLetter = message['cirilicaLetter'] 
+        document.getElementById('currentLetter').textContent = currentLetter   
         let duration = vreme
         myInterval = setInterval(()=>{
         duration--
@@ -539,7 +541,7 @@ socket.on('gameStartNotification', message => {
         else if(currentLetter == "č")
             dataReg = new RegExp(`^(c|č|ч)[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,41}$`,'g')
         else if(currentLetter == "lj" || currentLetter == "nj")
-            dataReg = new RegExp(`^$(${currentLetter}|${cirilicaLetter})[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,40}$`,'g')
+            dataReg = new RegExp(`^(${currentLetter}|${cirilicaLetter})[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,40}$`,'g')
         else if(currentLetter == "dž")
             dataReg = new RegExp(`^(dz|dž|џ)[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,40}$`,'g')
         else if(currentLetter == "đ")
@@ -550,6 +552,7 @@ socket.on('gameStartNotification', message => {
             dataReg = new RegExp(`^(s|š|ш)[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,41}$`,'g')
         else
             dataReg = new RegExp(`^(${currentLetter}|${cirilicaLetter})[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{1,41}$`,'g')
+        
         enableAllInputFields()
         clearAllInputFields()
     }
