@@ -3,46 +3,59 @@ var pool = require('./trueMysql.js')
 const cryptoRandomString = require('crypto-random-string');
 var moment = require('moment')
 
-function joinRoomSQL(socket,room,username,localData){
+
+
+function joinRoomSQL(res,room,username,localData){
     if(room in localData){
         if(localData[room]['playerCount'] > Object.keys(localData[room]['playersID']).length){
             pool.getConnection((err,connection) =>{
                 if(err){
                     
                     console.log(`ERROR CONNECTING TO THE DATABASE : Code ${err.code}\mMSG : ${err.sqlMessage}`)
-                    socket.emit('joinRoomSQLResponse',{'Success' : false,
+                    res.statusCode = 500;
+                    res.setHeader("Content-Type", "application/json");
+                    res.json({
                         "Data" : "Doslo je do problema sa pridruzivanjem u sobu, pokusajte kasnije!"
-                    })
-                    
+                    })                    
                 }else{                  
                     connection.query(`select username from player where roomCode = '${room}' and username = '${username}';`,(err,result,fields) =>{
                         
                         if(err){
                             console.log(`ERROR WHILE SELECTING USERNAME FROM DATABASE : Code ${err.code}\nMSG : ${err.sqlMessage}`)
-                            socket.emit('joinRoomSQLResponse',{'Success' : false,
-                                "ERR_MSG" : "Doslo je do problema , pokusajte kasnije!" 
-                                
+                            res.statusCode = 500;
+                            res.setHeader("Content-Type", "application/json");
+                            res.json({
+                                "ERR_MSG" : "Doslo je do problema , pokusajte kasnije!"
                             })
                         }else{
                             if(result.length ==0){
-                                    let sessionToken = cryptoRandomString({length: 48, type: 'base64'})
+                                    let sessionToken = cryptoRandomString({length: 48, type: 'alphanumeric'})
                                     connection.query(`insert into player values(DEFAULT,'${room}','${username}','${sessionToken}',0);`, (err,results,fields) =>{
                                         if(err){
                                             console.log(`ERROR WHILE INSERTING PLAYER INTO DATABASE : Code ${err.code}\nMSG : ${err.sqlMessage}`)
                                             if(err.code =="ER_NO_REFERENCED_ROW_2" ){
-                                                socket.emit('joinRoomSQLResponse',{'Success' : false,
-                                                    "ERR_MSG": "Soba ne postoji!",
-                                                
+                                                res.statusCode = 500;
+                                                res.setHeader("Content-Type", "application/json");
+                                                res.json({
+                                                    "ERR_MSG" : "Soba ne postoji!"
                                                 })
                                             }else
-                                                socket.emit('joinRoomSQLResponse',{'Success' : false,
-                                                    "ERR_MSG": "Doslo je do problema , pokusajte kasnije!",
-                                                    
+                                                res.statusCode = 500;
+                                                res.setHeader("Content-Type", "application/json");
+                                                res.json({
+                                                    "ERR_MSG" : "Doslo je do problema , pokusajte kasnije!"
                                                 })
                                         }
                                         else{                                           
                                             localData[room]['players'][username] = results.insertId
                                             localData[room]['playersID'][results.insertId] = username
+                                            res.statusCode = 201;
+                                            res.setHeader("Content-Type", "application/json");
+                                            res.json({
+                                                'username': username,
+                                                'roomCode': room,
+                                                'sessionToken': sessionToken
+                                            })                                            
                                             socket.emit('joinRoomSQLResponse',{'Success' : true,
                                                 'username': username,
                                                 'roomCode': room,
@@ -55,11 +68,11 @@ function joinRoomSQL(socket,room,username,localData){
                                 
                             }
                             else{
-                                
-                                    socket.emit('joinRoomSQLResponse',{'Success':false,
-                                        "ERR_MSG": "Korisnicko ime u toj sobi vec postoji, izaberite drugo korisnicko ime!"
-                                    })
-                                
+                                res.statusCode = 500;
+                                res.setHeader("Content-Type", "application/json");
+                                res.json({
+                                    "ERR_MSG": "Korisnicko ime u toj sobi vec postoji, izaberite drugo korisnicko ime!"
+                                })                                
                             }                  
                         }
                     })
@@ -67,18 +80,23 @@ function joinRoomSQL(socket,room,username,localData){
                 connection.release()
             })
         }else{
-            socket.emit('joinRoomSQLResponse',{'Success':false,
+            res.statusCode = 500;
+            res.setHeader("Content-Type", "application/json");
+            res.json({
                 "ERR_MSG" : "Soba je puna!"
-            })}
+            })   
+            }
         }   
     else{
-        socket.emit('joinRoomSQLResponse',{'Success':false,
+        res.statusCode = 500;
+            res.setHeader("Content-Type", "application/json");
+            res.json({
                 "ERR_MSG" : "Soba više ne postoji , kreirajte novu !"
-            })
+            })   
     }
 }
 
-function createRoom(socket,username,playerCount,roundTimeLimit,localData,io){
+function createRoom(res,username,playerCount,roundTimeLimit,localData,io){
    
     //Prvo se kreira soba , pa se pravi igrac, pa se pravi runda kada se svi pridruze!
     // kada su svi ready      
@@ -86,15 +104,16 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData,io){
             createRoomCode().then((response) =>{
                 pool.getConnection((err,connection) => {
                     if (err) 
-                    {
+                    {   
                         console.log(`ERROR WHILE CONNECTING TO THE DATABASE : Code : ${err.code}\nMSG : ${err.sqlMessage}`)
-                        socket.emit('createRoomSQLResponse',{"Success": false,
-                            "ERR_MSG": "Problem prilikom kreiranje sobe, pokusajte kasnije!",
-                            
-                        })
+                        res.statusCode = 500;
+                        res.setHeader("Content-Type", "application/json");
+                        res.json({
+                            "ERR_MSG": "Problem prilikom kreiranje sobe, pokusajte kasnije!"
+                        })  
                     }      
                     else{
-                        let sessionToken = cryptoRandomString({length: 48, type: 'base64'})
+                        let sessionToken = cryptoRandomString({length: 48, type: 'alphanumeric'})
                         let sql = `insert into room values(DEFAULT,'${response}',${playerCount},curdate(),0);insert into player values(DEFAULT,'${response}','${username}','${sessionToken}',0);`;
                         
                         let trueRes =0;
@@ -103,11 +122,11 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData,io){
                             if (err){
                                 //ER_DUP_ENTRY for duplicate entry
                                 console.log(`ERROR WHILE INSERTING VALUES INTO ROOM : Code : ${err.code}\nMSG : ${err.sqlMessage}`)
-                                socket.emit('createRoomSQLResponse',{
-                                    'Success': false,
-                                    "ERR_MSG ": "Problem prilikom kreiranje sobe, pokusajte kasnije!"
-                                }) 
-
+                                res.statusCode = 500;
+                                res.setHeader("Content-Type", "application/json");
+                                res.json({
+                                    "ERR_MSG": "Problem prilikom kreiranje sobe, pokusajte kasnije!"
+                                })  
                             }else{           
                                 console.log("Room creation successfull!")
                                 let date = new Date();
@@ -133,12 +152,13 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData,io){
                                 localData[response]['playersID'][results[1].insertId] = username
                                 
                                 
-
-                                socket.emit('createRoomSQLResponse',{'Success':true,
-                                        'roomCode':response,
-                                        'username': username,
-                                        'sessionToken': sessionToken
-                                    })
+                                res.statusCode = 201;
+                                res.setHeader("Content-Type", "application/json");
+                                res.json({
+                                    'roomCode':response,
+                                    'username': username,
+                                    'sessionToken': sessionToken
+                                })          
                             }
                             
                         });
@@ -149,10 +169,11 @@ function createRoom(socket,username,playerCount,roundTimeLimit,localData,io){
             
             },(reject)=>{
                 console.log("There was problem while creating room code!")
-                socket.emit('createRoomSQLResponse',{'Success' : false,               
+                res.statusCode = 500;
+                res.setHeader("Content-Type", "application/json");
+                res.json({
                     'ERR_MSG' : "Problem prilikom kreiranje sobe, pokusajte ponovo!"
-                })
-            
+                }) 
             })
 
 }

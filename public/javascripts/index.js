@@ -1,9 +1,9 @@
 
 const serverAddress = serverAdress()
-const socket = io(serverAddress);
+let povezan = false;
 const roomReg = /^[A-Za-z0-9]{8}$/g
 const usernameReg = /^[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{4,30}$/g
-const tokenReg = /^[A-Za-z0-9/+]{48}$/g
+const tokenReg = /^[A-Za-z0-9]{48}$/g
 let pridruziBtn = document.getElementById('pridruzi')
 let usernameInput = document.getElementById('txb_username')
 let roomCodeInput = document.getElementById('txb_roomCode')
@@ -23,6 +23,8 @@ function enableButtons(){
     $(vratiBtn).prop("disabled", false )
 
 }
+
+/*
 socket.on('createRoomSQLResponse',response =>{
     
     enableButtons()
@@ -55,7 +57,7 @@ socket.on('returnRoomResponse', message=>{
     }else if(message['Success'] == true){
         window.location.href = `/game?roomCode=${message['roomCode']}&username=${message['username']}`
     }
-})
+})*/
 function myAlert(test){
     $("#danger-alert").html(`<a href="#" class="close" data-dismiss="alert">&times;</a><strong>Failure</strong> ${test}`)
     $("#danger-alert").fadeTo(7000, 500).slideUp(500, () =>{
@@ -67,9 +69,25 @@ pridruziBtn.addEventListener('click',(e)=>{
     let username = usernameInput.value.trim()
     let room = roomCodeInput.value.trim()
     disableButtons()
-    if(roomReg.test(room) && usernameReg.test(username)){                      
-        socket.emit('joinRoomSQL',{username,room})                
-        //pop alert
+    if(roomReg.test(room) && usernameReg.test(username)){ 
+        /*      
+        socket.emit('joinRoomSQL',{username,room})                */
+        let statusCode;
+        fetch(`${serverAddress}joinRoomSQL`,{
+            method: "POST",
+            body : JSON.stringify({"username":username,"roomCode":room}),
+            headers : {"Content-type":"application/json; charset=UTF-8"}
+        })
+        .then(response => {statusCode = response.status; response.json().then(json =>{  
+            if(statusCode == 500){
+                myAlert(json["ERR_MSG"])
+                enableButtons()
+            }else if(statusCode == 201){               
+                localStorage.setItem('sessionToken',json['sessionToken'])
+                window.location.href = `/game?roomCode=${json['roomCode']}&username=${json['username']}`
+            }
+        })}).catch(err => {console.log('err')})
+        
     }else{
         if(!roomReg.test(room) && !usernameReg.test(username)){
             //mylaertuj za o
@@ -84,6 +102,8 @@ pridruziBtn.addEventListener('click',(e)=>{
         }
         enableButtons()
     }
+    roomReg.lastIndex =-1;
+    usernameReg.lastIndex = -1;
 })
        
 napraviBtn.addEventListener('click',(e)=>{
@@ -93,21 +113,57 @@ napraviBtn.addEventListener('click',(e)=>{
     if(usernameReg.test(username)){
         let playerCount = playerNumberDDL.value
         let roundTimeLimit = roundTimeDDL.value
-        socket.emit('createRoom',{username,playerCount,roundTimeLimit})
+        let statusCode;
+        fetch(`${serverAddress}createRoom`,{
+            method: "POST",
+            body : JSON.stringify({"username":username,"playerCount":playerCount,"roundTimeLimit":roundTimeLimit}),
+            headers : {"Content-type":"application/json; charset=UTF-8"}
+        })
+        .then(response => {statusCode = response.status; response.json().then(json =>{
+            if(statusCode == 500){
+                myAlert(json["ERR_MSG"])
+                enableButtons()
+            }else if(statusCode == 201){
+                
+                localStorage.setItem('sessionToken',json['sessionToken'])       
+                window.location.href = `/game?roomCode=${json['roomCode']}&username=${json['username']}`;
+            }
+        })}).catch(err => console.log('err'))
+        
+
+        //socket.emit('createRoom',{username,playerCount,roundTimeLimit});
     }else{
         myAlert("Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica, cirilica i engleski alfabet!")
         enableButtons()
     }
+    usernameReg.lastIndex = -1;
 })
 vratiBtn.addEventListener('click',(e)=>{
     e.preventDefault();
     disableButtons()
     let sessionToken = localStorage.getItem('sessionToken')
     if(tokenReg.test(sessionToken)){
-        socket.emit("returnRoom",sessionToken)
+        /*
+        socket.emit("returnRoom",sessionToken)*/
+        let statusCode;
+        console.log(sessionToken)
+        fetch(`${serverAddress}returnRoom/${sessionToken}`, {
+        method: "GET",
+        headers: {"Content-type": "application/json;charset=UTF-8"}
+        })
+        .then(response => {statusCode = response.status;response.json().then(json => { 
+            if(statusCode == 500){
+                myAlert(json['ERR_MSG'])
+            }else if(statusCode == 200){
+                window.location.href = `/game?roomCode=${json['roomCode']}&username=${json['username']}`;
+            }
+        })}).catch(err => console.log('err')) 
+        
+        
     }else{
         enableButtons()
         myAlert("Nije se moguće vratiti u sobu, napravite novu ili se pridružite drugoj sobi!")
     }      
+    tokenReg.lastIndex = -1;
    
 })

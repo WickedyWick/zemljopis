@@ -12,10 +12,12 @@ const {playerReady, playerUnReady,timeout,dataCollector,evaluation,predlagac,sta
 const {getRooms,getRoomsAtDate,getRoomsBetweenDates,getRounds,getRoundsAtDate,getRoundsBetweenDates,getPlayers,getPlayersAtDate,getPlayersBetweenDates} = require("./public/javascripts/stats.js")
 var path = require('path')
 
+const times = ['60','90','120']
 localData = {}
 sockets = {}
 katDict = {'d':0,'g':1,'i':2,'b':3,'z':4,'p':5,'r':6,'pr':7}
 app.use('/public', express.static('public'));
+app.use(express.json());
 cron.schedule("0 12 * * *",()=>{
     console.log("****** Running Cron Job ******")
     console.log("Cleaning localData") 
@@ -188,6 +190,9 @@ app.get('/about',(req,res)=>{
 app.get('/loaderio-7f60fd2d4c10aaa9f33aded96b50c574',(req,res)=>{
     res.sendFile('./views/loaderio-7f60fd2d4c10aaa9f33aded96b50c574.txt',{root:__dirname})
 })
+app.get('/returnRoom/:sessionToken',(req,res)=>{   
+    returnRoom(res,req.params.sessionToken,localData)
+})
 app.get('/admin/:key/:action/:date?/:toDate?',(req,res) =>{
     if(req.params.key == process.env.ADMIN_TOKEN){
         //actions:
@@ -234,6 +239,22 @@ app.get('/admin/:key/:action/:date?/:toDate?',(req,res) =>{
         res.status(403).send("<h1>403 FORBIDDEN</h1>")
     }
 
+})
+app.post('/createRoom/',(req,res)=>{
+    //vrv bolje da bude  regex novi kreiran za svaki req zbog g flaga jer ako u isto vreme se pozove regex.test , lastindex = -1 nece mozda stici na vreme , GC ce valjda obrisati ovo nakon koriscenja
+    //ovde se jedino regexuje jer 
+    let usernameRegEx = /^[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{4,30}$/g
+    let playerCountRegEx = /^[1-8]{1}$/g
+    if(usernameRegEx.test(req.body['username']) && playerCountRegEx.test(req.body['playerCount']) && times.includes(req.body['roundTimeLimit']))
+        createRoom(res,req.body.username,req.body.playerCount,req.body.roundTimeLimit,localData,io)
+    else{
+        res.statusCode = 400
+        res.setHeader("Content-Type", "application/json");
+        res.json({"ERR_MSG":"Invalid parameters"})
+    }
+})
+app.post('/joinRoomSQL/',(req,res) =>{
+    joinRoomSQL(res,req.body.roomCode,req.body.username,localData);
 })
 //app.use(require('express-status-monitor')());
 app.use((req,res) =>{

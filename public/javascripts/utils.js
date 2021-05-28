@@ -576,31 +576,39 @@ function timeout(room,localData,io){
   
 }
 
-function returnRoom(sessionToken,localData,socket){    
+function returnRoom(res,sessionToken,localData){    
     pool.query(`select username,roomCode , kicked from player where sessionToken = ? `,sessionToken,(err, results, fields)=>{
         if(err){
             console.log(`Došlo je do problema prilikom vraćanja u sobu : ERR : ${err.sqlMessage}\nCode : ${err.code} `)           
         }else{
             if(results.length == 0){
-                socket.emit("returnRoomResponse",{"Success":false,
+                res.statusCode = 500;
+                res.setHeader("Content-Type", "application/json");
+                res.json({
                     "ERR_MSG" : "Nije moguće vratiti se u sobu, napravite novu!"
                 })
             }else{
                 if(results[0]['roomCode'] in localData){
                     if(results[0]['kicked'] == 1){
-                        socket.emit("returnRoomResponse",{"Success":false,
+                        res.statusCode = 500;
+                        res.setHeader("Content-Type", "application/json");
+                        res.json({
                             "ERR_MSG" : "Izbačeni ste iz sobe!"
                         })
                     }else{
-                        socket.emit("returnRoomResponse",{"Success" : true,
+                        res.statusCode = 200;
+                        res.setHeader("Content-Type", "application/json");
+                        res.json({
                             "username" : results[0]['username'],
                             "roomCode" : results[0]['roomCode']
                         })
                     }
                 }else{
-                    socket.emit("returnRoomResponse",{"Success":false,
-                            "ERR_MSG" : "Soba više nepostoji, napravite novu!"
-                        })
+                    res.statusCode = 500;
+                    res.setHeader("Content-Type", "application/json");
+                    res.json({
+                        "ERR_MSG" : "Soba više nepostoji, napravite novu!"
+                    })
                 }
             }
         }
