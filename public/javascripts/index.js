@@ -128,7 +128,7 @@ napraviBtn.addEventListener('click',(e)=>{
                 localStorage.setItem('sessionToken',json['sessionToken'])       
                 window.location.href = `/game?roomCode=${json['roomCode']}&username=${json['username']}`;
             }
-        })}).catch(err => console.log('err'))
+        })}).catch(err => {console.log('err')})
         
 
         //socket.emit('createRoom',{username,playerCount,roundTimeLimit});
@@ -154,10 +154,11 @@ vratiBtn.addEventListener('click',(e)=>{
         .then(response => {statusCode = response.status;response.json().then(json => { 
             if(statusCode == 500){
                 myAlert(json['ERR_MSG'])
+                enableButtons()
             }else if(statusCode == 200){
                 window.location.href = `/game?roomCode=${json['roomCode']}&username=${json['username']}`;
             }
-        })}).catch(err => console.log('err')) 
+        })}).catch(err => {console.log('err')}) 
         
         
     }else{
