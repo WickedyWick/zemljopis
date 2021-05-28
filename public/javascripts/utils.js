@@ -555,7 +555,7 @@ function voteKickCounter(room,username,mode,locaData,socket,io){
 }
 function predlagac(predlog,slovo,kategorija){
    
-    pool.query(`insert into predlozi values(DEFAULT,?,?,${kategorija});`,[predlog,slovo],(err,results,fields)=>{
+    pool.query(`insert into predlozi values(DEFAULT,?,?,${kategorija},NOW());`,[predlog,slovo],(err,results,fields)=>{
         if(err){
             console.log(`Doslo je do problema u toku unosenja predloga : ERR : ${err.sqlMessage}\nCode : ${err.code} `);
         }
