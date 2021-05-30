@@ -142,29 +142,38 @@ vratiBtn.addEventListener('click',(e)=>{
     e.preventDefault();
     disableButtons()
     let sessionToken = localStorage.getItem('sessionToken')
+    let roomCode = localStorage.getItem("roomCode")
+    let username = localStorage.getItem("username")
     if(tokenReg.test(sessionToken)){
+
+        if(usernameReg.test(username) && roomReg.test(roomCode)){
+            console.log("works")
+            window.location.href = `/game?roomCode=${roomCode}&username=${username}`;
+        }else{
         /*
         socket.emit("returnRoom",sessionToken)*/
-        let statusCode;
-        console.log(sessionToken)
-        fetch(`${serverAddress}returnRoom/${sessionToken}`, {
-        method: "GET",
-        headers: {"Content-type": "application/json;charset=UTF-8"}
-        })
-        .then(response => {statusCode = response.status;response.json().then(json => { 
-            if(statusCode == 500){
-                myAlert(json['ERR_MSG'])
-                enableButtons()
-            }else if(statusCode == 200){
-                window.location.href = `/game?roomCode=${json['roomCode']}&username=${json['username']}`;
-            }
-        })}).catch(err => {console.log('err')}) 
-        
+            let statusCode;
+            console.log(sessionToken)
+            fetch(`${serverAddress}returnRoom/${sessionToken}`, {
+            method: "GET",
+            headers: {"Content-type": "application/json;charset=UTF-8"}
+            })
+            .then(response => {statusCode = response.status;response.json().then(json => { 
+                if(statusCode == 500){
+                    myAlert(json['ERR_MSG'])
+                    enableButtons()
+                }else if(statusCode == 200){
+                    window.location.href = `/game?roomCode=${json['roomCode']}&username=${json['username']}`;
+                }
+            })}).catch(err => {console.log('err')}) 
+        }
         
     }else{
         enableButtons()
         myAlert("Nije se moguće vratiti u sobu, napravite novu ili se pridružite drugoj sobi!")
     }      
     tokenReg.lastIndex = -1;
+    usernameReg.lastIndex = -1;
+    roomReg.lastIndex = -1;
    
 })

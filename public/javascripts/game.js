@@ -349,7 +349,8 @@ socket.on('load', message =>{
     disableAllPButtons()
     sessionToken = localStorage.getItem('sessionToken')
     document.getElementById('localPlayer').textContent = username
-    
+    localStorage.setItem("roomCode",roomCode)
+    localStorage.setItem("username",username)
     document.getElementById('lblRoomCode').textContent += String(roomCode)
     lblPlayersReady.textContent = message['playersReady']
     lblPlayerCount.textContent = message['playerCount']

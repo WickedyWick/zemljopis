@@ -8,7 +8,7 @@ const io = socketio(server)
 const cron = require("node-cron")
 let moment = require("moment")
 require('dotenv').config({path: __dirname + '/.env'})
-const {playerReady, playerUnReady,timeout,dataCollector,evaluation,predlagac,startVoteKick,voteKickCounter,historyReq,returnRoom}  = require('./public/javascripts/utils.js')
+const {playerReady, playerUnReady,timeout,dataCollector,evaluation,predlagac,startVoteKick,voteKickCounter,historyReq,returnRoom,insertUtisak}  = require('./public/javascripts/utils.js')
 const {getRooms,getRoomsAtDate,getRoomsBetweenDates,getRounds,getRoundsAtDate,getRoundsBetweenDates,getPlayers,getPlayersAtDate,getPlayersBetweenDates} = require("./public/javascripts/stats.js")
 var path = require('path')
 
@@ -48,15 +48,17 @@ io.on('connection', socket => {
     socket.on('test',test=>{
         console.log(test);
     });
+    /*
     socket.on('joinRoomSQL',({username,room}) =>{  
         joinRoomSQL(socket,room,username,localData)
-    })
+    })*/
     socket.on('joinRoomSQLM',(obj)=>{
         joinRoomSQL(socket,obj['room'],obj['username'],localData);       
     })
+    /*
     socket.on('createRoom',({username,playerCount,roundTimeLimit}) =>{        
         createRoom(socket,username,playerCount,roundTimeLimit,localData,io)        
-    })
+    })*/
     socket.on('createRoomM', (obj)=>{
         createRoom(socket,obj['username'],obj['playerCount'],obj['roundTimeLimit'],localData,io) 
     })
@@ -162,10 +164,10 @@ io.on('connection', socket => {
     socket.on('historyReqM',(obj)=>{        
         historyReq(obj['roomCode'],obj['player'],obj['targetRound'],localData,socket)
     })
-    
+    /*
     socket.on("returnRoom",sessionToken =>{
         returnRoom(sessionToken, localData, socket)
-    })
+    })*/
 
     
 })
@@ -183,7 +185,14 @@ app.get('/uputstvo',(req,res) => {
     res.setHeader("Content-Type" ,"text/html; charset=UTF-8")
     res.sendFile('./views/uputstvo.html', {root: __dirname})
 })
-
+app.get('/utisci',(req,res)=>{
+    res.setHeader("Content-Type","text/html;charset=UTF-8")
+    res.sendFile("./views/utisci.html",{root:__dirname})
+})
+app.get('/android',(req,res)=>{
+    res.setHeader("Content-Type","text/html; charset=UTF-8")
+    res.sendFile("./views/android.html",{root: __dirname})
+})
 app.get('/game', (req,res) => {    
     res.setHeader("Content-Type" ,"text/html; charset=UTF-8")
     res.sendFile('./views/game.html', {root : __dirname})    
@@ -260,6 +269,9 @@ app.post('/createRoom/',(req,res)=>{
 })
 app.post('/joinRoomSQL/',(req,res) =>{
     joinRoomSQL(res,req.body.roomCode,req.body.username,localData);
+})
+app.post('/utisak/',(req,res)=>{
+    insertUtisak(res,req.body.utisak)
 })
 //app.use(require('express-status-monitor')());
 app.use((req,res) =>{

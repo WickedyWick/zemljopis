@@ -169,7 +169,7 @@ function chooseLetter(room,localData){
             localData[room]['currentLetter'] = letter
             resolve(letter)
         }
-        reject("No more letter left, game over!")              
+        reject("Nema više slova, kraj igre!")              
     })
 }
 
@@ -615,6 +615,17 @@ function returnRoom(res,sessionToken,localData){
     })
 }
 
+function insertUtisak(res,utisak){
+    pool.query("insert into utisci values(DEFAULT,?,NOW());",[utisak],(err,results,fields)=>{
+        if(err){
+            console.log(`Doslo je do problema konekcije u unosenju utisaka : MSG :${err.sqlMessage}\nCODE : ${err.code}`)
+            res.status(500).send("Došlo je do problema")
+        }else{
+            res.status(201).send("Uspeh")
+        }
+    })
+}
+
 module.exports = {
     playerReady,
     playerUnReady,
@@ -625,6 +636,7 @@ module.exports = {
     startVoteKick,
     voteKickCounter,
     historyReq,
-    returnRoom
+    returnRoom,
+    insertUtisak
     
 }

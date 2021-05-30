@@ -11,3 +11,5 @@ create table originalData(dataID int PRIMARY KEY AUTO_INCREMENT , naziv varchar(
 create table referenceData(rDataID int PRIMARY KEY AUTO_INCREMENT,naziv varchar(240),slovo varchar(2), kategorija int(1), oDataID int);
 alter table referenceData add foreign key(oDataID) references originalData(dataID);
 create table predlozi(predlogID int AUTO_INCREMENT PRIMARY KEY,predlog varchar(240),slovo varchar(2),kategorija int(1))
+alter table predlozi add column (dateTimeCreated datetime)
+create table utisci(utisakID int PRIMARY KEY AUTO_INCREMENT , utisak text, dateTimeCreated datetime);
