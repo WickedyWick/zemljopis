@@ -56,12 +56,7 @@ function joinRoomSQL(res,room,username,localData){
                                                 'roomCode': room,
                                                 'sessionToken': sessionToken
                                             })                                            
-                                            socket.emit('joinRoomSQLResponse',{'Success' : true,
-                                                'username': username,
-                                                'roomCode': room,
-                                                'sessionToken': sessionToken
-                                            })
-
+                                           
                                         }
                                     } )
                                     
