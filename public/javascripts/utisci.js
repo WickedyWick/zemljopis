@@ -4,13 +4,13 @@ let serverAddress = serverAdress()
 btnUtisak.addEventListener('click',(e)=>{
     e.preventDefault()
     let statusCode;
-    $(btnUtisak).props("disabled",true)
+    $(btnUtisak).prop("disabled",true)
     fetch(`${serverAddress}utisak`,{
         method:"POST",
         body: JSON.stringify({"utisak": txbUtisak.value}),
         headers: {"Content-type":"application/json; charset=UTF-8"}
     }).then(response =>{
-        $(btnUtisak).props("disabled",false)
+        $(btnUtisak).prop("disabled",false)
         if(response.status == 201){
             new Noty({
                 theme : 'metroui',
@@ -32,12 +32,14 @@ btnUtisak.addEventListener('click',(e)=>{
                 progressBar :true
             }).show()
         }
-    }).catch(err =>new Noty({
+    }).catch(err =>{
+        console.log(err)
+        new Noty({
         theme : 'metroui',
         type : 'error',
         layout : 'topRight',
         text : "Došlo je do problema pokušajte ponovo kasnije!",
         timeout : 5000,
         progressBar :true
-    }).show())
+    }).show()})
 })

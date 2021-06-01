@@ -147,7 +147,7 @@ vratiBtn.addEventListener('click',(e)=>{
     if(tokenReg.test(sessionToken)){
 
         if(usernameReg.test(username) && roomReg.test(roomCode)){
-            console.log("works")
+           
             window.location.href = `/game?roomCode=${roomCode}&username=${username}`;
         }else{
         /*

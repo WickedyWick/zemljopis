@@ -616,11 +616,13 @@ function returnRoom(res,sessionToken,localData){
 }
 
 function insertUtisak(res,utisak){
+    
     pool.query("insert into utisci values(DEFAULT,?,NOW());",[utisak],(err,results,fields)=>{
         if(err){
             console.log(`Doslo je do problema konekcije u unosenju utisaka : MSG :${err.sqlMessage}\nCODE : ${err.code}`)
             res.status(500).send("Došlo je do problema")
         }else{
+            console.log("Utisak dodat!")
             res.status(201).send("Uspeh")
         }
     })
