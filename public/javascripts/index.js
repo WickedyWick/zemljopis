@@ -2,7 +2,7 @@
 const serverAddress = serverAdress()
 let povezan = false;
 const roomReg = /^[A-Za-z0-9]{8}$/g
-const usernameReg = /^[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{4,30}$/g
+const usernameReg = /^[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{4,16}$/g
 const tokenReg = /^[A-Za-z0-9]{48}$/g
 let pridruziBtn = document.getElementById('pridruzi')
 let usernameInput = document.getElementById('txb_username')
@@ -24,40 +24,6 @@ function enableButtons(){
 
 }
 
-/*
-socket.on('createRoomSQLResponse',response =>{
-    
-    enableButtons()
-    if(response["Success"] == false)
-        myAlert('Doslo je do problema u kreiranju sobe, pokusajte ponovo!')
-    else
-    {
-        localStorage.setItem('sessionToken',response['sessionToken'])
-        console.log(response['sessionToken'])
-        window.location.href = `/game?roomCode=${response['roomCode']}&username=${response['username']}`;
-
-    }
-})
-socket.on('joinRoomSQLResponse' , response=>{
-    enableButtons()
-    if(response["Success"] == false)
-        //make this more robust
-        myAlert(response["ERR_MSG"])
-    else
-    {
-        localStorage.setItem('sessionToken',response['sessionToken'])
-        window.location.href = `/game?roomCode=${response['roomCode']}&username=${response['username']}`
-    }
-    
-})
-socket.on('returnRoomResponse', message=>{
-    enableButtons()
-    if(message['Success'] == false){
-        myAlert(message["ERR_MSG"])
-    }else if(message['Success'] == true){
-        window.location.href = `/game?roomCode=${message['roomCode']}&username=${message['username']}`
-    }
-})*/
 function myAlert(test){
     $("#danger-alert").html(`<a href="#" class="close" data-dismiss="alert">&times;</a><strong>Failure</strong> ${test}`)
     $("#danger-alert").fadeTo(7000, 500).slideUp(500, () =>{
@@ -91,14 +57,14 @@ pridruziBtn.addEventListener('click',(e)=>{
     }else{
         if(!roomReg.test(room) && !usernameReg.test(username)){
             //mylaertuj za o
-            myAlert('Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica,cirilica i engleski alfabet!\nSoba se sastoji od 8 alfanumerickih karaktetra!')
+            myAlert('Korisnicko ime mora da bude barem 4 karaktera dugacko, a najviše 20, dozvoljena pisma su sprska latinica,cirilica i engleski alfabet!\nSoba se sastoji od 8 alfanumerickih karaktetra!')
         }else if(!roomReg.test(room)){
             // ako je soba invalidnog formata
             myAlert('Soba se sastoji od 8 alfanumerickih karaktetra!')
         }
         else{
             //ako je useranme invalidnog formnata
-            myAlert('Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica, cirilica i engleski alfabet!')
+            myAlert('Korisnicko ime mora da bude barem 4 karaktera dugacko, a najviše 20, dozvoljena pisma su sprska latinica, cirilica i engleski alfabet!')
         }
         enableButtons()
     }
@@ -133,7 +99,7 @@ napraviBtn.addEventListener('click',(e)=>{
 
         //socket.emit('createRoom',{username,playerCount,roundTimeLimit});
     }else{
-        myAlert("Korisnicko ime mora da bude barem 4 karaktera dugacko, dozvoljena pisma su sprska latinica, cirilica i engleski alfabet!")
+        myAlert("Korisnicko ime mora da bude barem 4 karaktera dugacko, a najviše 20,  dozvoljena pisma su sprska latinica, cirilica i engleski alfabet!")
         enableButtons()
     }
     usernameReg.lastIndex = -1;

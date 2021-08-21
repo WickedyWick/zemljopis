@@ -43,17 +43,13 @@ cron.schedule("0 0 * * *",()=>{
 // Run when client connects
 io.on('connection', socket => {
     console.log('New WS Connection ...')
-    sockets[String(socket.id)] = {}    
-    
-    socket.on('test',test=>{
-        console.log(test);
-    });
+    sockets[String(socket.id)] = {}
     /*
     socket.on('joinRoomSQL',({username,room}) =>{  
         joinRoomSQL(socket,room,username,localData)
     })*/
     socket.on('joinRoomSQLM',(obj)=>{
-        joinRoomSQL(socket,obj['room'],obj['username'],localData);       
+        joinRoomSQL(socket,obj['room'],obj['username'],localData,io);       
     })
     /*
     socket.on('createRoom',({username,playerCount,roundTimeLimit}) =>{        
@@ -75,27 +71,47 @@ io.on('connection', socket => {
             console.log("error with predlagac")
         }
     })
-    /*
+    socket.on("disc",key =>{
+        if(process.env.REG_KEY === key)
+            io.of('/').in(key).clients(function(error, clients){
+                if (error) console.log(error);
+                    for(var i=0; i <clients.length; i++){
+                io.sockets.connected[clients[i]].disconnect(true)
+                }
+            // console.log(io.sockets.adapter.rooms["TESTKEY"]['sockets'])
+                socket.disconnect(true);
+            })
+        
+    })
     socket.on("register", key =>{
-        console.log("registered")
-        socket.join(key)
-        console.log(io.sockets.adapter.rooms[key]['sockets'])
-    })*/
+        //console.log("registered")
+        
+        //if(io.sockets.adapter.rooms[key]['sockets']
+        if(process.env.REG_KEY === key)
+            io.of('/').in(key).clients(function(error, clients){
+                if (error) console.log(error);
+                    for(var i=0; i <clients.length; i++){
+                io.sockets.connected[clients[i]].disconnect(true)
+                }
+                socket.join(key);
+            // console.log(io.sockets.adapter.rooms[key]['sockets'])
+            })
+        
+        
+    })
+    
     socket.on('predlagac',({val,currentLetter,k})=>{
         try{            
             predlagac(val,currentLetter,katDict[k])
-        }catch{
-            console.log("error with predlagac")
+        }catch(err){
+            console.error(`${new Date()}error with predlagac: Err : ${err}\nValue : ${val}\nCurrentLetter ${currentLetter}\nKategorija : ${k}`)
+            io.to(process.env.REG_KEY).emit("notification",{"msg":"Predlagac function error"
+            ,"line":119
+            ,"file":"app"
+        })
         }
     })
-    //socket.to().broadcast('test,')
-    //socket.emit('message','Welcome')
-    //socket.broadcast.to
-    //socket.join
-    //Broadcast when a user connects
-    //razlika izmedju ovoga i obicnog emnita je da se ovo emituje svima sem useru    
-    //socket.broadcast.emit('message','User has joined the chat')
-    //io.emit() SVI korisnici   
+  
     socket.on('playerUnReady',roomCode =>{
         playerUnReady(roomCode,localData,socket,io,"BTN",sockets)
     })
@@ -131,7 +147,7 @@ io.on('connection', socket => {
         const temp = setTimeout(evaluation, 7000, obj["roomCode"],localData,io);
         localData[obj["roomCode"]]['intervalObj'] = temp
         dataCollector(io,obj["username"],obj["roomCode"],obj["data"],obj["roundNumber"],localData,socket)   
-        socket.to(roomCode).emit('roundEnd',{'Success': true,
+        socket.to(obj["roomCode"]).emit('roundEnd',{'Success': true,
         'MSG' : "Runda završena, evaluacija počinje!",
         'CODE' : 2
         })
@@ -144,6 +160,8 @@ io.on('connection', socket => {
         dataCollector(io,obj['username'],obj['roomCode'],obj['data'],obj['roundNumber'],localData,socket)
     })
     socket.on('disconnect',() => {
+        //console.log("dissconect");
+       // console.log(sockets)
         try{
             io.to(sockets[socket.id]['room']).emit("playerLeft",`${sockets[socket.id]['username']} je izašao iz sobe`)  
             socket.leave(sockets[socket.id]['room'])            
@@ -152,9 +170,13 @@ io.on('connection', socket => {
             else                 
                 delete sockets[socket.id]            
         }catch(err){
-            console.log(`Error during dissconnecting\nErr : ${err}`)
+            console.error(`${new Date()}error during dissconecting: Err : ${err}`)
+            io.to(process.env.REG_KEY).emit("notification",{"msg":"Predlagac function error"
+            ,"line":183
+            ,"file":"app"
+            })
         }
-        
+      //  console.log(sockets)
         
     })
     socket.on('historyReq',({roomCode,player,targetRound})=>{       
@@ -180,7 +202,12 @@ app.get('/',(req,res) => {
     res.setHeader("Content-Type" ,"text/html; charset=UTF-8")
     res.sendFile('./views/index.html', {root: __dirname})
 })
-
+/*
+app.get("/test",(req,res)=>{
+    
+    res.setHeader("Content-Type","text/html; charset=UTF-8")
+    res.sendFile("./views/404.html")
+})*/
 app.get('/uputstvo',(req,res) => {
     res.setHeader("Content-Type" ,"text/html; charset=UTF-8")
     res.sendFile('./views/uputstvo.html', {root: __dirname})
@@ -271,6 +298,7 @@ app.post('/joinRoomSQL/',(req,res) =>{
     joinRoomSQL(res,req.body.roomCode,req.body.username,localData);
 })
 app.post('/utisak/',(req,res)=>{
+    
     insertUtisak(res,req.body.utisak)
 })
 //app.use(require('express-status-monitor')());

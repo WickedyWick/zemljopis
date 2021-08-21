@@ -2,6 +2,7 @@ const perf = require('perf_hooks')
 const e = require('express')
 var pool = require('./trueMysql.js')
 const { strict } = require('assert') //ne znam sta je ovo 
+require('dotenv').config({path: __dirname + '../.env'})
 const letterDict = {            
     'a':'а',
     'b':'б',
@@ -47,7 +48,12 @@ function playerReady(room,localData,socket,io,sockets){
             try{
                 sockets[socket.id]['ready'] = true
             }catch(err){
-                console.log(`Error while readying the socket\nErr : ${err}`)   
+                console.error(`[${new Date()}] Error while readying the socket\nErr : ${err}\n\tSockets : ${sockets}`)   
+                io.to(process.env.REG_KEY).emit("notification",{"msg":"SOCKETS READY ERR"
+                    ,"line":52
+                    ,"file":"utils"
+                })    
+
             }
             if(localData[room]['playersReady'] == localData[room]['playerCount']){               
                 socket.emit('playerReadyResponse',{'Success' : true,
@@ -66,7 +72,11 @@ function playerReady(room,localData,socket,io,sockets){
         }   
         else
         {
-            console.log("server error")
+            console.error(`[${new Date()}] Invalid player ready number`)
+            io.to(process.env.REG_KEY).emit("notification",{"msg":"PLAYER READY INVALID NUMBER"
+                ,"line":76
+                ,"file":"utils"
+            }) 
             localData[room]['playersReady'] = 0
             io.to(room).broadcast.emit('playerReadyResponse',{'Success' : false,
                 "ERR_MSG" : `Problem! Svi u sobi NISU spremni ponovo!`,
@@ -82,7 +92,11 @@ function historyReq(room,username,round,localData,socket){
         if(round in localData[room]['roundIDS']){ //
             pool.query(`Select drzava, grad, ime, biljka, zivotinja, planina, reka, predmet from data where roundID = ${localData[room]['roundIDS'][round]} and playerID = ${localData[room]['players'][username]}`,(err,results,fields)=>{
                 if(err){
-                    console.log(`THERE WAS AN ERROR WHILE SELECTING HISTORY:\nCODE : ${err.code}\nMSG : ${err.sqlMessage}`)
+                    console.error(`[${new Date()}] THERE WAS AN ERROR WHILE SELECTING HISTORY:\nCODE : ${err.code}\nMSG : ${err.sqlMessage}\n\nRoom : ${room}\n\tRound : ${round}\n\tUsername : ${username}`)
+                    io.to(process.env.REG_KEY).emit("notification",{"msg":"DB SELECT ERR"
+                        ,"line":96
+                        ,"file":"utils"
+                    }) 
                     socket.emit("historyReqResponse",{"Success":false,
                         "ERR_MSG":"Došlo je do problema prilikom prikazivanja traženih podataka!"
                     })
@@ -105,13 +119,18 @@ function historyReq(room,username,round,localData,socket){
             socket.emit("historyReqResponse",{"Success":false,
                 "ERR_MSG" : "Runda još nije odigrana"
             })
-            console.log("ROUND DOESNT EXITST?!")
+            console.error(`[${new Date()}] ROUND DOESNT EXITST?!\n\tRound : ${round}`)
+            io.to(process.env.REG_KEY).emit("notification",{"msg":"ROUND DOESNT EXIST"
+                ,"line":123
+                ,"file":"utils"
+            }) 
         }
     }else{
         socket.emit('roomNotExist',"Soba više ne postoji, kreirajte novu!")
     }
 }
 function createRound(room,io,localData,sockets){
+    //console.log(room)
     if(room in localData){
         pool.getConnection((err,connection) =>{
             if(err){
@@ -120,7 +139,11 @@ function createRound(room,io,localData,sockets){
                 chooseLetter(room,localData).then((response)=>{
                     connection.query('insert into round values(DEFAULT,?,?,?)',[localData[room]['roundNumber'],room,response],(err,results,fields)=>{
                         if(err){
-                            console.log(`ERROR CREATING ROUND : Code ${err.code}\nMSG : ${err.sqlMessage}`)                           
+                            console.error(`[${new Date()}] ERROR CREATING ROUND : Code ${err.code}\nMSG : ${err.sqlMessage}\n\tRoom : ${room}\n\tResponse : ${response}`)  
+                            io.to(process.env.REG_KEY).emit("notification",{"msg":"DB INSERT ERR"
+                                ,"line":142
+                                ,"file":"utils"
+                            })                            
                             io.to(room).emit('createRoundResponse',{
                                 "ERR_MSG" : "Problem pri kreiranju runde , pokusajte ponovo!"
                             })
@@ -148,7 +171,6 @@ function createRound(room,io,localData,sockets){
                         
                     })                    
                 },reject =>{
-                    console.log("ERROR " , reject)
                     io.to(room).emit('createRoomResponse',{
                         "ERR_MSG" : "Kraj igre, sva slova su iskorišćena!"
                     })
@@ -181,7 +203,11 @@ function playerUnReady(room,localData,socket,io,mode,sockets){
             try{
                 sockets[socket.id]['ready'] = false
             }catch(err){
-                console.log(`Error while unreadying the socket\nErr : ${err}`)   
+                io.to(process.env.REG_KEY).emit("notification",{"msg":"SOCKETS UNREADY ERR"
+                    ,"line":206
+                    ,"file":"utils"
+                })   
+                console.error(`[${new Date()}] Error while unreadying the socket\nErr : ${err}`)   
             }
             if(mode == "BTN")
                 socket.emit('playerReadyResponse',{'Success' : true,
@@ -194,7 +220,11 @@ function playerUnReady(room,localData,socket,io,mode,sockets){
         }
         else
         {
-            console.log("server error")
+            console.error(`[${new Date()}] Invalid player ready number`)
+            io.to(process.env.REG_KEY).emit("notification",{"msg":"PLAYER UNREADY INVALID NUMBER"
+                ,"line":224
+                ,"file":"utils"
+            })
             localData[room]['playersReady'] = 0
             io.to(room).emit('playerReadyResponse',{'Success' : false,
                 "ERR_MSG" : `Problem! Svi u sobi NISU spremni ponovo!`,
@@ -219,7 +249,11 @@ function evaluation(room,localData,io){
                 //ovi ifovi u slucaju da se se nekako evaluation funkcije u isto vreme pozovu
                     if(err)
                     {
-                        console.log(`Doslo je do problema prilikom povezivanja na bazu podataka u evaluaciji! CODE : ${err.code} MSG : ${err.sqlMessage}`)
+                        console.error(`[${new Date()}] Doslo je do problema prilikom povezivanja na bazu podataka u evaluaciji! CODE : ${err.code} MSG : ${err.sqlMessage}\n\tRoom : ${room}\n\tLocalData : ${localData[room]}`)                   
+                        io.to(process.env.REG_KEY).emit("notification",{"msg":"DB CONNECT ERR"
+                            ,"line":253
+                            ,"file":"utils"
+                        })
                         io.to(room).emit("evaluationResponse",{
                             "ERR_MSG" : "Doslo je problema prilikom evaluacije , runda ponistena!",
                             "roundNumber" : localData[room]['roundNumber'],
@@ -265,9 +299,7 @@ function evaluation(room,localData,io){
                     
                         naziviKeys = Object.keys(myDict)
                         otherDict = {}
-                        console.log("IT GOT HERE2")
                         connection.query(sql,naziviKeys,(err1,results,fields)=>{
-                            console.log("IT GOT HERE")
                             /*  ovako results izlgeda
                                 RowDataPacket { naziv: 'apatin', kategorija: 1, oDataID: 2701 },
                                 RowDataPacket { naziv: 'alžir', kategorija: 1, oDataID: 2703 },
@@ -302,8 +334,11 @@ function evaluation(room,localData,io){
                             */
                             
                             if(err1){
-                                console.log(`Doslo je do problema prilikom selektovanja podataka u evaluaciji! CODE : ${err1.code} MSG : ${err1.sqlMessage}`)
-                                
+                                console.error(`[${new Date()}] Doslo je do problema prilikom selektovanja podataka u evaluaciji! CODE : ${err1.code} MSG : ${err1.sqlMessage}\n\tSQL : ${sql}`)
+                                io.to(process.env.REG_KEY).emit("notification",{"msg":"DB SELECT ERR"
+                                    ,"line":338
+                                    ,"file":"utils"
+                                })
                                 io.to(room).emit("evaluationResponse",{
                                     "ERR_MSG" : "Doslo je problema prilikom evaluacije , runda ponistena!",
                                     "roundNumber" : localData[room]['roundNumber'],
@@ -388,8 +423,13 @@ function evaluation(room,localData,io){
                                         //Ne moram da cekam da se ovo zavrsi da bih poslao rezultate , ako ovde ima problem posaljem page refresh req tako da ce se refresovati stranica sama i poeni ce ostati kako treba
                                         if(err)
                                         {
-                                            console.log(`Problem upisivanje bodova u bazu! MSG : Code : ${err.code}\nMSG: ${err.sqlMessage}`)
-                                            io.to(room).emit('pointsErr',{"MSG":"Doslo je do problema sa upisivanjem bodova , poeni u rundi su nevazeći!"})
+                                            
+                                            console.error(`[${new Date()}] Problem upisivanje bodova u bazu! MSG : Code : ${err.code}\nMSG: ${err.sqlMessage}\n\tSQL : ${sql}`)
+                                            io.to(process.env.REG_KEY).emit("notification",{"msg":"DB INSERT ERR"
+                                                ,"line":428
+                                                ,"file":"utils"
+                                            })
+                                            io.to(room).emit('pointsErr',{"ERR_MSG":"Doslo je do problema sa upisivanjem bodova , poeni u rundi su nevazeći!"})
                                         }
                                         
                                     })                                
@@ -401,7 +441,11 @@ function evaluation(room,localData,io){
                 })
             }
         }catch(err){
-            console.log(err)        
+            console.error(`[${new Date()} ERROR DURING EVALUATION\n\tERR : ${err}`)    
+            io.to(process.env.REG_KEY).emit("notification",{"msg":"EVAL ERROR"
+                ,"line":445
+                ,"file":"utils"
+            })    
             io.to(room).emit('points',{
                 'Success':false,
                 'roundNumber' : localData[room]['roundNumber'],
@@ -418,8 +462,12 @@ function dataCollector(io,username,room,data,round,localData,socket){
         if(room in localData){
             if(localData[room]['data'][localData[room]['players'][username]] === undefined && round == localData[room]['roundNumber']){                  
                 pool.query(`insert into data values(DEFAULT,${localData[room]['roundID']},${localData[room]['players'][username]},?,?,?,?,?,?,?,?,0)`,data,(err,results,fields)=>{
-                    if(err){
-                        console.log(`Error while inserting data values : Code : ${err.code}\nMSG: ${err.sqlMessage}`)
+                    if(err){                       
+                        console.error(`[${new Date()}] Error while inserting data values : Code : ${err.code}\nMSG: ${err.sqlMessage}\n\tUsername : ${username}\n\tRoom : ${room}\n\tData : ${data}`)
+                        io.to(process.env.REG_KEY).emit("notification",{"msg":"DB INSERT ERR"
+                            ,"line":467
+                            ,"file":"utils"
+                        })   
                         socket.to(room).emit("dataCollectorResponse",{
                             "ERR_MSG": "Doslo je do problema prilikom unosenja podataka, podaci nevažeci!"
                         })
@@ -442,7 +490,7 @@ function dataCollector(io,username,room,data,round,localData,socket){
 function startVoteKick(room,username,localData,socket,io){
     if(room in localData){
         if(!('kickVote' in localData[room])){
-            console.log(`VOTE KICK STARTED FOR : ${username}`)
+            //console.log(`VOTE KICK STARTED FOR : ${username}`)
             localData[room]['kickVote'] = {}
             localData[room]['kickVote']['username'] = username
             localData[room]['kickVote']['for'] = 0
@@ -470,12 +518,15 @@ function kickEval(room,localData,io){
             if(!localData[room]['evalFuncExecuting'])
             {
                     localData[room]['kickVote']['funcCalled'] = true
-                    
                     if(((localData[room]['kickVote']['for'] / localData[room]['playerCount']) *100 ) > 50){ // procenti
                         username = localData[room]['kickVote']['username']
                         pool.query("update player set kicked =1 where username = ?",[username],(err,results,fields)=>{
                             if(err){
-                                console.log(`ERROR WHILE KICKING PLAYER : Code : ${err.code}\nMSG : ${err.sqlMessage}`)
+                                console.error(`[${new Date()}] ERROR WHILE KICKING PLAYER : Code : ${err.code}\nMSG : ${err.sqlMessage}\n\tUsername : ${username}\n\tRoom : ${room}`)
+                                io.to(process.env.REG_KEY).emit("notification",{"msg":"KICK ERROR"
+                                    ,"line":526
+                                    ,"file":"utils"
+                                })   
                                 io.to(room).emit("kickResult",{'Success':false,
                                         "ERR_MSG": "Doslo je do problema prilikom izbacivanja igrača , pokušajte ponovo kasnije!"
                                 })
@@ -557,10 +608,19 @@ function predlagac(predlog,slovo,kategorija){
    
     pool.query(`insert into predlozi values(DEFAULT,?,?,${kategorija},NOW());`,[predlog,slovo],(err,results,fields)=>{
         if(err){
-            console.log(`Doslo je do problema u toku unosenja predloga : ERR : ${err.sqlMessage}\nCode : ${err.code} `);
+            
+            console.error(`[${new Date()}] Doslo je do problema u toku unosenja predloga : ERR : ${err.sqlMessage}\nCode : ${err.code}\n\tPredlog : ${predlog}\n\tKategorija : ${kategorija}\n\tSlovo : ${slovo}`);
+            io.to(process.env.REG_KEY).emit("notification",{"msg":"PREDLOG ERROR"
+                ,"line":613
+                ,"file":"utils"
+            })   
         }
         else
-            console.log("Predlog dodat");
+            console.log(`[${new Date()}] Predlog dodat`);
+            io.to(process.env.REG_KEY).emit("notification",{"msg":"PREDLOG DODAT"
+                ,"line":620
+                ,"file":"utils"
+            })   
     });
 }
 
@@ -579,7 +639,11 @@ function timeout(room,localData,io){
 function returnRoom(res,sessionToken,localData){    
     pool.query(`select username,roomCode , kicked from player where sessionToken = ? `,sessionToken,(err, results, fields)=>{
         if(err){
-            console.log(`Došlo je do problema prilikom vraćanja u sobu : ERR : ${err.sqlMessage}\nCode : ${err.code} `)           
+            console.error(`[${new Date()}]Došlo je do problema prilikom vraćanja u sobu : ERR : ${err.sqlMessage}\nCode : ${err.code}\n\tSessionToken : ${sessionToken} `)     
+            io.to(process.env.REG_KEY).emit("notification",{"msg":"RETURN ROOM ERROR"
+                ,"line":643
+                ,"file":"utils"
+            })         
         }else{
             if(results.length == 0){
                 res.statusCode = 500;
@@ -619,10 +683,18 @@ function insertUtisak(res,utisak){
     
     pool.query("insert into utisci values(DEFAULT,?,NOW());",[utisak],(err,results,fields)=>{
         if(err){
-            console.log(`Doslo je do problema konekcije u unosenju utisaka : MSG :${err.sqlMessage}\nCODE : ${err.code}`)
+            console.error(`[${new Date()}]Doslo je do problema konekcije u unosenju utisaka : MSG :${err.sqlMessage}\nCODE : ${err.code}\n\tUtisak : ${utisak}`)
+            io.to(process.env.REG_KEY).emit("notification",{"msg":"UTISAK ERROR"
+                ,"line":687
+                ,"file":"utils"
+            })   
             res.status(500).send("Došlo je do problema")
         }else{
-            console.log("Utisak dodat!")
+            console.log(`[${new Date()}]Utisak dodat!`)
+            io.to(process.env.REG_KEY).emit("notification",{"msg":"UTISAK DODAT"
+                ,"line":694
+                ,"file":"utils"
+            })   
             res.status(201).send("Uspeh")
         }
     })

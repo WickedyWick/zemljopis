@@ -2,16 +2,18 @@ const utils  = require('./utils.js')
 var pool = require('./trueMysql.js')
 const cryptoRandomString = require('crypto-random-string');
 var moment = require('moment')
+require('dotenv').config({path: __dirname + '../.env'})
 
-
-
-function joinRoomSQL(res,room,username,localData){
+function joinRoomSQL(res,room,username,localData,io){
     if(room in localData){
         if(localData[room]['playerCount'] > Object.keys(localData[room]['playersID']).length){
             pool.getConnection((err,connection) =>{
-                if(err){
-                    
-                    console.log(`ERROR CONNECTING TO THE DATABASE : Code ${err.code}\mMSG : ${err.sqlMessage}`)
+                if(err){                    
+                    console.error(`[${new Date}] ERROR CONNECTING TO THE DATABASE : Code ${err.code}\mMSG : ${err.sqlMessage}`)
+                    io.to(process.env.REG_KEY).emit("notification",{"msg":"DB CONNECT ERR"
+                        ,"line":13
+                        ,"file":"mysql"
+                    })
                     res.statusCode = 500;
                     res.setHeader("Content-Type", "application/json");
                     res.json({
@@ -19,9 +21,13 @@ function joinRoomSQL(res,room,username,localData){
                     })                    
                 }else{                  
                     connection.query(`select username from player where roomCode = '${room}' and username = '${username}';`,(err,result,fields) =>{
-                        
+                        //console.log(process.env.REG_KEY)
                         if(err){
-                            console.log(`ERROR WHILE SELECTING USERNAME FROM DATABASE : Code ${err.code}\nMSG : ${err.sqlMessage}`)
+                            console.error(`[${new Date}]ERROR WHILE SELECTING USERNAME FROM DATABASE : Code ${err.code}\nMSG : ${err.sqlMessage}\n\t Room : ${room}\n\t Username : ${username}`)
+                            io.to(process.env.REG_KEY).emit("notification",{"msg":"DB SELECT ERR"
+                                ,"line":27
+                                ,"file":"mysql"
+                            })  
                             res.statusCode = 500;
                             res.setHeader("Content-Type", "application/json");
                             res.json({
@@ -32,7 +38,11 @@ function joinRoomSQL(res,room,username,localData){
                                     let sessionToken = cryptoRandomString({length: 48, type: 'alphanumeric'})
                                     connection.query(`insert into player values(DEFAULT,'${room}','${username}','${sessionToken}',0);`, (err,results,fields) =>{
                                         if(err){
-                                            console.log(`ERROR WHILE INSERTING PLAYER INTO DATABASE : Code ${err.code}\nMSG : ${err.sqlMessage}`)
+                                            console.error(`[${new Date}]ERROR WHILE INSERTING PLAYER INTO DATABASE : Code ${err.code}\nMSG : ${err.sqlMessage}\n\t Room : ${room}\n\t Username : ${username}\n\t SessionToken : ${sessionToken}`)
+                                            io.to(process.env.REG_KEY).emit("notification",{"msg":"DB INSERT ERR"
+                                                ,"line":42
+                                                ,"file":"mysql"
+                                            })
                                             if(err.code =="ER_NO_REFERENCED_ROW_2" ){
                                                 res.statusCode = 500;
                                                 res.setHeader("Content-Type", "application/json");
@@ -100,7 +110,11 @@ function createRoom(res,username,playerCount,roundTimeLimit,localData,io){
                 pool.getConnection((err,connection) => {
                     if (err) 
                     {   
-                        console.log(`ERROR WHILE CONNECTING TO THE DATABASE : Code : ${err.code}\nMSG : ${err.sqlMessage}`)
+                        console.error(`[${new Date()}]ERROR WHILE CONNECTING TO THE DATABASE : Code : ${err.code}\nMSG : ${err.sqlMessage}`)
+                        io.to(process.env.REG_KEY).emit("notification",{"msg":"DB CONNECT ERR"
+                            ,"line":114
+                            ,"file":"mysql"
+                        })
                         res.statusCode = 500;
                         res.setHeader("Content-Type", "application/json");
                         res.json({
@@ -116,7 +130,11 @@ function createRoom(res,username,playerCount,roundTimeLimit,localData,io){
                         connection.query(sql, function (err, results) {
                             if (err){
                                 //ER_DUP_ENTRY for duplicate entry
-                                console.log(`ERROR WHILE INSERTING VALUES INTO ROOM : Code : ${err.code}\nMSG : ${err.sqlMessage}`)
+                                console.error(`[${new Date()}]ERROR WHILE INSERTING VALUES INTO ROOM : Code : ${err.code}\nMSG : ${err.sqlMessage}\n\tResponse : ${response}\n\tUsername : ${username}\n\tPlayerCount : ${playerCount}\n\tSessionToken : ${sessionToken}`)
+                                io.to(process.env.REG_KEY).emit("notification",{"msg":"DB INSERT ERR"
+                                    ,"line":134
+                                    ,"file":"mysql"
+                                })
                                 res.statusCode = 500;
                                 res.setHeader("Content-Type", "application/json");
                                 res.json({
@@ -163,7 +181,11 @@ function createRoom(res,username,playerCount,roundTimeLimit,localData,io){
                 })
             
             },(reject)=>{
-                console.log("There was problem while creating room code!")
+                console.error(`[${new Date()}]There was problem while creating room code!`)
+                io.to(process.env.REG_KEY).emit("notification",{"msg":"ROOM CODE CREATION ERR"
+                    ,"line":185
+                    ,"file":"mysql"
+                })
                 res.statusCode = 500;
                 res.setHeader("Content-Type", "application/json");
                 res.json({
@@ -177,7 +199,11 @@ function joinRoom(socket,room,username,sessionToken,localData,io){
     if(room in localData){
         pool.getConnection((err,connection) =>{
             if(err){
-                console.log(`ERROR CONNECTING TO THE DATABASE : Code ${err.code}\mMSG : ${err.sqlMessage}`)
+                console.error(`[${new Date()}]ERROR CONNECTING TO THE DATABASE : Code ${err.code}\mMSG : ${err.sqlMessage}`)
+                io.to(process.env.REG_KEY).emit("notification",{"msg":"DB CONNECT ERR"
+                    ,"line":203
+                    ,"file":"mysql"
+                })
                 socket.emit('load',{'Success' : false,
                     "ERR_MSG" : "Problem prilikom ulaska u sobu!"
                 })
@@ -188,7 +214,11 @@ function joinRoom(socket,room,username,sessionToken,localData,io){
                 //********* */testiraj ovde da li je brze querivati ostale querije npr if(kicked ==0) pa opet queri if(sessiontoken===) pa opet queri za ostale***************
                 connection.query(`select username , kicked from player where roomCode = '${room}' and username = '${username}';select sessionToken from player where roomCode = '${room}' and username = '${username}';select SUM(bodovi) as ukupnoBodova from data join player on data.playerID = player.playerID where roomCode = '${room}' and username = '${username}';select username, SUM(bodovi) as ukupnoBodova from player join data on player.playerID = data.playerID where username != "${username}" and roomCode = "${room}" and kicked = 0 group by username`,(err,result,fields)=>{
                     if(err){
-                        console.log(`ERROR SELECTING USERNAME FROM PLAYER : Code ${err.code}\nMSG : ${err.sqlMessage}`)
+                        console.error(`[${new Date()}]ERROR SELECTING USERNAME FROM PLAYER : Code ${err.code}\nMSG : ${err.sqlMessage}\n\tUsername : ${username}\n\tRoom : ${room}`)
+                        io.to(process.env.REG_KEY).emit("notification",{"msg":"DB SELECT ERR"
+                            ,"line":218
+                            ,"file":"mysql"
+                        })
                         socket.emit('load',{'Success' : false,
                             "ERR_MSG" : "Problem prilikom ulaska u sobu!"
                         })
@@ -217,7 +247,11 @@ function joinRoom(socket,room,username,sessionToken,localData,io){
                                     sockets[socket.id]['username'] = username
                                     sockets[socket.id]['room'] = room
                                     }catch(err){
-                                        console.log(`Error while inserting username and room into sockets\nErr : ${err}`)
+                                        console.error(`[${new Date()}]Error while inserting username and room into sockets\nErr : ${err}\n\tSockets : ${sockets}`)
+                                        io.to(process.env.REG_KEY).emit("notification",{"msg":"SOCKET INSERT ERR"
+                                            ,"line":250
+                                            ,"file":"mysql"
+                                        })
                                     }
                                     //console.log(sockets)
                                     if(result[2][0]['ukupnoBodova'] === null)

@@ -350,13 +350,14 @@ socket.on('load', message =>{
     sessionToken = localStorage.getItem('sessionToken')
     document.getElementById('localPlayer').textContent = username
     localStorage.setItem("roomCode",roomCode)
-    localStorage.setItem("username",username)
+    localStorage.setItem("username",username)   
     document.getElementById('lblRoomCode').textContent += String(roomCode)
     lblPlayersReady.textContent = message['playersReady']
     lblPlayerCount.textContent = message['playerCount']
     roundNumber = message['roundNumber']
     lblRoundNumber.textContent = roundNumber
     vreme = message['vreme']
+    timer.textContent = String(vreme);
     for(let i =1;i<=roundNumber;i++){
         let opt = document.createElement('option');
         opt.appendChild(document.createTextNode(i))
@@ -581,6 +582,7 @@ socket.on('gameStartNotification', message => {
     }
     
 })
+
 socket.on('playerLeft',message=>{
     if(message != username)
     new Noty({
@@ -702,6 +704,7 @@ socket.on('playerReadyResponse' , message =>{
     readyBtn.disabled = false;
 })
 //player disc messsage event
+/*
 socket.on('discMessage',message =>{
     new Noty({
         theme : 'metroui',
@@ -711,7 +714,7 @@ socket.on('discMessage',message =>{
         timeout : 5000,
         progressBar :true
     }).show()
-})
+})*/
 //playerjoin event ispis
 socket.on('playerJoinMsg', message =>{    
     
@@ -724,17 +727,7 @@ socket.on('playerJoinMsg', message =>{
         progressBar :true
     }).show()
 })
-//roundnumberupdate event
-socket.on('roundNumberUpdate', message=>{
-    roundNumber = message
-    select = document.getElementById('roundSelect')
-    let opt = document.createElement('option')
-    opt.appendChild(document.createTextNode(roundNumber))
-    opt.value = roundNumber
-    opt.selected = 'selected'
-    select.appendChild(opt)
-    lblRoundNumber.textContent = roundNumber 
-})
+
 //points socket listener event gde se dodaju poeni 
 socket.on('points' , message =>{         
     readyBtn.disabled = false;
@@ -802,7 +795,7 @@ socket.on('pointsErr',message=>{
         theme : 'metroui',
         type : 'success',
         layout : 'topRight',
-        text : message['MSG'],
+        text : message['ERR_MSG'],
         timeout : 5000,
         progressBar :true
     }).show()
@@ -810,7 +803,7 @@ socket.on('pointsErr',message=>{
     $('#maxDiv').hide()
     
 })
-//socket listener za kraj runde od strane servera nakon isteka vremena ili nakon sto je neki drugi igrac zavrsio
+//socket listener za kraj runde od strane servera nakon isteka vremen   a ili nakon sto je neki drugi igrac zavrsio
 socket.on('roundEnd',message =>{
     
    
@@ -901,7 +894,7 @@ window.onload = (e)=>{
         ignoreQueryPrefix: true
     })
     let roomReg = /^[A-Za-z0-9]{8}$/g
-    const usernameReg = /^[A-Za-zčČćĆžŽšŠđĐ ]{4,30}$/g
+    const usernameReg = /^[A-Za-zа-шА-ШčČćĆžŽšŠđĐђјљњћџЂЈЉЊЋЏ ]{4,16}$/g
     const sessionReg = /^[A-Za-z0-9/+]{48}$/g
     if(roomReg.test(roomCode) && usernameReg.test(username)){
         const sessionToken = localStorage.getItem('sessionToken') 
