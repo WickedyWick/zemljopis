@@ -495,7 +495,7 @@ function startVoteKick(room,username,localData,socket,io){
             localData[room]['kickVote']['username'] = username
             localData[room]['kickVote']['for'] = 0
             localData[room]['kickVote']['alreadyVoted'] = []
-            localData[room]['kickVote']['totalVotes'] = 0
+            localData[room]['kickVote']['totalVotes'] = 0 // duzina alreadyVotedNiza
             localData[room]['kickVote']['timeoutID'] = setTimeout(kickEval,120000,room,localData,io)
             localData[room]['kickVote']['funcCalled'] = false // ovo je za 1% slucajeva kada se potrefi vreme timeouta i votekick countera da se ne bi funkcije 2 puta
             //cuvaj ovaj username na strani da ne bi mogao da glasas za pogresnog igraca nekako

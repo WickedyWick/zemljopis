@@ -1,15 +1,20 @@
 //bolje importovati .sql file posto ovo mozda ne stavlja potrebne koalicije
-create table room(roomID int PRIMARY KEY AUTO_INCREMENT,roomCode varchar(8) UNIQUE,playerNumber int(8), dateCreated date, active int(1));
-create table player(playerID int PRIMARY KEY AUTO_INCREMENT, roomCode varchar(8), username varchar(30),sessionToken varchar(48));
+
+create table room(roomID int PRIMARY KEY AUTO_INCREMENT,roomCode varchar(8) UNIQUE,playerNumber int(8), dateCreated datetime, active int(1));
+create table player(playerID int PRIMARY KEY AUTO_INCREMENT, roomCode varchar(8), username varchar(16),sessionToken varchar(48),kicked tinyint(1) NOT NULL);
 create table round(roundID int PRIMARY KEY AUTO_INCREMENT,roundNumber int(2) ,roomCode varchar(8),slovo varchar(8));
-create table data(dataID int PRIMARY KEY AUTO_INCREMENT, roundID int, playerID int, drzava varchar(80), grad varchar(80),ime varchar(80), biljka varchar(120), zivotinja varchar(120),planina varchar(120),reka varchar(120),predmet varchar(240),bodovi int(3));
+create table data(dataID int PRIMARY KEY AUTO_INCREMENT, roundID int NOT NULL, playerID int NOT NULL, drzava varchar(80), grad varchar(80),ime varchar(80), biljka varchar(120), zivotinja varchar(120),planina varchar(120),reka varchar(120),predmet varchar(240),bodovi int(3));
+create table predlozi(predlogID int AUTO_INCREMENT PRIMARY KEY,predlog varchar(240),slovo varchar(2),kategorija int(1), dateTimeCreated datetime)
+create table utisci(utisakID int PRIMARY KEY AUTO_INCREMENT , utisak text, dateTimeCreated datetime);
+create table originaldata(dataID int PRIMARY KEY AUTO_INCREMENT , naziv varchar(240), slovo varchar(2) , kategorija int(1));
+create table referencedata(rDataID int PRIMARY KEY AUTO_INCREMENT,naziv varchar(240),slovo varchar(2), kategorija int(1), oDataID int)
 alter table player add foreign key(roomCode) references room(roomCode);
 alter table round add foreign key(roomCode) references room(roomCode);
 alter table data add foreign key(roundID) references round(roundID);
 alter table data add foreign key(playerID) references player(playerID);
-create table originalData(dataID int PRIMARY KEY AUTO_INCREMENT , naziv varchar(240), slovo varchar(2) , kategorija int(1));
-create table referenceData(rDataID int PRIMARY KEY AUTO_INCREMENT,naziv varchar(240),slovo varchar(2), kategorija int(1), oDataID int);
-alter table referenceData add foreign key(oDataID) references originalData(dataID);
-create table predlozi(predlogID int AUTO_INCREMENT PRIMARY KEY,predlog varchar(240),slovo varchar(2),kategorija int(1))
-alter table predlozi add column (dateTimeCreated datetime)
-create table utisci(utisakID int PRIMARY KEY AUTO_INCREMENT , utisak text, dateTimeCreated datetime);
+alter table referencedata add foreign key(oDataID) references originaldata(dataID);
+
+
+// for prod
+ALTER TABLE `player` CHANGE `username` `username` VARCHAR(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_croatian_ci NULL DEFAULT NULL;
+ALTER TABLE `predlozi` ADD UNIQUE( `predlog`);

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2021 at 04:03 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.2
+-- Generation Time: Aug 24, 2021 at 06:46 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -6091,7 +6091,7 @@ INSERT INTO `originaldata` (`dataID`, `naziv`, `slovo`, `kategorija`) VALUES
 CREATE TABLE `player` (
   `playerID` int(11) NOT NULL,
   `roomCode` varchar(8) DEFAULT NULL,
-  `username` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_croatian_ci DEFAULT NULL,
+  `username` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_croatian_ci DEFAULT NULL,
   `sessionToken` varchar(48) DEFAULT NULL,
   `kicked` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -6442,31 +6442,32 @@ CREATE TABLE `predlozi` (
   `predlogID` int(11) NOT NULL,
   `predlog` varchar(240) CHARACTER SET utf8mb4 COLLATE utf8mb4_croatian_ci DEFAULT NULL,
   `slovo` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_croatian_ci NOT NULL,
-  `kategorija` int(1) DEFAULT NULL
+  `kategorija` int(1) DEFAULT NULL,
+  `dateTimeCreated` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `predlozi`
 --
 
-INSERT INTO `predlozi` (`predlogID`, `predlog`, `slovo`, `kategorija`) VALUES
-(1, 'dza', 'dž', 0),
-(2, 'irska', 'i', 1),
-(3, 'irska', 'i', 2),
-(4, 'irska', 'i', 3),
-(5, 'irska', 'i', 4),
-(6, 'irska', 'i', 5),
-(7, 'irska', 'i', 6),
-(8, 'irska', 'i', 7),
-(9, 'sssss', 's', 2),
-(10, 'србија', 's', 3),
-(11, 'sss', 's', 6),
-(12, 'gggg', 'g', 1),
-(13, 'gggg', 'g', 2),
-(14, 'kkkkkkk', 'k', 0),
-(15, 'kkkkkkk', 'k', 2),
-(16, 'јјјјј', 'j', 3),
-(17, 'јјјјј', 'j', 1);
+INSERT INTO `predlozi` (`predlogID`, `predlog`, `slovo`, `kategorija`, `dateTimeCreated`) VALUES
+(1, 'dza', 'dž', 0, NULL),
+(2, 'irska', 'i', 1, NULL),
+(3, 'irska', 'i', 2, NULL),
+(4, 'irska', 'i', 3, NULL),
+(5, 'irska', 'i', 4, NULL),
+(6, 'irska', 'i', 5, NULL),
+(7, 'irska', 'i', 6, NULL),
+(8, 'irska', 'i', 7, NULL),
+(9, 'sssss', 's', 2, NULL),
+(10, 'србија', 's', 3, NULL),
+(11, 'sss', 's', 6, NULL),
+(12, 'gggg', 'g', 1, NULL),
+(13, 'gggg', 'g', 2, NULL),
+(14, 'kkkkkkk', 'k', 0, NULL),
+(15, 'kkkkkkk', 'k', 2, NULL),
+(16, 'јјјјј', 'j', 3, NULL),
+(17, 'јјјјј', 'j', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -20348,6 +20349,18 @@ INSERT INTO `round` (`roundID`, `roundNumber`, `roomCode`, `slovo`) VALUES
 (169, 1, 'Sr6WKJAQ', 'k'),
 (170, 1, 'OhTsciEu', 'j');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `utisci`
+--
+
+CREATE TABLE `utisci` (
+  `utisakID` int(11) NOT NULL,
+  `utisak` text DEFAULT NULL,
+  `dateTimeCreated` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Indexes for dumped tables
 --
@@ -20401,6 +20414,12 @@ ALTER TABLE `round`
   ADD KEY `roomCode` (`roomCode`);
 
 --
+-- Indexes for table `utisci`
+--
+ALTER TABLE `utisci`
+  ADD PRIMARY KEY (`utisakID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -20445,6 +20464,12 @@ ALTER TABLE `room`
 --
 ALTER TABLE `round`
   MODIFY `roundID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
+
+--
+-- AUTO_INCREMENT for table `utisci`
+--
+ALTER TABLE `utisci`
+  MODIFY `utisakID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

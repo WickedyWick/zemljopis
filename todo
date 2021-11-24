@@ -1,7 +1,18 @@
-$(`#help${fields[i]}`).css("visibility", "visible") // ovo NE RADI (game.html,402)
-dodaj vote kick sistem
-////NOTES////
-19ms server za 8 igraca
-    ->65ms klijent
-Extractuj ostale podatke iz /db
 NOTE -> Proveri validnost za sve podatke kasnije nakon svega
+sredi logging
+
+pogledaj sta je ejs
+
+
+
+
+https://docs.pingidentity.com/bundle/pingintelligence-44/page/vto1564008967779.html -> alt redis?
+
+//production
+//napravi scripte za update koje se exutujuju u 3ujutru npr update itd
+
+///android app
+ 
+ranked list, accounts, napravi unique username , idi sa novim design
+
+

@@ -1,0 +1,15 @@
+config:
+  target: "https://zemljopis.rs"
+  engine: socketio
+  phases:
+    - duration: 600
+      arrivalRate: 5
+scenarios:
+  - name: "Connect and send a bunch of messages"
+    flow:
+      - loop:
+          - emit:
+              channel: "test"
+              data: "hello world!"
+          - think: 1
+        count: 50
