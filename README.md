@@ -2,6 +2,8 @@
 
 Nacionalna geografija / zemljopis web aplikacija
 
+Upgraded version -> https://github.com/WickedyWick/zemljopis-ts-be
+
 # ANDROID KLIJENT
 
 * [Android](https://github.com/WickedyWick/Zemljopis-Android) - android
