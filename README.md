@@ -2,7 +2,7 @@
 
 Nacionalna geografija / zemljopis web aplikacija
 
-Upgraded version -> https://github.com/WickedyWick/zemljopis-ts-be
+Upgraded version -> https://github.com/WickedyWick/zemljopis-ts-be (IN DEVELOPMENT)
 
 # ANDROID KLIJENT
 
