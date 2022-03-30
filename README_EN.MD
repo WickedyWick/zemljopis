@@ -2,7 +2,7 @@
 
 Nacionalna geografija / zemljopis web application
 
-Country, city , rive type of appliaction in my native language with lots of neat functionalities
+Country, city , river type of appliaction in my native language with lots of neat functionalities
 
 ## NOTE
 
