@@ -4,6 +4,9 @@ Nacionalna geografija / zemljopis web application
 
 Country, city , river type of appliaction in my native language with lots of neat functionalities
 
+
+## ANDROID CLIENT 
+* [Android](https://github.com/WickedyWick/Zemljopis-Android) - android
 ## NOTE
 
 Project is currently being rewritten and uprgraded using TS and new knowledge aquired -> https://github.com/WickedyWick/zemljopis-ts-be/tree/dev
